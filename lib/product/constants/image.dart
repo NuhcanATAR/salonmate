@@ -12,7 +12,9 @@ enum AppImages {
   success('success'),
   topRated('top_rated'),
   visa('visa'),
-  warning('warning');
+  warning('warning'),
+  google('google'),
+  apple('apple');
 
   final String value;
   const AppImages(this.value);
