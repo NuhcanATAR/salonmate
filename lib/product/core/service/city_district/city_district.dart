@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:salonmake/product/core/exception/exception.dart';
+import 'package:salonmate/product/core/exception/exception.dart';
 
 class CityDistrictService {
   final String apiUrl;

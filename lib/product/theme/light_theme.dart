@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:salonmake/product/theme/custom_color_scheme.dart';
-import 'package:salonmake/product/theme/custom_theme.dart';
+import 'package:salonmate/product/theme/custom_color_scheme.dart';
+import 'package:salonmate/product/theme/custom_theme.dart';
 
 final class CustomLightTheme implements CustomTheme {
   @override

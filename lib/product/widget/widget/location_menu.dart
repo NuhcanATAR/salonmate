@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:salonmake/product/constants/icon.dart';
-import 'package:salonmake/product/core/service/city_district/city_district.dart';
-import 'package:salonmake/product/util/util.dart';
-import 'package:salonmake/product/widget/text_widget/body_medium.dart';
+import 'package:salonmate/product/constants/icon.dart';
+import 'package:salonmate/product/core/service/city_district/city_district.dart';
+import 'package:salonmate/product/util/util.dart';
+import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 
 class LocationMenuWidget extends StatefulWidget {
   const LocationMenuWidget({

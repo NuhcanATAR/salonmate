@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:salonmake/product/theme/light_theme.dart';
+import 'package:salonmate/product/theme/light_theme.dart';
 
 class TitleLargeBlackBoldText extends StatelessWidget {
   const TitleLargeBlackBoldText({

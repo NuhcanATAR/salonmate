@@ -1,4 +1,4 @@
-import 'package:salonmake/product/core/service/api/api.dart';
+import 'package:salonmate/product/core/service/api/api.dart';
 
 class EndPoints {
   const EndPoints._();

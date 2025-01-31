@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:salonmake/feature/splash/splash_view.dart';
-import 'package:salonmake/product/initialize/initialize.dart';
-import 'package:salonmake/product/theme/light_theme.dart';
+import 'package:salonmate/feature/splash/splash_view.dart';
+import 'package:salonmate/product/initialize/initialize.dart';
+import 'package:salonmate/product/theme/light_theme.dart';
 
 void main() async {
   await AppStart.initStartApp();

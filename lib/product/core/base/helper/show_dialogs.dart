@@ -3,12 +3,12 @@
 import 'package:another_flushbar/flushbar.dart';
 
 import 'package:flutter/material.dart';
-import 'package:salonmake/product/constants/icon.dart';
-import 'package:salonmake/product/core/base/helper/button_control.dart';
-import 'package:salonmake/product/extension/dynamic_extension.dart';
-import 'package:salonmake/product/util/util.dart';
-import 'package:salonmake/product/widget/text_widget/title_large.dart';
-import 'package:salonmake/product/widget/widget/button.dart';
+import 'package:salonmate/product/constants/icon.dart';
+import 'package:salonmate/product/core/base/helper/button_control.dart';
+import 'package:salonmate/product/extension/dynamic_extension.dart';
+import 'package:salonmate/product/util/util.dart';
+import 'package:salonmate/product/widget/text_widget/title_large.dart';
+import 'package:salonmate/product/widget/widget/button.dart';
 
 import '../../../widget/text_widget/body_medium.dart';
 

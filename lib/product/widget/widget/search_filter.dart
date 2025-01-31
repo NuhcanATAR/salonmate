@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:salonmake/product/constants/icon.dart';
-import 'package:salonmake/product/core/base/base_state/base_state.dart';
-import 'package:salonmake/product/util/util.dart';
+import 'package:salonmate/product/constants/icon.dart';
+import 'package:salonmate/product/core/base/base_state/base_state.dart';
+import 'package:salonmate/product/util/util.dart';
 
 class SearchWidget extends StatefulWidget {
   const SearchWidget({
