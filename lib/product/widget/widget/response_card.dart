@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:salonmake/product/constants/image.dart';
-import 'package:salonmake/product/util/util.dart';
-import 'package:salonmake/product/widget/text_widget/body_medium.dart';
-import 'package:salonmake/product/widget/text_widget/title_large.dart';
+import 'package:salonmate/product/constants/image.dart';
+import 'package:salonmate/product/util/util.dart';
+import 'package:salonmate/product/widget/text_widget/body_medium.dart';
+import 'package:salonmate/product/widget/text_widget/title_large.dart';
 
 class CustomResponseWidget extends StatelessWidget {
   const CustomResponseWidget({

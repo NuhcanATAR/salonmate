@@ -1,6 +1,6 @@
-# salonmake
+# salonmate
 
-SalonMake Application
+salonmate Application
 
 ## Getting Started
 

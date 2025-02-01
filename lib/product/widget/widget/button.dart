@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:salonmake/product/constants/icon.dart';
-import 'package:salonmake/product/core/base/helper/button_control.dart';
-import 'package:salonmake/product/extension/dynamic_extension.dart';
-import 'package:salonmake/product/util/util.dart';
-import 'package:salonmake/product/widget/text_widget/body_medium.dart';
+import 'package:salonmate/product/constants/icon.dart';
+import 'package:salonmate/product/constants/image.dart';
+import 'package:salonmate/product/core/base/helper/button_control.dart';
+import 'package:salonmate/product/extension/dynamic_extension.dart';
+import 'package:salonmate/product/util/util.dart';
+import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   const CustomButtonWidget({
@@ -13,6 +14,7 @@ class CustomButtonWidget extends StatelessWidget {
     required this.func,
     required this.btnStatus,
     this.appIcon,
+    this.appImages,
   });
 
   final DynamicViewExtensions dynamicViewExtensions;
@@ -20,6 +22,7 @@ class CustomButtonWidget extends StatelessWidget {
   final Function()? func;
   final ButtonTypes btnStatus;
   final AppIcons? appIcon;
+  final AppImages? appImages;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class CustomButtonWidget extends StatelessWidget {
             decoration: btnStatus.buttonTypeValue ==
                     ButtonTypes.primaryColorButton.buttonTypeValue
                 ? BoxDecoration(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).colorScheme.primary,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(
                         BaseUtility.radiusCircularMediumValue,
@@ -68,17 +71,39 @@ class CustomButtonWidget extends StatelessWidget {
                               ),
                             ),
                           )
-                        : BoxDecoration(
-                            border: Border.all(
-                              color: Theme.of(context).colorScheme.error,
-                              width: 0.5,
-                            ),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(
-                                BaseUtility.radiusCircularMediumValue,
-                              ),
-                            ),
-                          ),
+                        : btnStatus.buttonTypeValue ==
+                                ButtonTypes.whiteColorIconButton.buttonTypeValue
+                            ? const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(
+                                    BaseUtility.radiusCircularMediumValue,
+                                  ),
+                                ),
+                              )
+                            : btnStatus.buttonTypeValue ==
+                                    ButtonTypes
+                                        .blackColorIconButton.buttonTypeValue
+                                ? const BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(
+                                        BaseUtility.radiusCircularMediumValue,
+                                      ),
+                                    ),
+                                  )
+                                : BoxDecoration(
+                                    border: Border.all(
+                                      color:
+                                          Theme.of(context).colorScheme.error,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(
+                                        BaseUtility.radiusCircularMediumValue,
+                                      ),
+                                    ),
+                                  ),
             child: btnStatus.buttonTypeValue ==
                     ButtonTypes.primaryColorButton.buttonTypeValue
                 ? BodyMediumWhiteText(
@@ -112,10 +137,52 @@ class CustomButtonWidget extends StatelessWidget {
                             text: text,
                             textAlign: TextAlign.center,
                           )
-                        : BodyMediumRedText(
-                            text: text,
-                            textAlign: TextAlign.center,
-                          ),
+                        : btnStatus.buttonTypeValue ==
+                                ButtonTypes.whiteColorIconButton.buttonTypeValue
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  appImages != null
+                                      ? appImages!.toPngImg(
+                                          BaseUtility.iconNormalSize,
+                                          BaseUtility.iconNormalSize,
+                                        )
+                                      : const SizedBox(),
+                                  Expanded(
+                                    child: BodyMediumBlackText(
+                                      text: text,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : btnStatus.buttonTypeValue ==
+                                    ButtonTypes
+                                        .blackColorIconButton.buttonTypeValue
+                                ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      appImages != null
+                                          ? appImages!.toPngImg(
+                                              BaseUtility.iconNormalSize,
+                                              BaseUtility.iconNormalSize,
+                                            )
+                                          : const SizedBox(),
+                                      Expanded(
+                                        child: BodyMediumWhiteText(
+                                          text: text,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : BodyMediumRedText(
+                                    text: text,
+                                    textAlign: TextAlign.center,
+                                  ),
           ),
         ),
       ),

@@ -1,4 +1,4 @@
-import 'package:salonmake/product/core/base/helper/shared_keys.dart';
+import 'package:salonmate/product/core/base/helper/shared_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefService {

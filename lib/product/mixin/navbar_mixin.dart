@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:salonmake/product/util/util.dart';
-import 'package:salonmake/product/widget/text_widget/body_medium.dart';
-import 'package:salonmake/product/widget/text_widget/label_medium.dart';
+import 'package:salonmate/product/util/util.dart';
+import 'package:salonmate/product/widget/text_widget/body_medium.dart';
+import 'package:salonmate/product/widget/text_widget/label_medium.dart';
 
 mixin BottomMenuMixin {
   // exit dialog

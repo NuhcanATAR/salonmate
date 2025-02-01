@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:salonmake/product/constants/icon.dart';
-import 'package:salonmake/product/core/base/base_state/base_state.dart';
-import 'package:salonmake/product/extension/dynamic_extension.dart';
-import 'package:salonmake/product/util/util.dart';
-import 'package:salonmake/product/validator/validator.dart';
-import 'package:salonmake/product/widget/text_widget/body_medium.dart';
+import 'package:salonmate/product/constants/icon.dart';
+import 'package:salonmate/product/core/base/base_state/base_state.dart';
+import 'package:salonmate/product/extension/dynamic_extension.dart';
+import 'package:salonmate/product/util/util.dart';
+import 'package:salonmate/product/validator/validator.dart';
+import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 
 class NormalTextFieldWidget extends StatefulWidget {
   const NormalTextFieldWidget({
@@ -283,7 +283,7 @@ class _NumberTextFieldWidgetState extends BaseState<NumberTextFieldWidget> {
             child: Row(
               children: [
                 AppIcons.solidWarning.toSvgImg(
-                  Theme.of(context).colorScheme.error,
+                  Colors.red,
                   BaseUtility.iconSmallSize,
                   BaseUtility.iconSmallSize,
                 ),

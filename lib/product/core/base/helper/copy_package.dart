@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:salonmake/product/core/exception/exception.dart';
+import 'package:salonmate/product/core/exception/exception.dart';
 
 class CodeNoahClipboard {
   static Future<void> copy(String text) async {

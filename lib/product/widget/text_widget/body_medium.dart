@@ -154,7 +154,7 @@ class BodyMediumRedText extends StatelessWidget {
       text,
       textAlign: textAlign,
       style: CustomLightTheme().themeData.textTheme.bodyMedium!.copyWith(
-            color: Theme.of(context).colorScheme.error,
+            color: Colors.red,
           ),
     );
   }

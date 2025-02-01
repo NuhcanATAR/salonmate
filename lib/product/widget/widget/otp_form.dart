@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:salonmake/product/extension/dynamic_extension.dart';
+import 'package:salonmate/product/extension/dynamic_extension.dart';
 
 class OtpForm extends StatelessWidget {
   const OtpForm({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:salonmake/product/constants/color.dart';
+import 'package:salonmate/product/constants/color.dart';
 
 final class CustomColorScheme {
   CustomColorScheme._();

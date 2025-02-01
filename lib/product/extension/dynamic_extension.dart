@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:salonmake/product/extension/view_extension.dart';
+import 'package:salonmate/product/extension/view_extension.dart';
 
 class DynamicViewExtensions {
   double maxWidth(BuildContext context) =>

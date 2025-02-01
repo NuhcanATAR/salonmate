@@ -4,6 +4,7 @@ enum ButtonTypes {
   borderPrimaryColorButton,
   borderErrorColorButton,
   whiteColorIconButton,
+  blackColorIconButton,
 }
 
 extension ButtonType on ButtonTypes {
@@ -19,6 +20,8 @@ extension ButtonType on ButtonTypes {
         return 4;
       case ButtonTypes.whiteColorIconButton:
         return 5;
+      case ButtonTypes.blackColorIconButton:
+        return 6;
     }
   }
 }
