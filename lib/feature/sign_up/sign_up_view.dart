@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonmate/feature/sign_in/sign_in_view.dart';
+import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
+import 'package:salonmate/feature/sign_up/bloc/state.dart';
 import 'package:salonmate/feature/sign_up/sign_up_viewmodel.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -10,14 +13,18 @@ import 'package:salonmate/product/widget/widget/email_field.dart';
 import 'package:salonmate/product/widget/widget/location_menu.dart';
 import 'package:salonmate/product/widget/widget/normal_text_field.dart';
 import 'package:salonmate/product/widget/widget/password_field.dart';
-import 'package:salonmate/product/widget/widget/phone_number_field.dart';
 import 'package:salonmate/product/widget/widget/title_subtitle_widget.dart';
 
 import '../../product/constants/color.dart';
 import '../../product/core/base/helper/navigator_router.dart';
 
 class SignUpView extends StatefulWidget {
-  const SignUpView({super.key});
+  const SignUpView({
+    super.key,
+    required this.phoneNumber,
+  });
+
+  final int phoneNumber;
 
   @override
   State<SignUpView> createState() => _SignUpViewState();
@@ -44,27 +51,31 @@ class _SignUpViewState extends SignUpViewmodel {
           textAlign: TextAlign.left,
         ),
       ),
-      body: Form(
-        key: formSignUpKey,
-        child: Padding(
-          padding: BaseUtility.all(
-            BaseUtility.paddingNormalValue,
-          ),
-          child: Center(
-            child: ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                // title sub title
-                buildTitleSubTitleWidget,
-                // user name password field
-                buildUserNamePasswordFieldWidget,
-
-                // sign in and sign up buttons
-                buildSignInAndSignUpButtonsWidget,
-              ],
+      body: BlocConsumer<SignUpBloc, SignUpState>(
+        listener: signUpListenerBloc,
+        builder: (context, state) {
+          return Form(
+            key: formSignUpKey,
+            child: Padding(
+              padding: BaseUtility.all(
+                BaseUtility.paddingNormalValue,
+              ),
+              child: Center(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    // title sub title
+                    buildTitleSubTitleWidget,
+                    // user name password field
+                    buildUserNamePasswordFieldWidget,
+                    // sign in and sign up buttons
+                    buildSignInAndSignUpButtonsWidget,
+                  ],
+                ),
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
@@ -91,11 +102,15 @@ class _SignUpViewState extends SignUpViewmodel {
             dynamicViewExtensions: dynamicViewExtensions,
           ),
           // user name
-          CustomEmailFieldWidget(
-            emailController: userNameController,
+          NormalTextFieldWidget(
+            controller: userNameController,
             hintText: 'User Name',
             onChanged: (val) {},
             isLabelText: true,
+            isValidator: true,
+            explanationStatus: false,
+            enabled: true,
+            dynamicViewExtensions: dynamicViewExtensions,
           ),
           // e-mail
           CustomEmailFieldWidget(
@@ -104,13 +119,7 @@ class _SignUpViewState extends SignUpViewmodel {
             onChanged: (val) {},
             isLabelText: true,
           ),
-          // phone number
-          PhoneNumberFieldWidget(
-            phoneNumberController: phoneNumberController,
-            hintText: 'Phone Number',
-            onChanged: (val) {},
-            isLabelText: true,
-          ),
+
           // city & district
           LocationMenuWidget(
             onCityChanged: handleCityChanged,
@@ -133,7 +142,7 @@ class _SignUpViewState extends SignUpViewmodel {
           // sign in button
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
-            text: 'Sign In',
+            text: 'Next',
             func: signUp,
             btnStatus: ButtonTypes.primaryColorButton,
           ),

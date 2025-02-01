@@ -12,12 +12,14 @@ class CustomEmailFieldWidget extends StatefulWidget {
     required this.hintText,
     required this.onChanged,
     required this.isLabelText,
+    this.isUserName = false,
   });
 
   final TextEditingController emailController;
   final String hintText;
   final Function(String)? onChanged;
   final bool isLabelText;
+  final bool? isUserName;
 
   @override
   State<CustomEmailFieldWidget> createState() => _CustomEmailFieldWidgetState();
@@ -64,15 +66,19 @@ class _CustomEmailFieldWidgetState extends BaseState<CustomEmailFieldWidget> {
                 ),
             controller: widget.emailController,
             validator: (String? value) {
-              final result =
-                  CustomValidator(value: value, context: context).emailCheck;
+              final result = widget.isUserName == true
+                  ? CustomValidator(value: value, context: context)
+                      .emptyNormalCheck
+                  : CustomValidator(value: value, context: context).emailCheck;
               setState(() {
                 errorText = result;
               });
               return result;
             },
             onChanged: widget.onChanged,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: widget.isUserName == true
+                ? TextInputType.text
+                : TextInputType.emailAddress,
             decoration: InputDecoration(
               errorStyle: const TextStyle(
                 fontSize: 0.2,
@@ -81,11 +87,17 @@ class _CustomEmailFieldWidgetState extends BaseState<CustomEmailFieldWidget> {
               hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
-              icon: AppIcons.duotoneEmail.toSvgImg(
-                Colors.black,
-                BaseUtility.iconNormalSize,
-                BaseUtility.iconNormalSize,
-              ),
+              icon: widget.isUserName == true
+                  ? AppIcons.duotoneEmail.toSvgImg(
+                      Colors.black,
+                      BaseUtility.iconNormalSize,
+                      BaseUtility.iconNormalSize,
+                    )
+                  : AppIcons.duotoneEmail.toSvgImg(
+                      Colors.black,
+                      BaseUtility.iconNormalSize,
+                      BaseUtility.iconNormalSize,
+                    ),
               filled: true,
               fillColor: Colors.transparent,
               contentPadding: const EdgeInsets.symmetric(

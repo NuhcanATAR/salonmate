@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
+import 'package:salonmate/feature/sign_up/bloc/state.dart';
 import 'package:salonmate/feature/sign_up/view/verification_code/verification_code_viewmodel.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
@@ -44,23 +47,28 @@ class _VerificationCodeViewState extends VerificationCodeViewModel {
           textAlign: TextAlign.center,
         ),
       ),
-      body: Form(
-        key: formVerificationCodeKey,
-        child: Padding(
-          padding: BaseUtility.all(
-            BaseUtility.paddingNormalValue,
-          ),
-          child: ListView(
-            children: [
-              // title sub title
-              buildTitleSubTitleWidget,
-              // otp code
-              buildOtpCodeWidget,
-              // verification button
-              buildVerificationAndRefreshButtonWidget,
-            ],
-          ),
-        ),
+      body: BlocConsumer<SignUpBloc, SignUpState>(
+        listener: signUpVerificationCodeListenerBLoc,
+        builder: (context, state) {
+          return Form(
+            key: formVerificationCodeKey,
+            child: Padding(
+              padding: BaseUtility.all(
+                BaseUtility.paddingNormalValue,
+              ),
+              child: ListView(
+                children: [
+                  // title sub title
+                  buildTitleSubTitleWidget,
+                  // otp code
+                  buildOtpCodeWidget,
+                  // verification button
+                  buildVerificationAndRefreshButtonWidget,
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

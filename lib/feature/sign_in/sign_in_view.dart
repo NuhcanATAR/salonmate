@@ -87,10 +87,11 @@ class _SignInViewState extends SignInViewModel {
         children: <Widget>[
           // user name
           CustomEmailFieldWidget(
-            emailController: emailController,
+            emailController: usernameController,
             hintText: 'User Name',
             onChanged: (val) {},
             isLabelText: true,
+            isUserName: true,
           ),
           // password
           CustomPasswordFieldWidget(

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
+import 'package:salonmate/feature/sign_up/bloc/state.dart';
 import 'package:salonmate/feature/sign_up/view/send_code/send_code_viewmodel.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
@@ -38,23 +41,28 @@ class _SignUpSendCodeViewState extends SignUpSendCodeViewModel {
           textAlign: TextAlign.center,
         ),
       ),
-      body: Form(
-        key: formSendCodeKey,
-        child: Padding(
-          padding: BaseUtility.all(
-            BaseUtility.paddingNormalValue,
-          ),
-          child: ListView(
-            children: <Widget>[
-              // title and sub title
-              buildTitleSubTitleWidget,
-              // phone number field
-              buildPhoneNumberFieldWidget,
-              // next button
-              buildNextButtonWidget,
-            ],
-          ),
-        ),
+      body: BlocConsumer<SignUpBloc, SignUpState>(
+        listener: signUpSendCodeListenerBLoc,
+        builder: (context, state) {
+          return Form(
+            key: formSendCodeKey,
+            child: Padding(
+              padding: BaseUtility.all(
+                BaseUtility.paddingNormalValue,
+              ),
+              child: ListView(
+                children: <Widget>[
+                  // title and sub title
+                  buildTitleSubTitleWidget,
+                  // phone number field
+                  buildPhoneNumberFieldWidget,
+                  // next button
+                  buildNextButtonWidget,
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

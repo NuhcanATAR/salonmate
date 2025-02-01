@@ -6,8 +6,16 @@ class EndPoints {
   // sign in endpoint
   static const String signInEndPoint = "${ApiService.endPoint}/login";
 
+  // sign up phone number send code endpoint
+  static const String signUpSendCodeEndPoint =
+      "${ApiService.endPoint}/register-phone-send-code";
+
+  // sign up verification code endpoint
+  static const String signUpVerificationCodeEndPoint =
+      "${ApiService.endPoint}/register-verify-code";
+
   // sign up endpoint
-  static const String productsEndPoint = "${ApiService.endPoint}/register";
+  static const String signUpEndPoint = "${ApiService.endPoint}/register";
 
   // phone number sen code endpoint
   static const String phoneNumberSendCodeEndPoint =

@@ -25,7 +25,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       Uri.parse(EndPoints.signInEndPoint),
       headers: ApiService.headers,
       body: json.encode({
-        'username': event.email,
+        'username': event.username,
         'password': event.password,
       }),
     );
