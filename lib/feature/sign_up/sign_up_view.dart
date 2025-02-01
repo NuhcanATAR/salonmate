@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:salonmate/feature/sign_in/bloc/cubit.dart';
-import 'package:salonmate/feature/sign_in/bloc/state.dart';
-import 'package:salonmate/feature/sign_in/sign_in_viewmodel.dart';
-import 'package:salonmate/feature/sign_up/view/send_code/send_code_view.dart';
-import 'package:salonmate/product/constants/color.dart';
+import 'package:salonmate/feature/sign_in/sign_in_view.dart';
+import 'package:salonmate/feature/sign_up/sign_up_viewmodel.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
-import 'package:salonmate/product/core/base/helper/navigator_router.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/widget/button.dart';
 import 'package:salonmate/product/widget/widget/email_field.dart';
+import 'package:salonmate/product/widget/widget/location_menu.dart';
+import 'package:salonmate/product/widget/widget/normal_text_field.dart';
 import 'package:salonmate/product/widget/widget/password_field.dart';
+import 'package:salonmate/product/widget/widget/phone_number_field.dart';
 import 'package:salonmate/product/widget/widget/title_subtitle_widget.dart';
 
-class SignInView extends StatefulWidget {
-  const SignInView({super.key});
+import '../../product/constants/color.dart';
+import '../../product/core/base/helper/navigator_router.dart';
+
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<SignInView> createState() => _SignInViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _SignInViewState extends SignInViewModel {
+class _SignUpViewState extends SignUpViewmodel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,37 +40,31 @@ class _SignInViewState extends SignInViewModel {
           ),
         ),
         title: const BodyMediumBlackBoldText(
-          text: 'Sign In',
+          text: 'Sign Up',
           textAlign: TextAlign.left,
         ),
       ),
-      body: BlocConsumer<SignInBloc, SignInState>(
-        listener: signInListenerBloc,
-        builder: (context, state) {
-          return Form(
-            key: formSignInKey,
-            child: Padding(
-              padding: BaseUtility.all(
-                BaseUtility.paddingNormalValue,
-              ),
-              child: Center(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: <Widget>[
-                    // title sub title
-                    buildTitleSubTitleWidget,
-                    // user name password field
-                    buildUserNamePasswordFieldWidget,
-                    // forgot password
-                    buildForgotPasswordWidget,
-                    // sign in and sign up buttons
-                    buildSignInAndSignUpButtonsWidget,
-                  ],
-                ),
-              ),
+      body: Form(
+        key: formSignUpKey,
+        child: Padding(
+          padding: BaseUtility.all(
+            BaseUtility.paddingNormalValue,
+          ),
+          child: Center(
+            child: ListView(
+              shrinkWrap: true,
+              children: <Widget>[
+                // title sub title
+                buildTitleSubTitleWidget,
+                // user name password field
+                buildUserNamePasswordFieldWidget,
+
+                // sign in and sign up buttons
+                buildSignInAndSignUpButtonsWidget,
+              ],
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }
@@ -77,20 +72,49 @@ class _SignInViewState extends SignInViewModel {
   // title sub title
   TitleSubtitleWidget get buildTitleSubTitleWidget => TitleSubtitleWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        title: 'SalonMake Tekrar Hoşgeldiniz.👋',
-        subtitle:
-            'Hesabınıza giriş yapın ve size yakın kuaför salonlarından hizmet alın.',
+        title: 'SalonMake Hesabınızı Oluşturun.✂️',
+        subtitle: 'Hesabınızı oluşturun ve hizmet almaya\nbaşlayın.',
       );
 
   // user name password field
   Column get buildUserNamePasswordFieldWidget => Column(
         children: <Widget>[
+          // full name
+          NormalTextFieldWidget(
+            controller: fullNameController,
+            hintText: 'Ad Soyad',
+            explanationStatus: false,
+            onChanged: (val) {},
+            isValidator: true,
+            enabled: true,
+            isLabelText: true,
+            dynamicViewExtensions: dynamicViewExtensions,
+          ),
           // user name
           CustomEmailFieldWidget(
-            emailController: emailController,
+            emailController: userNameController,
             hintText: 'User Name',
             onChanged: (val) {},
             isLabelText: true,
+          ),
+          // e-mail
+          CustomEmailFieldWidget(
+            emailController: emailController,
+            hintText: 'E-mail',
+            onChanged: (val) {},
+            isLabelText: true,
+          ),
+          // phone number
+          PhoneNumberFieldWidget(
+            phoneNumberController: phoneNumberController,
+            hintText: 'Phone Number',
+            onChanged: (val) {},
+            isLabelText: true,
+          ),
+          // city & district
+          LocationMenuWidget(
+            onCityChanged: handleCityChanged,
+            onDistrictChanged: handleDistrictChanged,
           ),
           // password
           CustomPasswordFieldWidget(
@@ -103,21 +127,6 @@ class _SignInViewState extends SignInViewModel {
         ],
       );
 
-  // forgot password
-  Container get buildForgotPasswordWidget => Container(
-        padding: BaseUtility.vertical(
-          BaseUtility.paddingNormalValue,
-        ),
-        alignment: Alignment.centerRight,
-        child: GestureDetector(
-          onTap: () {},
-          child: const BodyMediumMainColorBoldText(
-            text: 'Forgot Password',
-            textAlign: TextAlign.right,
-          ),
-        ),
-      );
-
   // sign in and sign up buttons
   Column get buildSignInAndSignUpButtonsWidget => Column(
         children: <Widget>[
@@ -125,13 +134,13 @@ class _SignInViewState extends SignInViewModel {
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
             text: 'Sign In',
-            func: signIn,
+            func: signUp,
             btnStatus: ButtonTypes.primaryColorButton,
           ),
           // sign up
           Padding(
             padding: BaseUtility.top(
-              BaseUtility.paddingHightValue,
+              BaseUtility.paddingNormalValue,
             ),
             child: Row(
               children: <Widget>[
@@ -140,7 +149,7 @@ class _SignInViewState extends SignInViewModel {
                   fit: FlexFit.tight,
                   flex: 3,
                   child: BodyMediumBlackText(
-                    text: "Don't have an account yet?",
+                    text: "You have an account yet?",
                     textAlign: TextAlign.right,
                   ),
                 ),
@@ -150,14 +159,14 @@ class _SignInViewState extends SignInViewModel {
                   child: GestureDetector(
                     onTap: () => CodeNoahNavigatorRouter.push(
                       context,
-                      const SignUpSendCodeView(),
+                      const SignInView(),
                     ),
                     child: Padding(
                       padding: BaseUtility.left(
                         BaseUtility.paddingSmallValue,
                       ),
                       child: const BodyMediumMainColorBoldText(
-                        text: 'Sign Up',
+                        text: 'Sign In',
                         textAlign: TextAlign.left,
                       ),
                     ),

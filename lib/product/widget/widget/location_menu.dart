@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:salonmate/product/constants/icon.dart';
+import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/core/service/city_district/city_district.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
@@ -23,7 +24,7 @@ class LocationMenuWidget extends StatefulWidget {
   State<LocationMenuWidget> createState() => _LocationMenuWidgetState();
 }
 
-class _LocationMenuWidgetState extends State<LocationMenuWidget> {
+class _LocationMenuWidgetState extends BaseState<LocationMenuWidget> {
   Map<String, List<String>>? cityDistricts;
   String? selectCity;
   String? selectDistrict;
@@ -77,80 +78,105 @@ class _LocationMenuWidgetState extends State<LocationMenuWidget> {
               Column(
                 children: <Widget>[
                   SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: BodyMediumBlackText(
-                        text: 'Şehir',
+                    width: dynamicViewExtensions.maxWidth(context),
+                    child: Padding(
+                      padding:
+                          BaseUtility.vertical(BaseUtility.paddingNormalValue),
+                      child: const BodyMediumBlackBoldText(
+                        text: 'City',
                         textAlign: TextAlign.left,
                       ),
                     ),
                   ),
-                  DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.transparent,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: BaseUtility.paddingNormalValue,
-                        vertical: BaseUtility.paddingSmallValue,
+                  Container(
+                    padding: BaseUtility.horizontal(
+                      BaseUtility.paddingMediumValue,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        BaseUtility.radiusCircularMediumValue,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          BaseUtility.radiusCircularMediumValue,
-                        ),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          BaseUtility.radiusCircularMediumValue,
-                        ),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                        ),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          BaseUtility.radiusCircularMediumValue,
-                        ),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                        ),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          BaseUtility.radiusCircularMediumValue,
-                        ),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                        ),
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1,
                       ),
                     ),
-                    icon: AppIcons.locationFill.toSvgImg(
-                      Colors.black,
-                      BaseUtility.iconNormalSize,
-                      BaseUtility.iconNormalSize,
-                    ),
-                    value: selectCity, // Seçili şehir
-                    onChanged: (String? value) {
-                      setState(() {
-                        selectCity = value;
-                        selectDistrict =
-                            null; // Şehir değiştiğinde ilçeyi sıfırla
-                      });
-                      widget.onCityChanged(value);
-                    },
-                    items: cityDistricts?.keys.map((String city) {
-                      return DropdownMenuItem<String>(
-                        value: city,
-                        child: BodyMediumBlackBoldText(
-                          text: city,
-                          textAlign: TextAlign.left,
+                    child: Row(
+                      children: <Widget>[
+                        const Icon(
+                          Icons.location_on_outlined,
+                          color: Colors.black,
+                          size: BaseUtility.iconNormalSize,
                         ),
-                      );
-                    }).toList(),
+                        Expanded(
+                          child: DropdownButtonFormField<String>(
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.transparent,
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: BaseUtility.paddingNormalValue,
+                                vertical: BaseUtility.paddingSmallValue,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  BaseUtility.radiusCircularMediumValue,
+                                ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  BaseUtility.radiusCircularMediumValue,
+                                ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  BaseUtility.radiusCircularMediumValue,
+                                ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  BaseUtility.radiusCircularMediumValue,
+                                ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                            ),
+                            icon: AppIcons.locationFill.toSvgImg(
+                              Colors.black,
+                              BaseUtility.iconNormalSize,
+                              BaseUtility.iconNormalSize,
+                            ),
+                            value: selectCity,
+                            onChanged: (String? value) {
+                              setState(() {
+                                selectCity = value;
+                                selectDistrict = null;
+                              });
+                              widget.onCityChanged(value);
+                            },
+                            items: cityDistricts?.keys.map((String city) {
+                              return DropdownMenuItem<String>(
+                                value: city,
+                                child: BodyMediumBlackBoldText(
+                                  text: city,
+                                  textAlign: TextAlign.left,
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -158,82 +184,107 @@ class _LocationMenuWidgetState extends State<LocationMenuWidget> {
               Column(
                 children: <Widget>[
                   SizedBox(
-                    width: MediaQuery.of(context).size.width,
+                    width: dynamicViewExtensions.maxWidth(context),
                     child: Padding(
-                      padding: BaseUtility.vertical(
-                        BaseUtility.paddingSmallValue,
-                      ),
-                      child: const BodyMediumBlackText(
-                        text: 'İlçe',
+                      padding:
+                          BaseUtility.vertical(BaseUtility.paddingNormalValue),
+                      child: const BodyMediumBlackBoldText(
+                        text: 'District',
                         textAlign: TextAlign.left,
                       ),
                     ),
                   ),
-                  DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.transparent,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: BaseUtility.paddingNormalValue,
-                        vertical: BaseUtility.paddingSmallValue,
+                  Container(
+                    padding: BaseUtility.horizontal(
+                      BaseUtility.paddingMediumValue,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        BaseUtility.radiusCircularMediumValue,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          BaseUtility.radiusCircularMediumValue,
-                        ),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          BaseUtility.radiusCircularMediumValue,
-                        ),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                        ),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          BaseUtility.radiusCircularMediumValue,
-                        ),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                        ),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          BaseUtility.radiusCircularMediumValue,
-                        ),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                        ),
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1,
                       ),
                     ),
-                    icon: AppIcons.locationFill.toSvgImg(
-                      Colors.black,
-                      BaseUtility.iconNormalSize,
-                      BaseUtility.iconNormalSize,
-                    ),
-                    value: selectDistrict, // Seçili ilçe
-                    onChanged: (String? value) {
-                      setState(() {
-                        selectDistrict = value;
-                      });
-                      widget.onDistrictChanged(value);
-                    },
-                    items: selectCity == null
-                        ? []
-                        : cityDistricts![selectCity]!.map((String district) {
-                            return DropdownMenuItem<String>(
-                              value: district,
-                              child: BodyMediumBlackBoldText(
-                                text: district,
-                                textAlign: TextAlign.left,
+                    child: Row(
+                      children: <Widget>[
+                        const Icon(
+                          Icons.location_on_outlined,
+                          color: Colors.black,
+                          size: BaseUtility.iconNormalSize,
+                        ),
+                        Expanded(
+                          child: DropdownButtonFormField<String>(
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.transparent,
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: BaseUtility.paddingNormalValue,
+                                vertical: BaseUtility.paddingSmallValue,
                               ),
-                            );
-                          }).toList(),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  BaseUtility.radiusCircularMediumValue,
+                                ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  BaseUtility.radiusCircularMediumValue,
+                                ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  BaseUtility.radiusCircularMediumValue,
+                                ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  BaseUtility.radiusCircularMediumValue,
+                                ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                            ),
+                            icon: AppIcons.locationFill.toSvgImg(
+                              Colors.black,
+                              BaseUtility.iconNormalSize,
+                              BaseUtility.iconNormalSize,
+                            ),
+                            value: selectDistrict,
+                            onChanged: (String? value) {
+                              setState(() {
+                                selectDistrict = value;
+                              });
+                              widget.onDistrictChanged(value);
+                            },
+                            items: selectCity == null
+                                ? []
+                                : cityDistricts![selectCity]!
+                                    .map((String district) {
+                                    return DropdownMenuItem<String>(
+                                      value: district,
+                                      child: BodyMediumBlackBoldText(
+                                        text: district,
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    );
+                                  }).toList(),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
