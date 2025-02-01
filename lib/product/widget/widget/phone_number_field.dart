@@ -40,7 +40,7 @@ class _PhoneNumberFieldWidgetState extends BaseState<PhoneNumberFieldWidget> {
                   padding: BaseUtility.vertical(
                     BaseUtility.paddingNormalValue,
                   ),
-                  child: BodyMediumBlackText(
+                  child: BodyMediumBlackBoldText(
                     text: widget.hintText,
                     textAlign: TextAlign.left,
                   ),

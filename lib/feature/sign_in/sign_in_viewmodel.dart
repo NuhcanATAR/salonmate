@@ -9,14 +9,14 @@ import 'package:salonmate/product/core/base/base_state/base_state.dart';
 abstract class SignInViewModel extends BaseState<SignInView> with SignInMixin {
   final formSignInKey = GlobalKey<FormState>();
 
-  TextEditingController emailController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   void signIn() {
     if (formSignInKey.currentState!.validate()) {
       context.read<SignInBloc>().add(
             SignInFuncEvent(
-              email: emailController.text,
+              username: usernameController.text,
               password: passwordController.text,
             ),
           );

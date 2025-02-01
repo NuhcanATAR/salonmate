@@ -102,8 +102,10 @@ class CodeNoahDialogs {
       builder: (context) => AlertDialog(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const CircularProgressIndicator(
-          color: Colors.white,
+        title: const Center(
+          child: CircularProgressIndicator(
+            color: Colors.white,
+          ),
         ),
         content: child,
       ),

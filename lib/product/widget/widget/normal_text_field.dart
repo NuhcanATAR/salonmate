@@ -71,8 +71,8 @@ class _NormalTextFieldWidgetState extends BaseState<NormalTextFieldWidget> {
                 ),
             controller: widget.controller,
             validator: (String? value) {
-              final result =
-                  CustomValidator(value: value, context: context).emailCheck;
+              final result = CustomValidator(value: value, context: context)
+                  .emptyNormalCheck;
               setState(() {
                 errorText = result;
               });
@@ -137,7 +137,7 @@ class _NormalTextFieldWidgetState extends BaseState<NormalTextFieldWidget> {
             child: Row(
               children: [
                 AppIcons.solidWarning.toSvgImg(
-                  Theme.of(context).colorScheme.error,
+                  Colors.red,
                   BaseUtility.iconSmallSize,
                   BaseUtility.iconSmallSize,
                 ),
@@ -225,7 +225,7 @@ class _NumberTextFieldWidgetState extends BaseState<NumberTextFieldWidget> {
               return result;
             },
             onChanged: widget.onChanged,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.number,
             decoration: InputDecoration(
               errorStyle: const TextStyle(
                 fontSize: 0.2,
