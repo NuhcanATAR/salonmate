@@ -2,7 +2,7 @@ class ApiService {
   const ApiService._();
 
   // https
-  static const String https = "https";
+  static const String http = "http";
 
   // ipv4 addresses
   static const String ipv4 = "192.168.1.106";
@@ -14,7 +14,7 @@ class ApiService {
   static const String apiHeader = "api";
 
   // end point
-  static const String endPoint = "$https://$ipv4:$port/$apiHeader";
+  static const String endPoint = "$http://$ipv4:$port/$apiHeader";
 
   // standard headers
   static Map<String, String> headers = {

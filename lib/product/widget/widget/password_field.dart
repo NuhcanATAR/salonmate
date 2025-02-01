@@ -185,7 +185,7 @@ class _CustomPasswordFieldWidgetState
         child: Row(
           children: [
             AppIcons.solidWarning.toSvgImg(
-              Theme.of(context).colorScheme.error,
+              Colors.red,
               BaseUtility.iconSmallSize,
               BaseUtility.iconSmallSize,
             ),

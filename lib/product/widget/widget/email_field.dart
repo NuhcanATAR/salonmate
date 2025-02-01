@@ -136,7 +136,7 @@ class _CustomEmailFieldWidgetState extends BaseState<CustomEmailFieldWidget> {
             child: Row(
               children: [
                 AppIcons.solidWarning.toSvgImg(
-                  Theme.of(context).colorScheme.error,
+                  Colors.red,
                   BaseUtility.iconSmallSize,
                   BaseUtility.iconSmallSize,
                 ),

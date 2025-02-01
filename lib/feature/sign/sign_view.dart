@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:salonmate/feature/sign/sign_viewmodel.dart';
+import 'package:salonmate/feature/sign_in/sign_in_view.dart';
 import 'package:salonmate/product/constants/image.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
+import 'package:salonmate/product/core/base/helper/navigator_router.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/title_large.dart';
@@ -74,7 +76,10 @@ class _SignViewState extends SignViewModel {
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
             text: 'Sign In',
-            func: () {},
+            func: () => CodeNoahNavigatorRouter.push(
+              context,
+              const SignInView(),
+            ),
             btnStatus: ButtonTypes.primaryColorButton,
           ),
         ],
