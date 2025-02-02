@@ -38,10 +38,24 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
       emit(SignInSuccessState());
       printLogger.printInfoLog(response.body);
+    } else if (response.statusCode == 401) {
+      emit(
+        const SignInErrorState(
+          error: 'Geçersiz e-posta veya şifre.',
+        ),
+      );
+    } else if (response.statusCode == 500) {
+      emit(
+        const SignInErrorState(
+          error:
+              'Giriş sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+        ),
+      );
     } else {
       emit(
         const SignInErrorState(
-          error: 'E-mail veya Şifre yanlış!',
+          error:
+              'Giriş sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
         ),
       );
       printLogger.printErrorLog(response.body);
