@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonmate/feature/password/bloc/cubit.dart';
+import 'package:salonmate/feature/password/bloc/state.dart';
 import 'package:salonmate/feature/password/view/verification_code/verification_code_viewmodel.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -45,23 +48,28 @@ class _PasswordVerificationCodeViewState
           textAlign: TextAlign.left,
         ),
       ),
-      body: Form(
-        key: formVerificationCodeKey,
-        child: Padding(
-          padding: BaseUtility.all(
-            BaseUtility.paddingNormalValue,
-          ),
-          child: ListView(
-            children: [
-              // title sub title
-              buildTitleSubTitleWidget,
-              // otp code
-              buildOtpCodeWidget,
-              // verification button
-              buildVerificationAndRefreshButtonWidget,
-            ],
-          ),
-        ),
+      body: BlocConsumer<PasswordBloc, PasswordState>(
+        listener: passwordVerificationCodeListenerBloc,
+        builder: (context, state) {
+          return Form(
+            key: formVerificationCodeKey,
+            child: Padding(
+              padding: BaseUtility.all(
+                BaseUtility.paddingNormalValue,
+              ),
+              child: ListView(
+                children: [
+                  // title sub title
+                  buildTitleSubTitleWidget,
+                  // otp code
+                  buildOtpCodeWidget,
+                  // verification button
+                  buildVerificationAndRefreshButtonWidget,
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

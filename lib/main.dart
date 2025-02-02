@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonmate/feature/password/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_in/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
 import 'package:salonmate/feature/splash/splash_view.dart';
@@ -16,6 +17,9 @@ void main() async {
         ),
         BlocProvider<SignUpBloc>(
           create: (BuildContext context) => SignUpBloc(),
+        ),
+        BlocProvider<PasswordBloc>(
+          create: (BuildContext context) => PasswordBloc(),
         ),
       ],
       child: const MyApp(),

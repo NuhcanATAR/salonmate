@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonmate/feature/password/bloc/cubit.dart';
+import 'package:salonmate/feature/password/bloc/state.dart';
 import 'package:salonmate/feature/password/password_viewmodel.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
@@ -42,23 +45,28 @@ class _PasswordViewState extends PasswordViewModel {
           textAlign: TextAlign.left,
         ),
       ),
-      body: Form(
-        key: formNewPasswordKey,
-        child: Padding(
-          padding: BaseUtility.all(
-            BaseUtility.paddingNormalValue,
-          ),
-          child: ListView(
-            children: [
-              // title sub title
-              buildTitleSubTitleWidget,
-              // passwords
-              buildPasswordWidget,
-              // verification button
-              buildVerificationAndRefreshButtonWidget,
-            ],
-          ),
-        ),
+      body: BlocConsumer<PasswordBloc, PasswordState>(
+        listener: passwordChangePasswordListenerBloc,
+        builder: (context, state) {
+          return Form(
+            key: formNewPasswordKey,
+            child: Padding(
+              padding: BaseUtility.all(
+                BaseUtility.paddingNormalValue,
+              ),
+              child: ListView(
+                children: [
+                  // title sub title
+                  buildTitleSubTitleWidget,
+                  // passwords
+                  buildPasswordWidget,
+                  // verification button
+                  buildVerificationAndRefreshButtonWidget,
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -78,20 +86,30 @@ class _PasswordViewState extends PasswordViewModel {
         child: Column(
           children: <Widget>[
             // new password
-            CustomPasswordFieldWidget(
-              passwordController: newPasswordController,
-              hintText: 'New Password',
-              onChanged: (val) {},
-              isLabelText: false,
-              isValidator: true,
+            Padding(
+              padding: BaseUtility.top(
+                BaseUtility.paddingNormalValue,
+              ),
+              child: CustomPasswordFieldWidget(
+                passwordController: newPasswordController,
+                hintText: 'New Password',
+                onChanged: (val) {},
+                isLabelText: false,
+                isValidator: true,
+              ),
             ),
             // confirm password
-            CustomPasswordFieldWidget(
-              passwordController: confirmPasswordController,
-              hintText: 'Confirm Password',
-              onChanged: (val) {},
-              isLabelText: false,
-              isValidator: true,
+            Padding(
+              padding: BaseUtility.top(
+                BaseUtility.paddingNormalValue,
+              ),
+              child: CustomPasswordFieldWidget(
+                passwordController: confirmPasswordController,
+                hintText: 'Confirm Password',
+                onChanged: (val) {},
+                isLabelText: false,
+                isValidator: true,
+              ),
             ),
           ],
         ),
@@ -102,7 +120,7 @@ class _PasswordViewState extends PasswordViewModel {
         children: <Widget>[
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
-            text: 'Verification',
+            text: 'Save Password',
             func: savePassword,
             btnStatus: ButtonTypes.primaryColorButton,
           ),
