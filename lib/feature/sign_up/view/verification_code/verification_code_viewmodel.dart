@@ -6,8 +6,8 @@ import 'package:salonmate/feature/sign_up/bloc/mixin.dart';
 import 'package:salonmate/feature/sign_up/view/verification_code/verification_code_view.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 
-abstract class VerificationCodeViewModel extends BaseState<VerificationCodeView>
-    with SignUpMixin {
+abstract class SignUpVerificationCodeViewModel
+    extends BaseState<SignUpVerificationCodeView> with SignUpMixin {
   final formVerificationCodeKey = GlobalKey<FormState>();
 
   TextEditingController otpCodeController = TextEditingController();

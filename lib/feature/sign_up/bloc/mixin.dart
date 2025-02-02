@@ -16,7 +16,7 @@ mixin SignUpMixin {
         Navigator.pop(context);
         CodeNoahNavigatorRouter.push(
           context,
-          VerificationCodeView(
+          SignUpVerificationCodeView(
             phoneNumber: (state as SignUpSendCodeSuccessState).phoneNumber,
           ),
         );
