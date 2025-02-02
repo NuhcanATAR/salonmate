@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
-import 'package:salonmate/feature/sign_up/bloc/state.dart';
-import 'package:salonmate/feature/sign_up/view/verification_code/verification_code_viewmodel.dart';
-import 'package:salonmate/product/constants/color.dart';
+import 'package:salonmate/feature/password/bloc/cubit.dart';
+import 'package:salonmate/feature/password/bloc/state.dart';
+import 'package:salonmate/feature/password/view/verification_code/verification_code_viewmodel.dart';
 import 'package:salonmate/product/constants/icon.dart';
+import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/widget/button.dart';
 import 'package:salonmate/product/widget/widget/normal_text_field.dart';
 import 'package:salonmate/product/widget/widget/title_subtitle_widget.dart';
 
-import '../../../../product/core/base/helper/button_control.dart';
+import '../../../../product/constants/color.dart';
 
-class SignUpVerificationCodeView extends StatefulWidget {
-  const SignUpVerificationCodeView({
+class PasswordVerificationCodeView extends StatefulWidget {
+  const PasswordVerificationCodeView({
     super.key,
     required this.phoneNumber,
   });
@@ -22,11 +22,12 @@ class SignUpVerificationCodeView extends StatefulWidget {
   final int phoneNumber;
 
   @override
-  State<SignUpVerificationCodeView> createState() =>
-      _SignUpVerificationCodeViewState();
+  State<PasswordVerificationCodeView> createState() =>
+      _PasswordVerificationCodeViewState();
 }
 
-class _SignUpVerificationCodeViewState extends SignUpVerificationCodeViewModel {
+class _PasswordVerificationCodeViewState
+    extends PasswordVerificationCodeViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,14 +43,13 @@ class _SignUpVerificationCodeViewState extends SignUpVerificationCodeViewModel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        centerTitle: true,
         title: const BodyMediumBlackBoldText(
           text: 'Verification Code',
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.left,
         ),
       ),
-      body: BlocConsumer<SignUpBloc, SignUpState>(
-        listener: signUpVerificationCodeListenerBLoc,
+      body: BlocConsumer<PasswordBloc, PasswordState>(
+        listener: passwordVerificationCodeListenerBloc,
         builder: (context, state) {
           return Form(
             key: formVerificationCodeKey,
@@ -78,7 +78,7 @@ class _SignUpVerificationCodeViewState extends SignUpVerificationCodeViewModel {
   Widget get buildTitleSubTitleWidget => TitleSubtitleWidget(
         dynamicViewExtensions: dynamicViewExtensions,
         title: 'Enter Verification Code ✅',
-        subtitle: 'Enter the verification code received on your phone number.',
+        subtitle: 'Enter the verification code received on your new password.',
       );
 
   // otp code
@@ -87,7 +87,7 @@ class _SignUpVerificationCodeViewState extends SignUpVerificationCodeViewModel {
           BaseUtility.paddingNormalValue,
         ),
         child: NumberTextFieldWidget(
-          controller: otpCodeController,
+          controller: verificationCodeController,
           hintText: 'Verification Code',
           onChanged: (val) {},
           isLabelText: false,
@@ -100,7 +100,7 @@ class _SignUpVerificationCodeViewState extends SignUpVerificationCodeViewModel {
         children: <Widget>[
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
-            text: 'Verification Code',
+            text: 'Verification',
             func: verificationCode,
             btnStatus: ButtonTypes.primaryColorButton,
           ),

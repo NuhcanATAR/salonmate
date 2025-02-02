@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonmate/feature/password/view/send_code/send_code_view.dart';
 import 'package:salonmate/feature/sign_in/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_in/bloc/state.dart';
 import 'package:salonmate/feature/sign_in/sign_in_viewmodel.dart';
@@ -111,7 +112,10 @@ class _SignInViewState extends SignInViewModel {
         ),
         alignment: Alignment.centerRight,
         child: GestureDetector(
-          onTap: () {},
+          onTap: () => CodeNoahNavigatorRouter.push(
+            context,
+            const PasswordSendCodeView(),
+          ),
           child: const BodyMediumMainColorBoldText(
             text: 'Forgot Password',
             textAlign: TextAlign.right,

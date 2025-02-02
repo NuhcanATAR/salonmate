@@ -1,36 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:salonmate/feature/password/bloc/state.dart';
+import 'package:salonmate/feature/password/password_view.dart';
+import 'package:salonmate/feature/password/view/verification_code/verification_code_view.dart';
 import 'package:salonmate/feature/sign_in/sign_in_view.dart';
-import 'package:salonmate/feature/sign_up/bloc/state.dart';
-import 'package:salonmate/feature/sign_up/sign_up_view.dart';
-import 'package:salonmate/feature/sign_up/view/verification_code/verification_code_view.dart';
 import 'package:salonmate/product/core/base/helper/logger_package.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
 import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 
-mixin SignUpMixin {
+mixin PasswordMixin {
   final printLogger = CustomLoggerPrint();
-  void signUpSendCodeListenerBLoc(BuildContext context, SignUpState state) {
+
+  // send code
+  void passwordSendCodeListenerBloc(BuildContext context, state) {
     switch (state.runtimeType) {
-      case SignUpSendCodeSuccessState:
+      case PasswordSendCodeSuccessState:
         Navigator.pop(context);
         CodeNoahNavigatorRouter.push(
           context,
-          SignUpVerificationCodeView(
-            phoneNumber: (state as SignUpSendCodeSuccessState).phoneNumber,
+          PasswordVerificationCodeView(
+            phoneNumber: (state as PasswordSendCodeSuccessState).phoneNumber,
           ),
         );
         break;
-      case SignUpSendCodeErrorState:
+      case PasswordSendCodeErrorState:
         Navigator.pop(context);
         CodeNoahDialogs(context).showFlush(
           type: SnackType.error,
-          message: (state as SignUpSendCodeErrorState).errorMessage,
+          message: (state as PasswordSendCodeErrorState).errorMessage,
         );
         break;
-      case SignUpSendCodeLoadingState:
+      case PasswordSendCodeLoadingState:
         CodeNoahDialogs(context).showAlert(
-          const BodyMediumWhiteText(
+          const BodyMediumWhiteBoldText(
             text: 'Loading...',
             textAlign: TextAlign.center,
           ),
@@ -41,30 +43,28 @@ mixin SignUpMixin {
     }
   }
 
-  void signUpVerificationCodeListenerBLoc(
-    BuildContext context,
-    SignUpState state,
-  ) {
+  // verification code
+  void passwordVerificationCodeListenerBloc(BuildContext context, state) {
     switch (state.runtimeType) {
-      case SignUpVerifyCodeSuccessState:
+      case PasswordVerificationCodeSuccessState:
         Navigator.pop(context);
-        CodeNoahNavigatorRouter.pushAndRemoveUntil(
+        CodeNoahNavigatorRouter.push(
           context,
-          SignUpView(
-            phoneNumber: (state as SignUpVerifyCodeSuccessState).phoneNumber,
+          PasswordView(
+            userId: (state as PasswordVerificationCodeSuccessState).userId,
           ),
         );
         break;
-      case SignUpVerifyCodeErrorState:
+      case PasswordVerificationCodeErrorState:
         Navigator.pop(context);
         CodeNoahDialogs(context).showFlush(
           type: SnackType.error,
-          message: (state as SignUpVerifyCodeErrorState).errorMessage,
+          message: (state as PasswordVerificationCodeErrorState).errorMessage,
         );
         break;
-      case SignUpVerifyCodeLoadingState:
+      case PasswordVerificationCodeLoadingState:
         CodeNoahDialogs(context).showAlert(
-          const BodyMediumWhiteText(
+          const BodyMediumWhiteBoldText(
             text: 'Loading...',
             textAlign: TextAlign.center,
           ),
@@ -75,30 +75,26 @@ mixin SignUpMixin {
     }
   }
 
-  void signUpListenerBloc(BuildContext context, state) {
+  // change password
+  void passwordChangePasswordListenerBloc(BuildContext context, state) {
     switch (state.runtimeType) {
-      case SignUpSuccessState:
+      case PasswordNewPasswordSuccessState:
         Navigator.pop(context);
-        CodeNoahNavigatorRouter.pushAndRemoveUntil(
+        CodeNoahNavigatorRouter.push(
           context,
           const SignInView(),
         );
-        CodeNoahDialogs(context).showFlush(
-          type: SnackType.success,
-          message: (state as SignUpSuccessState).message,
-        );
-
         break;
-      case SignUpErrorState:
+      case PasswordNewPasswordErrorState:
         Navigator.pop(context);
         CodeNoahDialogs(context).showFlush(
           type: SnackType.error,
-          message: (state as SignUpErrorState).errorMessage,
+          message: (state as PasswordVerificationCodeErrorState).errorMessage,
         );
         break;
-      case SignUpLoadingState:
+      case PasswordNewPasswordStateLoadingState:
         CodeNoahDialogs(context).showAlert(
-          const BodyMediumWhiteText(
+          const BodyMediumWhiteBoldText(
             text: 'Loading...',
             textAlign: TextAlign.center,
           ),
