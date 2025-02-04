@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salonmate/feature/bottom_navigator/bottom_navigator_viewmodel.dart';
+import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/util/util.dart';
 
@@ -16,7 +17,7 @@ class _BottomNavigatorViewState extends BottomNavigatorViewModel {
     return WillPopScope(
       onWillPop: () => exitWarningDialog(context),
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(248, 244, 244, 244),
+        backgroundColor: ColorConstant.appBarColor,
         body: viewList[selectView],
         bottomNavigationBar: NavigationBar(
           backgroundColor: Colors.white,
