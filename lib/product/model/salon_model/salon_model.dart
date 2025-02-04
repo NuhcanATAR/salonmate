@@ -3,6 +3,17 @@ import 'package:json_annotation/json_annotation.dart';
 part 'salon_model.g.dart';
 
 @JsonSerializable()
+class SalonListModel {
+  final List<SalonModel> salons;
+
+  SalonListModel({required this.salons});
+
+  factory SalonListModel.fromJson(Map<String, dynamic> json) =>
+      _$SalonListModelFromJson(json);
+  Map<String, dynamic> toJson() => _$SalonListModelToJson(this);
+}
+
+@JsonSerializable()
 class SalonModel {
   final int id;
   final int envoirmentId;
@@ -22,14 +33,15 @@ class SalonModel {
   final String address;
   final String city;
   final String district;
+  final String email;
 
   @JsonKey(fromJson: int.parse, toJson: _intToString)
   final int phone;
 
-  @JsonKey(fromJson: _timestampToDateTime, toJson: _dateTimeToTimestamp)
+  @JsonKey(fromJson: _timeStringToDateTime, toJson: _dateTimeToTimeString)
   final DateTime openTime;
 
-  @JsonKey(fromJson: _timestampToDateTime, toJson: _dateTimeToTimestamp)
+  @JsonKey(fromJson: _timeStringToDateTime, toJson: _dateTimeToTimeString)
   final DateTime closeTime;
 
   @JsonKey(fromJson: _intToBool, toJson: _boolToInt)
@@ -50,6 +62,7 @@ class SalonModel {
     required this.address,
     required this.city,
     required this.district,
+    required this.email,
     required this.phone,
     required this.openTime,
     required this.closeTime,
@@ -67,8 +80,22 @@ class SalonModel {
 
   static String _intToString(int value) => value.toString();
 
-  static DateTime _timestampToDateTime(String timestamp) =>
-      DateTime.parse(timestamp);
+  static DateTime _timeStringToDateTime(String time) {
+    final now = DateTime.now();
+    final parts = time.split(':');
+    return DateTime(
+      now.year,
+      now.month,
+      now.day,
+      int.parse(parts[0]),
+      int.parse(parts[1]),
+      int.parse(parts[2]),
+    );
+  }
 
-  static String _dateTimeToTimestamp(DateTime date) => date.toIso8601String();
+  static String _dateTimeToTimeString(DateTime date) {
+    return '${date.hour.toString().padLeft(2, '0')}:'
+        '${date.minute.toString().padLeft(2, '0')}:'
+        '${date.second.toString().padLeft(2, '0')}';
+  }
 }

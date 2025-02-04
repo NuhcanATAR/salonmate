@@ -1,19 +1,19 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'service_category_model.g.dart';
+part 'category_model.g.dart';
 
 @JsonSerializable()
-class ServicesCategoryModel {
-  final String message;
+class CategoryModel {
+  final String? message;
   @JsonKey(name: 'services_categories')
-  final List<ServiceCategory> categories;
+  final List<ServiceCategory>? categories;
 
-  ServicesCategoryModel({required this.message, required this.categories});
+  CategoryModel({this.message, this.categories});
 
-  factory ServicesCategoryModel.fromJson(Map<String, dynamic> json) =>
-      _$ServicesCategoryModelFromJson(json);
+  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$CategoryModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ServicesCategoryModelToJson(this);
+  Map<String, dynamic> toJson() => _$CategoryModelToJson(this);
 }
 
 @JsonSerializable()
@@ -23,12 +23,12 @@ class ServiceCategory {
   @JsonKey(name: 'category_name')
   final String name;
   @JsonKey(name: 'file_name')
-  final String fileName;
+  final String? fileName;
 
   ServiceCategory({
     required this.id,
     required this.name,
-    required this.fileName,
+    this.fileName,
   });
 
   factory ServiceCategory.fromJson(Map<String, dynamic> json) =>

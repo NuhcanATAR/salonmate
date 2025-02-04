@@ -1,13 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonmate/feature/home/bloc/cubit.dart';
+import 'package:salonmate/feature/home/bloc/state.dart';
 import 'package:salonmate/feature/home/home_viewmodel.dart';
 import 'package:salonmate/feature/map/map_view.dart';
 import 'package:salonmate/feature/notification/notification_view.dart';
 import 'package:salonmate/feature/salons/salons_view.dart';
+import 'package:salonmate/feature/salons/view/salon_detail/salon_detail_view.dart';
 import 'package:salonmate/feature/services/services_view.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
+import 'package:salonmate/product/model/category_model/category_model.dart';
+import 'package:salonmate/product/model/salon_model/salon_model.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/title_large.dart';
@@ -98,22 +104,36 @@ class _HomeViewState extends HomeViewModel {
           ),
         ],
       ),
-      body: Padding(
-        padding: BaseUtility.all(
-          BaseUtility.paddingNormalValue,
-        ),
-        child: ListView(
-          children: <Widget>[
-            // search
-            buildSearchWidget,
-            // banner card
-            buildBannerCardWidget,
-            // category
-            buildServiceCategorys,
-            // salons
-            buildSalonsWidget,
-          ],
-        ),
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          if (state is HomeLoadingState) {
+            return const CircularProgressIndicator();
+          } else if (state is HomeLoaded) {
+            return Padding(
+              padding: BaseUtility.all(
+                BaseUtility.paddingNormalValue,
+              ),
+              child: ListView(
+                children: <Widget>[
+                  // search
+                  buildSearchWidget,
+                  // banner card
+                  buildBannerCardWidget,
+                  // category
+                  buildServiceCategorys(state.categorys),
+                  // salons
+                  buildSalonsWidget(state.salons),
+                ],
+              ),
+            );
+          } else if (state is HomeError) {
+            return Center(
+              child: Text(state.errorMessage),
+            );
+          }
+
+          return const SizedBox();
+        },
       ),
     );
   }
@@ -153,61 +173,65 @@ class _HomeViewState extends HomeViewModel {
   // banner card
   Widget get buildBannerCardWidget => BannerCardWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        onTap: () => CodeNoahNavigatorRouter.push(
-          context,
-          const ServicesView(),
-        ),
+        onTap: () {},
         title: 'Morning Special!',
         subTitle: 'Get 20% Off',
         explanation: 'on All Haircuts Between 9-10 AM.',
       );
 
   //  category
-  Widget get buildServiceCategorys => Padding(
-        padding: BaseUtility.vertical(
-          BaseUtility.paddingMediumValue,
-        ),
-        child: Column(
-          children: <Widget>[
-            // list title
-            SizedBox(
-              width: dynamicViewExtensions.maxWidth(context),
-              child: Padding(
-                padding: BaseUtility.vertical(
-                  BaseUtility.paddingNormalValue,
-                ),
-                child: const TitleLargeBlackBoldText(
-                  text: 'Services',
-                  textAlign: TextAlign.left,
-                ),
+  Widget buildServiceCategorys(List<ServiceCategory> categorys) =>
+      categorys.isEmpty
+          ? const SizedBox()
+          : Padding(
+              padding: BaseUtility.vertical(
+                BaseUtility.paddingMediumValue,
               ),
-            ),
-            // list
-            SizedBox(
-              width: dynamicViewExtensions.maxWidth(context),
-              height: dynamicViewExtensions.dynamicHeight(
-                context,
-                0.06,
-              ),
-              child: ListView(
-                scrollDirection: Axis.horizontal,
+              child: Column(
                 children: <Widget>[
-                  // category card
-                  CategoryCard(
-                    onTap: () => CodeNoahNavigatorRouter.push(
+                  // list title
+                  SizedBox(
+                    width: dynamicViewExtensions.maxWidth(context),
+                    child: Padding(
+                      padding: BaseUtility.vertical(
+                        BaseUtility.paddingNormalValue,
+                      ),
+                      child: const TitleLargeBlackBoldText(
+                        text: 'Services',
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                  // list
+                  SizedBox(
+                    width: dynamicViewExtensions.maxWidth(context),
+                    height: dynamicViewExtensions.dynamicHeight(
                       context,
-                      const ServicesView(),
+                      0.06,
+                    ),
+                    child: ListView.builder(
+                      itemCount: categorys.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        final model = categorys[index];
+                        return CategoryCard(
+                          onTap: () => CodeNoahNavigatorRouter.push(
+                            context,
+                            ServicesView(
+                              categoryId: model.id,
+                            ),
+                          ),
+                          categoryModel: model,
+                        );
+                      },
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
-      );
+            );
 
   // salons
-  Widget get buildSalonsWidget => Padding(
+  Widget buildSalonsWidget(List<SalonModel> salons) => Padding(
         padding: BaseUtility.vertical(
           BaseUtility.paddingMediumValue,
         ),
@@ -258,16 +282,22 @@ class _HomeViewState extends HomeViewModel {
               ),
             ),
             // list
-            ListView(
+            ListView.builder(
+              itemCount: salons.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                // salon card
-                SalonCardWidget(
-                  onTap: () {},
+              itemBuilder: (context, index) {
+                final model = salons[index];
+
+                return SalonCardWidget(
+                  onTap: () => CodeNoahNavigatorRouter.push(
+                    context,
+                    const SalonDetailView(),
+                  ),
                   dynamicViewExtensions: dynamicViewExtensions,
-                ),
-              ],
+                  salonModel: model,
+                );
+              },
             ),
           ],
         ),

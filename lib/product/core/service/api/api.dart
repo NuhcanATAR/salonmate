@@ -20,4 +20,10 @@ class ApiService {
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
   };
+
+  // token headers
+  static Map<String, String> headersToken(String token) => {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      };
 }

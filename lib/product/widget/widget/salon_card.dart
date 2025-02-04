@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
+import 'package:salonmate/product/model/salon_model/salon_model.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/title_medium.dart';
@@ -10,10 +11,12 @@ class SalonCardWidget extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.dynamicViewExtensions,
+    required this.salonModel,
   });
 
   final Function() onTap;
   final DynamicViewExtensions dynamicViewExtensions;
+  final SalonModel salonModel;
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +47,14 @@ class SalonCardWidget extends StatelessWidget {
                 fit: FlexFit.tight,
                 flex: 1,
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
-                        'https://firebasestorage.googleapis.com/v0/b/caffely-90d9a.appspot.com/o/SalonMakeApp%2Fsalon_covers%2Fsalon_cover_second.png?alt=media&token=2aa91e3e-095a-40ae-bab2-64228cf3e728',
+                        salonModel.fileName,
                       ),
                       fit: BoxFit.cover,
                     ),
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(
                         BaseUtility.radiusCircularMediumValue,
                       ),
@@ -75,16 +78,16 @@ class SalonCardWidget extends StatelessWidget {
                         padding: BaseUtility.bottom(
                           BaseUtility.paddingSmallValue,
                         ),
-                        child: const Row(
+                        child: Row(
                           children: <Widget>[
                             Expanded(
                               flex: 2,
                               child: TitleMediumBlackBoldText(
-                                text: 'Hair Avenue ',
+                                text: salonModel.name,
                                 textAlign: TextAlign.left,
                               ),
                             ),
-                            Flexible(
+                            const Flexible(
                               fit: FlexFit.tight,
                               flex: 1,
                               child: BodyMediumBlackText(
@@ -112,8 +115,9 @@ class SalonCardWidget extends StatelessWidget {
                                 padding: BaseUtility.left(
                                   BaseUtility.paddingMediumValue,
                                 ),
-                                child: const BodyMediumBlackText(
-                                  text: 'Çorum/Merkez',
+                                child: BodyMediumBlackText(
+                                  text:
+                                      '${salonModel.city}/${salonModel.district}',
                                   textAlign: TextAlign.left,
                                 ),
                               ),
