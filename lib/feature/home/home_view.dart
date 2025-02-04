@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:salonmate/feature/home/bloc/cubit.dart';
 import 'package:salonmate/feature/home/bloc/state.dart';
 import 'package:salonmate/feature/home/home_viewmodel.dart';
@@ -14,6 +15,7 @@ import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
 import 'package:salonmate/product/model/category_model/category_model.dart';
 import 'package:salonmate/product/model/salon_model/salon_model.dart';
+import 'package:salonmate/product/provider/user_provider.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/title_large.dart';
@@ -32,6 +34,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends HomeViewModel {
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
       appBar: AppBar(
@@ -72,8 +75,9 @@ class _HomeViewState extends HomeViewModel {
                         padding: BaseUtility.bottom(
                           BaseUtility.paddingSmallValue,
                         ),
-                        child: const TitleMediumBlackBoldText(
-                          text: 'Çorum/Merkez',
+                        child: TitleMediumBlackBoldText(
+                          text:
+                              '${userProvider.user?.userDetail.city ?? "Bilinmiyor"}/${userProvider.user?.userDetail.district ?? "Bilinmiyor"}',
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -107,7 +111,9 @@ class _HomeViewState extends HomeViewModel {
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state is HomeLoadingState) {
-            return const CircularProgressIndicator();
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           } else if (state is HomeLoaded) {
             return Padding(
               padding: BaseUtility.all(

@@ -36,6 +36,9 @@ class EndPoints {
   // salons endpoint
   static const String salonsEndPoint = "${ApiService.endPoint}/salons";
 
+  // accounts endpoint
+  static const String accountsEndPoint = "${ApiService.endPoint}/account";
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);
