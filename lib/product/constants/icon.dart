@@ -23,10 +23,11 @@ enum AppIcons {
   home('home'),
   imageIc('image_ic'),
   image('image'),
-  locationFill('location_fill'),
+  locationFill('location'),
+  locationOutline('location_outline'),
   locationMap('location_map'),
   minCalendar('min_calendar'),
-  notification('notification'),
+  notification('notifications'),
   rectangle('rectangle'),
   search('search'),
   star('star'),
@@ -38,7 +39,9 @@ enum AppIcons {
   solidWarning('solid_warning'),
   superegoLock('superego_lock'),
   monotoneLock('monotone_lock'),
-  callOutline('call_outline');
+  callOutline('call_outline'),
+  mark('mark'),
+  markOutline('mark_outline');
 
   final String value;
   const AppIcons(this.value);
