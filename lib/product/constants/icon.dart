@@ -41,7 +41,8 @@ enum AppIcons {
   monotoneLock('monotone_lock'),
   callOutline('call_outline'),
   mark('mark'),
-  markOutline('mark_outline');
+  markOutline('mark_outline'),
+  mapOutline('map_outline');
 
   final String value;
   const AppIcons(this.value);

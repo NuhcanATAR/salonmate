@@ -13,4 +13,5 @@ class ColorConstant {
   static const Color dark1 = Color(0xFF0B0C15);
   static const Color dark2 = Color(0xFF333333);
   static const Color gray = Color(0xFF939393);
+  static const Color appBarColor = Color.fromARGB(260, 247, 247, 247);
 }

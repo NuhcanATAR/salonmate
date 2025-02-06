@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:salonmate/feature/home/bloc/cubit.dart';
 import 'package:salonmate/feature/password/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_in/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
 import 'package:salonmate/feature/splash/splash_view.dart';
 import 'package:salonmate/product/initialize/initialize.dart';
+import 'package:salonmate/product/provider/user_provider.dart';
 import 'package:salonmate/product/theme/light_theme.dart';
 
 void main() async {
@@ -12,17 +15,27 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider<SignInBloc>(
-          create: (BuildContext context) => SignInBloc(),
-        ),
-        BlocProvider<SignUpBloc>(
-          create: (BuildContext context) => SignUpBloc(),
-        ),
-        BlocProvider<PasswordBloc>(
-          create: (BuildContext context) => PasswordBloc(),
+        ChangeNotifierProvider(
+          create: (context) => UserProvider(),
         ),
       ],
-      child: const MyApp(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<SignInBloc>(
+            create: (BuildContext context) => SignInBloc(),
+          ),
+          BlocProvider<SignUpBloc>(
+            create: (BuildContext context) => SignUpBloc(),
+          ),
+          BlocProvider<PasswordBloc>(
+            create: (BuildContext context) => PasswordBloc(),
+          ),
+          BlocProvider<HomeBloc>(
+            create: (BuildContext context) => HomeBloc(),
+          ),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }

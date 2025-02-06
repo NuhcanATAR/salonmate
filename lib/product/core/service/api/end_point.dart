@@ -29,6 +29,16 @@ class EndPoints {
   static const String resetPasswordEndPoint =
       "${ApiService.endPoint}/reset-password";
 
+  // service categorys endpoint
+  static const String serviceCategoriesEndPoint =
+      "${ApiService.endPoint}/categorys";
+
+  // salons endpoint
+  static const String salonsEndPoint = "${ApiService.endPoint}/salons";
+
+  // accounts endpoint
+  static const String accountsEndPoint = "${ApiService.endPoint}/account";
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);
