@@ -4,8 +4,8 @@ part 'salon_services_model.g.dart';
 
 @JsonSerializable()
 class SalonServicesModel {
-  final String message;
-  final List<Service> services;
+  final String? message;
+  final List<Service>? services;
 
   SalonServicesModel({required this.message, required this.services});
 

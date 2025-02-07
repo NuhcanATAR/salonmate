@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
 import 'package:salonmate/product/model/salon_model/salon_model.dart';
+import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
 
 abstract class SalonsState extends Equatable {
   @override
@@ -10,6 +12,8 @@ class SalonsInitialState extends SalonsState {}
 
 class SalonsLoadingState extends SalonsState {}
 
+class SalonDetailLoadingState extends SalonsState {}
+
 class SalonLoadedState extends SalonsState {
   final List<SalonModel> salons;
 
@@ -19,6 +23,30 @@ class SalonLoadedState extends SalonsState {
 
   @override
   List<Object> get props => [salons];
+}
+
+class SalonDetailLoadedState extends SalonsState {
+  final SalonDetailModel salonModel;
+  final List<Service> services;
+
+  SalonDetailLoadedState({
+    required this.salonModel,
+    required this.services,
+  });
+
+  @override
+  List<Object> get props => [salonModel, services];
+}
+
+class SalonDetailErrorState extends SalonsState {
+  final String errorMessage;
+
+  SalonDetailErrorState({
+    required this.errorMessage,
+  });
+
+  @override
+  List<Object> get props => [errorMessage];
 }
 
 class SalonErrorState extends SalonsState {

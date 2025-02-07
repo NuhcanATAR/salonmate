@@ -8,9 +8,9 @@ part of 'salon_services_model.dart';
 
 SalonServicesModel _$SalonServicesModelFromJson(Map<String, dynamic> json) =>
     SalonServicesModel(
-      message: json['message'] as String,
-      services: (json['services'] as List<dynamic>)
-          .map((e) => Service.fromJson(e as Map<String, dynamic>))
+      message: json['message'] as String?,
+      services: (json['services'] as List<dynamic>?)
+          ?.map((e) => Service.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
