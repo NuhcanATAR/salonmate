@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -123,6 +122,7 @@ class _HomeViewState extends HomeViewModel {
                 children: <Widget>[
                   // search
                   buildSearchWidget,
+
                   // banner card
                   buildBannerCardWidget,
                   // category
@@ -147,32 +147,47 @@ class _HomeViewState extends HomeViewModel {
   // search
   Widget get buildSearchWidget => Padding(
         padding: BaseUtility.bottom(
-          BaseUtility.paddingNormalValue,
+          BaseUtility.paddingMediumValue,
         ),
-        child: CupertinoSearchTextField(
-          controller: searchController,
-          focusNode: searchFocusNode,
-          padding: BaseUtility.all(
-            BaseUtility.paddingNormalValue,
+        child: GestureDetector(
+          onTap: () => CodeNoahNavigatorRouter.push(
+            context,
+            const SalonsView(),
           ),
-          placeholder: 'Enter address or city name',
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: Colors.black,
+          child: SizedBox(
+            width: dynamicViewExtensions.maxWidth(context),
+            height: dynamicViewExtensions.dynamicHeight(context, 0.06),
+            child: Container(
+              padding: BaseUtility.horizontal(BaseUtility.paddingNormalValue),
+              margin: BaseUtility.bottom(BaseUtility.paddingSmallValue),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.09),
+                borderRadius: BorderRadius.circular(
+                  BaseUtility.radiusCircularMediumValue,
+                ),
               ),
-          backgroundColor: Colors.grey.withOpacity(0.05),
-          prefixIcon: AppIcons.search.toSvgImg(
-            Colors.black54,
-            BaseUtility.iconNormalSize,
-            BaseUtility.iconNormalSize,
+              child: Row(
+                children: <Widget>[
+                  AppIcons.search.toSvgImg(
+                    Colors.black54,
+                    BaseUtility.iconNormalSize,
+                    BaseUtility.iconNormalSize,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: BaseUtility.horizontal(
+                        BaseUtility.paddingNormalValue,
+                      ),
+                      child: const BodyMediumBlackText(
+                        text: 'Enter address or city name',
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          onChanged: (val) {
-            searchFocusNode.unfocus();
-            searchController.clear();
-            CodeNoahNavigatorRouter.push(
-              context,
-              const SalonsView(),
-            );
-          },
         ),
       );
 

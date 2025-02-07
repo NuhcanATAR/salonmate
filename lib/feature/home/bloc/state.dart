@@ -19,6 +19,9 @@ class HomeLoaded extends HomeState {
     required this.categorys,
     required this.salons,
   });
+
+  @override
+  List<Object> get props => [categorys, salons];
 }
 
 class HomeError extends HomeState {

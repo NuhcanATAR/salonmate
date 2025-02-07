@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:salonmate/product/constants/image.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/title_large.dart';
@@ -12,7 +11,7 @@ class CustomResponseWidget extends StatelessWidget {
     required this.subTitle,
   });
 
-  final AppImages img;
+  final Widget img;
   final String title;
   final String subTitle;
   @override
@@ -28,11 +27,7 @@ class CustomResponseWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               // img
-              img.toSvgImg(
-                null,
-                0,
-                160,
-              ),
+              img,
               // title
               Padding(
                 padding: BaseUtility.top(
