@@ -313,7 +313,9 @@ class _HomeViewState extends HomeViewModel {
                 return SalonCardWidget(
                   onTap: () => CodeNoahNavigatorRouter.push(
                     context,
-                    const SalonDetailView(),
+                    SalonDetailView(
+                      salonId: model.id,
+                    ),
                   ),
                   dynamicViewExtensions: dynamicViewExtensions,
                   salonModel: model,

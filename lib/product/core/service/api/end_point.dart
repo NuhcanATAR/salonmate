@@ -36,6 +36,10 @@ class EndPoints {
   // salons endpoint
   static const String salonsEndPoint = "${ApiService.endPoint}/salons";
 
+  // salon detail endpoint
+  static const String salonDetailEndPoint =
+      "${ApiService.endPoint}/salons-detail";
+
   // accounts endpoint
   static const String accountsEndPoint = "${ApiService.endPoint}/account";
 
