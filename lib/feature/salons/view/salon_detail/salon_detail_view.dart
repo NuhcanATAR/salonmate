@@ -3,13 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonmate/feature/salons/bloc/cubit.dart';
 import 'package:salonmate/feature/salons/bloc/state.dart';
 import 'package:salonmate/feature/salons/view/salon_detail/salon_detail_viewmodel.dart';
+import 'package:salonmate/feature/salons/view/salon_information/salon_information_view.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
+import 'package:salonmate/product/core/base/helper/navigator_router.dart';
 import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
+import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/title_large.dart';
-import 'package:salonmate/product/widget/text_widget/title_medium.dart';
 import 'package:salonmate/product/widget/widget/service_card.dart';
 
 class SalonDetailView extends StatefulWidget {
@@ -75,8 +77,8 @@ class _SalonDetailViewState extends SalonDetailViewModel {
                         buildSalonInformationWidget(state.salonModel),
                         // rating
                         buildRatingWidget,
-                        // service category
-                        buildServiceCategoryWidget,
+                        // services
+                        buildServicesWidget(state.services),
                       ],
                     ),
                   ),
@@ -131,9 +133,28 @@ class _SalonDetailViewState extends SalonDetailViewModel {
               padding: BaseUtility.bottom(
                 BaseUtility.paddingNormalValue,
               ),
-              child: TitleLargeBlackBoldText(
-                text: model.name,
-                textAlign: TextAlign.left,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: TitleLargeBlackBoldText(
+                      text: model.name,
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () => CodeNoahNavigatorRouter.push(
+                      context,
+                      SalonInformationView(
+                        salonModel: model,
+                      ),
+                    ),
+                    icon: AppIcons.arrowRight.toSvgImg(
+                      Theme.of(context).colorScheme.primary,
+                      BaseUtility.iconMediumSecondSize,
+                      BaseUtility.iconMediumSecondSize,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -258,45 +279,39 @@ class _SalonDetailViewState extends SalonDetailViewModel {
         ),
       );
 
-  // service category
-  Widget get buildServiceCategoryWidget => SizedBox(
+  // services
+  Widget buildServicesWidget(List<Service> services) => SizedBox(
         width: dynamicViewExtensions.maxWidth(context),
         child: Column(
           children: <Widget>[
-            // tabbar
+            // list title
             SizedBox(
               width: dynamicViewExtensions.maxWidth(context),
               child: Padding(
                 padding: BaseUtility.vertical(
                   BaseUtility.paddingNormalValue,
                 ),
-                child: Row(
-                  children: <Widget>[
-                    const Expanded(
-                      child: TitleLargeBlackBoldText(
-                        text: 'Services',
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: const TitleMediumMainColorText(
-                        text: 'All Services',
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ],
+                child: const TitleLargeBlackBoldText(
+                  text: 'Services',
+                  textAlign: TextAlign.left,
                 ),
               ),
             ),
             // views
-            Column(
-              children: <Widget>[
-                // service card
-                ServiceCardWidget(
+            ListView.builder(
+              itemCount: services.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                final model = services[index];
+
+                return ServiceCardWidget(
                   dynamicViewExtensions: dynamicViewExtensions,
-                ),
-              ],
+                  serviceModel: model,
+                  onTap: () {},
+                  serviceAddOnTap: () {},
+                );
+              },
             ),
           ],
         ),

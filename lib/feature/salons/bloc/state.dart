@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
 import 'package:salonmate/product/model/salon_model/salon_model.dart';
+import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
 
 abstract class SalonsState extends Equatable {
   @override
@@ -26,13 +27,15 @@ class SalonLoadedState extends SalonsState {
 
 class SalonDetailLoadedState extends SalonsState {
   final SalonDetailModel salonModel;
+  final List<Service> services;
 
   SalonDetailLoadedState({
     required this.salonModel,
+    required this.services,
   });
 
   @override
-  List<Object> get props => [salonModel];
+  List<Object> get props => [salonModel, services];
 }
 
 class SalonDetailErrorState extends SalonsState {

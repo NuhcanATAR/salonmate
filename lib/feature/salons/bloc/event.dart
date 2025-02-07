@@ -29,5 +29,8 @@ class SalonDetailLoadEvent extends SalonsEvent {
   });
 
   @override
-  List<Object> get props => [token];
+  List<Object> get props => [
+        token,
+        salonId,
+      ];
 }

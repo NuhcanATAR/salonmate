@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:salonmate/feature/salons/view/salon_services/salon_services_view.dart';
 import 'package:salonmate/product/constants/icon.dart';
-import 'package:salonmate/product/core/base/helper/navigator_router.dart';
+import 'package:salonmate/product/core/base/helper/price_convert.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
+import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 
@@ -10,19 +10,20 @@ class ServiceCardWidget extends StatelessWidget {
   const ServiceCardWidget({
     super.key,
     required this.dynamicViewExtensions,
+    required this.serviceModel,
+    required this.onTap,
+    required this.serviceAddOnTap,
   });
 
   final DynamicViewExtensions dynamicViewExtensions;
+  final Service serviceModel;
+  final Function() onTap;
+  final Function() serviceAddOnTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => CodeNoahNavigatorRouter.push(
-        context,
-        const SalonServicesView(
-          salonId: 1,
-        ),
-      ),
+      onTap: onTap,
       child: SizedBox(
         width: dynamicViewExtensions.maxWidth(context),
         child: Container(
@@ -50,21 +51,8 @@ class ServiceCardWidget extends StatelessWidget {
                         padding: BaseUtility.bottom(
                           BaseUtility.paddingSmallValue,
                         ),
-                        child: const BodyMediumBlackBoldText(
-                          text: 'Normal Saç Kesimi',
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ),
-                    // category
-                    SizedBox(
-                      width: dynamicViewExtensions.maxWidth(context),
-                      child: Padding(
-                        padding: BaseUtility.bottom(
-                          BaseUtility.paddingNormalValue,
-                        ),
-                        child: const BodyMediumBlackText(
-                          text: 'Saç Kesimi',
+                        child: BodyMediumBlackBoldText(
+                          text: serviceModel.name,
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -86,8 +74,9 @@ class ServiceCardWidget extends StatelessWidget {
                                 padding: BaseUtility.right(
                                   BaseUtility.paddingSmallValue,
                                 ),
-                                child: const BodyMediumBlackText(
-                                  text: '150.0₺',
+                                child: BodyMediumBlackText(
+                                  text:
+                                      '${CodeNoahPriceConvert.formatPrice(serviceModel.price)}₺',
                                   textAlign: TextAlign.left,
                                 ),
                               ),
@@ -107,8 +96,8 @@ class ServiceCardWidget extends StatelessWidget {
                                     padding: BaseUtility.left(
                                       BaseUtility.paddingSmallValue,
                                     ),
-                                    child: const BodyMediumBlackText(
-                                      text: '30 Mins',
+                                    child: BodyMediumBlackText(
+                                      text: '${serviceModel.duration} Mins',
                                       textAlign: TextAlign.left,
                                     ),
                                   ),
@@ -126,7 +115,7 @@ class ServiceCardWidget extends StatelessWidget {
               ),
               // service add
               GestureDetector(
-                onTap: () {},
+                onTap: serviceAddOnTap,
                 child: AppIcons.addCircleOutline.toSvgImg(
                   Colors.black,
                   BaseUtility.iconNormalSize,

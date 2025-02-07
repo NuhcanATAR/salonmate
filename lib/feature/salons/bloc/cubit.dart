@@ -6,8 +6,10 @@ import 'package:salonmate/feature/salons/bloc/event.dart';
 import 'package:salonmate/feature/salons/bloc/state.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
 import 'package:salonmate/product/core/service/api/end_point.dart';
+
 import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
 import 'package:salonmate/product/model/salon_model/salon_model.dart';
+import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
 
 class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
   List<SalonModel> allSalons = [];
@@ -98,7 +100,17 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
         ),
       );
 
-      if (salonDetailResponse.statusCode == 200) {
+      final salonAllServiceResponse = await http.get(
+        EndPoints.uriParse(EndPoints.salonAllServicesEndPoint),
+        headers: ApiService.headerSalonToken(
+          event.token,
+          event.salonId,
+        ),
+      );
+
+      if (salonDetailResponse.statusCode == 200 &&
+          salonAllServiceResponse.statusCode == 200) {
+        // salon detail
         final Map<String, dynamic> salonDetailData =
             jsonDecode(salonDetailResponse.body);
 
@@ -125,7 +137,32 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
         final SalonDetailModel salonDetail =
             SalonDetailModel.fromJson(rawSalonDetail);
 
-        emit(SalonDetailLoadedState(salonModel: salonDetail));
+        // services
+        final Map<String, dynamic> salonServices =
+            json.decode(salonAllServiceResponse.body);
+
+        if (salonServices == null ||
+            salonServices['services'] == null ||
+            salonServices['services'] is! List) {
+          emit(
+            SalonDetailErrorState(
+              errorMessage: 'Servisler beklenen API verisi bulunamadı!',
+            ),
+          );
+          return;
+        }
+
+        final List<dynamic> rawServices = salonServices['services'];
+        final List<Service> services = rawServices
+            .map((e) => Service.fromJson(e as Map<String, dynamic>))
+            .toList();
+
+        emit(
+          SalonDetailLoadedState(
+            salonModel: salonDetail,
+            services: services,
+          ),
+        );
       } else {
         emit(
           SalonDetailErrorState(

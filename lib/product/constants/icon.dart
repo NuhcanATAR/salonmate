@@ -42,7 +42,8 @@ enum AppIcons {
   callOutline('call_outline'),
   mark('mark'),
   markOutline('mark_outline'),
-  mapOutline('map_outline');
+  mapOutline('map_outline'),
+  arrowRight('arrow_right');
 
   final String value;
   const AppIcons(this.value);
