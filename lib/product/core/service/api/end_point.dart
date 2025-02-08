@@ -44,6 +44,10 @@ class EndPoints {
   static const String salonAllServicesEndPoint =
       "${ApiService.endPoint}/salon-services";
 
+  // salon services category
+  static const String salonServicesCategoryEndPoint =
+      "${ApiService.endPoint}/services-categorys";
+
   // accounts endpoint
   static const String accountsEndPoint = "${ApiService.endPoint}/account";
 

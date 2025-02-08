@@ -21,21 +21,24 @@ Map<String, dynamic> _$SalonServicesModelToJson(SalonServicesModel instance) =>
     };
 
 Service _$ServiceFromJson(Map<String, dynamic> json) => Service(
-      id: (json['id'] as num).toInt(),
-      salonId: (json['salon_id'] as num).toInt(),
-      serviceCategoryId: (json['service_category_id'] as num).toInt(),
-      name: json['name'] as String,
-      description: json['description'] as String,
-      price: (json['price'] as num).toInt(),
-      duration: (json['duration'] as num).toInt(),
-      isActive: _boolFromInt((json['is_active'] as num).toInt()),
-      createdAt: DateTime.parse(json['created_at'] as String),
-      isDeleted: _boolFromInt((json['is_deleted'] as num).toInt()),
-      envoirmentId: (json['envoirment_id'] as num).toInt(),
-      envoirmentFileName: json['envoirment_file_name'] as String,
-      addServices: (json['add_services'] as List<dynamic>)
-          .map((e) => AddService.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      salonId: (json['salon_id'] as num?)?.toInt() ?? 0,
+      serviceCategoryId: (json['service_category_id'] as num?)?.toInt() ?? 0,
+      name: json['name'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      price: (json['price'] as num?)?.toInt() ?? 0,
+      duration: (json['duration'] as num?)?.toInt() ?? 0,
+      isActive: _boolFromInt((json['is_active'] as num?)?.toInt() ?? 0),
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'] as String)
+          : DateTime.now(),
+      isDeleted: _boolFromInt((json['is_deleted'] as num?)?.toInt() ?? 0),
+      envoirmentId: (json['envoirment_id'] as num?)?.toInt() ?? 0,
+      envoirmentFileName: json['envoirment_file_name'] as String? ?? '',
+      addServices: (json['add_services'] as List<dynamic>?)
+              ?.map((e) => AddService.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$ServiceToJson(Service instance) => <String, dynamic>{
