@@ -240,6 +240,7 @@ class _HomeViewState extends HomeViewModel {
                             context,
                             ServicesView(
                               categoryId: model.id,
+                              categoryModel: model,
                             ),
                           ),
                           categoryModel: model,

@@ -16,10 +16,12 @@ abstract class SalonDetailViewModel extends BaseState<SalonDetailView> {
     final token = await getAuthToken();
     if (token.isNotEmpty) {
       if (!mounted) return;
-      context.read<SalonsBloc>().add(SalonDetailLoadEvent(
-            salonId: widget.salonId.toString(),
-            token: token,
-          ));
+      context.read<SalonsBloc>().add(
+            SalonDetailLoadEvent(
+              salonId: widget.salonId.toString(),
+              token: token,
+            ),
+          );
       await Provider.of<UserProvider>(context, listen: false)
           .fetchUserData(token);
     } else {

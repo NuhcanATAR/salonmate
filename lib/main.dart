@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:salonmate/feature/home/bloc/cubit.dart';
 import 'package:salonmate/feature/password/bloc/cubit.dart';
 import 'package:salonmate/feature/salons/bloc/cubit.dart';
+import 'package:salonmate/feature/services/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_in/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
 import 'package:salonmate/feature/splash/splash_view.dart';
@@ -36,6 +37,9 @@ void main() async {
           ),
           BlocProvider<SalonsBloc>(
             create: (BuildContext context) => SalonsBloc(),
+          ),
+          BlocProvider<ServicesBloc>(
+            create: (BuildContext context) => ServicesBloc(),
           ),
         ],
         child: const MyApp(),
