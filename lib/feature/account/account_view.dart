@@ -199,7 +199,7 @@ class _AccountViewState extends AccountViewModel {
             // application settings
             MenuWidget(
               dynamicViewExtensions: dynamicViewExtensions,
-              onTap: () {},
+              onTap: signOutAccount,
               menuText: 'Çıkış Yap',
               menuIcon: AppIcons.signOutOutline,
             ),
