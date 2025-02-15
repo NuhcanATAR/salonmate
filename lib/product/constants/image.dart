@@ -16,7 +16,8 @@ enum AppImages {
   google('google'),
   apple('apple'),
   failed('failed'),
-  notfound('notfound');
+  notfound('notfound'),
+  locationPermissions('location_permission');
 
   final String value;
   const AppImages(this.value);
