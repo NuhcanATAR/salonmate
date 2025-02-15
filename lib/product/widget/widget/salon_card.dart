@@ -26,7 +26,7 @@ class SalonCardWidget extends StatelessWidget {
         width: dynamicViewExtensions.maxWidth(context),
         height: dynamicViewExtensions.dynamicHeight(
           context,
-          0.18,
+          0.19,
         ),
         child: Container(
           padding: BaseUtility.all(

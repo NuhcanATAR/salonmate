@@ -37,6 +37,10 @@ dependencies:
     sdk: flutter
   flutter_gen: ^5.7.0
   qr_flutter: ^4.1.0
+  geolocator: ^13.0.2
+  flutter_map: ^8.0.0
+  latlong2: ^0.9.1
+  geocoding: ^3.0.0
 
   # utility
   url_launcher: ^6.1.6

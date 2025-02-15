@@ -8,6 +8,7 @@ import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/title_large.dart';
+import 'package:salonmate/product/widget/text_widget/title_medium.dart';
 import 'package:salonmate/product/widget/widget/button.dart';
 
 import '../../../widget/text_widget/body_medium.dart';
@@ -87,11 +88,47 @@ class CodeNoahDialogs {
     Widget child, {
     Color? backgroundColor,
     Color? barrierColor,
+    DynamicViewExtensions? dynamicViewExtensions,
+    double? barHeight,
   }) {
     showModalBottomSheet(
       context: context,
       barrierColor: barrierColor ?? Colors.transparent,
-      builder: (context) => child,
+      builder: (context) => SizedBox(
+        height: dynamicViewExtensions != null
+            ? dynamicViewExtensions.dynamicHeight(context, barHeight ?? 0.0)
+            : 80,
+        child: Column(
+          children: <Widget>[
+            // appbar
+            Padding(
+              padding: BaseUtility.all(
+                BaseUtility.paddingNormalValue,
+              ),
+              child: Row(
+                children: <Widget>[
+                  const Expanded(
+                    child: TitleMediumBlackBoldText(
+                      text: 'KONUM İZİNİ',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: AppIcons.close.toSvgImg(
+                      Colors.black54,
+                      BaseUtility.iconSmallSize,
+                      BaseUtility.iconSmallSize,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // child
+            child,
+          ],
+        ),
+      ),
       backgroundColor: backgroundColor ?? Colors.transparent,
     );
   }
