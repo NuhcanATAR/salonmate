@@ -33,21 +33,26 @@ class _InformationUpdateViewState extends InformationUpdateViewModel {
           textAlign: TextAlign.left,
         ),
       ),
-      body: BlocBuilder<AccountBloc, AccountState>(
+      body: BlocConsumer<AccountBloc, AccountState>(
+        listener: accountInformationUpdateListenerBLoc,
         builder: (context, state) {
-          if (state is AccountLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is AccountLoaded) {
-            fullNameController.text = state.fullName;
-            phoneNumberController.text = state.phoneNumber.toString();
-            addressController.text = state.address;
-            return buildBodyWidget;
-          } else if (state is AccountError) {
-            return const SizedBox();
-          }
-          return const SizedBox();
+          return BlocBuilder<AccountBloc, AccountState>(
+            builder: (context, state) {
+              if (state is AccountLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state is AccountLoaded) {
+                fullNameController.text = state.fullName;
+                phoneNumberController.text = state.phoneNumber.toString();
+                addressController.text = state.address;
+                return buildBodyWidget;
+              } else if (state is AccountError) {
+                return const SizedBox();
+              }
+              return const SizedBox();
+            },
+          );
         },
       ),
     );
@@ -110,9 +115,7 @@ class _InformationUpdateViewState extends InformationUpdateViewModel {
   Widget get buildSaveButtonWidget => CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
         text: 'UPDATE',
-        func: () {
-          if (formInformationUpdateKey.currentState!.validate()) {}
-        },
+        func: accountUpdate,
         btnStatus: ButtonTypes.primaryColorButton,
       );
 }

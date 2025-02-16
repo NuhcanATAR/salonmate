@@ -30,3 +30,25 @@ class AccountError extends AccountState {
   @override
   List<Object> get props => [message];
 }
+
+class AccountUpdateLoading extends AccountState {}
+
+class AccountUpdateSuccess extends AccountState {
+  final String message;
+
+  AccountUpdateSuccess({
+    required this.message,
+  });
+
+  @override
+  List<Object> get props => [message];
+}
+
+class AccountUpdateError extends AccountState {
+  final String message;
+
+  AccountUpdateError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
