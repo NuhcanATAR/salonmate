@@ -4,23 +4,36 @@ part 'account_model.g.dart';
 
 @JsonSerializable()
 class AccountModel {
+  @JsonKey(name: "username")
   final String username;
+  @JsonKey(name: "email")
   final String email;
-  @JsonKey(fromJson: _boolFromInt, toJson: _intFromBool)
+  @JsonKey(name: "status", fromJson: _boolFromInt, toJson: _intFromBool)
   final bool status;
   final UserDetail userDetail;
 
   AccountModel({
     this.username = "Bilinmiyor",
-    this.email = "Bilinmiyor",
+    required this.email,
     this.status = false,
     required this.userDetail,
   });
 
-  factory AccountModel.fromJson(Map<String, dynamic> json) =>
-      _$AccountModelFromJson(json);
+  factory AccountModel.fromJson(Map<String, dynamic> json) => AccountModel(
+        username: json['user']['username'] ?? "Bilinmiyor",
+        email: json['user']['email'] ?? "Bilinmiyor",
+        status: _boolFromInt(json['user']['status'] ?? 0),
+        userDetail: UserDetail.fromJson(json['userDetail']),
+      );
 
-  Map<String, dynamic> toJson() => _$AccountModelToJson(this);
+  Map<String, dynamic> toJson() => {
+        'user': {
+          'username': username,
+          'email': email,
+          'status': _intFromBool(status),
+        },
+        'userDetail': userDetail.toJson(),
+      };
 
   static bool _boolFromInt(int value) => value == 1;
   static int _intFromBool(bool value) => value ? 1 : 0;

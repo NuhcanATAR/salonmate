@@ -9,9 +9,13 @@ class ProfileCardWidget extends StatelessWidget {
   const ProfileCardWidget({
     super.key,
     required this.dynamicViewExtensions,
+    required this.fullName,
+    required this.email,
   });
 
   final DynamicViewExtensions dynamicViewExtensions;
+  final String fullName;
+  final String email;
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +62,8 @@ class ProfileCardWidget extends StatelessWidget {
                   // name surname
                   SizedBox(
                     width: dynamicViewExtensions.maxWidth(context),
-                    child: const TitleMediumBlackBoldText(
-                      text: 'Nuhcan ATAR',
+                    child: TitleMediumBlackBoldText(
+                      text: fullName,
                       textAlign: TextAlign.left,
                     ),
                   ),
@@ -70,8 +74,8 @@ class ProfileCardWidget extends StatelessWidget {
                     ),
                     child: SizedBox(
                       width: dynamicViewExtensions.maxWidth(context),
-                      child: const BodyMediumBlackText(
-                        text: 'nuhcanatar20@gmail.com',
+                      child: BodyMediumBlackText(
+                        text: email,
                         textAlign: TextAlign.left,
                       ),
                     ),

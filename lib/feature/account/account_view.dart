@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 import 'package:salonmate/feature/account/account_viewmodel.dart';
 import 'package:salonmate/feature/account/view/city_district_update/city_district_update_view.dart';
 import 'package:salonmate/feature/account/view/help_support/help_support_view.dart';
@@ -9,6 +10,7 @@ import 'package:salonmate/feature/sign_up/view/send_code/send_code_view.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
+import 'package:salonmate/product/provider/user_provider.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/title_medium.dart';
@@ -25,6 +27,7 @@ class AccountView extends StatefulWidget {
 class _AccountViewState extends AccountViewModel {
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
       appBar: AppBar(
@@ -44,7 +47,7 @@ class _AccountViewState extends AccountViewModel {
         child: ListView(
           children: <Widget>[
             // profile card
-            buildProfileCardWidget,
+            buildProfileCardWidget(userProvider),
             // account menu group
             buildAccountMenuGroupWidget,
             // application settings
@@ -58,8 +61,10 @@ class _AccountViewState extends AccountViewModel {
   }
 
   // profile card
-  Widget get buildProfileCardWidget => ProfileCardWidget(
+  Widget buildProfileCardWidget(UserProvider userProvider) => ProfileCardWidget(
         dynamicViewExtensions: dynamicViewExtensions,
+        fullName: userProvider.user?.userDetail.fullName ?? "Bilinmiyor",
+        email: userProvider.user?.email ?? "Bilinmiyor",
       );
 
   // account menu group
