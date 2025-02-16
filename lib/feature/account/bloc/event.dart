@@ -32,3 +32,18 @@ class AccountInformationEvent extends AccountEvent {
   @override
   List<Object> get props => [token, fullName, phoneNumber, address];
 }
+
+class AccountCityDistrictUpdateEvent extends AccountEvent {
+  final String token;
+  final String city;
+  final String district;
+
+  AccountCityDistrictUpdateEvent({
+    required this.token,
+    required this.city,
+    required this.district,
+  });
+
+  @override
+  List<Object> get props => [city, district];
+}

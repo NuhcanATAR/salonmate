@@ -23,6 +23,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   AccountBloc() : super(AccountInitial()) {
     on<FetchAccountDataEvent>(_onFetchAccountData);
     on<AccountInformationEvent>(_accountInformationUpdate);
+    on<AccountCityDistrictUpdateEvent>(_accountCityDistrictUpdate);
   }
 
   Future<void> _onFetchAccountData(
@@ -47,6 +48,8 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
             fullName: userProvider.user?.userDetail.fullName ?? '',
             phoneNumber: userProvider.user?.userDetail.phone ?? 0,
             address: userProvider.user?.userDetail.address ?? '',
+            city: userProvider.user?.userDetail.city ?? '',
+            district: userProvider.user?.userDetail.district ?? '',
           ),
         );
       } else {
@@ -94,6 +97,44 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     } catch (e) {
       loggerPrint.printErrorLog(e.toString());
       emit(AccountUpdateError(message: e.toString()));
+    }
+  }
+
+  Future<void> _accountCityDistrictUpdate(
+    AccountCityDistrictUpdateEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    emit(AccountCityDistrictUpdateLoadingState());
+    try {
+      final response = await http.put(
+        EndPoints.uriParse(EndPoints.accountCityDistrictUpdateEndpoint),
+        headers: ApiService.headersToken(event.token),
+        body: json.encode({
+          "city": event.city,
+          "district": event.district,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        loggerPrint.printInfoLog(response.statusCode.toString());
+        loggerPrint.printInfoLog(response.body);
+        emit(
+          AccountCityDistrictUpdateSuccessState(
+            message: 'Kullanıcı Bilgileri Başarıyla Güncellendi.',
+          ),
+        );
+      } else {
+        loggerPrint.printErrorLog(response.statusCode.toString());
+        loggerPrint.printErrorLog(response.body);
+        emit(
+          AccountCityDistrictUpdateErrorState(
+            message: 'Hata oluştu lütfen daha sonra tekrar deneyiniz.',
+          ),
+        );
+      }
+    } catch (e) {
+      loggerPrint.printErrorLog(e.toString());
+      emit(AccountCityDistrictUpdateErrorState(message: e.toString()));
     }
   }
 }

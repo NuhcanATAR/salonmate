@@ -4,6 +4,7 @@ import 'package:salonmate/feature/account/bloc/cubit.dart';
 import 'package:salonmate/feature/account/bloc/state.dart';
 import 'package:salonmate/feature/account/view/information_update/information_update_viewmodel.dart';
 import 'package:salonmate/product/constants/color.dart';
+import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
@@ -26,8 +27,15 @@ class _InformationUpdateViewState extends InformationUpdateViewModel {
       appBar: AppBar(
         backgroundColor: ColorConstant.appBarColor,
         surfaceTintColor: ColorConstant.appBarColor,
-        automaticallyImplyLeading: false,
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: AppIcons.arrowLeft.toSvgImg(
+            Colors.black54,
+            BaseUtility.iconNormalSize,
+            BaseUtility.iconNormalSize,
+          ),
+        ),
         title: const BodyMediumBlackText(
           text: 'Bilgileri Güncelle',
           textAlign: TextAlign.left,

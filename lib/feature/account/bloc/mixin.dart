@@ -37,4 +37,36 @@ mixin AccountMixin {
         loggerPrint.printErrorLog('Case Error');
     }
   }
+
+  // account city district edit
+  void accountCityDistrictUpdateListenerBloc(BuildContext context, state) {
+    switch (state.runtimeType) {
+      case AccountCityDistrictUpdateSuccessState:
+        Navigator.pop(context);
+        Navigator.pop(context);
+        CodeNoahDialogs(context).showFlush(
+          type: SnackType.success,
+          message: (state as AccountCityDistrictUpdateSuccessState).message,
+        );
+        break;
+      case AccountCityDistrictUpdateErrorState:
+        Navigator.pop(context);
+        Navigator.pop(context);
+        CodeNoahDialogs(context).showFlush(
+          type: SnackType.error,
+          message: (state as AccountCityDistrictUpdateErrorState).message,
+        );
+        break;
+      case AccountCityDistrictUpdateLoadingState:
+        CodeNoahDialogs(context).showAlert(
+          const BodyMediumWhiteText(
+            text: 'Lütfen Bekleyiniz...',
+            textAlign: TextAlign.center,
+          ),
+        );
+        break;
+      default:
+        loggerPrint.printErrorLog('Case Error');
+    }
+  }
 }
