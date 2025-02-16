@@ -44,7 +44,11 @@ enum AppIcons {
   markOutline('mark_outline'),
   mapOutline('map_outline'),
   arrowRight('arrow_right'),
-  shopLine('shop_line');
+  shopLine('shop_line'),
+  worldOutline('world_outline'),
+  settingOutline('setting_outline'),
+  helpOutline('help_outline'),
+  signOutOutline('sign_out');
 
   final String value;
   const AppIcons(this.value);

@@ -51,6 +51,14 @@ class EndPoints {
   // accounts endpoint
   static const String accountsEndPoint = "${ApiService.endPoint}/account";
 
+  // account information update endpoint
+  static const String accountInformationUpdateEndPoint =
+      "${ApiService.endPoint}/account-update";
+
+  // account city district update endpoint
+  static const String accountCityDistrictUpdateEndpoint =
+      "${ApiService.endPoint}/account-city-district-update";
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);

@@ -6,24 +6,6 @@ part of 'account_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AccountModel _$AccountModelFromJson(Map<String, dynamic> json) => AccountModel(
-      username: json['username'] as String? ?? "Unknown",
-      email: json['email'] as String? ?? "Unknown",
-      status: json['status'] == null
-          ? false
-          : AccountModel._boolFromInt((json['status'] as num).toInt()),
-      userDetail:
-          UserDetail.fromJson(json['userDetail'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$AccountModelToJson(AccountModel instance) =>
-    <String, dynamic>{
-      'username': instance.username,
-      'email': instance.email,
-      'status': AccountModel._intFromBool(instance.status),
-      'userDetail': instance.userDetail,
-    };
-
 UserDetail _$UserDetailFromJson(Map<String, dynamic> json) => UserDetail(
       fullName: json['full_name'] as String? ?? "Unknown",
       phone: json['phone'] == null
