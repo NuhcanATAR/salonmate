@@ -17,7 +17,10 @@ enum AppImages {
   apple('apple'),
   failed('failed'),
   notfound('notfound'),
-  locationPermissions('location_permission');
+  locationPermissions('location_permission'),
+  english('english'),
+  turkey('turkey'),
+  germany('german');
 
   final String value;
   const AppImages(this.value);
