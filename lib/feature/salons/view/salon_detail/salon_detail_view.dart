@@ -292,7 +292,9 @@ class _SalonDetailViewState extends SalonDetailViewModel {
 
   // services
   Widget buildServicesWidget(
-          List<Service> services, SalonDetailModel salonModel) =>
+    List<Service> services,
+    SalonDetailModel salonModel,
+  ) =>
       SizedBox(
         width: dynamicViewExtensions.maxWidth(context),
         child: Column(

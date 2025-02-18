@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:salonmate/feature/appointments/appointment_summary/appointment_summary_view.dart';
 import 'package:salonmate/feature/appointments/date_select/date_select_viewmodel.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
+import 'package:salonmate/product/core/base/helper/navigator_router.dart';
 import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
@@ -169,7 +171,13 @@ class _DateSelectViewState extends DateSelectViewModel {
   Widget get buildFooterButtonWidget => CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
         text: 'Confirm Appointment',
-        func: () {},
+        func: () => CodeNoahNavigatorRouter.push(
+          context,
+          AppointmentSummaryView(
+            salonId: widget.salonId,
+            serviceModel: widget.serviceModel,
+          ),
+        ),
         btnStatus: ButtonTypes.primaryColorButton,
       );
 }
