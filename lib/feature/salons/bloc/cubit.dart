@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:salonmate/feature/salons/bloc/event.dart';
 import 'package:salonmate/feature/salons/bloc/state.dart';
+import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
 import 'package:salonmate/product/core/service/api/end_point.dart';
 
@@ -17,6 +18,7 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
     on<SalonsLoadEvent>(_onLoadSalons);
     on<SearchSalonsEvent>(_onSearchSalons);
     on<SalonDetailLoadEvent>(_onSalonDetail);
+    on<FavoriteToggleEvent>(_onToggleFavorite);
   }
 
   void _onSearchSalons(
@@ -174,6 +176,42 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
       emit(
         SalonDetailErrorState(
           errorMessage: 'Beklenmeyen bir hata oluştu: $e',
+        ),
+      );
+    }
+  }
+
+  Future<void> _onToggleFavorite(
+    FavoriteToggleEvent event,
+    Emitter<SalonsState> emit,
+  ) async {
+    final response = await http.post(
+      EndPoints.uriParse(
+        EndPoints.favoriteToggleEndPoint,
+      ),
+      headers: ApiService.headersToken(event.token),
+      body: jsonEncode({
+        'salonId': event.salonId,
+      }),
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      emit(
+        FavoriteToggleSuccessState(
+          isFavorite: !event.isFavorite,
+        ),
+      );
+      if (!event.context.mounted) return;
+      await CodeNoahDialogs(event.context).showFlush(
+        type: SnackType.success,
+        message: response.statusCode == 200
+            ? 'Favorilerden Kaldırıldı'
+            : 'Favorilere Eklendi',
+      );
+    } else {
+      emit(
+        FavoriteToggleErrorState(
+          message: 'Favorilere Eklerken bir hata oluştu',
         ),
       );
     }

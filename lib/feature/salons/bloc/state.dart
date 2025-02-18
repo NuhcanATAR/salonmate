@@ -64,3 +64,21 @@ class FilteredSalonsState extends SalonsState {
   @override
   List<Object> get props => [filteredSalons];
 }
+
+class FavoriteToggleSuccessState extends SalonsState {
+  final bool isFavorite;
+
+  FavoriteToggleSuccessState({required this.isFavorite});
+
+  @override
+  List<Object> get props => [isFavorite];
+}
+
+class FavoriteToggleErrorState extends SalonsState {
+  final String message;
+
+  FavoriteToggleErrorState({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
