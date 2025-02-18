@@ -12,11 +12,17 @@ class SalonCardWidget extends StatelessWidget {
     required this.onTap,
     required this.dynamicViewExtensions,
     required this.salonModel,
+    this.isFavorite = false,
+    this.favoriteOnPressed,
+    this.favoriteIcon,
   });
 
   final Function() onTap;
   final DynamicViewExtensions dynamicViewExtensions;
   final SalonModel salonModel;
+  final bool isFavorite;
+  final Function()? favoriteOnPressed;
+  final Icon? favoriteIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -87,14 +93,23 @@ class SalonCardWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                               ),
                             ),
-                            const Flexible(
-                              fit: FlexFit.tight,
-                              flex: 1,
-                              child: BodyMediumBlackText(
-                                text: '2 Km',
-                                textAlign: TextAlign.right,
-                              ),
-                            ),
+                            isFavorite == true
+                                ? Flexible(
+                                    fit: FlexFit.tight,
+                                    flex: 1,
+                                    child: GestureDetector(
+                                      onTap: favoriteOnPressed,
+                                      child: favoriteIcon ?? const SizedBox(),
+                                    ),
+                                  )
+                                : const Flexible(
+                                    fit: FlexFit.tight,
+                                    flex: 1,
+                                    child: BodyMediumBlackText(
+                                      text: '2 Km',
+                                      textAlign: TextAlign.right,
+                                    ),
+                                  ),
                           ],
                         ),
                       ),

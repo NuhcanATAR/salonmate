@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 
 abstract class SalonsEvent extends Equatable {
   @override
@@ -33,4 +34,21 @@ class SalonDetailLoadEvent extends SalonsEvent {
         token,
         salonId,
       ];
+}
+
+class FavoriteToggleEvent extends SalonsEvent {
+  final int salonId;
+  final bool isFavorite;
+  final String token;
+  final BuildContext context;
+
+  FavoriteToggleEvent({
+    required this.salonId,
+    required this.isFavorite,
+    required this.token,
+    required this.context,
+  });
+
+  @override
+  List<Object> get props => [salonId, isFavorite];
 }

@@ -59,6 +59,14 @@ class EndPoints {
   static const String accountCityDistrictUpdateEndpoint =
       "${ApiService.endPoint}/account-city-district-update";
 
+  // favorite salons endpoint
+  static const String favoriteSalonsEndPoint =
+      "${ApiService.endPoint}/favorites";
+
+  // favorite toggle endpoint
+  static const String favoriteToggleEndPoint =
+      '${ApiService.endPoint}/favorite-toggle';
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);

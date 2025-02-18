@@ -45,17 +45,27 @@ class _SalonDetailViewState extends SalonDetailViewModel {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: AppIcons.favoriteOutline.toSvgImg(
-              Colors.black,
-              BaseUtility.iconNormalSize,
-              BaseUtility.iconNormalSize,
-            ),
+            onPressed: favoriteToggle,
+            icon: favoriteStatus
+                ? AppIcons.favorite.toSvgImg(
+                    Colors.red,
+                    BaseUtility.iconNormalSize,
+                    BaseUtility.iconNormalSize,
+                  )
+                : AppIcons.favoriteOutline.toSvgImg(
+                    Colors.black,
+                    BaseUtility.iconNormalSize,
+                    BaseUtility.iconNormalSize,
+                  ),
           ),
         ],
       ),
       body: BlocBuilder<SalonsBloc, SalonsState>(
         builder: (context, state) {
+          favoriteStatus = favoriteStatus;
+          if (state is FavoriteToggleSuccessState) {
+            favoriteStatus = state.isFavorite;
+          }
           if (state is SalonDetailLoadingState) {
             return const Center(
               child: CircularProgressIndicator(),
