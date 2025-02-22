@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:salonmate/feature/account/bloc/cubit.dart';
+import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/favorite/bloc/cubit.dart';
 import 'package:salonmate/feature/home/bloc/cubit.dart';
 import 'package:salonmate/feature/map/bloc/bloc.dart';
@@ -52,6 +53,9 @@ void main() async {
           ),
           BlocProvider<FavoriteBloc>(
             create: (BuildContext context) => FavoriteBloc(),
+          ),
+          BlocProvider<AppointmentsBloc>(
+            create: (BuildContext context) => AppointmentsBloc(),
           ),
         ],
         child: const MyApp(),

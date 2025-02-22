@@ -43,4 +43,15 @@ class ApiService {
         'Authorization': 'Bearer $token',
         'categoryid': category,
       };
+
+  static Map<String, String> headerStylistToken(
+    String token,
+    int salonId,
+    int serviceId,
+  ) =>
+      {
+        'Authorization': 'Bearer $token',
+        'salonId': salonId.toString(),
+        'servicesId': serviceId.toString(),
+      };
 }

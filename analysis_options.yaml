@@ -4,6 +4,7 @@ analyzer:
     deprecated_member_use: ignore
     type_literal_in_constant_pattern: ignore
     unnecessary_null_comparison: ignore
+    unused_element: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:

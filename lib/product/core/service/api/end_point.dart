@@ -71,6 +71,9 @@ class EndPoints {
   static const String accountPlayerIdUpdateEndPoint =
       '${ApiService.endPoint}/users-update-playerid';
 
+  // stylis endpoint
+  static const String stylistEndPoint = '${ApiService.endPoint}/stylist';
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);

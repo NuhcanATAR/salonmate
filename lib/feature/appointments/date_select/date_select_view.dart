@@ -6,6 +6,7 @@ import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
 import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
+import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/title_medium.dart';
@@ -17,10 +18,12 @@ class DateSelectView extends StatefulWidget {
     super.key,
     required this.salonId,
     required this.serviceModel,
+    required this.stylistModel,
   });
 
   final int salonId;
   final Service serviceModel;
+  final StylistModel stylistModel;
 
   @override
   State<DateSelectView> createState() => _DateSelectViewState();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
+import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/title_medium.dart';
@@ -9,10 +10,14 @@ class StylistCardWidget extends StatelessWidget {
     super.key,
     required this.dynamicViewExtensions,
     required this.onTap,
+    required this.model,
+    this.borderColor,
   });
 
   final DynamicViewExtensions dynamicViewExtensions;
   final Function() onTap;
+  final StylistModel model;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class StylistCardWidget extends StatelessWidget {
       onTap: onTap,
       child: SizedBox(
         width: dynamicViewExtensions.maxWidth(context),
-        height: dynamicViewExtensions.dynamicHeight(context, 0.18),
+        height: dynamicViewExtensions.dynamicHeight(context, 0.15),
         child: Container(
           padding: BaseUtility.all(
             BaseUtility.paddingNormalValue,
@@ -28,11 +33,17 @@ class StylistCardWidget extends StatelessWidget {
           margin: BaseUtility.bottom(
             BaseUtility.paddingNormalValue,
           ),
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(
+            border: borderColor == null
+                ? null
+                : Border.all(
+                    color: borderColor!,
+                    width: 0.5,
+                  ),
+            borderRadius: const BorderRadius.all(
               Radius.circular(
-                BaseUtility.radiusCircularNormalValue,
+                BaseUtility.radiusCircularMediumValue,
               ),
             ),
           ),
@@ -47,15 +58,15 @@ class StylistCardWidget extends StatelessWidget {
                     BaseUtility.paddingSmallValue,
                   ),
                   child: Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(
                           BaseUtility.radiusCircularMediumValue,
                         ),
                       ),
                       image: DecorationImage(
                         image: NetworkImage(
-                          'https://this-person-does-not-exist.com/img/avatar-gen8c32fba6d76c31b634c2751591976eee.jpg',
+                          model.envoirmentFileName,
                         ),
                         fit: BoxFit.cover,
                       ),
@@ -65,7 +76,7 @@ class StylistCardWidget extends StatelessWidget {
               ),
               // information
               Expanded(
-                flex: 5,
+                flex: 7,
                 child: Padding(
                   padding: BaseUtility.horizontal(
                     BaseUtility.paddingMediumValue,
@@ -81,8 +92,8 @@ class StylistCardWidget extends StatelessWidget {
                           padding: BaseUtility.bottom(
                             BaseUtility.paddingMediumValue,
                           ),
-                          child: const TitleMediumBlackBoldText(
-                            text: 'Nuhcan ATAR',
+                          child: TitleMediumBlackBoldText(
+                            text: model.name,
                             textAlign: TextAlign.left,
                           ),
                         ),
