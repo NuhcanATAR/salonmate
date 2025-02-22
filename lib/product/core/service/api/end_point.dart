@@ -67,6 +67,10 @@ class EndPoints {
   static const String favoriteToggleEndPoint =
       '${ApiService.endPoint}/favorite-toggle';
 
+  // account player id update endpoint
+  static const String accountPlayerIdUpdateEndPoint =
+      '${ApiService.endPoint}/users-update-playerid';
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);
