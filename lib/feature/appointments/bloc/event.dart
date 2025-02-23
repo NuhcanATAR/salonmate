@@ -29,3 +29,33 @@ class AppointmentStylistSelectEvent extends AppointmentEvent {
   @override
   List<Object> get props => [selectStylist];
 }
+
+class AppointmentDateFetchEvent extends AppointmentEvent {
+  final String token;
+  final int stylistId;
+
+  AppointmentDateFetchEvent({
+    required this.token,
+    required this.stylistId,
+  });
+
+  @override
+  List<Object> get props => [token, stylistId];
+}
+
+class AppointmentSelectDayEvent extends AppointmentEvent {
+  final DateTime selectedDate;
+  AppointmentSelectDayEvent(this.selectedDate);
+
+  @override
+  List<Object> get props => [selectedDate];
+}
+
+class AppointmentTimeSelectEvent extends AppointmentEvent {
+  final DateTime selectedTime;
+
+  AppointmentTimeSelectEvent(this.selectedTime);
+
+  @override
+  List<Object> get props => [selectedTime];
+}

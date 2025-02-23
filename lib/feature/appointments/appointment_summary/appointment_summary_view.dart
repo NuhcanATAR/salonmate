@@ -4,6 +4,7 @@ import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
+import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/widget/button.dart';
@@ -13,10 +14,16 @@ class AppointmentSummaryView extends StatefulWidget {
     super.key,
     required this.salonId,
     required this.serviceModel,
+    required this.selectStylistModel,
+    required this.selectDate,
+    required this.selectTime,
   });
 
   final int salonId;
   final Service serviceModel;
+  final StylistModel selectStylistModel;
+  final DateTime selectDate;
+  final DateTime selectTime;
 
   @override
   State<AppointmentSummaryView> createState() => _AppointmentSummaryViewState();

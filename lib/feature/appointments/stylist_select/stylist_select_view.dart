@@ -81,11 +81,18 @@ class _StylistSelectViewState extends StylistSelectViewModel {
                 ],
               ),
             );
+          } else {
+            return CustomResponseWidget(
+              img: AppImages.warning.toSvgImg(
+                null,
+                dynamicViewExtensions.maxWidth(context),
+                dynamicViewExtensions.dynamicHeight(context, 0.2),
+              ),
+              title: 'Hata Oluştu',
+              subTitle:
+                  'Çalışanlar yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+            );
           }
-
-          return const SizedBox(
-            child: Text("Hello"),
-          );
         },
       ),
     );

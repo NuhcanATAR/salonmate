@@ -9,13 +9,32 @@ class DayCardWidget extends StatelessWidget {
     super.key,
     required this.dynamicViewExtensions,
     required this.onTap,
+    required this.appointment,
+    this.borderColor,
   });
 
   final DynamicViewExtensions dynamicViewExtensions;
   final Function() onTap;
 
+  final Color? borderColor;
+  final DateTime appointment;
+
   @override
   Widget build(BuildContext context) {
+    String getTurkishDayName(DateTime date) {
+      final Map<int, String> days = {
+        1: 'PZT',
+        2: 'SAL',
+        3: 'ÇAR',
+        4: 'PER',
+        5: 'CUM',
+        6: 'CMT',
+        7: 'PZR',
+      };
+
+      return days[date.weekday] ?? 'N/A';
+    }
+
     return Padding(
       padding: BaseUtility.right(
         BaseUtility.paddingNormalValue,
@@ -28,9 +47,15 @@ class DayCardWidget extends StatelessWidget {
             padding: BaseUtility.all(
               BaseUtility.paddingMediumValue,
             ),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.all(
+              border: borderColor != null
+                  ? Border.all(
+                      color: borderColor!,
+                      width: 0.5,
+                    )
+                  : null,
+              borderRadius: const BorderRadius.all(
                 Radius.circular(
                   BaseUtility.radiusCircularMediumValue,
                 ),
@@ -41,8 +66,8 @@ class DayCardWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 // day
-                const TitleMediumBlackBoldText(
-                  text: 'THU',
+                TitleMediumBlackBoldText(
+                  text: getTurkishDayName(appointment),
                   textAlign: TextAlign.center,
                 ),
                 // value
@@ -50,8 +75,8 @@ class DayCardWidget extends StatelessWidget {
                   padding: BaseUtility.vertical(
                     BaseUtility.paddingNormalValue,
                   ),
-                  child: const BodyMediumBlackText(
-                    text: 'Sep 11',
+                  child: BodyMediumBlackText(
+                    text: appointment.day.toString(),
                     textAlign: TextAlign.center,
                   ),
                 ),

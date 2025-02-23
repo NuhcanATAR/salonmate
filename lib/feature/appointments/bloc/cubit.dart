@@ -6,18 +6,23 @@ import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
 import 'package:salonmate/product/core/service/api/end_point.dart';
+import 'package:salonmate/product/model/appointment_date_model/appointment_date_model.dart';
 import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
 
 class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
   AppointmentsBloc() : super(AppointmentInitialState()) {
     on<AppointmentFetchStylistEvent>(stylistFetch);
     on<AppointmentStylistSelectEvent>(stylistSelect);
+    on<AppointmentDateFetchEvent>(appointmentDateFetch);
+    on<AppointmentSelectDayEvent>(onSelectDay);
+    on<AppointmentTimeSelectEvent>(onSelectTime);
   }
 
   Future<void> stylistFetch(
     AppointmentFetchStylistEvent event,
     Emitter<AppointmentState> emit,
   ) async {
+    emit(AppointmentStylistLoadingState());
     final response = await http.get(
       EndPoints.uriParse(EndPoints.stylistEndPoint),
       headers: ApiService.headerStylistToken(
@@ -60,6 +65,77 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
         AppointmentStylistLoadedState(
           stylist: currentState.stylist,
           selectedStylist: newSelected,
+        ),
+      );
+    }
+  }
+
+  Future<void> appointmentDateFetch(
+    AppointmentDateFetchEvent event,
+    Emitter<AppointmentState> emit,
+  ) async {
+    emit(AppointmentDateLoadingState());
+
+    final response = await http.get(
+      EndPoints.uriParse(EndPoints.appointmentsDateEndPoint),
+      headers: {
+        'Authorization': 'Bearer ${event.token}',
+        'stylistId': event.stylistId.toString(),
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      final appointments =
+          data.map((e) => AppointmentDateModel.fromJson(e)).toList();
+
+      if (appointments.isNotEmpty) {
+        emit(
+          AppointmnetDateLoadedState(
+            appointments: appointments,
+            selectedDate: appointments.first.date,
+            selectedTime: DateTime.now(),
+          ),
+        );
+      } else {
+        emit(AppointmentDateErrorState(message: 'Randevu bulunamadı!'));
+      }
+    } else {
+      emit(
+        AppointmentDateErrorState(
+          message: 'API Hatası: ${response.reasonPhrase}',
+        ),
+      );
+    }
+  }
+
+  void onSelectDay(
+    AppointmentSelectDayEvent event,
+    Emitter<AppointmentState> emit,
+  ) {
+    if (state is AppointmnetDateLoadedState) {
+      final currentState = state as AppointmnetDateLoadedState;
+      emit(
+        AppointmnetDateLoadedState(
+          appointments: currentState.appointments,
+          selectedDate: event.selectedDate,
+          selectedTime: currentState.selectedTime,
+        ),
+      );
+    }
+  }
+
+  void onSelectTime(
+    AppointmentTimeSelectEvent event,
+    Emitter<AppointmentState> emit,
+  ) {
+    if (state is AppointmnetDateLoadedState) {
+      final currentState = state as AppointmnetDateLoadedState;
+      emit(
+        AppointmnetDateLoadedState(
+          appointments: currentState.appointments,
+          selectedDate: currentState.selectedDate,
+          selectedTime: event.selectedTime,
         ),
       );
     }

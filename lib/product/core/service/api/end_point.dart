@@ -74,6 +74,10 @@ class EndPoints {
   // stylis endpoint
   static const String stylistEndPoint = '${ApiService.endPoint}/stylist';
 
+  // appointments date endpoint
+  static const String appointmentsDateEndPoint =
+      '${ApiService.endPoint}/appointments-date';
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);

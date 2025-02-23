@@ -31,7 +31,7 @@ abstract class StylistSelectViewModel extends BaseState<StylistSelectView> {
     }
   }
 
-  void nextSectionFunc(AppointmentStylistLoadedState state) {
+  Future<void> nextSectionFunc(AppointmentStylistLoadedState state) async {
     if (state.selectedStylist != null) {
       CodeNoahNavigatorRouter.push(
         context,
@@ -42,7 +42,7 @@ abstract class StylistSelectViewModel extends BaseState<StylistSelectView> {
         ),
       );
     } else {
-      CodeNoahDialogs(context).showFlush(
+      await CodeNoahDialogs(context).showFlush(
         type: SnackType.warning,
         message: 'Lütfen Çalışan Seçiminizi Yapınız.',
       );
