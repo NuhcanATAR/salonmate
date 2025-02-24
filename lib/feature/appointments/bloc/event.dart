@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:salonmate/product/core/base/helper/payment_type_control.dart';
+import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
 import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
 import 'package:salonmate/product/model/stylist_add_service_model/stylist_add_service_model.dart';
 import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
@@ -106,6 +107,7 @@ class AppointmentCreateEvent extends AppointmentEvent {
   final DateTime selectDate;
   final DateTime selectTime;
   final List<StylistAddServiceModel> selectedServiceDetails;
+  final SalonDetailModel salonDetailModel;
 
   AppointmentCreateEvent({
     required this.token,
@@ -122,6 +124,7 @@ class AppointmentCreateEvent extends AppointmentEvent {
     required this.selectDate,
     required this.selectTime,
     required this.selectedServiceDetails,
+    required this.salonDetailModel,
   });
 
   @override
@@ -140,5 +143,6 @@ class AppointmentCreateEvent extends AppointmentEvent {
         selectDate,
         selectTime,
         selectedServiceDetails,
+        salonDetailModel,
       ];
 }

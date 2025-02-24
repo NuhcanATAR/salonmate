@@ -140,7 +140,7 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
                         ),
                       ),
                       // footer button
-                      buildFooterButtonWidget,
+                      buildFooterButtonWidget(state),
                     ],
                   ),
                 ),
@@ -566,10 +566,11 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
       );
 
   // footer button
-  Widget get buildFooterButtonWidget => CustomButtonWidget(
+  Widget buildFooterButtonWidget(AppointmentSummaryLoadedState state) =>
+      CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
         text: 'Procced',
-        func: () => appointmentCreateFunc(),
+        func: () => appointmentCreateFunc(state),
         btnStatus: ButtonTypes.primaryColorButton,
       );
 }

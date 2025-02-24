@@ -94,6 +94,7 @@ class AppointmentCreateSuccessState extends AppointmentState {
   final DateTime selectDate;
   final DateTime selectTime;
   final List<StylistAddServiceModel> selectedServiceDetails;
+  final SalonDetailModel salonDetailModel;
 
   AppointmentCreateSuccessState({
     required this.message,
@@ -103,10 +104,20 @@ class AppointmentCreateSuccessState extends AppointmentState {
     required this.selectDate,
     required this.selectTime,
     required this.selectedServiceDetails,
+    required this.salonDetailModel,
   });
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [
+        message,
+        salonId,
+        serviceModel,
+        selectStylistModel,
+        selectDate,
+        selectTime,
+        selectedServiceDetails,
+        salonDetailModel,
+      ];
 }
 
 class AppointmentCreateErrorState extends AppointmentState {

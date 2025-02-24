@@ -275,6 +275,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
           selectDate: event.selectDate,
           selectTime: event.selectTime,
           selectedServiceDetails: event.selectedServiceDetails,
+          salonDetailModel: event.salonDetailModel,
         ),
       );
     } else if (response.statusCode == 409) {

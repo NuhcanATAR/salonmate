@@ -314,6 +314,7 @@ mixin AppointmentMixin {
             selectDate: state.selectDate,
             selectTime: state.selectTime,
             selectedServiceDetails: state.selectedServiceDetails,
+            salonDetailModel: state.salonDetailModel,
           ),
         );
         break;

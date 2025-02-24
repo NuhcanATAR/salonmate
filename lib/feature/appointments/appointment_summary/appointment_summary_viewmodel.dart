@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:salonmate/feature/appointments/appointment_summary/appointment_summary_view.dart';
 import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
+import 'package:salonmate/feature/appointments/bloc/state.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/core/base/helper/payment_type_control.dart';
 import 'package:salonmate/product/mixin/appointment_mixin.dart';
@@ -43,7 +44,9 @@ abstract class AppointmentSummaryViewModel
     );
   }
 
-  Future<void> appointmentCreateFunc() async {
+  Future<void> appointmentCreateFunc(
+    AppointmentSummaryLoadedState state,
+  ) async {
     final token = await getAuthToken();
     if (token != null) {
       final appointmentDate = DateFormat("yyyy-MM-dd HH:mm:ss").format(
@@ -80,6 +83,7 @@ abstract class AppointmentSummaryViewModel
               selectDate: widget.selectDate,
               selectTime: widget.selectTime,
               selectedServiceDetails: selectedServiceDetails,
+              salonDetailModel: state.salonDetailModel!,
             ),
           );
     } else {
