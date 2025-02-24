@@ -78,6 +78,14 @@ class EndPoints {
   static const String appointmentsDateEndPoint =
       '${ApiService.endPoint}/appointments-date';
 
+  // appointments stylist add service endpoint
+  static const String stylistAddServiceEndPoint =
+      '${ApiService.endPoint}/stylist-add-services';
+
+  // appointment create endpoint
+  static const String appointmentCreateEndPoint =
+      '${ApiService.endPoint}/appointment-create';
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);

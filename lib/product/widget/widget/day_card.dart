@@ -21,7 +21,7 @@ class DayCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String getTurkishDayName(DateTime date) {
+    String getDayName(DateTime date) {
       final Map<int, String> days = {
         1: 'PZT',
         2: 'SAL',
@@ -67,7 +67,7 @@ class DayCardWidget extends StatelessWidget {
               children: <Widget>[
                 // day
                 TitleMediumBlackBoldText(
-                  text: getTurkishDayName(appointment),
+                  text: getDayName(appointment),
                   textAlign: TextAlign.center,
                 ),
                 // value

@@ -7,7 +7,11 @@ import 'package:salonmate/feature/appointments/bloc/state.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
 import 'package:salonmate/product/core/service/api/end_point.dart';
 import 'package:salonmate/product/model/appointment_date_model/appointment_date_model.dart';
+import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
+import 'package:salonmate/product/model/stylist_add_service_model/stylist_add_service_model.dart';
 import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
+
+import '../../../product/core/base/helper/payment_type_control.dart';
 
 class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
   AppointmentsBloc() : super(AppointmentInitialState()) {
@@ -16,6 +20,9 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     on<AppointmentDateFetchEvent>(appointmentDateFetch);
     on<AppointmentSelectDayEvent>(onSelectDay);
     on<AppointmentTimeSelectEvent>(onSelectTime);
+    on<AppointmentSummaryEvent>(stylistAddServiceFetch);
+    on<AppointmentToggleServiceSelectionEvent>(addServiceToggleSelection);
+    on<AppointmentCreateEvent>(appointmentCreate);
   }
 
   Future<void> stylistFetch(
@@ -136,6 +143,152 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
           appointments: currentState.appointments,
           selectedDate: currentState.selectedDate,
           selectedTime: event.selectedTime,
+        ),
+      );
+    }
+  }
+
+  Future<void> stylistAddServiceFetch(
+    AppointmentSummaryEvent event,
+    Emitter<AppointmentState> emit,
+  ) async {
+    emit(AppointmentSummaryLoadingState());
+
+    final response = await http.get(
+      EndPoints.uriParse(
+        EndPoints.stylistAddServiceEndPoint,
+      ),
+      headers: ApiService.headerStylistAddServiceToken(
+        event.token,
+        event.salonId,
+      ),
+    );
+
+    final responseSalon = await http.get(
+      EndPoints.uriParse(EndPoints.salonDetailEndPoint),
+      headers: ApiService.headerSalonToken(
+        event.token,
+        event.salonId.toString(),
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonAddService = jsonDecode(response.body);
+      final List<StylistAddServiceModel> stylistAddService = jsonAddService
+          .map((e) => StylistAddServiceModel.fromJson(e))
+          .toList();
+
+      final Map<String, dynamic> salonDetailData =
+          jsonDecode(responseSalon.body);
+
+      if (salonDetailData == null || salonDetailData['salon'] is! List) {
+        emit(
+          AppointmentSummaryErrorState(
+            message:
+                'Salon Bilgileri alınırken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+          ),
+        );
+        return;
+      }
+
+      final List<dynamic> rawSalon = salonDetailData['salon'];
+
+      final Map<String, dynamic> rawSalonDetail = rawSalon.first;
+
+      final SalonDetailModel salonDetailModel =
+          SalonDetailModel.fromJson(rawSalonDetail);
+
+      emit(
+        AppointmentSummaryLoadedState(
+          stylistAddService: stylistAddService,
+          salonDetailModel: salonDetailModel,
+          selectedServices: const [],
+        ),
+      );
+    } else {
+      emit(
+        AppointmentSummaryErrorState(
+          message:
+              'Ek Hizmetler Yüklenirken bir sorun oluştu, lütfen daha sonra tekrar deneyiniz.',
+        ),
+      );
+    }
+  }
+
+  Future<void> addServiceToggleSelection(
+    AppointmentToggleServiceSelectionEvent event,
+    Emitter<AppointmentState> emit,
+  ) async {
+    if (state is AppointmentSummaryLoadedState) {
+      final currentState = state as AppointmentSummaryLoadedState;
+      final updatedSelectedServices =
+          List<int>.from(currentState.selectedServices ?? []);
+
+      if (updatedSelectedServices.contains(event.serviceId)) {
+        updatedSelectedServices.remove(event.serviceId);
+      } else {
+        updatedSelectedServices.add(event.serviceId);
+      }
+
+      emit(
+        AppointmentSummaryLoadedState(
+          stylistAddService: currentState.stylistAddService,
+          salonDetailModel: currentState.salonDetailModel,
+          selectedServices: updatedSelectedServices,
+        ),
+      );
+    }
+  }
+
+  Future<void> appointmentCreate(
+    AppointmentCreateEvent event,
+    Emitter<AppointmentState> emit,
+  ) async {
+    final response = await http.post(
+      EndPoints.uriParse(
+        EndPoints.appointmentCreateEndPoint,
+      ),
+      headers: ApiService.headersToken(
+        event.token,
+      ),
+      body: jsonEncode({
+        "salonsId": event.salonId,
+        "servicesId": event.serviceId,
+        "stylistId": event.stylistId,
+        "appointmentDate": event.appointmentDate,
+        "servicePrice": event.servicePrice,
+        "totalPrice": event.totalPrice,
+        "paymentType":
+            event.paymentType == PaymentType.payOnline ? true : false,
+        "addServices": event.addServices,
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      emit(
+        AppointmentCreateSuccessState(
+          message:
+              'Randevunu başarıyla oluşturuldu, randevunu randevular bölümünden takip edebilirsiniz.',
+          salonId: event.salonId,
+          serviceModel: event.serviceModel,
+          selectStylistModel: event.selectStylistModel,
+          selectDate: event.selectDate,
+          selectTime: event.selectTime,
+          selectedServiceDetails: event.selectedServiceDetails,
+        ),
+      );
+    } else if (response.statusCode == 409) {
+      emit(
+        AppointmentCreateErrorState(
+          message:
+              'Randevu Tarihiniz alınmıştır, lütfen başka bir tarih ve saat için seçim yapınız.',
+        ),
+      );
+    } else {
+      emit(
+        AppointmentCreateErrorState(
+          message:
+              'Randevunu oluşturulamadı, lütfen daha sonra tekrar deneyiniz.',
         ),
       );
     }
