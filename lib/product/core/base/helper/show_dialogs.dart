@@ -150,25 +150,43 @@ class CodeNoahDialogs {
   }
 
   Future<T?> showWarningAlert<T extends Object?>(
-    AppIcons icon,
+    bool? isLoading,
+    AppIcons? icon,
     Color color,
     String title,
+    String? subTitle,
     DynamicViewExtensions dynamicViewExtensions,
-    Function()? funcOne,
-    Function()? funcSecond,
   ) {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.white,
-        title: icon.toSvgImg(
-          color,
-          BaseUtility.iconLargeSize,
-          BaseUtility.iconLargeSize,
-        ),
-        content: TitleLargeBlackBoldText(
-          text: title,
-          textAlign: TextAlign.center,
+        title: isLoading == true
+            ? CircularProgressIndicator(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+              )
+            : icon == null
+                ? const SizedBox()
+                : icon.toSvgImg(
+                    color,
+                    BaseUtility.iconLargeSize,
+                    BaseUtility.iconLargeSize,
+                  ),
+        content: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              TitleLargeBlackBoldText(
+                text: title,
+                textAlign: TextAlign.center,
+              ),
+              subTitle == null
+                  ? const SizedBox()
+                  : BodyMediumBlackText(
+                      text: subTitle,
+                      textAlign: TextAlign.center,
+                    ),
+            ],
+          ),
         ),
         actions: [
           SizedBox(
@@ -176,32 +194,13 @@ class CodeNoahDialogs {
               context,
               0.08,
             ),
-            child: Row(
-              children: <Widget>[
-                Flexible(
-                  fit: FlexFit.tight,
-                  flex: 1,
-                  child: CustomButtonWidget(
-                    dynamicViewExtensions: dynamicViewExtensions,
-                    text: "TAMAM",
-                    func: funcOne,
-                    btnStatus: ButtonTypes.primaryColorButton,
-                  ),
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                Flexible(
-                  fit: FlexFit.tight,
-                  flex: 1,
-                  child: CustomButtonWidget(
-                    dynamicViewExtensions: dynamicViewExtensions,
-                    text: "KAPAT",
-                    func: funcSecond,
-                    btnStatus: ButtonTypes.borderPrimaryColorButton,
-                  ),
-                ),
-              ],
+            child: CustomButtonWidget(
+              dynamicViewExtensions: dynamicViewExtensions,
+              text: "TAMAM",
+              func: () {
+                Navigator.pop(context);
+              },
+              btnStatus: ButtonTypes.primaryColorButton,
             ),
           ),
         ],

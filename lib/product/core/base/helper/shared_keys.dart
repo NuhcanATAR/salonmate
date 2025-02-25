@@ -2,5 +2,6 @@
 
 enum SharedKeys {
   remember_me,
-  token;
+  token,
+  oneSignalId;
 }

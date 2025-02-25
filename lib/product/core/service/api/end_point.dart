@@ -67,6 +67,33 @@ class EndPoints {
   static const String favoriteToggleEndPoint =
       '${ApiService.endPoint}/favorite-toggle';
 
+  // account player id update endpoint
+  static const String accountPlayerIdUpdateEndPoint =
+      '${ApiService.endPoint}/users-update-playerid';
+
+  // stylis endpoint
+  static const String stylistEndPoint = '${ApiService.endPoint}/stylist';
+
+  // appointments date endpoint
+  static const String appointmentsDateEndPoint =
+      '${ApiService.endPoint}/appointments-date';
+
+  // appointments stylist add service endpoint
+  static const String stylistAddServiceEndPoint =
+      '${ApiService.endPoint}/stylist-add-services';
+
+  // appointment create endpoint
+  static const String appointmentCreateEndPoint =
+      '${ApiService.endPoint}/appointment-create';
+
+  // appointments user endpoint
+  static const String appointmentsUserEndPoint =
+      '${ApiService.endPoint}/appointment-user';
+
+  // appointments update endpoint
+  static const String appointmentsUpdateEndPoint =
+      '${ApiService.endPoint}/appointment-update';
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);

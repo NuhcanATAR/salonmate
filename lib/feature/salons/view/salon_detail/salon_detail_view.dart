@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonmate/feature/appointments/stylist_select/stylist_select_view.dart';
 import 'package:salonmate/feature/salons/bloc/cubit.dart';
 import 'package:salonmate/feature/salons/bloc/state.dart';
 import 'package:salonmate/feature/salons/view/salon_detail/salon_detail_viewmodel.dart';
@@ -88,7 +89,7 @@ class _SalonDetailViewState extends SalonDetailViewModel {
                         // rating
                         buildRatingWidget,
                         // services
-                        buildServicesWidget(state.services),
+                        buildServicesWidget(state.services, state.salonModel),
                       ],
                     ),
                   ),
@@ -290,7 +291,11 @@ class _SalonDetailViewState extends SalonDetailViewModel {
       );
 
   // services
-  Widget buildServicesWidget(List<Service> services) => SizedBox(
+  Widget buildServicesWidget(
+    List<Service> services,
+    SalonDetailModel salonModel,
+  ) =>
+      SizedBox(
         width: dynamicViewExtensions.maxWidth(context),
         child: Column(
           children: <Widget>[
@@ -318,8 +323,15 @@ class _SalonDetailViewState extends SalonDetailViewModel {
                 return ServiceCardWidget(
                   dynamicViewExtensions: dynamicViewExtensions,
                   serviceModel: model,
-                  onTap: () {},
-                  serviceAddOnTap: () {},
+                  serviceAddOnTap: () {
+                    CodeNoahNavigatorRouter.push(
+                      context,
+                      StylistSelectView(
+                        salonId: salonModel.salonId,
+                        serviceModel: model,
+                      ),
+                    );
+                  },
                 );
               },
             ),

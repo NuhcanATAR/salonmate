@@ -8,6 +8,7 @@ import 'package:salonmate/product/core/base/helper/logger_package.dart';
 import 'package:salonmate/product/core/base/helper/shared_keys.dart';
 import 'package:salonmate/product/core/base/helper/shared_service.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
+import 'package:salonmate/product/core/service/api/end_point.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final prefService = PrefService();
@@ -22,7 +23,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   ) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.1.106:3000/api/login'),
+        EndPoints.uriParse(EndPoints.signInEndPoint),
         headers: ApiService.headers,
         body: json.encode({
           'username': event.username,
@@ -36,8 +37,28 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         await prefService.saveString(SharedKeys.token, token);
         await prefService.setBool(SharedKeys.remember_me, true);
 
-        emit(SignInSuccessState());
-        printLogger.printInfoLog(response.body);
+        final oneSignalIdValue =
+            await prefService.getString(SharedKeys.oneSignalId) ?? '';
+        final responseAccountUpdate = await http.put(
+          EndPoints.uriParse(
+            EndPoints.accountPlayerIdUpdateEndPoint,
+          ),
+          headers: ApiService.headersToken(token),
+          body: json.encode({
+            'playerId': oneSignalIdValue,
+          }),
+        );
+
+        if (responseAccountUpdate.statusCode == 200) {
+          emit(SignInSuccessState());
+          printLogger.printInfoLog(response.body);
+        } else {
+          emit(
+            const SignInErrorState(
+              error: 'Bildirim Özelliği Sırasında bir hata oluştu.',
+            ),
+          );
+        }
       } else if (response.statusCode == 401) {
         emit(
           const SignInErrorState(

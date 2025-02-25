@@ -48,7 +48,8 @@ enum AppIcons {
   worldOutline('world_outline'),
   settingOutline('setting_outline'),
   helpOutline('help_outline'),
-  signOutOutline('sign_out');
+  signOutOutline('sign_out'),
+  creditCard('credit_card');
 
   final String value;
   const AppIcons(this.value);

@@ -39,6 +39,12 @@ android {
     }
 }
 
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.0.0') // Firebase BOM
+    implementation 'com.google.firebase:firebase-messaging' // Firebase Messaging
+    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]' // OneSignal
+}
+
 flutter {
     source = "../.."
 }
