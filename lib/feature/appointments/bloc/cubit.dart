@@ -4,9 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
+import 'package:salonmate/product/core/base/helper/appointments_control.dart';
+import 'package:salonmate/product/core/base/helper/shared_keys.dart';
+import 'package:salonmate/product/core/base/helper/shared_service.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
 import 'package:salonmate/product/core/service/api/end_point.dart';
 import 'package:salonmate/product/model/appointment_date_model/appointment_date_model.dart';
+import 'package:salonmate/product/model/appointment_model/appointment_model.dart';
 import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
 import 'package:salonmate/product/model/stylist_add_service_model/stylist_add_service_model.dart';
 import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
@@ -23,7 +27,14 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     on<AppointmentSummaryEvent>(stylistAddServiceFetch);
     on<AppointmentToggleServiceSelectionEvent>(addServiceToggleSelection);
     on<AppointmentCreateEvent>(appointmentCreate);
+    on<AppointmentsFetchEvent>(_onFetchAppointments);
+    on<AppointmentUpdateEvent>(appointmentUpdate);
   }
+
+  final prefService = PrefService();
+  int currentPage = 1;
+  bool isFetching = false;
+  List<Appointment> allAppointments = [];
 
   Future<void> stylistFetch(
     AppointmentFetchStylistEvent event,
@@ -290,6 +301,102 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
         AppointmentCreateErrorState(
           message:
               'Randevunu oluşturulamadı, lütfen daha sonra tekrar deneyiniz.',
+        ),
+      );
+    }
+  }
+
+  Future<void> _onFetchAppointments(
+    AppointmentsFetchEvent event,
+    Emitter<AppointmentState> emit,
+  ) async {
+    if (isFetching) return;
+
+    try {
+      isFetching = true;
+      if (event.isRefresh) {
+        emit(AppointmentsLoadingState());
+        currentPage = 1;
+        allAppointments.clear();
+      }
+
+      final token = await prefService.getString(SharedKeys.token) ?? '';
+      final response = await http.get(
+        Uri.parse(
+          "${EndPoints.appointmentsUserEndPoint}?page=${event.page}&limit=${event.limit}",
+        ),
+        headers: ApiService.headersToken(token),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final List<dynamic> newAppointmentsJson = data['appointments'] ?? [];
+
+        final List<Appointment> newAppointments = newAppointmentsJson
+            .map((json) => Appointment.fromJson(json))
+            .toList();
+
+        if (event.isRefresh) {
+          allAppointments = newAppointments;
+        } else {
+          allAppointments.addAll(newAppointments);
+        }
+
+        final bool hasMore = newAppointments.length == event.limit;
+        emit(
+          AppointmentsLoadedState(
+            appointments: List.from(allAppointments),
+            hasMore: hasMore,
+          ),
+        );
+
+        if (hasMore) currentPage++;
+      } else {
+        emit(
+          AppointmentsErrorState(
+            message: "Sunucu hatası: ${response.statusCode}",
+          ),
+        );
+      }
+    } catch (e) {
+      emit(AppointmentsErrorState(message: "Bağlantı hatası: $e"));
+    } finally {
+      isFetching = false;
+    }
+  }
+
+  Future<void> appointmentUpdate(
+    AppointmentUpdateEvent event,
+    Emitter<AppointmentState> emit,
+  ) async {
+    emit(AppointmentUpdateLoadingState());
+
+    final response = await http.put(
+      EndPoints.uriParse(EndPoints.appointmentsUpdateEndPoint),
+      headers: ApiService.headersToken(
+        event.token,
+      ),
+      body: jsonEncode({
+        'appointmentId': event.appointmentId,
+        'status': event.status == AppointmentsStatus.cancelledAppointment
+            ? 4
+            : event.status == AppointmentsStatus.pendginAppointmentConfirmed
+                ? 1
+                : 5,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      emit(
+        AppointmentUpdateSuccesState(
+          message: 'Randevunuz başarıyla güncellendi.',
+        ),
+      );
+    } else {
+      emit(
+        AppointmentUpdateErrorState(
+          message:
+              'Randevu durumunuz gönderilirken bir sorun oluştu, lütfen daha sonra tekrar deneyiniz.',
         ),
       );
     }

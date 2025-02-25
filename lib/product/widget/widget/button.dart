@@ -92,18 +92,35 @@ class CustomButtonWidget extends StatelessWidget {
                                       ),
                                     ),
                                   )
-                                : BoxDecoration(
-                                    border: Border.all(
-                                      color:
-                                          Theme.of(context).colorScheme.error,
-                                      width: 0.5,
-                                    ),
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(
-                                        BaseUtility.radiusCircularMediumValue,
+                                : btnStatus.buttonTypeValue ==
+                                        ButtonTypes.borderErrorColorButton
+                                            .buttonTypeValue
+                                    ? BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.red,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(
+                                            BaseUtility
+                                                .radiusCircularMediumValue,
+                                          ),
+                                        ),
+                                      )
+                                    : BoxDecoration(
+                                        border: Border.all(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
+                                          width: 0.5,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(
+                                            BaseUtility
+                                                .radiusCircularMediumValue,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
             child: btnStatus.buttonTypeValue ==
                     ButtonTypes.primaryColorButton.buttonTypeValue
                 ? BodyMediumWhiteText(

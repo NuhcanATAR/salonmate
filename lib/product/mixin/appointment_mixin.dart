@@ -25,6 +25,8 @@ mixin AppointmentMixin {
   final prefService = PrefService();
   DynamicViewExtensions dynamicViewExtensions = DynamicViewExtensions();
   final loggerPrint = CustomLoggerPrint();
+  late AppointmentsBloc appointmentsBloc;
+
   Future<bool> exitDateSelectDialog(
     BuildContext context,
     DynamicViewExtensions dynamicViewExtensions,
@@ -326,6 +328,41 @@ mixin AppointmentMixin {
           'Appointment Failed',
           (state as AppointmentCreateErrorState).message,
           dynamicViewExtensions,
+        );
+        break;
+      default:
+        loggerPrint.printErrorLog('Case error');
+    }
+  }
+
+  void appointmentUpdateBlocListener(BuildContext context, state) {
+    switch (state.runtimeType) {
+      case AppointmentUpdateSuccesState:
+        Navigator.pop(context);
+        appointmentsBloc
+            .add(AppointmentsFetchEvent(isRefresh: true, page: 1, limit: 10));
+        CodeNoahDialogs(context).showFlush(
+          type: SnackType.success,
+          message: 'Randevu Durumunuz Gönderildi',
+        );
+        break;
+      case AppointmentUpdateErrorState:
+        Navigator.pop(context);
+        CodeNoahDialogs(context).showWarningAlert(
+          false,
+          AppIcons.solidWarning,
+          Theme.of(context).colorScheme.primary,
+          'Appointment Failed',
+          (state as AppointmentUpdateErrorState).message,
+          dynamicViewExtensions,
+        );
+        break;
+      case AppointmentUpdateLoadingState:
+        CodeNoahDialogs(context).showAlert(
+          const BodyMediumWhiteText(
+            text: 'Lütfen Bekleyiniz...',
+            textAlign: TextAlign.center,
+          ),
         );
         break;
       default:

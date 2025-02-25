@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:salonmate/product/model/appointment_date_model/appointment_date_model.dart';
+import 'package:salonmate/product/model/appointment_model/appointment_model.dart';
 import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
 import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
 import 'package:salonmate/product/model/stylist_add_service_model/stylist_add_service_model.dart';
@@ -131,4 +132,54 @@ class AppointmentCreateErrorState extends AppointmentState {
   List<Object?> get props => [
         message,
       ];
+}
+
+class AppointmentsLoadingState extends AppointmentState {}
+
+class AppointmentsLoadedState extends AppointmentState {
+  final List<Appointment> appointments;
+  final bool hasMore;
+
+  AppointmentsLoadedState({
+    required this.appointments,
+    required this.hasMore,
+  });
+
+  @override
+  List<Object> get props => [appointments, hasMore];
+}
+
+class AppointmentsErrorState extends AppointmentState {
+  final String message;
+
+  AppointmentsErrorState({
+    required this.message,
+  });
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class AppointmentUpdateLoadingState extends AppointmentState {}
+
+class AppointmentUpdateSuccesState extends AppointmentState {
+  final String message;
+
+  AppointmentUpdateSuccesState({
+    required this.message,
+  });
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class AppointmentUpdateErrorState extends AppointmentState {
+  final String message;
+
+  AppointmentUpdateErrorState({
+    required this.message,
+  });
+
+  @override
+  List<Object?> get props => [message];
 }

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:salonmate/product/core/base/helper/appointments_control.dart';
 import 'package:salonmate/product/core/base/helper/payment_type_control.dart';
 import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
 import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
@@ -145,4 +146,34 @@ class AppointmentCreateEvent extends AppointmentEvent {
         selectedServiceDetails,
         salonDetailModel,
       ];
+}
+
+class AppointmentsFetchEvent extends AppointmentEvent {
+  final int page;
+  final int limit;
+  final bool isRefresh;
+
+  AppointmentsFetchEvent({
+    required this.page,
+    required this.limit,
+    this.isRefresh = false,
+  });
+
+  @override
+  List<Object> get props => [page, limit, isRefresh];
+}
+
+class AppointmentUpdateEvent extends AppointmentEvent {
+  final String token;
+  final AppointmentsStatus status;
+  final int appointmentId;
+
+  AppointmentUpdateEvent({
+    required this.token,
+    required this.status,
+    required this.appointmentId,
+  });
+
+  @override
+  List<Object> get props => [token, status, appointmentId];
 }

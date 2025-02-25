@@ -86,6 +86,14 @@ class EndPoints {
   static const String appointmentCreateEndPoint =
       '${ApiService.endPoint}/appointment-create';
 
+  // appointments user endpoint
+  static const String appointmentsUserEndPoint =
+      '${ApiService.endPoint}/appointment-user';
+
+  // appointments update endpoint
+  static const String appointmentsUpdateEndPoint =
+      '${ApiService.endPoint}/appointment-update';
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);
