@@ -5,7 +5,6 @@ import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
 import 'package:salonmate/product/constants/color.dart';
-import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/model/appointment_model/appointment_model.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
@@ -26,15 +25,9 @@ class _AppointmentsViewState extends AppointmentsViewModel {
       appBar: AppBar(
         backgroundColor: ColorConstant.appBarColor,
         surfaceTintColor: ColorConstant.appBarColor,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: AppIcons.arrowLeft.toSvgImg(
-            Colors.black,
-            BaseUtility.iconNormalSize,
-            BaseUtility.iconNormalSize,
-          ),
-        ),
-        title: const BodyMediumBlackBoldText(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: const BodyMediumBlackText(
           text: 'Appointments',
           textAlign: TextAlign.left,
         ),

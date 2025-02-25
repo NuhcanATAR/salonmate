@@ -323,7 +323,7 @@ class _SalonDetailViewState extends SalonDetailViewModel {
                 return ServiceCardWidget(
                   dynamicViewExtensions: dynamicViewExtensions,
                   serviceModel: model,
-                  onTap: () {
+                  serviceAddOnTap: () {
                     CodeNoahNavigatorRouter.push(
                       context,
                       StylistSelectView(
@@ -332,7 +332,6 @@ class _SalonDetailViewState extends SalonDetailViewModel {
                       ),
                     );
                   },
-                  serviceAddOnTap: () {},
                 );
               },
             ),

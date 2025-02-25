@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonmate/feature/appointments/stylist_select/stylist_select_view.dart';
 import 'package:salonmate/feature/services/bloc/cubit.dart';
 import 'package:salonmate/feature/services/bloc/state.dart';
 import 'package:salonmate/feature/services/services_viewmodel.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/constants/image.dart';
+import 'package:salonmate/product/core/base/helper/navigator_router.dart';
 import 'package:salonmate/product/model/category_model/category_model.dart';
 import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
 import 'package:salonmate/product/util/util.dart';
@@ -99,8 +101,13 @@ class _ServicesViewState extends ServicesViewModel {
                   return ServiceCardWidget(
                     dynamicViewExtensions: dynamicViewExtensions,
                     serviceModel: model,
-                    onTap: () {},
-                    serviceAddOnTap: () {},
+                    serviceAddOnTap: () => CodeNoahNavigatorRouter.push(
+                      context,
+                      StylistSelectView(
+                        salonId: model.salonId,
+                        serviceModel: model,
+                      ),
+                    ),
                   );
                 },
               ),

@@ -11,19 +11,17 @@ class ServiceCardWidget extends StatelessWidget {
     super.key,
     required this.dynamicViewExtensions,
     required this.serviceModel,
-    required this.onTap,
     required this.serviceAddOnTap,
   });
 
   final DynamicViewExtensions dynamicViewExtensions;
   final Service serviceModel;
-  final Function() onTap;
   final Function() serviceAddOnTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: serviceAddOnTap,
       child: SizedBox(
         width: dynamicViewExtensions.maxWidth(context),
         child: Container(
@@ -114,13 +112,10 @@ class ServiceCardWidget extends StatelessWidget {
                 ),
               ),
               // service add
-              GestureDetector(
-                onTap: serviceAddOnTap,
-                child: AppIcons.addCircleOutline.toSvgImg(
-                  Colors.black,
-                  BaseUtility.iconNormalSize,
-                  BaseUtility.iconNormalSize,
-                ),
+              AppIcons.addCircleOutline.toSvgImg(
+                Colors.black,
+                BaseUtility.iconNormalSize,
+                BaseUtility.iconNormalSize,
               ),
             ],
           ),

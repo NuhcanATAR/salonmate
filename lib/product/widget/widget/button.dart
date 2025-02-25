@@ -51,7 +51,7 @@ class CustomButtonWidget extends StatelessWidget {
                 : btnStatus.buttonTypeValue ==
                         ButtonTypes.iconPrimaryColorButton.buttonTypeValue
                     ? BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: Theme.of(context).colorScheme.primary,
                         borderRadius: const BorderRadius.all(
                           Radius.circular(
                             BaseUtility.radiusCircularMediumValue,
