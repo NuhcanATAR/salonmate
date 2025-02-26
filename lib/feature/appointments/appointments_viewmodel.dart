@@ -18,7 +18,8 @@ abstract class AppointmentsViewModel extends BaseState<AppointmentsView>
     super.initState();
     appointmentsBloc = BlocProvider.of<AppointmentsBloc>(context);
     scrollController = ScrollController()..addListener(_onScroll);
-    appointmentsBloc.add(AppointmentsFetchEvent(page: 1, limit: 10));
+    appointmentsBloc
+        .add(AppointmentsFetchEvent(page: 1, limit: 10, isRefresh: true));
   }
 
   void _onScroll() {

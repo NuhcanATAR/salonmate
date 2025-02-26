@@ -369,4 +369,38 @@ mixin AppointmentMixin {
         loggerPrint.printErrorLog('Case error');
     }
   }
+
+  void appointmentEvaluationCreateBlocListener(BuildContext context, state) {
+    switch (state.runtimeType) {
+      case AppointmentEvaluationSuccessState:
+        Navigator.pop(context);
+        Navigator.pop(context);
+        Navigator.pop(context);
+        appointmentsBloc
+            .add(AppointmentsFetchEvent(isRefresh: true, page: 1, limit: 10));
+        break;
+      case AppointmentEvaluationErrorState:
+        Navigator.pop(context);
+        Navigator.pop(context);
+        CodeNoahDialogs(context).showWarningAlert(
+          false,
+          AppIcons.solidWarning,
+          Theme.of(context).colorScheme.primary,
+          'Appointment Failed',
+          (state as AppointmentEvaluationErrorState).message,
+          dynamicViewExtensions,
+        );
+        break;
+      case AppointmentEvaluationLoadingState:
+        CodeNoahDialogs(context).showAlert(
+          const BodyMediumWhiteText(
+            text: 'Lütfen Bekleyiniz...',
+            textAlign: TextAlign.center,
+          ),
+        );
+        break;
+      default:
+        loggerPrint.printErrorLog('Case error');
+    }
+  }
 }

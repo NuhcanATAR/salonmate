@@ -5,6 +5,7 @@ enum AppointmentsStatus {
   cancelledAppointment,
   rejectedAppointment,
   completedAppointment,
+  evaluationCompleted,
 }
 
 extension AppointmentsStatusExtension on AppointmentsStatus {
@@ -22,6 +23,8 @@ extension AppointmentsStatusExtension on AppointmentsStatus {
         return 5;
       case AppointmentsStatus.completedAppointment:
         return 6;
+      case AppointmentsStatus.evaluationCompleted:
+        return 7;
     }
   }
 }
@@ -41,6 +44,8 @@ extension AppointmentsStatusStringExtension on AppointmentsStatus {
         return 'Reddedilen Randevu';
       case AppointmentsStatus.completedAppointment:
         return 'Tamamlanan Randevu';
+      case AppointmentsStatus.evaluationCompleted:
+        return 'Değerlendirilen Randevu';
     }
   }
 }

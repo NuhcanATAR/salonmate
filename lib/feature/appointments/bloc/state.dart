@@ -183,3 +183,27 @@ class AppointmentUpdateErrorState extends AppointmentState {
   @override
   List<Object?> get props => [message];
 }
+
+class AppointmentEvaluationLoadingState extends AppointmentState {}
+
+class AppointmentEvaluationSuccessState extends AppointmentState {
+  final String message;
+
+  AppointmentEvaluationSuccessState({
+    required this.message,
+  });
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class AppointmentEvaluationErrorState extends AppointmentState {
+  final String message;
+
+  AppointmentEvaluationErrorState({
+    required this.message,
+  });
+
+  @override
+  List<Object?> get props => [message];
+}

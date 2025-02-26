@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
 import 'package:salonmate/product/core/base/helper/appointments_control.dart';
@@ -29,6 +30,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     on<AppointmentCreateEvent>(appointmentCreate);
     on<AppointmentsFetchEvent>(_onFetchAppointments);
     on<AppointmentUpdateEvent>(appointmentUpdate);
+    on<AppointmentEvaluationCreateEvent>(evaluationCreate);
   }
 
   final prefService = PrefService();
@@ -163,64 +165,69 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     AppointmentSummaryEvent event,
     Emitter<AppointmentState> emit,
   ) async {
-    emit(AppointmentSummaryLoadingState());
+    try {
+      emit(AppointmentSummaryLoadingState());
 
-    final response = await http.get(
-      EndPoints.uriParse(
-        EndPoints.stylistAddServiceEndPoint,
-      ),
-      headers: ApiService.headerStylistAddServiceToken(
-        event.token,
-        event.salonId,
-      ),
-    );
+      final response = await http.get(
+        EndPoints.uriParse(
+          EndPoints.stylistAddServiceEndPoint,
+        ),
+        headers: ApiService.headerStylistAddServiceToken(
+          event.token,
+          event.salonId,
+        ),
+      );
 
-    final responseSalon = await http.get(
-      EndPoints.uriParse(EndPoints.salonDetailEndPoint),
-      headers: ApiService.headerSalonToken(
-        event.token,
-        event.salonId.toString(),
-      ),
-    );
+      final responseSalon = await http.get(
+        EndPoints.uriParse(EndPoints.salonDetailEndPoint),
+        headers: ApiService.headerSalonToken(
+          event.token,
+          event.salonId.toString(),
+        ),
+      );
 
-    if (response.statusCode == 200) {
-      final List<dynamic> jsonAddService = jsonDecode(response.body);
-      final List<StylistAddServiceModel> stylistAddService = jsonAddService
-          .map((e) => StylistAddServiceModel.fromJson(e))
-          .toList();
+      if (response.statusCode == 200 && responseSalon.statusCode == 200) {
+        final List<dynamic> jsonAddService = jsonDecode(response.body);
+        final List<StylistAddServiceModel> stylistAddService = jsonAddService
+            .map((e) => StylistAddServiceModel.fromJson(e))
+            .toList();
 
-      final Map<String, dynamic> salonDetailData =
-          jsonDecode(responseSalon.body);
+        final Map<String, dynamic> salonDetailData =
+            jsonDecode(responseSalon.body);
 
-      if (salonDetailData == null || salonDetailData['salon'] is! List) {
+        if (salonDetailData['salon'] == null ||
+            salonDetailData['salon'] is! Map<String, dynamic>) {
+          emit(
+            AppointmentSummaryErrorState(
+              message:
+                  'Salon bilgileri alınırken hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+            ),
+          );
+          return;
+        }
+
+        final SalonDetailModel salonDetailModel =
+            SalonDetailModel.fromJson(salonDetailData['salon']);
+
+        emit(
+          AppointmentSummaryLoadedState(
+            stylistAddService: stylistAddService,
+            salonDetailModel: salonDetailModel,
+            selectedServices: const [],
+          ),
+        );
+      } else {
         emit(
           AppointmentSummaryErrorState(
             message:
-                'Salon Bilgileri alınırken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+                'API Hatası: ${response.statusCode} veya ${responseSalon.statusCode}, lütfen daha sonra tekrar deneyiniz.',
           ),
         );
-        return;
       }
-
-      final List<dynamic> rawSalon = salonDetailData['salon'];
-
-      final Map<String, dynamic> rawSalonDetail = rawSalon.first;
-
-      final SalonDetailModel salonDetailModel =
-          SalonDetailModel.fromJson(rawSalonDetail);
-
-      emit(
-        AppointmentSummaryLoadedState(
-          stylistAddService: stylistAddService,
-          salonDetailModel: salonDetailModel,
-          selectedServices: const [],
-        ),
-      );
-    } else {
+    } catch (e) {
       emit(
         AppointmentSummaryErrorState(
-          message:
-              'Ek Hizmetler Yüklenirken bir sorun oluştu, lütfen daha sonra tekrar deneyiniz.',
+          message: 'Beklenmeyen bir hata oluştu: $e',
         ),
       );
     }
@@ -397,6 +404,41 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
         AppointmentUpdateErrorState(
           message:
               'Randevu durumunuz gönderilirken bir sorun oluştu, lütfen daha sonra tekrar deneyiniz.',
+        ),
+      );
+    }
+  }
+
+  Future<void> evaluationCreate(
+    AppointmentEvaluationCreateEvent event,
+    Emitter<AppointmentState> emit,
+  ) async {
+    emit(AppointmentEvaluationLoadingState());
+
+    final response = await http.post(
+      EndPoints.uriParse(EndPoints.evaluationCreateEndPoint),
+      headers: ApiService.headersToken(event.token),
+      body: jsonEncode({
+        'appointmentId': event.appointmentId,
+        'salonId': event.salonId,
+        'points': event.point,
+        'description': event.description,
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      Logger().i(response.body);
+      emit(
+        AppointmentEvaluationSuccessState(
+          message: 'Değerlendirmeniz gönderildi, Teşekkürler',
+        ),
+      );
+    } else {
+      Logger().i(response.body);
+      emit(
+        AppointmentEvaluationErrorState(
+          message:
+              'Değerlendirme sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
         ),
       );
     }

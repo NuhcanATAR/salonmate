@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salonmate/feature/salons/salon_card_viewmodel.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
 import 'package:salonmate/product/model/salon_model/salon_model.dart';
@@ -6,7 +7,7 @@ import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/title_medium.dart';
 
-class SalonCardWidget extends StatelessWidget {
+class SalonCardWidget extends StatefulWidget {
   const SalonCardWidget({
     super.key,
     required this.onTap,
@@ -25,12 +26,17 @@ class SalonCardWidget extends StatelessWidget {
   final Icon? favoriteIcon;
 
   @override
+  State<SalonCardWidget> createState() => _SalonCardWidgetState();
+}
+
+class _SalonCardWidgetState extends SalonCardWidgetModel {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: SizedBox(
-        width: dynamicViewExtensions.maxWidth(context),
-        height: dynamicViewExtensions.dynamicHeight(
+        width: widget.dynamicViewExtensions.maxWidth(context),
+        height: widget.dynamicViewExtensions.dynamicHeight(
           context,
           0.19,
         ),
@@ -56,7 +62,7 @@ class SalonCardWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
-                        salonModel.fileName,
+                        widget.salonModel.fileName,
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -89,24 +95,27 @@ class SalonCardWidget extends StatelessWidget {
                             Expanded(
                               flex: 2,
                               child: TitleMediumBlackBoldText(
-                                text: salonModel.name,
+                                text: widget.salonModel.name,
                                 textAlign: TextAlign.left,
                               ),
                             ),
-                            isFavorite == true
+                            widget.isFavorite == true
                                 ? Flexible(
                                     fit: FlexFit.tight,
                                     flex: 1,
                                     child: GestureDetector(
-                                      onTap: favoriteOnPressed,
-                                      child: favoriteIcon ?? const SizedBox(),
+                                      onTap: widget.favoriteOnPressed,
+                                      child: widget.favoriteIcon ??
+                                          const SizedBox(),
                                     ),
                                   )
-                                : const Flexible(
+                                : Flexible(
                                     fit: FlexFit.tight,
                                     flex: 1,
                                     child: BodyMediumBlackText(
-                                      text: '2 Km',
+                                      text: distance != null
+                                          ? '${distance!.toStringAsFixed(1)} Km'
+                                          : '...',
                                       textAlign: TextAlign.right,
                                     ),
                                   ),
@@ -132,7 +141,7 @@ class SalonCardWidget extends StatelessWidget {
                                 ),
                                 child: BodyMediumBlackText(
                                   text:
-                                      '${salonModel.city}/${salonModel.district}',
+                                      '${widget.salonModel.city}/${widget.salonModel.district}',
                                   textAlign: TextAlign.left,
                                 ),
                               ),
@@ -157,8 +166,9 @@ class SalonCardWidget extends StatelessWidget {
                                 padding: BaseUtility.left(
                                   BaseUtility.paddingMediumValue,
                                 ),
-                                child: const BodyMediumBlackBoldText(
-                                  text: '4.7 (312)',
+                                child: BodyMediumBlackBoldText(
+                                  text:
+                                      '${widget.salonModel.avarageScore.toString()} (${widget.salonModel.totalAppointments.toInt()})',
                                   textAlign: TextAlign.left,
                                 ),
                               ),

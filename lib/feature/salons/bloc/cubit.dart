@@ -112,43 +112,26 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
 
       if (salonDetailResponse.statusCode == 200 &&
           salonAllServiceResponse.statusCode == 200) {
-        // salon detail
         final Map<String, dynamic> salonDetailData =
             jsonDecode(salonDetailResponse.body);
 
-        if (salonDetailData == null ||
-            salonDetailData['salon'] == null ||
-            salonDetailData['salon'] is! List) {
-          emit(
-            SalonDetailErrorState(
-              errorMessage: 'Beklenen API verisi bulunamadı!',
-            ),
-          );
+        if (salonDetailData['salon'] == null ||
+            salonDetailData['salon'] is! Map<String, dynamic>) {
+          emit(SalonDetailErrorState(errorMessage: 'Beklenmeyen API yanıtı!'));
           return;
         }
-
-        final List<dynamic> rawSalonList = salonDetailData['salon'];
-
-        if (rawSalonList.isEmpty) {
-          emit(SalonDetailErrorState(errorMessage: 'Salon listesi boş!'));
-          return;
-        }
-
-        final Map<String, dynamic> rawSalonDetail = rawSalonList.first;
 
         final SalonDetailModel salonDetail =
-            SalonDetailModel.fromJson(rawSalonDetail);
+            SalonDetailModel.fromJson(salonDetailData['salon']);
 
-        // services
         final Map<String, dynamic> salonServices =
-            json.decode(salonAllServiceResponse.body);
+            jsonDecode(salonAllServiceResponse.body);
 
-        if (salonServices == null ||
-            salonServices['services'] == null ||
+        if (salonServices['services'] == null ||
             salonServices['services'] is! List) {
           emit(
             SalonDetailErrorState(
-              errorMessage: 'Servisler beklenen API verisi bulunamadı!',
+              errorMessage: 'Servisler beklenen formatta değil!',
             ),
           );
           return;
@@ -168,7 +151,8 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
       } else {
         emit(
           SalonDetailErrorState(
-            errorMessage: 'API Hatası: ${salonDetailResponse.statusCode}',
+            errorMessage:
+                'API Hatası: ${salonDetailResponse.statusCode} - ${salonDetailResponse.body}',
           ),
         );
       }

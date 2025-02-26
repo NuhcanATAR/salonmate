@@ -48,6 +48,8 @@ class SalonDetailModel {
   final bool isSundayOpen;
 
   final String fileName;
+  final double avarageScore;
+  final double totalAppointments;
 
   SalonDetailModel({
     required this.id,
@@ -68,6 +70,8 @@ class SalonDetailModel {
     required this.closeTime,
     required this.isSundayOpen,
     required this.fileName,
+    required this.avarageScore,
+    required this.totalAppointments,
   });
 
   factory SalonDetailModel.fromJson(Map<String, dynamic> json) =>

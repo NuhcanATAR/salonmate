@@ -87,7 +87,7 @@ class _SalonDetailViewState extends SalonDetailViewModel {
                         // salon information
                         buildSalonInformationWidget(state.salonModel),
                         // rating
-                        buildRatingWidget,
+                        buildRatingWidget(state.salonModel),
                         // services
                         buildServicesWidget(state.services, state.salonModel),
                       ],
@@ -261,7 +261,7 @@ class _SalonDetailViewState extends SalonDetailViewModel {
       );
 
   // rating
-  Widget get buildRatingWidget => SizedBox(
+  Widget buildRatingWidget(SalonDetailModel model) => SizedBox(
         width: dynamicViewExtensions.maxWidth(context),
         child: Padding(
           padding: BaseUtility.bottom(
@@ -279,8 +279,9 @@ class _SalonDetailViewState extends SalonDetailViewModel {
                   padding: BaseUtility.left(
                     BaseUtility.paddingMediumValue,
                   ),
-                  child: const BodyMediumBlackText(
-                    text: '4.7 (312)',
+                  child: BodyMediumBlackText(
+                    text:
+                        '${model.avarageScore.toString()} (${model.totalAppointments.toInt()})',
                     textAlign: TextAlign.left,
                   ),
                 ),

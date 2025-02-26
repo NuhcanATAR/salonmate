@@ -190,89 +190,95 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
                   final model = state.stylistAddService![index];
                   final bool isSelected =
                       state.selectedServices!.contains(model.id);
-                  return GestureDetector(
-                    onTap: () {
-                      context.read<AppointmentsBloc>().add(
-                            AppointmentToggleServiceSelectionEvent(model.id),
-                          );
-                    },
-                    child: SizedBox(
-                      width: dynamicViewExtensions.dynamicWidth(context, 0.36),
-                      child: Container(
-                        padding: BaseUtility.all(
-                          BaseUtility.paddingNormalValue,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: isSelected
-                                ? Theme.of(context).colorScheme.primary
-                                : Theme.of(context).colorScheme.outline,
-                            width: 0.5,
+                  return Container(
+                    margin: BaseUtility.right(
+                      BaseUtility.marginNormalValue,
+                    ),
+                    child: GestureDetector(
+                      onTap: () {
+                        context.read<AppointmentsBloc>().add(
+                              AppointmentToggleServiceSelectionEvent(model.id),
+                            );
+                      },
+                      child: SizedBox(
+                        width:
+                            dynamicViewExtensions.dynamicWidth(context, 0.36),
+                        child: Container(
+                          padding: BaseUtility.all(
+                            BaseUtility.paddingNormalValue,
                           ),
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(
-                              BaseUtility.radiusCircularMediumValue,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: isSelected
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Theme.of(context).colorScheme.outline,
+                              width: 0.5,
+                            ),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(
+                                BaseUtility.radiusCircularMediumValue,
+                              ),
                             ),
                           ),
-                        ),
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          children: <Widget>[
-                            // body
-                            SingleChildScrollView(
-                              child: Column(
-                                children: <Widget>[
-                                  // title
-                                  SizedBox(
-                                    width:
-                                        dynamicViewExtensions.maxWidth(context),
-                                    child: Padding(
-                                      padding: BaseUtility.bottom(
-                                        BaseUtility.paddingNormalValue,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: <Widget>[
+                              // body
+                              SingleChildScrollView(
+                                child: Column(
+                                  children: <Widget>[
+                                    // title
+                                    SizedBox(
+                                      width: dynamicViewExtensions
+                                          .maxWidth(context),
+                                      child: Padding(
+                                        padding: BaseUtility.bottom(
+                                          BaseUtility.paddingNormalValue,
+                                        ),
+                                        child: TitleMediumBlackBoldText(
+                                          text: model.name,
+                                          textAlign: TextAlign.left,
+                                        ),
                                       ),
-                                      child: TitleMediumBlackBoldText(
-                                        text: model.name,
+                                    ),
+                                    // price
+                                    SizedBox(
+                                      width: dynamicViewExtensions
+                                          .maxWidth(context),
+                                      child: BodyMediumBlackText(
+                                        text:
+                                            '${CodeNoahPriceConvert.formatPrice(model.price.toInt())}₺',
                                         textAlign: TextAlign.left,
                                       ),
                                     ),
-                                  ),
-                                  // price
-                                  SizedBox(
-                                    width:
-                                        dynamicViewExtensions.maxWidth(context),
-                                    child: BodyMediumBlackText(
-                                      text:
-                                          '${CodeNoahPriceConvert.formatPrice(model.price.toInt())}₺',
-                                      textAlign: TextAlign.left,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            // check
-                            Positioned(
-                              bottom: 0,
-                              right: 10,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: isSelected
-                                      ? Theme.of(context).colorScheme.primary
-                                      : Theme.of(context).colorScheme.outline,
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(
-                                      BaseUtility.radiusCircularHighValue,
-                                    ),
-                                  ),
-                                ),
-                                child: const Icon(
-                                  Icons.check,
-                                  color: Colors.white,
-                                  size: BaseUtility.iconMediumSize,
+                                  ],
                                 ),
                               ),
-                            ),
-                          ],
+                              // check
+                              Positioned(
+                                bottom: 0,
+                                right: 10,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: isSelected
+                                        ? Theme.of(context).colorScheme.primary
+                                        : Theme.of(context).colorScheme.outline,
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(
+                                        BaseUtility.radiusCircularHighValue,
+                                      ),
+                                    ),
+                                  ),
+                                  child: const Icon(
+                                    Icons.check,
+                                    color: Colors.white,
+                                    size: BaseUtility.iconMediumSize,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

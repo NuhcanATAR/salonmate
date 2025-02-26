@@ -94,6 +94,10 @@ class EndPoints {
   static const String appointmentsUpdateEndPoint =
       '${ApiService.endPoint}/appointment-update';
 
+  // evaluation create endpoint
+  static const String evaluationCreateEndPoint =
+      '${ApiService.endPoint}/evaluation-create';
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);
