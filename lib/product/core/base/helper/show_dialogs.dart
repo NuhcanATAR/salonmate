@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:another_flushbar/flushbar.dart';
 
 import 'package:flutter/material.dart';
@@ -145,6 +143,39 @@ class CodeNoahDialogs {
           ),
         ),
         content: child,
+      ),
+    );
+  }
+
+  Future<T?> showFieldlert<T extends Object?>(
+    String title,
+    String subTitle,
+    Widget content,
+    List<Widget> actions,
+  ) {
+    return showDialog<T>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              // title
+              TitleMediumBlackBoldText(
+                text: title,
+                textAlign: TextAlign.center,
+              ),
+              // sub titile
+              BodyMediumBlackText(
+                text: subTitle,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+        content: content,
+        actions: actions,
       ),
     );
   }

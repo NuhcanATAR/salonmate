@@ -177,3 +177,28 @@ class AppointmentUpdateEvent extends AppointmentEvent {
   @override
   List<Object> get props => [token, status, appointmentId];
 }
+
+class AppointmentEvaluationCreateEvent extends AppointmentEvent {
+  final String token;
+  final int appointmentId;
+  final int salonId;
+  final double point;
+  final String description;
+
+  AppointmentEvaluationCreateEvent({
+    required this.token,
+    required this.appointmentId,
+    required this.salonId,
+    required this.point,
+    required this.description,
+  });
+
+  @override
+  List<Object> get props => [
+        token,
+        appointmentId,
+        salonId,
+        point,
+        description,
+      ];
+}

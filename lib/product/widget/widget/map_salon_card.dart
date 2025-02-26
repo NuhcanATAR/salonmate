@@ -122,8 +122,9 @@ class MapSalonCardWidget extends StatelessWidget {
                           padding: BaseUtility.left(
                             BaseUtility.paddingMediumValue,
                           ),
-                          child: const BodyMediumBlackBoldText(
-                            text: '4.7 (312)',
+                          child: BodyMediumBlackBoldText(
+                            text:
+                                '${model.avarageScore} (${model.totalAppointments.toInt()})',
                             textAlign: TextAlign.left,
                           ),
                         ),

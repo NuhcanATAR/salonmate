@@ -382,14 +382,22 @@ class _AppointmentDetailViewState extends AppointmentDetailViewModel {
 
   // evaluation button
   Widget get buildEvaluationButtonWidget =>
-      widget.appointmentModel.appointmentsCategoryId ==
-              AppointmentsStatus.completedAppointment.appointmentStatus
-          ? CustomButtonWidget(
-              dynamicViewExtensions: dynamicViewExtensions,
-              text: 'Randevuyu Değerlendir',
-              func: () {},
-              btnStatus: ButtonTypes.iconPrimaryColorButton,
-              appIcon: AppIcons.star,
-            )
-          : const SizedBox();
+      BlocConsumer<AppointmentsBloc, AppointmentState>(
+        listener: appointmentEvaluationCreateBlocListener,
+        builder: (context, state) {
+          return widget.appointmentModel.appointmentsCategoryId ==
+                  AppointmentsStatus.evaluationCompleted.appointmentStatus
+              ? const SizedBox()
+              : widget.appointmentModel.appointmentsCategoryId ==
+                      AppointmentsStatus.completedAppointment.appointmentStatus
+                  ? CustomButtonWidget(
+                      dynamicViewExtensions: dynamicViewExtensions,
+                      text: 'Randevuyu Değerlendir',
+                      func: () => appointmentEvaluation(),
+                      btnStatus: ButtonTypes.iconPrimaryColorButton,
+                      appIcon: AppIcons.star,
+                    )
+                  : const SizedBox();
+        },
+      );
 }

@@ -38,6 +38,8 @@ SalonModel _$SalonModelFromJson(Map<String, dynamic> json) => SalonModel(
       isSundayOpen:
           SalonModel._intToBool((json['is_sunday_open'] as num).toInt()),
       fileName: json['file_name'] as String,
+      avarageScore: (json['average_score'] as num).toDouble(),
+      totalAppointments: (json['total_appointments'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$SalonModelToJson(SalonModel instance) =>
@@ -60,4 +62,6 @@ Map<String, dynamic> _$SalonModelToJson(SalonModel instance) =>
       'close_time': SalonModel._dateTimeToTimeString(instance.closeTime),
       'is_sunday_open': SalonModel._boolToInt(instance.isSundayOpen),
       'file_name': instance.fileName,
+      'average_score': instance.avarageScore,
+      'total_appointments': instance.totalAppointments,
     };
