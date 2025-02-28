@@ -337,7 +337,8 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     if (isFetching) return;
 
     try {
-      final languageProvider = Provider.of<LanguageProvider>(event.context);
+      final languageProvider =
+          Provider.of<LanguageProvider>(event.context, listen: false);
       isFetching = true;
       if (event.isRefresh) {
         emit(AppointmentsLoadingState());

@@ -23,7 +23,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(HomeLoadingState());
 
     try {
-      final languageProvider = Provider.of<LanguageProvider>(event.context);
+      final languageProvider =
+          Provider.of<LanguageProvider>(event.context, listen: false);
 
       final categoryResponse = await http.get(
         EndPoints.uriParse(EndPoints.serviceCategoriesEndPoint),

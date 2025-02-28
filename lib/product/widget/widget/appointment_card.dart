@@ -195,7 +195,7 @@ class AppointmentCardWidget extends StatelessWidget {
                           ),
                           child: BodyMediumBlackText(
                             text:
-                                'Add Services: ${appointment.additionalServices.map(
+                                '${AppLocalizations.of(context)!.appointment_summary_add_services_title}: ${appointment.additionalServices.map(
                               (model) => model.serviceName,
                             )}',
                             textAlign: TextAlign.left,
