@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
 import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
 import 'package:salonmate/product/util/util.dart';
@@ -105,8 +106,9 @@ class StylistCardWidget extends StatelessWidget {
                           padding: BaseUtility.bottom(
                             BaseUtility.paddingMediumValue,
                           ),
-                          child: const BodyMediumBlackText(
-                            text: 'Hair Specialist',
+                          child: BodyMediumBlackText(
+                            text: AppLocalizations.of(context)!
+                                .stylist_card_expert_category,
                             textAlign: TextAlign.left,
                           ),
                         ),

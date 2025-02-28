@@ -1,25 +1,32 @@
 import 'package:salonmate/feature/account/view/help_support/help_support_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 
 abstract class HelpSupportViewModel extends BaseState<HelpSupportView> {
   late List<QuestionsModel> questions = [
     QuestionsModel(
-      title: 'Şifremi Unuttum',
-      category: 'Hesap',
-      explanation:
-          'Şifrenizi unutmanız durumunda şifre unuttum bölümünde hesabınızın şifresini telefon numaranızı girerek doğruluyabilirsiniz.',
+      title:
+          AppLocalizations.of(context)!.account_help_support_question_one_title,
+      category: AppLocalizations.of(context)!
+          .account_help_support_question_one_category,
+      explanation: AppLocalizations.of(context)!
+          .account_help_support_question_one_explanation,
     ),
     QuestionsModel(
-      title: 'Hesap Kapatmak İstiyorum',
-      category: 'Hesap',
-      explanation:
-          'Hesabınızı kapatmak istediğiniz durumlarda bizle sosyal medya veya e-mail ile iletişime geçebilirsiniz.',
+      title: AppLocalizations.of(context)!
+          .account_help_support_question_second_title,
+      category: AppLocalizations.of(context)!
+          .account_help_support_question_second_category,
+      explanation: AppLocalizations.of(context)!
+          .account_help_support_question_second_explanation,
     ),
     QuestionsModel(
-      title: 'Randevu Oluşturma',
-      category: 'Randevu',
-      explanation:
-          'Randevu oluşturma durumunuzda gitmediğiniz durumunda randevunuz için ödemeniz geri hesabınıza 1 ile 2 iş günü içinde geri yatar.',
+      title: AppLocalizations.of(context)!
+          .account_help_support_question_three_title,
+      category: AppLocalizations.of(context)!
+          .account_help_support_question_three_category,
+      explanation: AppLocalizations.of(context)!
+          .account_help_support_question_three_explanation,
     ),
   ];
 }

@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:salonmate/feature/appointments/appointment_detail/appointment_detail_view.dart';
 import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/core/base/helper/appointments_control.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -30,17 +31,22 @@ abstract class AppointmentDetailViewModel
               token: token,
               status: status,
               appointmentId: appointment.id,
+              context: context,
             ),
           );
     } else {
-      loggerPrint.printErrorLog('Token is empty');
+      if (!mounted) return;
+      loggerPrint.printErrorLog(
+        AppLocalizations.of(context)!.appointmnet_detail_token_not_avaible,
+      );
     }
   }
 
   void appointmentEvaluation() {
     CodeNoahDialogs(context).showFieldlert(
-      'Randevunuzu Değerlendirin!',
-      'Randevunuzu puanlayın ve deneyimlerinizi paylaşın.',
+      AppLocalizations.of(context)!.appointment_detail_evaluation_dialog_title,
+      AppLocalizations.of(context)!
+          .appointment_detail_evaluation_dialog_sub_title,
       SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -67,7 +73,8 @@ abstract class AppointmentDetailViewModel
               ),
               child: NormalTextFieldWidget(
                 controller: descriptionController,
-                hintText: 'Description',
+                hintText: AppLocalizations.of(context)!
+                    .appointment_detail_evaluation_dialog_description,
                 explanationStatus: true,
                 onChanged: (val) {},
                 isValidator: false,
@@ -92,7 +99,8 @@ abstract class AppointmentDetailViewModel
                 ),
                 child: CustomButtonWidget(
                   dynamicViewExtensions: dynamicViewExtensions,
-                  text: 'Close',
+                  text: AppLocalizations.of(context)!
+                      .appointment_detail_evaluation_dialog_close_button,
                   func: () => Navigator.pop(context),
                   btnStatus: ButtonTypes.borderPrimaryColorButton,
                 ),
@@ -108,7 +116,8 @@ abstract class AppointmentDetailViewModel
                 ),
                 child: CustomButtonWidget(
                   dynamicViewExtensions: dynamicViewExtensions,
-                  text: 'Send',
+                  text: AppLocalizations.of(context)!
+                      .appointment_detail_evaluation_dialog_send_button,
                   func: () => evaluationCreate(),
                   btnStatus: ButtonTypes.primaryColorButton,
                 ),
@@ -133,10 +142,14 @@ abstract class AppointmentDetailViewModel
               description: descriptionController.text.isEmpty
                   ? 'null'
                   : descriptionController.text,
+              context: context,
             ),
           );
     } else {
-      loggerPrint.printInfoLog('Token empty');
+      if (!mounted) return;
+      loggerPrint.printInfoLog(
+        AppLocalizations.of(context)!.appointmnet_detail_token_not_avaible,
+      );
     }
   }
 }

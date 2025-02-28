@@ -4,6 +4,7 @@ import 'package:salonmate/feature/appointments/appointments_viewmodel.dart';
 import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/image.dart';
 import 'package:salonmate/product/model/appointment_model/appointment_model.dart';
@@ -29,8 +30,8 @@ class _AppointmentsViewState extends AppointmentsViewModel {
         surfaceTintColor: ColorConstant.appBarColor,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: const BodyMediumBlackText(
-          text: 'Appointments',
+        title: BodyMediumBlackText(
+          text: AppLocalizations.of(context)!.appointment_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -41,6 +42,7 @@ class _AppointmentsViewState extends AppointmentsViewModel {
               isRefresh: true,
               page: 1,
               limit: 10,
+              context: context,
             ),
           );
         },
@@ -95,9 +97,10 @@ class _AppointmentsViewState extends AppointmentsViewModel {
                     0.2,
                   ),
                 ),
-                title: 'Randevunuz Bulunmuyor',
-                subTitle:
-                    'Henüz Randevu oluşturmadınız, isterseniz Randevu oluşturmaya başlayabilirsniz.',
+                title:
+                    AppLocalizations.of(context)!.appointment_not_found_title,
+                subTitle: AppLocalizations.of(context)!
+                    .appointment_not_found_sub_title,
               )
             : ListView.builder(
                 controller: scrollController,

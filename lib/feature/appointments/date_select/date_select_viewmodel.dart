@@ -4,6 +4,7 @@ import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
 import 'package:salonmate/feature/appointments/date_select/date_select_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
 import 'package:salonmate/product/mixin/appointment_mixin.dart';
@@ -26,10 +27,14 @@ abstract class DateSelectViewModel extends BaseState<DateSelectView>
             AppointmentDateFetchEvent(
               token: token,
               stylistId: widget.stylistModel.id,
+              context: context,
             ),
           );
     } else {
-      loggerPrint.printInfoLog('Token is empty');
+      if (!mounted) return;
+      loggerPrint.printInfoLog(
+        AppLocalizations.of(context)!.appointment_date_select_token_not_avaible,
+      );
     }
   }
 
@@ -41,7 +46,8 @@ abstract class DateSelectViewModel extends BaseState<DateSelectView>
     if (!validHours.contains(selectTime.hour) || selectTime.minute != 0) {
       CodeNoahDialogs(context).showFlush(
         type: SnackType.error,
-        message: 'Lütfen Saat seçiminizi yapınız.',
+        message: AppLocalizations.of(context)!
+            .appointment_date_select_hour_select_error,
       );
     } else {
       CodeNoahNavigatorRouter.push(

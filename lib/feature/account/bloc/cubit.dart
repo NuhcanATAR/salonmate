@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:salonmate/feature/account/bloc/event.dart';
 import 'package:salonmate/feature/account/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/helper/logger_package.dart';
 import 'package:salonmate/product/core/base/helper/shared_keys.dart';
 import 'package:salonmate/product/core/base/helper/shared_service.dart';
@@ -53,7 +54,13 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
           ),
         );
       } else {
-        emit(AccountError(message: 'Token not available'));
+        if (!event.context.mounted) return;
+        emit(
+          AccountError(
+            message:
+                AppLocalizations.of(event.context)!.account_token_not_avaible,
+          ),
+        );
       }
     } catch (e) {
       loggerPrint.printErrorLog(e.toString());
@@ -80,17 +87,19 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       if (response.statusCode == 200) {
         loggerPrint.printInfoLog(response.statusCode.toString());
         loggerPrint.printInfoLog(response.body);
+        if (!event.context.mounted) return;
         emit(
           AccountUpdateSuccess(
-            message: 'Kullanıcı Bilgileri Başarıyla Güncellendi.',
+            message: AppLocalizations.of(event.context)!.account_update_success,
           ),
         );
       } else {
         loggerPrint.printErrorLog(response.statusCode.toString());
         loggerPrint.printErrorLog(response.body);
+        if (!event.context.mounted) return;
         emit(
           AccountUpdateError(
-            message: 'Hata oluştu lütfen daha sonra tekrar deneyiniz.',
+            message: AppLocalizations.of(event.context)!.account_update_error,
           ),
         );
       }
@@ -118,17 +127,19 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       if (response.statusCode == 200) {
         loggerPrint.printInfoLog(response.statusCode.toString());
         loggerPrint.printInfoLog(response.body);
+        if (!event.context.mounted) return;
         emit(
           AccountCityDistrictUpdateSuccessState(
-            message: 'Kullanıcı Bilgileri Başarıyla Güncellendi.',
+            message: AppLocalizations.of(event.context)!.account_update_success,
           ),
         );
       } else {
         loggerPrint.printErrorLog(response.statusCode.toString());
         loggerPrint.printErrorLog(response.body);
+        if (!event.context.mounted) return;
         emit(
           AccountCityDistrictUpdateErrorState(
-            message: 'Hata oluştu lütfen daha sonra tekrar deneyiniz.',
+            message: AppLocalizations.of(event.context)!.account_update_error,
           ),
         );
       }

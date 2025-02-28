@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/helper/appointments_control.dart';
 import 'package:salonmate/product/core/base/helper/shared_keys.dart';
 import 'package:salonmate/product/core/base/helper/shared_service.dart';
@@ -15,6 +17,7 @@ import 'package:salonmate/product/model/appointment_model/appointment_model.dart
 import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
 import 'package:salonmate/product/model/stylist_add_service_model/stylist_add_service_model.dart';
 import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
+import 'package:salonmate/product/provider/language_provider.dart';
 
 import '../../../product/core/base/helper/payment_type_control.dart';
 
@@ -63,10 +66,11 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
         ),
       );
     } else {
+      if (!event.context.mounted) return;
       emit(
         AppointmentStylistErrorState(
           errorMessage:
-              'Çalışanlar Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+              AppLocalizations.of(event.context)!.appointment_stylist_error,
         ),
       );
     }
@@ -118,12 +122,19 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
           ),
         );
       } else {
-        emit(AppointmentDateErrorState(message: 'Randevu bulunamadı!'));
+        if (!event.context.mounted) return;
+        emit(
+          AppointmentDateErrorState(
+            message: AppLocalizations.of(event.context)!.appointment_date_error,
+          ),
+        );
       }
     } else {
+      if (!event.context.mounted) return;
       emit(
         AppointmentDateErrorState(
-          message: 'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+          message:
+              AppLocalizations.of(event.context)!.appointment_date_second_error,
         ),
       );
     }
@@ -197,10 +208,11 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
 
         if (salonDetailData['salon'] == null ||
             salonDetailData['salon'] is! Map<String, dynamic>) {
+          if (!event.context.mounted) return;
           emit(
             AppointmentSummaryErrorState(
               message:
-                  'Salon bilgileri alınırken hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+                  AppLocalizations.of(event.context)!.appointment_summary_error,
             ),
           );
           return;
@@ -217,16 +229,20 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
           ),
         );
       } else {
+        if (!event.context.mounted) return;
         emit(
           AppointmentSummaryErrorState(
-            message: 'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+            message: AppLocalizations.of(event.context)!
+                .appointment_date_second_error,
           ),
         );
       }
     } catch (e) {
+      if (!event.context.mounted) return;
       emit(
         AppointmentSummaryErrorState(
-          message: 'Beklenmeyen bir hata oluştu.',
+          message:
+              AppLocalizations.of(event.context)!.appointment_date_second_error,
         ),
       );
     }
@@ -282,10 +298,11 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     );
 
     if (response.statusCode == 201) {
+      if (!event.context.mounted) return;
       emit(
         AppointmentCreateSuccessState(
           message:
-              'Randevunu başarıyla oluşturuldu, randevunu randevular bölümünden takip edebilirsiniz.',
+              AppLocalizations.of(event.context)!.appointmnet_create_success,
           salonId: event.salonId,
           serviceModel: event.serviceModel,
           selectStylistModel: event.selectStylistModel,
@@ -296,17 +313,18 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
         ),
       );
     } else if (response.statusCode == 409) {
+      if (!event.context.mounted) return;
       emit(
         AppointmentCreateErrorState(
-          message:
-              'Randevu Tarihiniz alınmıştır, lütfen başka bir tarih ve saat için seçim yapınız.',
+          message: AppLocalizations.of(event.context)!.appointment_create_error,
         ),
       );
     } else {
+      if (!event.context.mounted) return;
       emit(
         AppointmentCreateErrorState(
-          message:
-              'Randevunu oluşturulamadı, lütfen daha sonra tekrar deneyiniz.',
+          message: AppLocalizations.of(event.context)!
+              .appointment_create_second_error,
         ),
       );
     }
@@ -319,6 +337,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     if (isFetching) return;
 
     try {
+      final languageProvider = Provider.of<LanguageProvider>(event.context);
       isFetching = true;
       if (event.isRefresh) {
         emit(AppointmentsLoadingState());
@@ -331,7 +350,10 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
         Uri.parse(
           "${EndPoints.appointmentsUserEndPoint}?page=${event.page}&limit=${event.limit}",
         ),
-        headers: ApiService.headersLangToken(token, 'tr'),
+        headers: ApiService.headersLangToken(
+          token,
+          languageProvider.selectedLanguage,
+        ),
       );
 
       if (response.statusCode == 200) {
@@ -358,15 +380,20 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
 
         if (hasMore) currentPage++;
       } else {
+        if (!event.context.mounted) return;
         emit(
           AppointmentsErrorState(
-            message: "Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.",
+            message: AppLocalizations.of(event.context)!.appointment_error,
           ),
         );
       }
     } catch (e) {
-      emit(AppointmentsErrorState(
-          message: "Hata Oluştu, lütfen daha sonra tekrar deneyiniz."));
+      if (!event.context.mounted) return;
+      emit(
+        AppointmentsErrorState(
+          message: AppLocalizations.of(event.context)!.appointment_second_error,
+        ),
+      );
     } finally {
       isFetching = false;
     }
@@ -394,16 +421,19 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     );
 
     if (response.statusCode == 200) {
+      if (!event.context.mounted) return;
       emit(
         AppointmentUpdateSuccesState(
-          message: 'Randevunuz başarıyla güncellendi.',
+          message:
+              AppLocalizations.of(event.context)!.appointment_update_success,
         ),
       );
     } else {
+      if (!event.context.mounted) return;
       emit(
         AppointmentUpdateErrorState(
           message:
-              'Randevu durumunuz gönderilirken bir sorun oluştu, lütfen daha sonra tekrar deneyiniz.',
+              AppLocalizations.of(event.context)!.apppointment_update_error,
         ),
       );
     }
@@ -428,17 +458,20 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
 
     if (response.statusCode == 201) {
       Logger().i(response.body);
+      if (!event.context.mounted) return;
       emit(
         AppointmentEvaluationSuccessState(
-          message: 'Değerlendirmeniz gönderildi, Teşekkürler',
+          message: AppLocalizations.of(event.context)!
+              .appointment_evaluation_success,
         ),
       );
     } else {
       Logger().i(response.body);
+      if (!event.context.mounted) return;
       emit(
         AppointmentEvaluationErrorState(
           message:
-              'Değerlendirme sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+              AppLocalizations.of(event.context)!.appointment_evaluation_error,
         ),
       );
     }

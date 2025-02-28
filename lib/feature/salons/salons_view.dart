@@ -5,6 +5,7 @@ import 'package:salonmate/feature/salons/bloc/event.dart';
 import 'package:salonmate/feature/salons/bloc/state.dart';
 import 'package:salonmate/feature/salons/salons_viewmodel.dart';
 import 'package:salonmate/feature/salons/view/salon_detail/salon_detail_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/constants/image.dart';
@@ -40,8 +41,8 @@ class _SalonsViewState extends SalonsViewModel {
           ),
         ),
         centerTitle: true,
-        title: const BodyMediumBlackText(
-          text: 'Salonlar',
+        title: BodyMediumBlackText(
+          text: AppLocalizations.of(context)!.salons_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -68,9 +69,10 @@ class _SalonsViewState extends SalonsViewModel {
                   200,
                   180,
                 ),
-                title: 'Bir Hata Oluştu!',
+                title: AppLocalizations.of(context)!.salons_error_title,
                 subTitle: state.errorMessage ??
-                    'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+                    AppLocalizations.of(context)!
+                        .salons_error_default_sub_title,
               );
             }
 
@@ -91,10 +93,15 @@ class _SalonsViewState extends SalonsViewModel {
   // search
   Widget get buildSearchWidget => CustomSearchFieldWidget(
         onChanged: (val) {
-          context.read<SalonsBloc>().add(SearchSalonsEvent(query: val));
+          context.read<SalonsBloc>().add(
+                SearchSalonsEvent(
+                  query: val,
+                  context: context,
+                ),
+              );
         },
         controller: searchController,
-        hintText: 'Salon Name',
+        hintText: AppLocalizations.of(context)!.salons_search,
       );
 
   // body
@@ -108,9 +115,9 @@ class _SalonsViewState extends SalonsViewModel {
                     200,
                     180,
                   ),
-                  title: 'Aradığınız Kuaför Bulunmuyor',
+                  title: AppLocalizations.of(context)!.salons_not_found_title,
                   subTitle:
-                      'Görünüşe göre aradığınız kuaför uygulamaızda bulunmuyor, farklı bir kuaför salonu arayabilirsiniz.',
+                      AppLocalizations.of(context)!.salons_not_found_sub_title,
                 )
               : ListView.builder(
                   itemCount: salons.length,

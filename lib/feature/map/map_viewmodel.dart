@@ -37,7 +37,9 @@ abstract class MapViewModel extends BaseState<MapView>
       }
 
       if (state.salons.isNotEmpty) {
-        context.read<MapLocationBloc>().add(MapLocationGetCityDistrictEvent());
+        context
+            .read<MapLocationBloc>()
+            .add(MapLocationGetCityDistrictEvent(context: context));
       }
     }
   }

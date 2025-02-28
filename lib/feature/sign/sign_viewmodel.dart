@@ -1,5 +1,6 @@
 import 'package:salonmate/feature/bottom_navigator/bottom_navigator_view.dart';
 import 'package:salonmate/feature/sign/sign_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
 import 'package:salonmate/product/core/base/helper/shared_keys.dart';
@@ -28,7 +29,7 @@ abstract class SignViewModel extends BaseState<SignView> {
   void comingSoon() {
     CodeNoahDialogs(context).showFlush(
       type: SnackType.success,
-      message: 'Coming very soon',
+      message: AppLocalizations.of(context)!.sign_coming_very_soon,
     );
   }
 }

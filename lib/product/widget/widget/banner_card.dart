@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
@@ -111,8 +112,9 @@ class BannerCardWidget extends StatelessWidget {
                             ),
                           ),
                         ),
-                        child: const BodyMediumBlackText(
-                          text: 'Book Now',
+                        child: BodyMediumBlackText(
+                          text:
+                              AppLocalizations.of(context)!.home_banner_button,
                           textAlign: TextAlign.left,
                         ),
                       ),

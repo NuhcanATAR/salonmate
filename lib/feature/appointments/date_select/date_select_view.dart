@@ -4,6 +4,7 @@ import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
 import 'package:salonmate/feature/appointments/date_select/date_select_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/constants/image.dart';
@@ -61,10 +62,15 @@ class _DateSelectViewState extends DateSelectViewModel {
                         salonId: widget.salonId,
                         serviceId: widget.serviceModel.id,
                         token: token,
+                        context: context,
                       ),
                     );
               } else {
-                loggerPrint.printErrorLog('Token is empty');
+                if (!context.mounted) return;
+                loggerPrint.printErrorLog(
+                  AppLocalizations.of(context)!
+                      .appointment_date_select_token_not_avaible,
+                );
               }
             },
             icon: AppIcons.arrowLeft.toSvgImg(
@@ -73,17 +79,19 @@ class _DateSelectViewState extends DateSelectViewModel {
               BaseUtility.iconNormalSize,
             ),
           ),
-          title: const BodyMediumBlackBoldText(
-            text: 'Date and time',
+          title: BodyMediumBlackBoldText(
+            text: AppLocalizations.of(context)!.appointment_date_select_appbar,
             textAlign: TextAlign.left,
           ),
         ),
         body: BlocBuilder<AppointmentsBloc, AppointmentState>(
           builder: (context, state) {
             if (state is AppointmentDateLoadingState) {
-              return const CustomLoadingResponseWidget(
-                title: 'Randevu Tarihleri Yükleniyor',
-                subTitle: 'Lütfen Bekleyiniz...',
+              return CustomLoadingResponseWidget(
+                title: AppLocalizations.of(context)!
+                    .appointmnet_date_select_loading_title,
+                subTitle: AppLocalizations.of(context)!
+                    .appointment_date_select_loading_sub_title,
               );
             } else if (state is AppointmnetDateLoadedState) {
               final selectedDayAppointments = state.appointments
@@ -109,7 +117,8 @@ class _DateSelectViewState extends DateSelectViewModel {
                     0.2,
                   ),
                 ),
-                title: 'Randevu Tarihleri Bulunamadı',
+                title: AppLocalizations.of(context)!
+                    .appointment_date_select_error_title,
                 subTitle: state.message,
               );
             } else {
@@ -122,9 +131,10 @@ class _DateSelectViewState extends DateSelectViewModel {
                     0.2,
                   ),
                 ),
-                title: 'Randevu Tarihleri Bulunamadı!',
-                subTitle:
-                    'Randevu Tarihlerini yüklerken bir hata oluştu sanırım, lütfen daha sonra tekrar deneyiniz.',
+                title: AppLocalizations.of(context)!
+                    .appointment_date_select_error_title,
+                subTitle: AppLocalizations.of(context)!
+                    .appointment_date_select_error_sub_title,
               );
             }
           },
@@ -158,8 +168,9 @@ class _DateSelectViewState extends DateSelectViewModel {
                         padding: BaseUtility.top(
                           BaseUtility.paddingNormalValue,
                         ),
-                        child: const TitleMediumBlackBoldText(
-                          text: 'Select Date',
+                        child: TitleMediumBlackBoldText(
+                          text: AppLocalizations.of(context)!
+                              .appointment_date_select_title,
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -225,7 +236,7 @@ class _DateSelectViewState extends DateSelectViewModel {
               padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
               child: TitleMediumBlackBoldText(
                 text:
-                    'Seçili Gün: ${state.selectedDate.day}.${state.selectedDate.month}.${state.selectedDate.year}',
+                    '${AppLocalizations.of(context)!.appointment_date_select_selected_day}: ${state.selectedDate.day}.${state.selectedDate.month}.${state.selectedDate.year}',
                 textAlign: TextAlign.left,
               ),
             ),
@@ -273,7 +284,8 @@ class _DateSelectViewState extends DateSelectViewModel {
   Widget buildFooterButtonWidget(AppointmnetDateLoadedState state) =>
       CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        text: 'Confirm Appointment',
+        text: AppLocalizations.of(context)!
+            .appointmnet_date_select_confirm_button,
         func: () => appointmentNextFunc(state),
         btnStatus: ButtonTypes.primaryColorButton,
       );

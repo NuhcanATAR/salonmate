@@ -1471,6 +1471,12 @@ abstract class AppLocalizations {
   /// **'Phone Number'**
   String get salons_information_phone_number;
 
+  /// No description provided for @salons_information_open_close_time.
+  ///
+  /// In en, this message translates to:
+  /// **'Hall Opening Hours'**
+  String get salons_information_open_close_time;
+
   /// No description provided for @salons_information_open_time.
   ///
   /// In en, this message translates to:
@@ -1888,43 +1894,43 @@ abstract class AppLocalizations {
   /// No description provided for @short_monday.
   ///
   /// In en, this message translates to:
-  /// **'Mon'**
+  /// **'MON'**
   String get short_monday;
 
   /// No description provided for @short_tuesday.
   ///
   /// In en, this message translates to:
-  /// **'Tue'**
+  /// **'TUE'**
   String get short_tuesday;
 
   /// No description provided for @short_wednesday.
   ///
   /// In en, this message translates to:
-  /// **'Wed'**
+  /// **'WED'**
   String get short_wednesday;
 
   /// No description provided for @short_thursday.
   ///
   /// In en, this message translates to:
-  /// **'Thu'**
+  /// **'THU'**
   String get short_thursday;
 
   /// No description provided for @short_friday.
   ///
   /// In en, this message translates to:
-  /// **'Fri'**
+  /// **'FRI'**
   String get short_friday;
 
   /// No description provided for @short_saturday.
   ///
   /// In en, this message translates to:
-  /// **'Sat'**
+  /// **'SAT'**
   String get short_saturday;
 
   /// No description provided for @short_sunday.
   ///
   /// In en, this message translates to:
-  /// **'Sun'**
+  /// **'SUN'**
   String get short_sunday;
 
   /// No description provided for @january.

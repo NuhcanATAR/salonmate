@@ -694,6 +694,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get salons_information_phone_number => 'Phone Number';
 
   @override
+  String get salons_information_open_close_time => 'Hall Opening Hours';
+
+  @override
   String get salons_information_open_time => 'Opening Time';
 
   @override
@@ -901,25 +904,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sunday => 'Sunday';
 
   @override
-  String get short_monday => 'Mon';
+  String get short_monday => 'MON';
 
   @override
-  String get short_tuesday => 'Tue';
+  String get short_tuesday => 'TUE';
 
   @override
-  String get short_wednesday => 'Wed';
+  String get short_wednesday => 'WED';
 
   @override
-  String get short_thursday => 'Thu';
+  String get short_thursday => 'THU';
 
   @override
-  String get short_friday => 'Fri';
+  String get short_friday => 'FRI';
 
   @override
-  String get short_saturday => 'Sat';
+  String get short_saturday => 'SAT';
 
   @override
-  String get short_sunday => 'Sun';
+  String get short_sunday => 'SUN';
 
   @override
   String get january => 'January';

@@ -5,7 +5,7 @@ class ApiService {
   static const String http = "http";
 
   // ipv4 addresses
-  static const String ipv4 = "192.168.1.106";
+  static const String ipv4 = "192.168.1.17";
 
   // port number
   static const int port = 3000;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:salonmate/feature/sign/sign_viewmodel.dart';
 import 'package:salonmate/feature/sign_in/sign_in_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/image.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
@@ -43,8 +44,8 @@ class _SignViewState extends SignViewModel {
               padding: BaseUtility.vertical(
                 BaseUtility.paddingNormalValue,
               ),
-              child: const BodyMediumWhiteText(
-                text: 'Or',
+              child: BodyMediumWhiteText(
+                text: AppLocalizations.of(context)!.sign_or,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -66,8 +67,8 @@ class _SignViewState extends SignViewModel {
               padding: BaseUtility.vertical(
                 BaseUtility.paddingMediumValue,
               ),
-              child: const TitleLargeWhiteBoldText(
-                text: 'Book Your Perfect Look in\nMinutes!',
+              child: TitleLargeWhiteBoldText(
+                text: AppLocalizations.of(context)!.sign_title,
                 textAlign: TextAlign.left,
               ),
             ),
@@ -75,7 +76,7 @@ class _SignViewState extends SignViewModel {
           // sign in
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
-            text: 'Sign In',
+            text: AppLocalizations.of(context)!.sign_sign_in_button,
             func: () => CodeNoahNavigatorRouter.push(
               context,
               const SignInView(),
@@ -91,7 +92,7 @@ class _SignViewState extends SignViewModel {
           // google auth
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
-            text: 'Continue with Google',
+            text: AppLocalizations.of(context)!.sign_google_auth_button,
             func: comingSoon,
             btnStatus: ButtonTypes.whiteColorIconButton,
             appImages: AppImages.google,
@@ -103,7 +104,7 @@ class _SignViewState extends SignViewModel {
             ),
             child: CustomButtonWidget(
               dynamicViewExtensions: dynamicViewExtensions,
-              text: 'Continue with Apple',
+              text: AppLocalizations.of(context)!.sign_apple_auth_button,
               func: comingSoon,
               btnStatus: ButtonTypes.blackColorIconButton,
               appImages: AppImages.apple,

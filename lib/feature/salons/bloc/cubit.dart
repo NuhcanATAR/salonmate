@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:salonmate/feature/salons/bloc/event.dart';
 import 'package:salonmate/feature/salons/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
 import 'package:salonmate/product/core/service/api/end_point.dart';
@@ -55,10 +56,10 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
         if (salonData == null ||
             salonData['salons'] == null ||
             salonData['salons'] is! List) {
+          if (!event.context.mounted) return;
           emit(
             SalonErrorState(
-              errorMessage:
-                  "Salonlar yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz.",
+              errorMessage: AppLocalizations.of(event.context)!.salons_error,
             ),
           );
           return;
@@ -75,18 +76,19 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
           ),
         );
       } else {
+        if (!event.context.mounted) return;
         emit(
           SalonErrorState(
-            errorMessage:
-                'Salonlar yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+            errorMessage: AppLocalizations.of(event.context)!.salons_error,
           ),
         );
       }
     } catch (e) {
+      if (!event.context.mounted) return;
       emit(
         SalonErrorState(
-            errorMessage:
-                'Salonlar yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz.'),
+          errorMessage: AppLocalizations.of(event.context)!.salons_error,
+        ),
       );
     }
   }
@@ -121,9 +123,13 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
 
         if (salonDetailData['salon'] == null ||
             salonDetailData['salon'] is! Map<String, dynamic>) {
-          emit(SalonDetailErrorState(
+          if (!event.context.mounted) return;
+          emit(
+            SalonDetailErrorState(
               errorMessage:
-                  'Salon Detayı yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz!'));
+                  AppLocalizations.of(event.context)!.salons_salon_detail_error,
+            ),
+          );
           return;
         }
 
@@ -135,10 +141,11 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
 
         if (salonServices['services'] == null ||
             salonServices['services'] is! List) {
+          if (!event.context.mounted) return;
           emit(
             SalonDetailErrorState(
-              errorMessage:
-                  'Servisler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+              errorMessage: AppLocalizations.of(event.context)!
+                  .salons_salon_services_error,
             ),
           );
           return;
@@ -156,17 +163,19 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
           ),
         );
       } else {
+        if (!event.context.mounted) return;
         emit(
           SalonDetailErrorState(
             errorMessage:
-                'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+                AppLocalizations.of(event.context)!.salons_second_error,
           ),
         );
       }
     } catch (e) {
+      if (!event.context.mounted) return;
       emit(
         SalonDetailErrorState(
-          errorMessage: 'Beklenmeyen bir hata oluştu.',
+          errorMessage: AppLocalizations.of(event.context)!.salons_catch_error,
         ),
       );
     }
@@ -196,13 +205,15 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
       await CodeNoahDialogs(event.context).showFlush(
         type: SnackType.success,
         message: response.statusCode == 200
-            ? 'Favorilerden Kaldırıldı'
-            : 'Favorilere Eklendi',
+            ? AppLocalizations.of(event.context)!.salons_favorite_remove
+            : AppLocalizations.of(event.context)!.salons_favorite_add,
       );
     } else {
+      if (!event.context.mounted) return;
       emit(
         FavoriteToggleErrorState(
-          message: 'Favorilere Eklerken bir hata oluştu',
+          message:
+              AppLocalizations.of(event.context)!.salons_favorite_toggle_error,
         ),
       );
     }

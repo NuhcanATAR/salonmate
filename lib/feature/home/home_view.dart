@@ -9,6 +9,7 @@ import 'package:salonmate/feature/notification/notification_view.dart';
 import 'package:salonmate/feature/salons/salons_view.dart';
 import 'package:salonmate/feature/salons/view/salon_detail/salon_detail_view.dart';
 import 'package:salonmate/feature/services/services_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
@@ -61,8 +62,9 @@ class _HomeViewState extends HomeViewModel {
                         padding: BaseUtility.vertical(
                           BaseUtility.paddingSmallValue,
                         ),
-                        child: const BodyMediumBlackText(
-                          text: 'Welcome',
+                        child: BodyMediumBlackText(
+                          text:
+                              AppLocalizations.of(context)!.home_welcome_appbar,
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -76,7 +78,7 @@ class _HomeViewState extends HomeViewModel {
                         ),
                         child: TitleMediumBlackBoldText(
                           text:
-                              '${userProvider.user?.userDetail.city ?? "Bilinmiyor"}/${userProvider.user?.userDetail.district ?? "Bilinmiyor"}',
+                              '${userProvider.user?.userDetail.city ?? AppLocalizations.of(context)!.home_unknown}/${userProvider.user?.userDetail.district ?? AppLocalizations.of(context)!.home_unknown}',
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -122,7 +124,6 @@ class _HomeViewState extends HomeViewModel {
                 children: <Widget>[
                   // search
                   buildSearchWidget,
-
                   // banner card
                   buildBannerCardWidget,
                   // category
@@ -178,8 +179,8 @@ class _HomeViewState extends HomeViewModel {
                       padding: BaseUtility.horizontal(
                         BaseUtility.paddingNormalValue,
                       ),
-                      child: const BodyMediumBlackText(
-                        text: 'Enter address or city name',
+                      child: BodyMediumBlackText(
+                        text: AppLocalizations.of(context)!.home_search,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -195,9 +196,9 @@ class _HomeViewState extends HomeViewModel {
   Widget get buildBannerCardWidget => BannerCardWidget(
         dynamicViewExtensions: dynamicViewExtensions,
         onTap: () {},
-        title: 'Morning Special!',
-        subTitle: 'Get 20% Off',
-        explanation: 'on All Haircuts Between 9-10 AM.',
+        title: AppLocalizations.of(context)!.home_banner_card_title,
+        subTitle: AppLocalizations.of(context)!.home_banner_card_sub_title,
+        explanation: AppLocalizations.of(context)!.home_banner_card_explanation,
       );
 
   //  category
@@ -217,8 +218,8 @@ class _HomeViewState extends HomeViewModel {
                       padding: BaseUtility.vertical(
                         BaseUtility.paddingNormalValue,
                       ),
-                      child: const TitleLargeBlackBoldText(
-                        text: 'Services',
+                      child: TitleLargeBlackBoldText(
+                        text: AppLocalizations.of(context)!.home_services_title,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -268,9 +269,9 @@ class _HomeViewState extends HomeViewModel {
                 ),
                 child: Row(
                   children: <Widget>[
-                    const Expanded(
+                    Expanded(
                       child: TitleLargeBlackBoldText(
-                        text: 'Nearby Salons',
+                        text: AppLocalizations.of(context)!.home_salons_title,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -291,8 +292,9 @@ class _HomeViewState extends HomeViewModel {
                             padding: BaseUtility.left(
                               BaseUtility.paddingMediumValue,
                             ),
-                            child: const BodyMediumMainColorBoldText(
-                              text: 'View on Map',
+                            child: BodyMediumMainColorBoldText(
+                              text: AppLocalizations.of(context)!
+                                  .home_view_on_map,
                               textAlign: TextAlign.left,
                             ),
                           ),

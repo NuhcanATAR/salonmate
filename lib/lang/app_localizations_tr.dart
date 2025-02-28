@@ -244,16 +244,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointment_summary_stylist_date_mins => 'Dakika';
 
   @override
-  String get appointmnet_summary_payment_online_title => 'Pay Online';
+  String get appointmnet_summary_payment_online_title => 'Online Ödeme';
 
   @override
-  String get appointment_summary_payment_online_subtitle => 'Secure your booking instanly';
+  String get appointment_summary_payment_online_subtitle => 'Rezervasyonunuzu anında güvence altına alın';
 
   @override
-  String get appointment_summary_payment_at_salon_title => 'Pay At Salon';
+  String get appointment_summary_payment_at_salon_title => 'Salonda Ödeme';
 
   @override
-  String get appointment_summary_payment_at_salon_sub_title => 'Settle payment after your appointment';
+  String get appointment_summary_payment_at_salon_sub_title => 'Ödemeyi randevunuzdan sonra ayarlayın';
 
   @override
   String get appointment_summary_pricing_details => 'Ücretlendirme Detayları';
@@ -478,13 +478,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get home_search => 'Salonları aramaya başlayın';
 
   @override
-  String get home_banner_card_title => 'Morning Special!';
+  String get home_banner_card_title => 'Sabah Özel!';
 
   @override
-  String get home_banner_card_sub_title => 'Get 20% Off';
+  String get home_banner_card_sub_title => '%20 İndirim Kodu';
 
   @override
-  String get home_banner_card_explanation => 'on All Haircuts Between 9-10 AM.';
+  String get home_banner_card_explanation => 'Sabah 9-10 Arası Tüm Saç Kesimlerinde.';
 
   @override
   String get home_banner_button => 'Randevu Alın';
@@ -538,19 +538,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String get password_appbar => 'Yeni Şifre';
 
   @override
-  String get password_title => 'Enter Verification Code 🔒️';
+  String get password_title => 'Doğrulama Kodunu Girin 🔒️';
 
   @override
-  String get password_sub_title => 'Enter the verification code received on your new password.';
+  String get password_sub_title => 'Yeni şifrenize gelen doğrulama kodunu girin.';
 
   @override
-  String get password_new_password => 'New Password';
+  String get password_new_password => 'Yeni Şifre';
 
   @override
-  String get password_confirm_password => 'Confirm Password';
+  String get password_confirm_password => 'Şifreyi Onayla';
 
   @override
-  String get password_save_button => 'Save Password';
+  String get password_save_button => 'Şifre Kaydet';
 
   @override
   String get password_confirm_error => 'Şifreleri Doğrulayınız';
@@ -692,6 +692,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get salons_information_phone_number => 'Telefon Numarası';
+
+  @override
+  String get salons_information_open_close_time => 'Salon Çalışma Saatleri';
 
   @override
   String get salons_information_open_time => 'Açılış Saati';

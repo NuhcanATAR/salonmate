@@ -18,6 +18,7 @@ abstract class SignInViewModel extends BaseState<SignInView> with SignInMixin {
             SignInFuncEvent(
               username: usernameController.text,
               password: passwordController.text,
+              context: context,
             ),
           );
     }

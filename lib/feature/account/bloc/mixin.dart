@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salonmate/feature/account/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/helper/logger_package.dart';
 import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
@@ -27,8 +28,8 @@ mixin AccountMixin {
         break;
       case AccountUpdateLoading:
         CodeNoahDialogs(context).showAlert(
-          const BodyMediumWhiteText(
-            text: 'Lütfen Bekleyiniz...',
+          BodyMediumWhiteText(
+            text: AppLocalizations.of(context)!.account_loading_text,
             textAlign: TextAlign.center,
           ),
         );
@@ -59,8 +60,8 @@ mixin AccountMixin {
         break;
       case AccountCityDistrictUpdateLoadingState:
         CodeNoahDialogs(context).showAlert(
-          const BodyMediumWhiteText(
-            text: 'Lütfen Bekleyiniz...',
+          BodyMediumWhiteText(
+            text: AppLocalizations.of(context)!.account_loading_text,
             textAlign: TextAlign.center,
           ),
         );

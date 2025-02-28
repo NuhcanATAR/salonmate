@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonmate/feature/account/bloc/cubit.dart';
 import 'package:salonmate/feature/account/bloc/state.dart';
 import 'package:salonmate/feature/account/view/city_district_update/city_district_update_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -36,8 +37,9 @@ class _CityDistrictUpdateViewState extends CityDistrictUpdateViewModel {
           ),
         ),
         centerTitle: true,
-        title: const BodyMediumBlackText(
-          text: 'Şehir ve İlçe Bilgisi Güncelle',
+        title: BodyMediumBlackText(
+          text:
+              AppLocalizations.of(context)!.account_city_district_update_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -89,7 +91,8 @@ class _CityDistrictUpdateViewState extends CityDistrictUpdateViewModel {
               // save button
               CustomButtonWidget(
                 dynamicViewExtensions: dynamicViewExtensions,
-                text: 'UPDATE',
+                text: AppLocalizations.of(context)!
+                    .account_city_district_update_button,
                 func: cityDistrictUpdate,
                 btnStatus: ButtonTypes.primaryColorButton,
               ),

@@ -4,6 +4,7 @@ import 'package:salonmate/feature/appointments/appointment_summary/appointment_s
 import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/core/base/helper/payment_type_control.dart';
 import 'package:salonmate/product/mixin/appointment_mixin.dart';
@@ -30,10 +31,14 @@ abstract class AppointmentSummaryViewModel
               token: token,
               salonId: widget.salonId,
               stylistId: widget.selectStylistModel.id,
+              context: context,
             ),
           );
     } else {
-      loggerPrint.printInfoLog('Token is empty');
+      if (!mounted) return;
+      loggerPrint.printInfoLog(
+        AppLocalizations.of(context)!.appointment_summary_token_not_avaible,
+      );
     }
   }
 
@@ -84,10 +89,14 @@ abstract class AppointmentSummaryViewModel
               selectTime: widget.selectTime,
               selectedServiceDetails: selectedServiceDetails,
               salonDetailModel: state.salonDetailModel!,
+              context: context,
             ),
           );
     } else {
-      loggerPrint.printInfoLog('Token is empty');
+      if (!mounted) return;
+      loggerPrint.printInfoLog(
+        AppLocalizations.of(context)!.appointment_token_not_avaible,
+      );
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 
 final class CustomValidator {
   CustomValidator({required this.value, required this.context});
@@ -21,9 +22,9 @@ final class CustomValidator {
   String? get emptyNumberCheck {
     // just number
     if (value == null || value!.isEmpty) {
-      return "Zorunlu Alan";
+      return AppLocalizations.of(context)!.validator_required_field;
     } else if (!isNumeric(value)) {
-      return "Geçersiz Değer";
+      return AppLocalizations.of(context)!.validator_invalid_error;
     }
     return null;
   }
@@ -31,9 +32,9 @@ final class CustomValidator {
   String? get emptyNormalCheck {
     // just string
     if (value == null || value!.isEmpty) {
-      return "Zorunlu Alan";
+      return AppLocalizations.of(context)!.validator_required_field;
     } else if (isNumeric(value) == true) {
-      return "Geçersiz Değer";
+      return AppLocalizations.of(context)!.validator_invalid_error;
     }
     return null;
   }
@@ -41,16 +42,16 @@ final class CustomValidator {
   String? get emptyNotNumberNormalCheck {
     // just string
     if (value == null || value!.isEmpty) {
-      return "Zorunlu Alan";
+      return AppLocalizations.of(context)!.validator_required_field;
     }
     return null;
   }
 
   String? get emailCheck {
     if (value == null || value!.isEmpty) {
-      return "E-posta alanı boş bırakılamaz";
+      return AppLocalizations.of(context)!.validator_email_empty_error;
     } else if (!emailRegExp.hasMatch(value!)) {
-      return "Geçersiz e-posta formatı";
+      return AppLocalizations.of(context)!.validator_email_invalid_error;
     } else {
       return null;
     }
@@ -58,17 +59,17 @@ final class CustomValidator {
 
   String? get passwordCheck {
     if (value == null || value!.isEmpty) {
-      return "Şifre alanı boş bırakılamaz";
+      return AppLocalizations.of(context)!.validator_password_empty;
     } else if (value!.length < 8) {
-      return "Şifre en az 8 karakter uzunluğunda olmalıdır";
+      return AppLocalizations.of(context)!.validator_password_min_length;
     } else if (!value!.contains(RegExp(r'[A-Z]'))) {
-      return "Şifre en az bir büyük harf içermelidir";
+      return AppLocalizations.of(context)!.validator_password_uppercase;
     } else if (!value!.contains(RegExp(r'[a-z]'))) {
-      return "Şifre en az bir küçük harf içermelidir";
+      return AppLocalizations.of(context)!.validator_password_lowercase;
     } else if (!value!.contains(RegExp(r'[0-9]'))) {
-      return "Şifre en az bir rakam içermelidir";
+      return AppLocalizations.of(context)!.validator_password_number;
     } else if (!value!.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-      return "Şifre en az bir özel karakter içermelidir";
+      return AppLocalizations.of(context)!.validator_password_special_character;
     } else {
       return null;
     }
@@ -76,11 +77,11 @@ final class CustomValidator {
 
   String? phoneNumberValidator(String? phoneNumberVal) {
     if (phoneNumberVal == null || phoneNumberVal.isEmpty) {
-      return "Zorunlu Alan";
+      return AppLocalizations.of(context)!.validator_required_field;
     } else if (!isNumeric(phoneNumberVal)) {
-      return "Geçersiz Telefon Numarası";
+      return AppLocalizations.of(context)!.validator_phone_invalid_error;
     } else if (!phoneNumberRegExp.hasMatch(phoneNumberVal)) {
-      return "Geçersiz Telefon Numarası";
+      return AppLocalizations.of(context)!.validator_phone_invalid_error;
     } else {
       return null;
     }

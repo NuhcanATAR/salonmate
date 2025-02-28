@@ -22,26 +22,27 @@ class _LocalizationSelectViewState extends LocalizationSelectViewModel {
   Widget build(BuildContext context) {
     final languageProvider = Provider.of<LanguageProvider>(context);
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
-        appBar: AppBar(
-          backgroundColor: ColorConstant.appBarColor,
-          surfaceTintColor: ColorConstant.appBarColor,
-          centerTitle: true,
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: AppIcons.arrowLeft.toSvgImg(
-              Colors.black54,
-              BaseUtility.iconNormalSize,
-              BaseUtility.iconNormalSize,
-            ),
-          ),
-          title: BodyMediumBlackText(
-            text: AppLocalizations.of(context)!
-                .account_localization_select_appbar,
-            textAlign: TextAlign.left,
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+      appBar: AppBar(
+        backgroundColor: ColorConstant.appBarColor,
+        surfaceTintColor: ColorConstant.appBarColor,
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: AppIcons.arrowLeft.toSvgImg(
+            Colors.black54,
+            BaseUtility.iconNormalSize,
+            BaseUtility.iconNormalSize,
           ),
         ),
-        body: buildBodyWidget(languageProvider));
+        title: BodyMediumBlackText(
+          text:
+              AppLocalizations.of(context)!.account_localization_select_appbar,
+          textAlign: TextAlign.left,
+        ),
+      ),
+      body: buildBodyWidget(languageProvider),
+    );
   }
 
   // body
@@ -54,7 +55,8 @@ class _LocalizationSelectViewState extends LocalizationSelectViewModel {
             // turkish
             LanguageCardWidget(
               dynamicViewExtensions: dynamicViewExtensions,
-              languageText: 'Türkçe',
+              languageText: AppLocalizations.of(context)!
+                  .account_localization_select_turkish_menu,
               groupValue: languageProvider.selectedLanguage,
               value: 'tr',
               onChanged: (val) {
@@ -67,7 +69,8 @@ class _LocalizationSelectViewState extends LocalizationSelectViewModel {
             // english
             LanguageCardWidget(
               dynamicViewExtensions: dynamicViewExtensions,
-              languageText: 'English',
+              languageText: AppLocalizations.of(context)!
+                  .account_localization_select_english_menu,
               groupValue: languageProvider.selectedLanguage,
               value: 'en',
               onChanged: (val) {
@@ -80,7 +83,8 @@ class _LocalizationSelectViewState extends LocalizationSelectViewModel {
             // german
             LanguageCardWidget(
               dynamicViewExtensions: dynamicViewExtensions,
-              languageText: 'Deutsch',
+              languageText: AppLocalizations.of(context)!
+                  .account_localization_select_germany_menu,
               groupValue: languageProvider.selectedLanguage,
               value: 'de',
               onChanged: (val) {

@@ -4,6 +4,7 @@ import 'package:salonmate/feature/favorite/bloc/event.dart' as favorite;
 import 'package:salonmate/feature/salons/bloc/cubit.dart';
 import 'package:salonmate/feature/salons/bloc/event.dart' as salon;
 import 'package:salonmate/feature/salons/view/salon_detail/salon_detail_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/provider/user_provider.dart';
 
@@ -25,12 +26,16 @@ abstract class SalonDetailViewModel extends BaseState<SalonDetailView> {
             salon.SalonDetailLoadEvent(
               salonId: widget.salonId.toString(),
               token: token,
+              context: context,
             ),
           );
       await Provider.of<UserProvider>(context, listen: false)
           .fetchUserData(token);
     } else {
-      loggerPrint.printErrorLog('Token not available');
+      if (!mounted) return;
+      loggerPrint.printErrorLog(
+        AppLocalizations.of(context)!.salons_detail_token_not_avaible,
+      );
     }
   }
 
@@ -47,6 +52,7 @@ abstract class SalonDetailViewModel extends BaseState<SalonDetailView> {
     context.read<FavoriteBloc>().add(
           favorite.FavoriteSalonsEvent(
             token: valueToken,
+            context: context,
           ),
         );
   }

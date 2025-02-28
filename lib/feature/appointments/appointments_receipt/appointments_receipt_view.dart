@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salonmate/feature/appointments/appointments_receipt/appointments_receipt_viewmodel.dart';
 import 'package:salonmate/feature/bottom_navigator/bottom_navigator_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/constants/image.dart';
@@ -64,8 +65,8 @@ class _AppointmentsReceiptViewState extends AppointmentsReceiptViewModel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        title: const BodyMediumBlackBoldText(
-          text: 'Receipt',
+        title: BodyMediumBlackBoldText(
+          text: AppLocalizations.of(context)!.appointment_receipt_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -102,9 +103,10 @@ class _AppointmentsReceiptViewState extends AppointmentsReceiptViewModel {
               // title sub title
               TitleSubtitleWidget(
                 dynamicViewExtensions: dynamicViewExtensions,
-                title: 'Randevunuz Başarıyla Oluşturulmuştur!',
-                subtitle:
-                    'Randevunuz oluşturulmuştur, randevu bilgilerinizi, Randevularım bölümünden takip edebilirsiniz.',
+                title: AppLocalizations.of(context)!
+                    .appointment_receipt_success_title,
+                subtitle: AppLocalizations.of(context)!
+                    .appointment_receipt_success_sub_title,
                 isCenter: true,
               ),
               // information
@@ -120,10 +122,11 @@ class _AppointmentsReceiptViewState extends AppointmentsReceiptViewModel {
   Widget buildFooterButtonWidget(UserProvider userProvider) =>
       CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        text: 'Download Receipt',
+        text: AppLocalizations.of(context)!.appointment_receipt_download_button,
         func: () => createAndOpenPdf(
           userProvider.user!.userDetail.fullName,
           widget.salonDetailModel.phone,
+          context,
         ),
         btnStatus: ButtonTypes.primaryColorButton,
       );

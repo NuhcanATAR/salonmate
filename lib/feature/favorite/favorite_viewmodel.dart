@@ -2,6 +2,7 @@ import 'package:provider/provider.dart';
 import 'package:salonmate/feature/favorite/bloc/cubit.dart';
 import 'package:salonmate/feature/favorite/bloc/event.dart';
 import 'package:salonmate/feature/favorite/favorite_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 
 abstract class FavoriteViewModel extends BaseState<FavoriteView> {
@@ -22,10 +23,14 @@ abstract class FavoriteViewModel extends BaseState<FavoriteView> {
       context.read<FavoriteBloc>().add(
             FavoriteSalonsEvent(
               token: token,
+              context: context,
             ),
           );
     } else {
-      loggerPrint.printErrorLog('Token is empty');
+      if (!mounted) return;
+      loggerPrint.printErrorLog(
+        AppLocalizations.of(context)!.favorite_token_not_avaible,
+      );
     }
   }
 }

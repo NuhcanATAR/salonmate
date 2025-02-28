@@ -7,9 +7,11 @@ import 'package:salonmate/feature/account/view/help_support/help_support_view.da
 import 'package:salonmate/feature/account/view/information_update/information_update_view.dart';
 import 'package:salonmate/feature/account/view/localization_select/localization_select_view.dart';
 import 'package:salonmate/feature/sign_up/view/send_code/send_code_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
+import 'package:salonmate/product/provider/language_provider.dart';
 import 'package:salonmate/product/provider/user_provider.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
@@ -28,6 +30,7 @@ class _AccountViewState extends AccountViewModel {
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
+    final languageProvider = Provider.of<LanguageProvider>(context);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
       appBar: AppBar(
@@ -35,8 +38,8 @@ class _AccountViewState extends AccountViewModel {
         surfaceTintColor: ColorConstant.appBarColor,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: const BodyMediumBlackText(
-          text: 'Profil',
+        title: BodyMediumBlackText(
+          text: AppLocalizations.of(context)!.account_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -51,7 +54,7 @@ class _AccountViewState extends AccountViewModel {
             // account menu group
             buildAccountMenuGroupWidget,
             // application settings
-            buildApplicationSettingsMenuGroupWidget,
+            buildApplicationSettingsMenuGroupWidget(languageProvider),
             // account settings
             buildAccountSettingsMenuGroupWidget,
           ],
@@ -63,8 +66,10 @@ class _AccountViewState extends AccountViewModel {
   // profile card
   Widget buildProfileCardWidget(UserProvider userProvider) => ProfileCardWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        fullName: userProvider.user?.userDetail.fullName ?? "Bilinmiyor",
-        email: userProvider.user?.email ?? "Bilinmiyor",
+        fullName: userProvider.user?.userDetail.fullName ??
+            AppLocalizations.of(context)!.account_unknown,
+        email: userProvider.user?.email ??
+            AppLocalizations.of(context)!.account_unknown,
       );
 
   // account menu group
@@ -92,8 +97,8 @@ class _AccountViewState extends AccountViewModel {
                 padding: BaseUtility.vertical(
                   BaseUtility.paddingNormalValue,
                 ),
-                child: const TitleMediumBlackBoldText(
-                  text: 'Hesap Yönetimi',
+                child: TitleMediumBlackBoldText(
+                  text: AppLocalizations.of(context)!.account_menu_group_title,
                   textAlign: TextAlign.left,
                 ),
               ),
@@ -105,7 +110,8 @@ class _AccountViewState extends AccountViewModel {
                 context,
                 const InformationUpdateView(),
               ),
-              menuText: 'Bilgileri Güncelle',
+              menuText:
+                  AppLocalizations.of(context)!.account_information_update_menu,
             ),
             // location update
             MenuWidget(
@@ -114,14 +120,18 @@ class _AccountViewState extends AccountViewModel {
                 context,
                 const CityDistrictUpdateView(),
               ),
-              menuText: 'Şehir ve İlçe Bilgisi Güncelle',
+              menuText: AppLocalizations.of(context)!
+                  .account_city_district_update_menu,
             ),
           ],
         ),
       );
 
   // application settings
-  Widget get buildApplicationSettingsMenuGroupWidget => Container(
+  Widget buildApplicationSettingsMenuGroupWidget(
+    LanguageProvider languageProvider,
+  ) =>
+      Container(
         padding: BaseUtility.all(
           BaseUtility.paddingMediumValue,
         ),
@@ -145,8 +155,9 @@ class _AccountViewState extends AccountViewModel {
                 padding: BaseUtility.vertical(
                   BaseUtility.paddingNormalValue,
                 ),
-                child: const TitleMediumBlackBoldText(
-                  text: 'Uygulama Ayarları',
+                child: TitleMediumBlackBoldText(
+                  text: AppLocalizations.of(context)!
+                      .account_menu_group_application_setting_title,
                   textAlign: TextAlign.left,
                 ),
               ),
@@ -158,14 +169,16 @@ class _AccountViewState extends AccountViewModel {
                 context,
                 const LocalizationSelectView(),
               ),
-              menuText: 'Dil Seçimi ( Turkish - TR )',
+              menuText:
+                  '${AppLocalizations.of(context)!.account_language_menu} ( ${languageProvider.selectedLanguage == 'tr' ? 'Türkçe - TR' : languageProvider.selectedLanguage == 'en' ? 'English - EN' : languageProvider.selectedLanguage == 'de' ? 'German - DE' : AppLocalizations.of(context)!.account_unknown} )',
               menuIcon: AppIcons.worldOutline,
             ),
             // application settings
             MenuWidget(
               dynamicViewExtensions: dynamicViewExtensions,
               onTap: () => openAppSettings(),
-              menuText: 'Uygulama Ayarları',
+              menuText: AppLocalizations.of(context)!
+                  .account_application_setting_menu,
               menuIcon: AppIcons.settingOutline,
             ),
             // help
@@ -175,7 +188,7 @@ class _AccountViewState extends AccountViewModel {
                 context,
                 const HelpSupportView(),
               ),
-              menuText: 'Yardım ve Destek',
+              menuText: AppLocalizations.of(context)!.account_help_support_menu,
               menuIcon: AppIcons.helpOutline,
             ),
           ],
@@ -207,8 +220,9 @@ class _AccountViewState extends AccountViewModel {
                 padding: BaseUtility.vertical(
                   BaseUtility.paddingNormalValue,
                 ),
-                child: const TitleMediumBlackBoldText(
-                  text: 'Hesap Ayarları',
+                child: TitleMediumBlackBoldText(
+                  text: AppLocalizations.of(context)!
+                      .account_setting_menu_group_title,
                   textAlign: TextAlign.left,
                 ),
               ),
@@ -220,14 +234,14 @@ class _AccountViewState extends AccountViewModel {
                 context,
                 const SignUpSendCodeView(),
               ),
-              menuText: 'Hesap Oluştur',
+              menuText: AppLocalizations.of(context)!.account_create_menu,
               menuIcon: AppIcons.addCircleOutline,
             ),
             // application settings
             MenuWidget(
               dynamicViewExtensions: dynamicViewExtensions,
               onTap: signOutAccount,
-              menuText: 'Çıkış Yap',
+              menuText: AppLocalizations.of(context)!.account_exit_menu,
               menuIcon: AppIcons.signOutOutline,
             ),
           ],

@@ -4,6 +4,7 @@ import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
 import 'package:salonmate/feature/appointments/stylist_select/stylist_select_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/constants/image.dart';
@@ -45,17 +46,19 @@ class _StylistSelectViewState extends StylistSelectViewModel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        title: const BodyMediumBlackBoldText(
-          text: 'Choose your stylist',
+        title: BodyMediumBlackBoldText(
+          text: AppLocalizations.of(context)!.appointment_stylist_select_appbar,
           textAlign: TextAlign.left,
         ),
       ),
       body: BlocBuilder<AppointmentsBloc, AppointmentState>(
         builder: (context, state) {
           if (state is AppointmentStylistLoadingState) {
-            return const CustomLoadingResponseWidget(
-              title: 'Çalışanlar Yükleniyor',
-              subTitle: 'Lütfen Bekleyiniz...',
+            return CustomLoadingResponseWidget(
+              title: AppLocalizations.of(context)!
+                  .appointment_stylist_select_loading_title,
+              subTitle: AppLocalizations.of(context)!
+                  .appointment_stylist_select_loading_sub_title,
             );
           } else if (state is AppointmentStylistErrorState) {
             return CustomResponseWidget(
@@ -88,9 +91,10 @@ class _StylistSelectViewState extends StylistSelectViewModel {
                 dynamicViewExtensions.maxWidth(context),
                 dynamicViewExtensions.dynamicHeight(context, 0.2),
               ),
-              title: 'Hata Oluştu',
-              subTitle:
-                  'Çalışanlar yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+              title: AppLocalizations.of(context)!
+                  .appointment_stylist_select_error_title,
+              subTitle: AppLocalizations.of(context)!
+                  .appointment_stylist_select_error_sub_title,
             );
           }
         },
@@ -107,9 +111,10 @@ class _StylistSelectViewState extends StylistSelectViewModel {
                   dynamicViewExtensions.maxWidth(context),
                   dynamicViewExtensions.dynamicHeight(context, 0.2),
                 ),
-                title: 'Çalışanlar Henüz Yüklenmedi!',
-                subTitle:
-                    'Çalışanlar salonda bulunamadı lütfen daha sonra tekrar deneyiniz.',
+                title: AppLocalizations.of(context)!
+                    .appointment_stylist_select_not_found_title,
+                subTitle: AppLocalizations.of(context)!
+                    .appointment_stylist_select_not_found_sub_title,
               )
             : ListView.builder(
                 itemCount: state.stylist.length,
@@ -134,7 +139,8 @@ class _StylistSelectViewState extends StylistSelectViewModel {
   Widget buildFooterButtonWidget(AppointmentStylistLoadedState state) =>
       CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        text: 'Continue',
+        text: AppLocalizations.of(context)!
+            .appointment_stylist_select_continue_button,
         func: () => nextSectionFunc(state),
         btnStatus: ButtonTypes.primaryColorButton,
       );

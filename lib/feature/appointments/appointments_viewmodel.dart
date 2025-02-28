@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonmate/feature/appointments/appointments_view.dart';
 import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/core/base/helper/appointments_control.dart';
 import 'package:salonmate/product/mixin/appointment_mixin.dart';
@@ -18,8 +19,14 @@ abstract class AppointmentsViewModel extends BaseState<AppointmentsView>
     super.initState();
     appointmentsBloc = BlocProvider.of<AppointmentsBloc>(context);
     scrollController = ScrollController()..addListener(_onScroll);
-    appointmentsBloc
-        .add(AppointmentsFetchEvent(page: 1, limit: 10, isRefresh: true));
+    appointmentsBloc.add(
+      AppointmentsFetchEvent(
+        page: 1,
+        limit: 10,
+        isRefresh: true,
+        context: context,
+      ),
+    );
   }
 
   void _onScroll() {
@@ -30,6 +37,7 @@ abstract class AppointmentsViewModel extends BaseState<AppointmentsView>
         AppointmentsFetchEvent(
           page: appointmentsBloc.currentPage,
           limit: 10,
+          context: context,
         ),
       );
     }
@@ -53,10 +61,14 @@ abstract class AppointmentsViewModel extends BaseState<AppointmentsView>
               token: token,
               status: status,
               appointmentId: appointment.id,
+              context: context,
             ),
           );
     } else {
-      loggerPrint.printErrorLog('Token is empty');
+      if (!mounted) return;
+      loggerPrint.printErrorLog(
+        AppLocalizations.of(context)!.appointment_token_not_avaible,
+      );
     }
   }
 }

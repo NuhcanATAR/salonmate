@@ -5,6 +5,7 @@ import 'package:salonmate/feature/salons/bloc/cubit.dart';
 import 'package:salonmate/feature/salons/bloc/state.dart';
 import 'package:salonmate/feature/salons/view/salon_detail/salon_detail_viewmodel.dart';
 import 'package:salonmate/feature/salons/view/salon_information/salon_information_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
@@ -306,8 +307,9 @@ class _SalonDetailViewState extends SalonDetailViewModel {
                 padding: BaseUtility.vertical(
                   BaseUtility.paddingNormalValue,
                 ),
-                child: const TitleLargeBlackBoldText(
-                  text: 'Services',
+                child: TitleLargeBlackBoldText(
+                  text: AppLocalizations.of(context)!
+                      .salons_detail_services_title,
                   textAlign: TextAlign.left,
                 ),
               ),

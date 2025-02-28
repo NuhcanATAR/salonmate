@@ -17,12 +17,14 @@ class FetchAccountDataEvent extends AccountEvent {
 }
 
 class AccountInformationEvent extends AccountEvent {
+  final BuildContext context;
   final String token;
   final String fullName;
   final int phoneNumber;
   final String address;
 
   AccountInformationEvent({
+    required this.context,
     required this.token,
     required this.fullName,
     required this.phoneNumber,
@@ -30,20 +32,26 @@ class AccountInformationEvent extends AccountEvent {
   });
 
   @override
-  List<Object> get props => [token, fullName, phoneNumber, address];
+  List<Object> get props => [token, fullName, phoneNumber, address, context];
 }
 
 class AccountCityDistrictUpdateEvent extends AccountEvent {
+  final BuildContext context;
   final String token;
   final String city;
   final String district;
 
   AccountCityDistrictUpdateEvent({
+    required this.context,
     required this.token,
     required this.city,
     required this.district,
   });
 
   @override
-  List<Object> get props => [city, district];
+  List<Object> get props => [
+        city,
+        district,
+        context,
+      ];
 }

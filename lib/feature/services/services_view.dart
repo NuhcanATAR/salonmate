@@ -4,6 +4,7 @@ import 'package:salonmate/feature/appointments/stylist_select/stylist_select_vie
 import 'package:salonmate/feature/services/bloc/cubit.dart';
 import 'package:salonmate/feature/services/bloc/state.dart';
 import 'package:salonmate/feature/services/services_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/constants/image.dart';
@@ -54,9 +55,10 @@ class _ServicesViewState extends ServicesViewModel {
       body: BlocBuilder<ServicesBloc, ServicesState>(
         builder: (context, state) {
           if (state is ServicesLoadingState) {
-            return const CustomLoadingResponseWidget(
-              title: 'Hizmetler Yükleniyor',
-              subTitle: 'Lütfen Bekleyiniz...',
+            return CustomLoadingResponseWidget(
+              title: AppLocalizations.of(context)!.services_loading_title,
+              subTitle:
+                  AppLocalizations.of(context)!.services_loading_sub_title,
             );
           } else if (state is ServicesLoadedState) {
             return buildBodyWidget(state.services);
@@ -68,8 +70,8 @@ class _ServicesViewState extends ServicesViewModel {
                 200,
               ),
               title:
-                  '${widget.categoryModel.name} Adına Kayıtlı Bir hizmet bulunamadı!',
-              subTitle: 'İsterseniz başka hizmetlere de bakabilirsiniz.',
+                  '${widget.categoryModel.name} ${AppLocalizations.of(context)!.services_error_title}',
+              subTitle: AppLocalizations.of(context)!.services_error_sub_title,
             );
           }
 
@@ -90,8 +92,9 @@ class _ServicesViewState extends ServicesViewModel {
                   200,
                 ),
                 title:
-                    '${widget.categoryModel.name} Adına Kayıtlı Bir hizmet bulunamadı!',
-                subTitle: 'İsterseniz başka hizmetlere de bakabilirsiniz.',
+                    '${widget.categoryModel.name} ${AppLocalizations.of(context)!.services_error_title}',
+                subTitle:
+                    '${AppLocalizations.of(context)!.services_error_sub_title}.',
               )
             : ListView.builder(
                 itemCount: services.length,
