@@ -575,7 +575,7 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
   Widget buildFooterButtonWidget(AppointmentSummaryLoadedState state) =>
       CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        text: 'Procced',
+        text: 'Randevuyu Oluştur',
         func: () => appointmentCreateFunc(state),
         btnStatus: ButtonTypes.primaryColorButton,
       );

@@ -36,7 +36,8 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
             services['services'] is! List) {
           emit(
             ServicesErrorState(
-              error: 'Servisler beklenen API verisi bulunamadı!',
+              error:
+                  'Hizmetler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz!',
             ),
           );
           return;
@@ -54,12 +55,18 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
         );
       } else {
         emit(
-          ServicesErrorState(error: 'Services Error'),
+          ServicesErrorState(
+            error:
+                'Hizmetler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz!',
+          ),
         );
       }
     } catch (e) {
       emit(
-        ServicesErrorState(error: 'Services Error'),
+        ServicesErrorState(
+          error:
+              'Hizmetler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz!',
+        ),
       );
     }
   }

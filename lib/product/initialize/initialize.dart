@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:salonmate/product/constants/string.dart';
 import 'package:salonmate/product/core/base/helper/logger_package.dart';
 import 'package:salonmate/product/core/base/helper/shared_keys.dart';
 import 'package:salonmate/product/core/base/helper/shared_service.dart';
@@ -16,7 +17,7 @@ class AppStart {
     final prefService = PrefService();
     final loggerPrint = CustomLoggerPrint();
     await OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
-    OneSignal.initialize("7ef2c710-2373-4886-ac6e-6c18fb1e6257");
+    OneSignal.initialize(StringConstant.oneSignalInitialize);
 
     await OneSignal.Notifications.requestPermission(true);
 

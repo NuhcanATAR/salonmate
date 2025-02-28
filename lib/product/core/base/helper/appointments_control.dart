@@ -28,24 +28,3 @@ extension AppointmentsStatusExtension on AppointmentsStatus {
     }
   }
 }
-
-extension AppointmentsStatusStringExtension on AppointmentsStatus {
-  String get appointmentStringStatus {
-    switch (this) {
-      case AppointmentsStatus.pendginAppointmentConfirmed:
-        return 'Onayda Bekleyen Randevu';
-      case AppointmentsStatus.confirmedAppointment:
-        return 'Onaylanan Randevu';
-      case AppointmentsStatus.updatedAppointment:
-        return 'Güncellenen Randevu';
-      case AppointmentsStatus.cancelledAppointment:
-        return 'İptal Edilen Randevu';
-      case AppointmentsStatus.rejectedAppointment:
-        return 'Reddedilen Randevu';
-      case AppointmentsStatus.completedAppointment:
-        return 'Tamamlanan Randevu';
-      case AppointmentsStatus.evaluationCompleted:
-        return 'Değerlendirilen Randevu';
-    }
-  }
-}

@@ -69,8 +69,8 @@ class _SalonsViewState extends SalonsViewModel {
                   180,
                 ),
                 title: 'Bir Hata Oluştu!',
-                subTitle:
-                    'Kuaför Salonları Yüklenirken bir Sorun Oluştu, Lütfen daha sonra tekrar deneyiniz.',
+                subTitle: state.errorMessage ??
+                    'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
               );
             }
 

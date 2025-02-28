@@ -57,7 +57,8 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
             salonData['salons'] is! List) {
           emit(
             SalonErrorState(
-              errorMessage: "No expected data from API for salons!",
+              errorMessage:
+                  "Salonlar yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz.",
             ),
           );
           return;
@@ -76,13 +77,16 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
       } else {
         emit(
           SalonErrorState(
-            errorMessage: 'API Error: ${salonResponse.statusCode}',
+            errorMessage:
+                'Salonlar yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
           ),
         );
       }
     } catch (e) {
       emit(
-        SalonErrorState(errorMessage: 'Connection Error'),
+        SalonErrorState(
+            errorMessage:
+                'Salonlar yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz.'),
       );
     }
   }
@@ -117,7 +121,9 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
 
         if (salonDetailData['salon'] == null ||
             salonDetailData['salon'] is! Map<String, dynamic>) {
-          emit(SalonDetailErrorState(errorMessage: 'Beklenmeyen API yanıtı!'));
+          emit(SalonDetailErrorState(
+              errorMessage:
+                  'Salon Detayı yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz!'));
           return;
         }
 
@@ -131,7 +137,8 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
             salonServices['services'] is! List) {
           emit(
             SalonDetailErrorState(
-              errorMessage: 'Servisler beklenen formatta değil!',
+              errorMessage:
+                  'Servisler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
             ),
           );
           return;
@@ -152,14 +159,14 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
         emit(
           SalonDetailErrorState(
             errorMessage:
-                'API Hatası: ${salonDetailResponse.statusCode} - ${salonDetailResponse.body}',
+                'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
           ),
         );
       }
     } catch (e) {
       emit(
         SalonDetailErrorState(
-          errorMessage: 'Beklenmeyen bir hata oluştu: $e',
+          errorMessage: 'Beklenmeyen bir hata oluştu.',
         ),
       );
     }

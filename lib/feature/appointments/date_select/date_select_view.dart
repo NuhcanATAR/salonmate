@@ -99,6 +99,19 @@ class _DateSelectViewState extends DateSelectViewModel {
                 state,
                 selectedDayAppointments,
               );
+            } else if (state is AppointmentDateErrorState) {
+              return CustomResponseWidget(
+                img: AppImages.notfound.toSvgImg(
+                  null,
+                  dynamicViewExtensions.maxWidth(context),
+                  dynamicViewExtensions.dynamicHeight(
+                    context,
+                    0.2,
+                  ),
+                ),
+                title: 'Randevu Tarihleri Bulunamadı',
+                subTitle: state.message,
+              );
             } else {
               return CustomResponseWidget(
                 img: AppImages.notfound.toSvgImg(

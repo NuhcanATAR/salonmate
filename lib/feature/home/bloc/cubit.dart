@@ -22,7 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       final categoryResponse = await http.get(
         EndPoints.uriParse(EndPoints.serviceCategoriesEndPoint),
-        headers: ApiService.headersToken(event.token),
+        headers: ApiService.headersLangToken(event.token, 'tr'),
       );
 
       final salonResponse = await http.get(
@@ -67,12 +67,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       } else {
         emit(
           HomeError(
-            "Error loading data!: ${categoryResponse.body}, ${salonResponse.body}",
+            "Error loading data",
           ),
         );
       }
     } catch (e) {
-      emit(HomeError("Connection error: $e"));
+      emit(HomeError("Error loading data"));
     }
   }
 }

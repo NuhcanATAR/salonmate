@@ -35,7 +35,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         final responseData = json.decode(response.body);
         final String token = responseData['token'];
         await prefService.saveString(SharedKeys.token, token);
-        await prefService.setBool(SharedKeys.remember_me, true);
+        await prefService.setBool(SharedKeys.rememberMe, true);
 
         final oneSignalIdValue =
             await prefService.getString(SharedKeys.oneSignalId) ?? '';

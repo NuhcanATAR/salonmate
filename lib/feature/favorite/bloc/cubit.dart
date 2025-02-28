@@ -42,7 +42,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
         emit(FavoriteErrorState(error: 'Favoriler Yüklenirken Hata Oluştu'));
       }
     } catch (e) {
-      emit(FavoriteErrorState(error: 'Bir hata oluştu: $e'));
+      emit(FavoriteErrorState(error: 'Bir hata oluştu!'));
     }
   }
 

@@ -51,9 +51,8 @@ class AppointmentCardWidget extends StatelessWidget {
             // appointment information
             buildAppointmentInformationWidget(context),
             // appointment update
-            appointment.appointmentCategory ==
-                    AppointmentsStatus
-                        .updatedAppointment.appointmentStringStatus
+            appointment.appointmentsCategoryId ==
+                    AppointmentsStatus.updatedAppointment.appointmentStatus
                 ? buildAppointmentUpdateButtonsWidget(context)
                 : const SizedBox(),
           ],

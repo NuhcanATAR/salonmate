@@ -123,7 +123,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     } else {
       emit(
         AppointmentDateErrorState(
-          message: 'API Hatası: ${response.reasonPhrase}',
+          message: 'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
         ),
       );
     }
@@ -219,15 +219,14 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
       } else {
         emit(
           AppointmentSummaryErrorState(
-            message:
-                'API Hatası: ${response.statusCode} veya ${responseSalon.statusCode}, lütfen daha sonra tekrar deneyiniz.',
+            message: 'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
           ),
         );
       }
     } catch (e) {
       emit(
         AppointmentSummaryErrorState(
-          message: 'Beklenmeyen bir hata oluştu: $e',
+          message: 'Beklenmeyen bir hata oluştu.',
         ),
       );
     }
@@ -332,7 +331,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
         Uri.parse(
           "${EndPoints.appointmentsUserEndPoint}?page=${event.page}&limit=${event.limit}",
         ),
-        headers: ApiService.headersToken(token),
+        headers: ApiService.headersLangToken(token, 'tr'),
       );
 
       if (response.statusCode == 200) {
@@ -361,12 +360,13 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
       } else {
         emit(
           AppointmentsErrorState(
-            message: "Sunucu hatası: ${response.statusCode}",
+            message: "Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.",
           ),
         );
       }
     } catch (e) {
-      emit(AppointmentsErrorState(message: "Bağlantı hatası: $e"));
+      emit(AppointmentsErrorState(
+          message: "Hata Oluştu, lütfen daha sonra tekrar deneyiniz."));
     } finally {
       isFetching = false;
     }

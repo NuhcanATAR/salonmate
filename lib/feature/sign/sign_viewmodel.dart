@@ -14,7 +14,7 @@ abstract class SignViewModel extends BaseState<SignView> {
 
   Future<void> signInControl() async {
     final bool signInValue =
-        await prefService.getBool(SharedKeys.remember_me) ?? false;
+        await prefService.getBool(SharedKeys.rememberMe) ?? false;
 
     if (signInValue == true) {
       if (!mounted) return;

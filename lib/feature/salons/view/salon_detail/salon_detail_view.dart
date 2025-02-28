@@ -43,7 +43,6 @@ class _SalonDetailViewState extends SalonDetailViewModel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        centerTitle: true,
         actions: [
           IconButton(
             onPressed: favoriteToggle,

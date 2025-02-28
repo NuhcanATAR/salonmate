@@ -15,7 +15,7 @@ abstract class AccountViewModel extends BaseState<AccountView> {
 
   Future<void> signOutAccount() async {
     await prefService.setBool(
-      SharedKeys.remember_me,
+      SharedKeys.rememberMe,
       false,
     );
     await prefService

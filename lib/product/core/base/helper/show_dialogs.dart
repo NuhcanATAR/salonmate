@@ -88,6 +88,7 @@ class CodeNoahDialogs {
     Color? barrierColor,
     DynamicViewExtensions? dynamicViewExtensions,
     double? barHeight,
+    String? appbarText,
   }) {
     showModalBottomSheet(
       context: context,
@@ -105,9 +106,9 @@ class CodeNoahDialogs {
               ),
               child: Row(
                 children: <Widget>[
-                  const Expanded(
+                  Expanded(
                     child: TitleMediumBlackBoldText(
-                      text: 'KONUM İZİNİ',
+                      text: appbarText ?? '',
                       textAlign: TextAlign.center,
                     ),
                   ),
