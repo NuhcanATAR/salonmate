@@ -1,5 +1,6 @@
 enum SharedKeys {
   rememberMe,
   token,
-  oneSignalId;
+  oneSignalId,
+  keyLanguage;
 }
