@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:salonmate/feature/password/bloc/event.dart';
 import 'package:salonmate/feature/password/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
 import 'package:salonmate/product/core/service/api/end_point.dart';
 
@@ -38,23 +39,27 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
         ),
       );
     } else if (response.statusCode == 404) {
+      if (!event.context.mounted) return;
       emit(
-        const PasswordSendCodeErrorState(
-          errorMessage: 'Telefon Numarası Bulunamadı.',
+        PasswordSendCodeErrorState(
+          errorMessage:
+              AppLocalizations.of(event.context)!.password_send_code_error,
         ),
       );
     } else if (response.statusCode == 500) {
+      if (!event.context.mounted) return;
       emit(
-        const PasswordSendCodeErrorState(
+        PasswordSendCodeErrorState(
           errorMessage:
-              'Şifre Sıfırlama talebi esnasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+              AppLocalizations.of(event.context)!.password_send_code_second,
         ),
       );
     } else {
+      if (!event.context.mounted) return;
       emit(
-        const PasswordSendCodeErrorState(
+        PasswordSendCodeErrorState(
           errorMessage:
-              'Şifre Sıfırlama talebi esnasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+              AppLocalizations.of(event.context)!.password_send_code_three,
         ),
       );
     }
@@ -84,29 +89,35 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
         PasswordVerificationCodeSuccessState(userId: userId),
       );
     } else if (response.statusCode == 400) {
+      if (!event.context.mounted) return;
       emit(
-        const PasswordVerificationCodeErrorState(
-          errorMessage: 'Kod Yanlış veya süresi dolmuş.',
+        PasswordVerificationCodeErrorState(
+          errorMessage: AppLocalizations.of(event.context)!
+              .password_verification_code_error,
         ),
       );
     } else if (response.statusCode == 404) {
+      if (!event.context.mounted) return;
       emit(
-        const PasswordVerificationCodeErrorState(
-          errorMessage: 'Telefon Numarası Bulunamadı.',
+        PasswordVerificationCodeErrorState(
+          errorMessage: AppLocalizations.of(event.context)!
+              .password_verification_code_error_second,
         ),
       );
     } else if (response.statusCode == 500) {
+      if (!event.context.mounted) return;
       emit(
-        const PasswordVerificationCodeErrorState(
-          errorMessage:
-              'Kod Doğrulama sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+        PasswordVerificationCodeErrorState(
+          errorMessage: AppLocalizations.of(event.context)!
+              .password_verification_code_error_three,
         ),
       );
     } else {
+      if (!event.context.mounted) return;
       emit(
-        const PasswordVerificationCodeErrorState(
-          errorMessage:
-              'Kod Doğrulama sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+        PasswordVerificationCodeErrorState(
+          errorMessage: AppLocalizations.of(event.context)!
+              .password_verification_code_error_four,
         ),
       );
     }
@@ -135,30 +146,35 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
         PasswordNewPasswordSuccessState(),
       );
     } else if (response.statusCode == 400) {
+      if (!event.context.mounted) return;
       emit(
-        const PasswordNewPasswordErrorState(
-          errorMessage: 'Lütfen gerekli alanları doldurunuz.',
+        PasswordNewPasswordErrorState(
+          errorMessage:
+              AppLocalizations.of(event.context)!.password_new_password_error,
         ),
       );
     } else if (response.statusCode == 404) {
+      if (!event.context.mounted) return;
       emit(
-        const PasswordNewPasswordErrorState(
-          errorMessage:
-              'Kullanıcı Bulunamadı veya Şifre yanlış, lütfen daha sonra tekrar deneyiniz.',
+        PasswordNewPasswordErrorState(
+          errorMessage: AppLocalizations.of(event.context)!
+              .password_new_password_error_second,
         ),
       );
     } else if (response.statusCode == 500) {
+      if (!event.context.mounted) return;
       emit(
-        const PasswordNewPasswordErrorState(
-          errorMessage:
-              'Şifre Güncelleme sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+        PasswordNewPasswordErrorState(
+          errorMessage: AppLocalizations.of(event.context)!
+              .password_new_password_error_three,
         ),
       );
     } else {
+      if (!event.context.mounted) return;
       emit(
-        const PasswordNewPasswordErrorState(
-          errorMessage:
-              'Şifre Güncelleme sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+        PasswordNewPasswordErrorState(
+          errorMessage: AppLocalizations.of(event.context)!
+              .password_new_password_error_four,
         ),
       );
     }

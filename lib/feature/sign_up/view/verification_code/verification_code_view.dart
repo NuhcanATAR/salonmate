@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_up/bloc/state.dart';
 import 'package:salonmate/feature/sign_up/view/verification_code/verification_code_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/util/util.dart';
@@ -43,8 +44,8 @@ class _SignUpVerificationCodeViewState extends SignUpVerificationCodeViewModel {
           ),
         ),
         centerTitle: true,
-        title: const BodyMediumBlackBoldText(
-          text: 'Verification Code',
+        title: BodyMediumBlackBoldText(
+          text: AppLocalizations.of(context)!.sign_up_verification_code_appbar,
           textAlign: TextAlign.center,
         ),
       ),
@@ -77,8 +78,9 @@ class _SignUpVerificationCodeViewState extends SignUpVerificationCodeViewModel {
   // title sub title
   Widget get buildTitleSubTitleWidget => TitleSubtitleWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        title: 'Enter Verification Code ✅',
-        subtitle: 'Enter the verification code received on your phone number.',
+        title: AppLocalizations.of(context)!.sign_up_verification_code_title,
+        subtitle:
+            AppLocalizations.of(context)!.sign_up_verification_code_sub_title,
       );
 
   // otp code
@@ -88,7 +90,8 @@ class _SignUpVerificationCodeViewState extends SignUpVerificationCodeViewModel {
         ),
         child: NumberTextFieldWidget(
           controller: otpCodeController,
-          hintText: 'Verification Code',
+          hintText: AppLocalizations.of(context)!
+              .sign_up_verification_code_verification_code,
           onChanged: (val) {},
           isLabelText: false,
           dynamicViewExtensions: dynamicViewExtensions,
@@ -100,7 +103,8 @@ class _SignUpVerificationCodeViewState extends SignUpVerificationCodeViewModel {
         children: <Widget>[
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
-            text: 'Verification Code',
+            text:
+                AppLocalizations.of(context)!.sign_up_verification_code_button,
             func: verificationCode,
             btnStatus: ButtonTypes.primaryColorButton,
           ),

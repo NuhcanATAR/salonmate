@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonmate/feature/account/bloc/cubit.dart';
 import 'package:salonmate/feature/account/bloc/state.dart';
 import 'package:salonmate/feature/account/view/information_update/information_update_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -36,8 +37,8 @@ class _InformationUpdateViewState extends InformationUpdateViewModel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        title: const BodyMediumBlackText(
-          text: 'Bilgileri Güncelle',
+        title: BodyMediumBlackText(
+          text: AppLocalizations.of(context)!.account_information_update_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -90,7 +91,8 @@ class _InformationUpdateViewState extends InformationUpdateViewModel {
           // full name
           NormalTextFieldWidget(
             controller: fullNameController,
-            hintText: 'Full Name',
+            hintText: AppLocalizations.of(context)!
+                .account_information_update_fullname,
             explanationStatus: false,
             onChanged: (String val) {},
             isValidator: true,
@@ -101,14 +103,16 @@ class _InformationUpdateViewState extends InformationUpdateViewModel {
           // phone number
           PhoneNumberFieldWidget(
             phoneNumberController: phoneNumberController,
-            hintText: 'Phone Number',
+            hintText: AppLocalizations.of(context)!
+                .account_information_update_phone_number,
             onChanged: (String val) {},
             isLabelText: true,
           ),
           // address
           NormalTextFieldWidget(
             controller: addressController,
-            hintText: 'Address',
+            hintText: AppLocalizations.of(context)!
+                .account_information_update_address,
             explanationStatus: true,
             onChanged: (String val) {},
             isValidator: true,
@@ -122,7 +126,7 @@ class _InformationUpdateViewState extends InformationUpdateViewModel {
   // save button
   Widget get buildSaveButtonWidget => CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        text: 'UPDATE',
+        text: AppLocalizations.of(context)!.account_information_update_button,
         func: accountUpdate,
         btnStatus: ButtonTypes.primaryColorButton,
       );

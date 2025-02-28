@@ -5,6 +5,7 @@ import 'package:salonmate/feature/favorite/bloc/event.dart';
 import 'package:salonmate/feature/favorite/bloc/state.dart';
 import 'package:salonmate/feature/favorite/favorite_viewmodel.dart';
 import 'package:salonmate/feature/salons/view/salon_detail/salon_detail_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/image.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
@@ -30,8 +31,8 @@ class _FavoriteViewState extends FavoriteViewModel {
         surfaceTintColor: ColorConstant.appBarColor,
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: const BodyMediumBlackText(
-          text: 'Favoriler',
+        title: BodyMediumBlackText(
+          text: AppLocalizations.of(context)!.favorite_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -90,6 +91,7 @@ class _FavoriteViewState extends FavoriteViewModel {
                               salonId: model.salonId,
                               isFavorite: isFavorite,
                               token: tokenValue,
+                              context: context,
                             ),
                           );
                     },
@@ -109,13 +111,13 @@ class _FavoriteViewState extends FavoriteViewModel {
           dynamicViewExtensions.maxWidth(context),
           dynamicViewExtensions.dynamicHeight(context, 0.2),
         ),
-        title: 'Favori Salonunuz Bulunmuyor',
-        subTitle: 'Favori Salonunuz bulunmuyor',
+        title: AppLocalizations.of(context)!.favorite_not_found_title,
+        subTitle: AppLocalizations.of(context)!.favorite_not_found_sub_title,
       );
 
   // loading widget
-  Widget get buildLoadingWidget => const CustomLoadingResponseWidget(
-        title: 'Favoriler Yükleniyor',
-        subTitle: 'Lütfen Bekleyiniz...',
+  Widget get buildLoadingWidget => CustomLoadingResponseWidget(
+        title: AppLocalizations.of(context)!.favorite_loading_title,
+        subTitle: AppLocalizations.of(context)!.favorite_loading_sub_title,
       );
 }

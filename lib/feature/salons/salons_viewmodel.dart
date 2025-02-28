@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:salonmate/feature/salons/bloc/cubit.dart';
 import 'package:salonmate/feature/salons/bloc/event.dart';
 import 'package:salonmate/feature/salons/salons_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 
 abstract class SalonsViewModel extends BaseState<SalonsView> {
@@ -26,9 +27,16 @@ abstract class SalonsViewModel extends BaseState<SalonsView> {
     final token = await getAuthToken();
     if (token.isNotEmpty) {
       if (!mounted) return;
-      context.read<SalonsBloc>().add(SalonsLoadEvent(token: token));
+      context.read<SalonsBloc>().add(
+            SalonsLoadEvent(
+              token: token,
+              context: context,
+            ),
+          );
     } else {
-      loggerPrint.printErrorLog('Token not available');
+      if (!mounted) return;
+      loggerPrint
+          .printErrorLog(AppLocalizations.of(context)!.token_not_avaible);
     }
   }
 }

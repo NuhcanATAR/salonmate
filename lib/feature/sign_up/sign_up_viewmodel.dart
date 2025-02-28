@@ -4,6 +4,7 @@ import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_up/bloc/event.dart';
 import 'package:salonmate/feature/sign_up/bloc/mixin.dart';
 import 'package:salonmate/feature/sign_up/sign_up_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
 
@@ -30,12 +31,14 @@ abstract class SignUpViewmodel extends BaseState<SignUpView> with SignUpMixin {
                 city: selectedCity!,
                 district: selectedDistrict!,
                 userName: userNameController.text,
+                context: context,
               ),
             );
       } else {
         CodeNoahDialogs(context).showFlush(
           type: SnackType.error,
-          message: 'Şehir ve İlçe Seçimi yapınız.',
+          message: AppLocalizations.of(context)!
+              .sign_up_selected_city_district_error,
         );
       }
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salonmate/feature/notification/notification_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 
 class NotificationView extends StatefulWidget {
   const NotificationView({super.key});
@@ -13,7 +14,7 @@ class _NotificationViewState extends NotificationViewModel {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Notification View"),
+        title: Text(AppLocalizations.of(context)!.notification_appbar),
       ),
     );
   }

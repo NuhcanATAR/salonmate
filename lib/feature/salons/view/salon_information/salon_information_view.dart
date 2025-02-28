@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salonmate/feature/salons/view/salon_information/salon_information_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -38,8 +39,8 @@ class _SalonInformationViewState extends SalonInformationViewModel {
           ),
         ),
         centerTitle: true,
-        title: const BodyMediumBlackText(
-          text: 'Salon Information',
+        title: BodyMediumBlackText(
+          text: AppLocalizations.of(context)!.salons_information_appbar,
           textAlign: TextAlign.center,
         ),
       ),
@@ -76,8 +77,9 @@ class _SalonInformationViewState extends SalonInformationViewModel {
                       padding: BaseUtility.top(
                         BaseUtility.paddingMediumValue,
                       ),
-                      child: const TitleMediumBlackBoldText(
-                        text: 'Salon Name',
+                      child: TitleMediumBlackBoldText(
+                        text: AppLocalizations.of(context)!
+                            .salons_information_name,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -110,8 +112,9 @@ class _SalonInformationViewState extends SalonInformationViewModel {
                       padding: BaseUtility.top(
                         BaseUtility.paddingMediumValue,
                       ),
-                      child: const TitleMediumBlackBoldText(
-                        text: 'City/District',
+                      child: TitleMediumBlackBoldText(
+                        text:
+                            '${AppLocalizations.of(context)!.salons_information_city}/${AppLocalizations.of(context)!.salons_information_district}',
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -145,8 +148,9 @@ class _SalonInformationViewState extends SalonInformationViewModel {
                       padding: BaseUtility.top(
                         BaseUtility.paddingMediumValue,
                       ),
-                      child: const TitleMediumBlackBoldText(
-                        text: 'Address',
+                      child: TitleMediumBlackBoldText(
+                        text: AppLocalizations.of(context)!
+                            .salons_information_address,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -179,8 +183,9 @@ class _SalonInformationViewState extends SalonInformationViewModel {
                       padding: BaseUtility.top(
                         BaseUtility.paddingMediumValue,
                       ),
-                      child: const TitleMediumBlackBoldText(
-                        text: 'E-mail',
+                      child: TitleMediumBlackBoldText(
+                        text: AppLocalizations.of(context)!
+                            .salons_information_email,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -213,8 +218,9 @@ class _SalonInformationViewState extends SalonInformationViewModel {
                       padding: BaseUtility.top(
                         BaseUtility.paddingMediumValue,
                       ),
-                      child: const TitleMediumBlackBoldText(
-                        text: 'Phone Number',
+                      child: TitleMediumBlackBoldText(
+                        text: AppLocalizations.of(context)!
+                            .salons_information_phone_number,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -247,8 +253,9 @@ class _SalonInformationViewState extends SalonInformationViewModel {
                       padding: BaseUtility.top(
                         BaseUtility.paddingMediumValue,
                       ),
-                      child: const TitleMediumBlackBoldText(
-                        text: 'Salon Phone Number',
+                      child: TitleMediumBlackBoldText(
+                        text: AppLocalizations.of(context)!
+                            .salons_information_open_close_time,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -261,7 +268,7 @@ class _SalonInformationViewState extends SalonInformationViewModel {
                       ),
                       child: BodyMediumBlackText(
                         text:
-                            'Open Time: ${widget.salonModel.openTime.hour}:${widget.salonModel.openTime.minute} - Close Time: ${widget.salonModel.closeTime.hour}:${widget.salonModel.closeTime.minute}',
+                            '${AppLocalizations.of(context)!.salons_information_open_time}: ${widget.salonModel.openTime.hour}:${widget.salonModel.openTime.minute} - ${AppLocalizations.of(context)!.salons_information_close_time}: ${widget.salonModel.closeTime.hour}:${widget.salonModel.closeTime.minute}',
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -282,8 +289,9 @@ class _SalonInformationViewState extends SalonInformationViewModel {
                       padding: BaseUtility.top(
                         BaseUtility.paddingMediumValue,
                       ),
-                      child: const TitleMediumBlackBoldText(
-                        text: 'Sunday Open',
+                      child: TitleMediumBlackBoldText(
+                        text: AppLocalizations.of(context)!
+                            .salons_information_sunday_open,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -296,8 +304,10 @@ class _SalonInformationViewState extends SalonInformationViewModel {
                       ),
                       child: BodyMediumBlackText(
                         text: widget.salonModel.isSundayOpen == true
-                            ? 'Open'
-                            : 'Close',
+                            ? AppLocalizations.of(context)!
+                                .salons_information_open
+                            : AppLocalizations.of(context)!
+                                .salons_information_close,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -312,7 +322,7 @@ class _SalonInformationViewState extends SalonInformationViewModel {
   // footer button
   Widget get buildFooterButtonWidget => CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        text: 'Salon Call',
+        text: AppLocalizations.of(context)!.salons_information_call_button,
         func: salonPhoneCall,
         btnStatus: ButtonTypes.iconPrimaryColorButton,
         appIcon: AppIcons.callOutline,

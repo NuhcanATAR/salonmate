@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:salonmate/feature/home/bloc/event.dart';
 import 'package:salonmate/feature/home/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
 import 'package:salonmate/product/core/service/api/end_point.dart';
 import 'package:salonmate/product/model/category_model/category_model.dart';
 import 'package:salonmate/product/model/salon_model/salon_model.dart';
+import 'package:salonmate/product/provider/language_provider.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitialState()) {
@@ -20,9 +23,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(HomeLoadingState());
 
     try {
+      final languageProvider =
+          Provider.of<LanguageProvider>(event.context, listen: false);
+
       final categoryResponse = await http.get(
         EndPoints.uriParse(EndPoints.serviceCategoriesEndPoint),
-        headers: ApiService.headersToken(event.token),
+        headers: ApiService.headersLangToken(
+          event.token,
+          languageProvider.selectedLanguage,
+        ),
       );
 
       final salonResponse = await http.get(
@@ -37,14 +46,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
         if (categoryData == null ||
             !categoryData.containsKey('services_categories')) {
-          emit(HomeError("No expected data from API for categories!"));
+          if (!event.context.mounted) return;
+          emit(
+            HomeError(
+              AppLocalizations.of(event.context)!.home_category_error,
+            ),
+          );
           return;
         }
 
         if (salonData == null ||
             salonData['salons'] == null ||
             salonData['salons'] is! List) {
-          emit(HomeError("No expected data from API for salons!"));
+          if (!event.context.mounted) return;
+          emit(HomeError(AppLocalizations.of(event.context)!.home_salon_error));
           return;
         }
 
@@ -65,14 +80,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ),
         );
       } else {
+        if (!event.context.mounted) return;
         emit(
           HomeError(
-            "Error loading data!: ${categoryResponse.body}, ${salonResponse.body}",
+            AppLocalizations.of(event.context)!.home_error,
           ),
         );
       }
     } catch (e) {
-      emit(HomeError("Connection error: $e"));
+      if (!event.context.mounted) return;
+      emit(HomeError(AppLocalizations.of(event.context)!.home_error));
     }
   }
 }

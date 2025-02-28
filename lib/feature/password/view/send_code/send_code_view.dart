@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonmate/feature/password/bloc/cubit.dart';
 import 'package:salonmate/feature/password/bloc/state.dart';
 import 'package:salonmate/feature/password/view/send_code/send_code_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -35,8 +36,8 @@ class _PasswordSendCodeViewState extends PasswordSendCodeViewModel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        title: const BodyMediumBlackBoldText(
-          text: 'Send Code',
+        title: BodyMediumBlackBoldText(
+          text: AppLocalizations.of(context)!.password_send_code_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -69,9 +70,8 @@ class _PasswordSendCodeViewState extends PasswordSendCodeViewModel {
   // title and sub title
   Widget get buildTitleSubTitleWidget => TitleSubtitleWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        title: 'Telefon Numaranızı Giriniz 📞',
-        subtitle:
-            'Telefon Numaranızı giriniz size gelen kodu doğrulayınız ve şifrenizi yenileyiniz.',
+        title: AppLocalizations.of(context)!.password_send_code_title,
+        subtitle: AppLocalizations.of(context)!.password_send_code_sub_title,
       );
 
   // phone number field
@@ -81,7 +81,8 @@ class _PasswordSendCodeViewState extends PasswordSendCodeViewModel {
         ),
         child: PhoneNumberFieldWidget(
           phoneNumberController: phoneNumberController,
-          hintText: 'Phone Number',
+          hintText:
+              AppLocalizations.of(context)!.password_send_code_phone_number,
           onChanged: (val) {},
           isLabelText: false,
         ),
@@ -90,7 +91,7 @@ class _PasswordSendCodeViewState extends PasswordSendCodeViewModel {
   // next button
   Widget get buildNextButtonWidget => CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        text: 'Send Code',
+        text: AppLocalizations.of(context)!.password_send_code_button,
         func: passwordSendCode,
         btnStatus: ButtonTypes.primaryColorButton,
       );

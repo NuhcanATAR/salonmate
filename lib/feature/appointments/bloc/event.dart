@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:salonmate/product/core/base/helper/appointments_control.dart';
 import 'package:salonmate/product/core/base/helper/payment_type_control.dart';
 import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
@@ -12,18 +13,20 @@ abstract class AppointmentEvent extends Equatable {
 }
 
 class AppointmentFetchStylistEvent extends AppointmentEvent {
+  final BuildContext context;
   final int salonId;
   final int serviceId;
   final String token;
 
   AppointmentFetchStylistEvent({
+    required this.context,
     required this.salonId,
     required this.serviceId,
     required this.token,
   });
 
   @override
-  List<Object> get props => [salonId, serviceId, token];
+  List<Object> get props => [context, salonId, serviceId, token];
 }
 
 class AppointmentStylistSelectEvent extends AppointmentEvent {
@@ -36,16 +39,18 @@ class AppointmentStylistSelectEvent extends AppointmentEvent {
 }
 
 class AppointmentDateFetchEvent extends AppointmentEvent {
+  final BuildContext context;
   final String token;
   final int stylistId;
 
   AppointmentDateFetchEvent({
+    required this.context,
     required this.token,
     required this.stylistId,
   });
 
   @override
-  List<Object> get props => [token, stylistId];
+  List<Object> get props => [context, token, stylistId];
 }
 
 class AppointmentSelectDayEvent extends AppointmentEvent {
@@ -66,11 +71,13 @@ class AppointmentTimeSelectEvent extends AppointmentEvent {
 }
 
 class AppointmentSummaryEvent extends AppointmentEvent {
+  final BuildContext context;
   final String token;
   final int salonId;
   final int stylistId;
 
   AppointmentSummaryEvent({
+    required this.context,
     required this.token,
     required this.salonId,
     required this.stylistId,
@@ -78,6 +85,7 @@ class AppointmentSummaryEvent extends AppointmentEvent {
 
   @override
   List<Object> get props => [
+        context,
         token,
         salonId,
         stylistId,
@@ -109,6 +117,7 @@ class AppointmentCreateEvent extends AppointmentEvent {
   final DateTime selectTime;
   final List<StylistAddServiceModel> selectedServiceDetails;
   final SalonDetailModel salonDetailModel;
+  final BuildContext context;
 
   AppointmentCreateEvent({
     required this.token,
@@ -126,10 +135,12 @@ class AppointmentCreateEvent extends AppointmentEvent {
     required this.selectTime,
     required this.selectedServiceDetails,
     required this.salonDetailModel,
+    required this.context,
   });
 
   @override
   List<Object> get props => [
+        context,
         token,
         salonId,
         serviceId,
@@ -149,36 +160,41 @@ class AppointmentCreateEvent extends AppointmentEvent {
 }
 
 class AppointmentsFetchEvent extends AppointmentEvent {
+  final BuildContext context;
   final int page;
   final int limit;
   final bool isRefresh;
 
   AppointmentsFetchEvent({
+    required this.context,
     required this.page,
     required this.limit,
     this.isRefresh = false,
   });
 
   @override
-  List<Object> get props => [page, limit, isRefresh];
+  List<Object> get props => [context, page, limit, isRefresh];
 }
 
 class AppointmentUpdateEvent extends AppointmentEvent {
+  final BuildContext context;
   final String token;
   final AppointmentsStatus status;
   final int appointmentId;
 
   AppointmentUpdateEvent({
+    required this.context,
     required this.token,
     required this.status,
     required this.appointmentId,
   });
 
   @override
-  List<Object> get props => [token, status, appointmentId];
+  List<Object> get props => [context, token, status, appointmentId];
 }
 
 class AppointmentEvaluationCreateEvent extends AppointmentEvent {
+  final BuildContext context;
   final String token;
   final int appointmentId;
   final int salonId;
@@ -186,6 +202,7 @@ class AppointmentEvaluationCreateEvent extends AppointmentEvent {
   final String description;
 
   AppointmentEvaluationCreateEvent({
+    required this.context,
     required this.token,
     required this.appointmentId,
     required this.salonId,
@@ -195,6 +212,7 @@ class AppointmentEvaluationCreateEvent extends AppointmentEvent {
 
   @override
   List<Object> get props => [
+        context,
         token,
         appointmentId,
         salonId,

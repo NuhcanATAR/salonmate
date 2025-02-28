@@ -4,6 +4,7 @@ import 'package:salonmate/feature/password/bloc/cubit.dart';
 import 'package:salonmate/feature/password/bloc/event.dart';
 import 'package:salonmate/feature/password/bloc/mixin.dart';
 import 'package:salonmate/feature/password/password_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
 
@@ -21,12 +22,13 @@ abstract class PasswordViewModel extends BaseState<PasswordView>
               PasswordChangePasswordEvent(
                 widget.userId,
                 newPasswordController.text,
+                context,
               ),
             );
       } else {
         CodeNoahDialogs(context).showFlush(
           type: SnackType.error,
-          message: 'Şifreleri Doğrulayınız.',
+          message: AppLocalizations.of(context)!.password_confirm_error,
         );
       }
     }

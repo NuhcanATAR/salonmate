@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salonmate/feature/appointments/appointment_detail/appointment_detail_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/appointments_control.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -51,9 +52,8 @@ class AppointmentCardWidget extends StatelessWidget {
             // appointment information
             buildAppointmentInformationWidget(context),
             // appointment update
-            appointment.appointmentCategory ==
-                    AppointmentsStatus
-                        .updatedAppointment.appointmentStringStatus
+            appointment.appointmentsCategoryId ==
+                    AppointmentsStatus.updatedAppointment.appointmentStatus
                 ? buildAppointmentUpdateButtonsWidget(context)
                 : const SizedBox(),
           ],
@@ -195,7 +195,7 @@ class AppointmentCardWidget extends StatelessWidget {
                           ),
                           child: BodyMediumBlackText(
                             text:
-                                'Add Services: ${appointment.additionalServices.map(
+                                '${AppLocalizations.of(context)!.appointment_summary_add_services_title}: ${appointment.additionalServices.map(
                               (model) => model.serviceName,
                             )}',
                             textAlign: TextAlign.left,
@@ -241,8 +241,9 @@ class AppointmentCardWidget extends StatelessWidget {
                       padding: BaseUtility.horizontal(
                         BaseUtility.paddingMediumValue,
                       ),
-                      child: const BodyMediumWhiteText(
-                        text: 'Randevu Tarihiniz Güncellendi!!',
+                      child: BodyMediumWhiteText(
+                        text: AppLocalizations.of(context)!
+                            .appointment_card_update,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -266,7 +267,8 @@ class AppointmentCardWidget extends StatelessWidget {
                     ),
                     child: CustomButtonWidget(
                       dynamicViewExtensions: dynamicViewExtensions,
-                      text: 'Cancel Appointment',
+                      text: AppLocalizations.of(context)!
+                          .appointment_card_cancel_button,
                       func: () => updateAppointment(
                         appointment,
                         AppointmentsStatus.cancelledAppointment,
@@ -285,7 +287,8 @@ class AppointmentCardWidget extends StatelessWidget {
                     ),
                     child: CustomButtonWidget(
                       dynamicViewExtensions: dynamicViewExtensions,
-                      text: 'Accept',
+                      text: AppLocalizations.of(context)!
+                          .appointment_card_accept_button,
                       func: () => updateAppointment(
                         appointment,
                         AppointmentsStatus.pendginAppointmentConfirmed,

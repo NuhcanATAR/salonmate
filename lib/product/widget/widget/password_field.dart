@@ -139,7 +139,6 @@ class _CustomPasswordFieldWidgetState
               horizontal: BaseUtility.paddingNormalValue,
               vertical: BaseUtility.paddingSmallValue,
             ),
-            // TextFormField varsayılan hata mesajını engellemek için errorText kullanma
             errorText: null,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(

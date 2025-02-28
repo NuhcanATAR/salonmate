@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:provider/provider.dart';
 import 'package:salonmate/feature/appointments/appointments_receipt/appointments_receipt_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/model/stylist_add_service_model/stylist_add_service_model.dart';
 import 'package:salonmate/product/provider/user_provider.dart';
@@ -32,13 +34,17 @@ abstract class AppointmentsReceiptViewModel
       await Provider.of<UserProvider>(context, listen: false)
           .fetchUserData(token);
     } else {
-      loggerPrint.printErrorLog('Token not available');
+      if (!mounted) return;
+      loggerPrint.printErrorLog(
+        AppLocalizations.of(context)!.appointment_summary_token_not_avaible,
+      );
     }
   }
 
   Future<void> createAndOpenPdf(
     String customerName,
     int salonPhoneNumber,
+    BuildContext contextMain,
   ) async {
     final pdf = pw.Document();
 
@@ -51,7 +57,7 @@ abstract class AppointmentsReceiptViewModel
                 bottom: BaseUtility.paddingNormalValue,
               ),
               child: pw.Text(
-                'Appointment Summary Receipt',
+                AppLocalizations.of(contextMain)!.appointment_receipt_title,
                 textAlign: pw.TextAlign.center,
                 style: pw.TextStyle(
                   fontSize: 17,
@@ -64,7 +70,7 @@ abstract class AppointmentsReceiptViewModel
                 bottom: BaseUtility.paddingNormalValue,
               ),
               child: pw.Text(
-                'SalonMate Application',
+                AppLocalizations.of(contextMain)!.appointment_receipt_sub_title,
                 textAlign: pw.TextAlign.center,
               ),
             ),
@@ -80,7 +86,8 @@ abstract class AppointmentsReceiptViewModel
                   pw.Expanded(
                     child: pw.Center(
                       child: pw.Text(
-                        'Salon',
+                        AppLocalizations.of(contextMain)!
+                            .appointment_receipt_salon,
                         textAlign: pw.TextAlign.left,
                         style: pw.TextStyle(
                           fontSize: 14,
@@ -115,7 +122,8 @@ abstract class AppointmentsReceiptViewModel
                   pw.Expanded(
                     child: pw.Center(
                       child: pw.Text(
-                        'Customer Name',
+                        AppLocalizations.of(contextMain)!
+                            .appointment_receipt_customer_name,
                         textAlign: pw.TextAlign.left,
                         style: pw.TextStyle(
                           fontSize: 14,
@@ -151,7 +159,8 @@ abstract class AppointmentsReceiptViewModel
                   pw.Expanded(
                     child: pw.Center(
                       child: pw.Text(
-                        'Phone',
+                        AppLocalizations.of(contextMain)!
+                            .appointment_receipt_phone,
                         textAlign: pw.TextAlign.left,
                         style: pw.TextStyle(
                           fontSize: 14,
@@ -187,7 +196,8 @@ abstract class AppointmentsReceiptViewModel
                   pw.Expanded(
                     child: pw.Center(
                       child: pw.Text(
-                        'Booking Date',
+                        AppLocalizations.of(contextMain)!
+                            .appointment_receipt_booking_date,
                         textAlign: pw.TextAlign.left,
                         style: pw.TextStyle(
                           fontSize: 14,
@@ -223,7 +233,8 @@ abstract class AppointmentsReceiptViewModel
                   pw.Expanded(
                     child: pw.Center(
                       child: pw.Text(
-                        'Booking Time',
+                        AppLocalizations.of(contextMain)!
+                            .appointment_receipt_booking_time,
                         textAlign: pw.TextAlign.left,
                         style: pw.TextStyle(
                           fontSize: 14,
@@ -259,7 +270,8 @@ abstract class AppointmentsReceiptViewModel
                   pw.Expanded(
                     child: pw.Center(
                       child: pw.Text(
-                        'Stylist',
+                        AppLocalizations.of(contextMain)!
+                            .appointment_receipt_stylist,
                         textAlign: pw.TextAlign.left,
                         style: pw.TextStyle(
                           fontSize: 14,
@@ -368,7 +380,8 @@ abstract class AppointmentsReceiptViewModel
                   pw.Expanded(
                     child: pw.Center(
                       child: pw.Text(
-                        'TOTAL',
+                        AppLocalizations.of(contextMain)!
+                            .appointment_receipt_total,
                         textAlign: pw.TextAlign.left,
                         style: pw.TextStyle(
                           fontSize: 14,

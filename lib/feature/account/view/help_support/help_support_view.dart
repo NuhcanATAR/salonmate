@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salonmate/feature/account/view/help_support/help_support_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/util/util.dart';
@@ -29,8 +30,8 @@ class _HelpSupportViewState extends HelpSupportViewModel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        title: const BodyMediumBlackText(
-          text: 'Yardım ve Destek',
+        title: BodyMediumBlackText(
+          text: AppLocalizations.of(context)!.account_help_support_appbar,
           textAlign: TextAlign.left,
         ),
       ),

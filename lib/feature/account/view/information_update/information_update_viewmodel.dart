@@ -32,6 +32,7 @@ abstract class InformationUpdateViewModel
               fullName: fullNameController.text,
               phoneNumber: int.parse(phoneNumberController.text),
               address: addressController.text,
+              context: context,
             ),
           );
     }

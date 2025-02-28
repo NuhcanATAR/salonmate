@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonmate/feature/map/bloc/event.dart';
 import 'package:salonmate/feature/map/bloc/state.dart';
 import 'package:salonmate/feature/map/map_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
@@ -36,8 +37,8 @@ class _MapViewState extends MapViewModel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        title: const BodyMediumBlackText(
-          text: 'Map View',
+        title: BodyMediumBlackText(
+          text: AppLocalizations.of(context)!.map_appbar,
           textAlign: TextAlign.left,
         ),
       ),

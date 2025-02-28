@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:salonmate/feature/sign_in/bloc/event.dart';
 import 'package:salonmate/feature/sign_in/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/helper/logger_package.dart';
 import 'package:salonmate/product/core/base/helper/shared_keys.dart';
 import 'package:salonmate/product/core/base/helper/shared_service.dart';
@@ -35,7 +36,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         final responseData = json.decode(response.body);
         final String token = responseData['token'];
         await prefService.saveString(SharedKeys.token, token);
-        await prefService.setBool(SharedKeys.remember_me, true);
+        await prefService.setBool(SharedKeys.rememberMe, true);
 
         final oneSignalIdValue =
             await prefService.getString(SharedKeys.oneSignalId) ?? '';
@@ -53,30 +54,34 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           emit(SignInSuccessState());
           printLogger.printInfoLog(response.body);
         } else {
+          if (!event.context.mounted) return;
           emit(
-            const SignInErrorState(
-              error: 'Bildirim Özelliği Sırasında bir hata oluştu.',
+            SignInErrorState(
+              error: AppLocalizations.of(event.context)!
+                  .sign_in_notification_error,
             ),
           );
         }
       } else if (response.statusCode == 401) {
+        if (!event.context.mounted) return;
         emit(
-          const SignInErrorState(
-            error: 'Geçersiz e-posta veya şifre.',
+          SignInErrorState(
+            error: AppLocalizations.of(event.context)!
+                .sign_in_email_and_password_error,
           ),
         );
       } else if (response.statusCode == 500) {
+        if (!event.context.mounted) return;
         emit(
-          const SignInErrorState(
-            error:
-                'Giriş sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+          SignInErrorState(
+            error: AppLocalizations.of(event.context)!.sign_in_error,
           ),
         );
       } else {
+        if (!event.context.mounted) return;
         emit(
-          const SignInErrorState(
-            error:
-                'Giriş sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.',
+          SignInErrorState(
+            error: AppLocalizations.of(event.context)!.sign_in_error,
           ),
         );
         printLogger.printErrorLog(response.body);

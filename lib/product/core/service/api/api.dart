@@ -28,6 +28,13 @@ class ApiService {
         'Authorization': 'Bearer $token',
       };
 
+  static Map<String, String> headersLangToken(String token, String langCode) =>
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+        'languageCode': langCode,
+      };
+
   static Map<String, String> headerSalonToken(String token, String salonId) => {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $token',

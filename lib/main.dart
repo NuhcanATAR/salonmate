@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:salonmate/feature/account/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/cubit.dart';
@@ -12,19 +13,19 @@ import 'package:salonmate/feature/services/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_in/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
 import 'package:salonmate/feature/splash/splash_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/initialize/initialize.dart';
+import 'package:salonmate/product/provider/language_provider.dart';
 import 'package:salonmate/product/provider/user_provider.dart';
 import 'package:salonmate/product/theme/light_theme.dart';
 
 void main() async {
   await AppStart.initStartApp();
+  final languageProvider = LanguageProvider();
+  await languageProvider.loadLanguage();
   runApp(
-    MultiBlocProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => UserProvider(),
-        ),
-      ],
+    ChangeNotifierProvider(
+      create: (_) => languageProvider,
       child: MultiBlocProvider(
         providers: [
           BlocProvider<SignInBloc>(
@@ -57,6 +58,9 @@ void main() async {
           BlocProvider<AppointmentsBloc>(
             create: (BuildContext context) => AppointmentsBloc(),
           ),
+          ChangeNotifierProvider(
+            create: (context) => UserProvider(),
+          ),
         ],
         child: const MyApp(),
       ),
@@ -69,10 +73,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final languageProvider = Provider.of<LanguageProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: CustomLightTheme().themeData,
       themeMode: ThemeMode.light,
+      locale: Locale(languageProvider.selectedLanguage),
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('tr', ''),
+        Locale('de', ''),
+      ],
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       home: const SplashView(),
     );
   }

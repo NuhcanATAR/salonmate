@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:salonmate/feature/services/bloc/event.dart';
 import 'package:salonmate/feature/services/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
 import 'package:salonmate/product/core/service/api/end_point.dart';
 import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
@@ -34,9 +35,10 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
         if (services == null ||
             services['services'] == null ||
             services['services'] is! List) {
+          if (!event.context.mounted) return;
           emit(
             ServicesErrorState(
-              error: 'Servisler beklenen API verisi bulunamadı!',
+              error: AppLocalizations.of(event.context)!.services_error,
             ),
           );
           return;
@@ -53,13 +55,19 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
           ),
         );
       } else {
+        if (!event.context.mounted) return;
         emit(
-          ServicesErrorState(error: 'Services Error'),
+          ServicesErrorState(
+            error: AppLocalizations.of(event.context)!.services_error,
+          ),
         );
       }
     } catch (e) {
+      if (!event.context.mounted) return;
       emit(
-        ServicesErrorState(error: 'Services Error'),
+        ServicesErrorState(
+          error: AppLocalizations.of(event.context)!.services_error,
+        ),
       );
     }
   }

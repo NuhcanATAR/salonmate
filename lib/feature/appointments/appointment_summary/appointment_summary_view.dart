@@ -4,6 +4,7 @@ import 'package:salonmate/feature/appointments/appointment_summary/appointment_s
 import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/constants/image.dart';
@@ -66,10 +67,15 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
                       AppointmentDateFetchEvent(
                         token: token,
                         stylistId: widget.selectStylistModel.id,
+                        context: context,
                       ),
                     );
               } else {
-                loggerPrint.printInfoLog('Token is empty');
+                if (!context.mounted) return;
+                loggerPrint.printInfoLog(
+                  AppLocalizations.of(context)!
+                      .appointmnet_detail_token_not_avaible,
+                );
               }
             },
             icon: AppIcons.arrowLeft.toSvgImg(
@@ -78,8 +84,8 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
               BaseUtility.iconNormalSize,
             ),
           ),
-          title: const BodyMediumBlackBoldText(
-            text: 'Booking Summary',
+          title: BodyMediumBlackBoldText(
+            text: AppLocalizations.of(context)!.appointment_summary_appbar,
             textAlign: TextAlign.left,
           ),
         ),
@@ -91,9 +97,11 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
           },
           builder: (context, state) {
             if (state is AppointmentSummaryLoadingState) {
-              return const CustomLoadingResponseWidget(
-                title: 'Randevu Sonu Özeti Yükleniyor',
-                subTitle: 'Lütfen Bekleyiniz...',
+              return CustomLoadingResponseWidget(
+                title: AppLocalizations.of(context)!
+                    .appointment_summary_loading_title,
+                subTitle: AppLocalizations.of(context)!
+                    .appointment_summary_loading_subtitle,
               );
             } else if (state is AppointmentSummaryErrorState) {
               return CustomResponseWidget(
@@ -105,7 +113,8 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
                     0.2,
                   ),
                 ),
-                title: 'Hata Oluştu',
+                title: AppLocalizations.of(context)!
+                    .appointment_summary_error_title,
                 subTitle: state.message,
               );
             } else if (state is AppointmentSummaryLoadedState) {
@@ -166,8 +175,9 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
               padding: BaseUtility.bottom(
                 BaseUtility.paddingNormalValue,
               ),
-              child: const TitleLargeBlackBoldText(
-                text: 'Ek Hizmetler',
+              child: TitleLargeBlackBoldText(
+                text: AppLocalizations.of(context)!
+                    .appointment_summary_add_services_title,
                 textAlign: TextAlign.left,
               ),
             ),
@@ -319,8 +329,9 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
                       padding: BaseUtility.bottom(
                         BaseUtility.paddingSmallValue,
                       ),
-                      child: const BodyMediumBlackBoldText(
-                        text: 'Date',
+                      child: BodyMediumBlackBoldText(
+                        text: AppLocalizations.of(context)!
+                            .appointment_summary_date_title,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -356,8 +367,9 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
                       padding: BaseUtility.bottom(
                         BaseUtility.paddingSmallValue,
                       ),
-                      child: const BodyMediumBlackBoldText(
-                        text: 'Stylist',
+                      child: BodyMediumBlackBoldText(
+                        text: AppLocalizations.of(context)!
+                            .appointment_summary_stylist_title,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -371,7 +383,7 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
                       ),
                       child: BodyMediumBlackText(
                         text:
-                            '${widget.selectStylistModel.name} - ${widget.serviceModel.duration} Mins',
+                            '${widget.selectStylistModel.name} - ${widget.serviceModel.duration} ${AppLocalizations.of(context)!.appointment_summary_stylist_date_mins}',
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -391,12 +403,14 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
             contentPadding: BaseUtility.vertical(
               BaseUtility.paddingSmallValue,
             ),
-            title: const TitleMediumBlackBoldText(
-              text: 'Pay Online',
+            title: TitleMediumBlackBoldText(
+              text: AppLocalizations.of(context)!
+                  .appointmnet_summary_payment_online_title,
               textAlign: TextAlign.left,
             ),
-            subtitle: const BodyMediumBlackText(
-              text: 'Secure your booking instanly',
+            subtitle: BodyMediumBlackText(
+              text: AppLocalizations.of(context)!
+                  .appointment_summary_payment_online_subtitle,
               textAlign: TextAlign.left,
             ),
             trailing: RadioFieldWidget(
@@ -416,12 +430,14 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
             contentPadding: BaseUtility.vertical(
               BaseUtility.paddingSmallValue,
             ),
-            title: const TitleMediumBlackBoldText(
-              text: 'Pay At Salon',
+            title: TitleMediumBlackBoldText(
+              text: AppLocalizations.of(context)!
+                  .appointment_summary_payment_at_salon_title,
               textAlign: TextAlign.left,
             ),
-            subtitle: const BodyMediumBlackText(
-              text: 'Settle payment after your appointment',
+            subtitle: BodyMediumBlackText(
+              text: AppLocalizations.of(context)!
+                  .appointment_summary_payment_at_salon_sub_title,
               textAlign: TextAlign.left,
             ),
             trailing: RadioFieldWidget(
@@ -453,8 +469,9 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
                 padding: BaseUtility.bottom(
                   BaseUtility.paddingMediumValue,
                 ),
-                child: const TitleMediumBlackBoldText(
-                  text: 'Pricing Details',
+                child: TitleMediumBlackBoldText(
+                  text: AppLocalizations.of(context)!
+                      .appointment_summary_pricing_details,
                   textAlign: TextAlign.left,
                 ),
               ),
@@ -546,8 +563,9 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
                         padding: BaseUtility.right(
                           BaseUtility.paddingMediumValue,
                         ),
-                        child: const TitleMediumBlackBoldText(
-                          text: 'TOTAL',
+                        child: TitleMediumBlackBoldText(
+                          text: AppLocalizations.of(context)!
+                              .appointment_summary_pricing_details_total,
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -575,7 +593,7 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
   Widget buildFooterButtonWidget(AppointmentSummaryLoadedState state) =>
       CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        text: 'Procced',
+        text: AppLocalizations.of(context)!.appointment_summary_create_button,
         func: () => appointmentCreateFunc(state),
         btnStatus: ButtonTypes.primaryColorButton,
       );

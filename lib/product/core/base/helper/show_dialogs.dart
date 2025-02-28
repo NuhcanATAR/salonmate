@@ -1,6 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 
 import 'package:flutter/material.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
@@ -88,6 +89,7 @@ class CodeNoahDialogs {
     Color? barrierColor,
     DynamicViewExtensions? dynamicViewExtensions,
     double? barHeight,
+    String? appbarText,
   }) {
     showModalBottomSheet(
       context: context,
@@ -105,9 +107,9 @@ class CodeNoahDialogs {
               ),
               child: Row(
                 children: <Widget>[
-                  const Expanded(
+                  Expanded(
                     child: TitleMediumBlackBoldText(
-                      text: 'KONUM İZİNİ',
+                      text: appbarText ?? '',
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -227,7 +229,7 @@ class CodeNoahDialogs {
             ),
             child: CustomButtonWidget(
               dynamicViewExtensions: dynamicViewExtensions,
-              text: "TAMAM",
+              text: AppLocalizations.of(context)!.show_warning_alert_okey,
               func: () {
                 Navigator.pop(context);
               },

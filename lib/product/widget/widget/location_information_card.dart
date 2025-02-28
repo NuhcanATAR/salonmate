@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salonmate/feature/map/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
 import 'package:salonmate/product/util/util.dart';
@@ -39,7 +40,7 @@ class LocationInformationCardWidget extends StatelessWidget {
                 child: TitleMediumBlackText(
                   text: state.cityDistrict.isNotEmpty
                       ? state.cityDistrict
-                      : "Konum Bilinmiyor",
+                      : AppLocalizations.of(context)!.map_unknown_location,
                   textAlign: TextAlign.left,
                 ),
               ),

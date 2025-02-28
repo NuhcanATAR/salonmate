@@ -4,6 +4,7 @@ import 'package:salonmate/feature/appointments/appointment_detail/appointment_de
 import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
 import 'package:salonmate/feature/salons/view/salon_detail/salon_detail_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/appointments_control.dart';
@@ -45,8 +46,8 @@ class _AppointmentDetailViewState extends AppointmentDetailViewModel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        title: const BodyMediumBlackBoldText(
-          text: 'Appointment Detail',
+        title: BodyMediumBlackBoldText(
+          text: AppLocalizations.of(context)!.appointment_detail_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -227,7 +228,7 @@ class _AppointmentDetailViewState extends AppointmentDetailViewModel {
                   ),
                   child: BodyMediumBlackBoldText(
                     text:
-                        'Ödeme Yöntemi:  ${widget.appointmentModel.details.paymentType == PaymentTypeControl.payOnline.paymentTypeValue ? PaymentTypeControl.payOnline.paymentTypeLabel : PaymentTypeControl.payAtSalon.paymentTypeLabel}',
+                        '${AppLocalizations.of(context)!.appointment_detail_payment_type}:  ${widget.appointmentModel.details.paymentType == PaymentTypeControl.payOnline.paymentTypeValue ? PaymentTypeControl.payOnline.paymentTypeLabel : PaymentTypeControl.payAtSalon.paymentTypeLabel}',
                     textAlign: TextAlign.left,
                   ),
                 ),
@@ -262,8 +263,9 @@ class _AppointmentDetailViewState extends AppointmentDetailViewModel {
                 padding: BaseUtility.bottom(
                   BaseUtility.paddingNormalValue,
                 ),
-                child: const TitleMediumBlackBoldText(
-                  text: 'Pricing Details',
+                child: TitleMediumBlackBoldText(
+                  text: AppLocalizations.of(context)!
+                      .appointment_detail_pricing_details,
                   textAlign: TextAlign.left,
                 ),
               ),
@@ -356,8 +358,9 @@ class _AppointmentDetailViewState extends AppointmentDetailViewModel {
                         padding: BaseUtility.right(
                           BaseUtility.paddingMediumValue,
                         ),
-                        child: const TitleMediumBlackBoldText(
-                          text: 'TOTAL',
+                        child: TitleMediumBlackBoldText(
+                          text: AppLocalizations.of(context)!
+                              .appointment_detail_total,
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -392,7 +395,8 @@ class _AppointmentDetailViewState extends AppointmentDetailViewModel {
                       AppointmentsStatus.completedAppointment.appointmentStatus
                   ? CustomButtonWidget(
                       dynamicViewExtensions: dynamicViewExtensions,
-                      text: 'Randevuyu Değerlendir',
+                      text: AppLocalizations.of(context)!
+                          .appointment_detail_evaluation_button,
                       func: () => appointmentEvaluation(),
                       btnStatus: ButtonTypes.iconPrimaryColorButton,
                       appIcon: AppIcons.star,

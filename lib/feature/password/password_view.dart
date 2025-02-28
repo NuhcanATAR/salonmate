@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonmate/feature/password/bloc/cubit.dart';
 import 'package:salonmate/feature/password/bloc/state.dart';
 import 'package:salonmate/feature/password/password_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -40,8 +41,8 @@ class _PasswordViewState extends PasswordViewModel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        title: const BodyMediumBlackBoldText(
-          text: 'New Password',
+        title: BodyMediumBlackBoldText(
+          text: AppLocalizations.of(context)!.password_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -74,8 +75,8 @@ class _PasswordViewState extends PasswordViewModel {
   // title sub title
   Widget get buildTitleSubTitleWidget => TitleSubtitleWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        title: 'Enter Verification Code 🔒️',
-        subtitle: 'Enter the verification code received on your new password.',
+        title: AppLocalizations.of(context)!.password_title,
+        subtitle: AppLocalizations.of(context)!.password_sub_title,
       );
 
   // passwords
@@ -92,7 +93,7 @@ class _PasswordViewState extends PasswordViewModel {
               ),
               child: CustomPasswordFieldWidget(
                 passwordController: newPasswordController,
-                hintText: 'New Password',
+                hintText: AppLocalizations.of(context)!.password_new_password,
                 onChanged: (val) {},
                 isLabelText: false,
                 isValidator: true,
@@ -105,7 +106,8 @@ class _PasswordViewState extends PasswordViewModel {
               ),
               child: CustomPasswordFieldWidget(
                 passwordController: confirmPasswordController,
-                hintText: 'Confirm Password',
+                hintText:
+                    AppLocalizations.of(context)!.password_confirm_password,
                 onChanged: (val) {},
                 isLabelText: false,
                 isValidator: true,
@@ -120,7 +122,7 @@ class _PasswordViewState extends PasswordViewModel {
         children: <Widget>[
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
-            text: 'Save Password',
+            text: AppLocalizations.of(context)!.password_save_button,
             func: savePassword,
             btnStatus: ButtonTypes.primaryColorButton,
           ),

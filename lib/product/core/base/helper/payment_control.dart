@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:salonmate/lang/app_localizations.dart';
+
 enum PaymentTypeControl {
   payOnline,
   payAtSalon,
@@ -15,12 +18,12 @@ extension PaymentTypeControlExtension on PaymentTypeControl {
 }
 
 extension PaymentTypeStringControlExtension on PaymentTypeControl {
-  String get paymentTypeLabel {
+  String paymentTypeLabel(BuildContext context) {
     switch (this) {
       case PaymentTypeControl.payOnline:
-        return 'Online Payment';
+        return AppLocalizations.of(context)!.payment_online;
       case PaymentTypeControl.payAtSalon:
-        return 'Salon Payment';
+        return AppLocalizations.of(context)!.payment_at_salon;
     }
   }
 }

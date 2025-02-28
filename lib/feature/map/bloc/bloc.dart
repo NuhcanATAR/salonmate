@@ -10,6 +10,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:salonmate/feature/map/bloc/event.dart';
 import 'package:salonmate/feature/map/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/image.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/core/base/helper/shared_keys.dart';
@@ -46,7 +47,13 @@ class MapLocationBloc extends Bloc<MapLocationEvent, MapLocationState> {
     final permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied ||
         permission == LocationPermission.deniedForever) {
-      emit(loadedState.copyWith(cityDistrict: 'Konum Bilinmiyor'));
+      if (!event.context.mounted) return;
+      emit(
+        loadedState.copyWith(
+          cityDistrict:
+              AppLocalizations.of(event.context)!.map_unknown_location,
+        ),
+      );
       return;
     }
 
@@ -55,9 +62,11 @@ class MapLocationBloc extends Bloc<MapLocationEvent, MapLocationState> {
         await placemarkFromCoordinates(position.latitude, position.longitude);
     if (placemarks.isNotEmpty) {
       final place = placemarks.first;
+      if (!event.context.mounted) return;
       emit(
         loadedState.copyWith(
-          cityDistrict: place.subAdministrativeArea ?? "Bilinmeyen İlçe",
+          cityDistrict: place.subAdministrativeArea ??
+              AppLocalizations.of(event.context)!.map_unknown_district,
         ),
       );
     }
@@ -80,6 +89,8 @@ class MapLocationBloc extends Bloc<MapLocationEvent, MapLocationState> {
         dynamicViewExtensions: event.dynamicViewExtensions,
         barHeight:
             event.dynamicViewExtensions.dynamicHeight(event.context, 0.1),
+        appbarText:
+            AppLocalizations.of(event.context)!.location_permission_appbar,
         Padding(
           padding: BaseUtility.all(
             BaseUtility.paddingNormalValue,
@@ -100,8 +111,9 @@ class MapLocationBloc extends Bloc<MapLocationEvent, MapLocationState> {
                 padding: BaseUtility.vertical(
                   BaseUtility.paddingNormalValue,
                 ),
-                child: const TitleLargeBlackBoldText(
-                  text: 'Konum İzini Bulunmuyor',
+                child: TitleLargeBlackBoldText(
+                  text: AppLocalizations.of(event.context)!
+                      .map_location_permission_not_found_title,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -109,15 +121,16 @@ class MapLocationBloc extends Bloc<MapLocationEvent, MapLocationState> {
                 padding: BaseUtility.bottom(
                   BaseUtility.paddingNormalValue,
                 ),
-                child: const BodyMediumBlackText(
-                  text:
-                      'Salon Haritalarından en iyi şekilde yararlanmak için, lütfen konum erişimi izini veriniz.',
+                child: BodyMediumBlackText(
+                  text: AppLocalizations.of(event.context)!
+                      .map_location_permission_not_found_sub_title,
                   textAlign: TextAlign.center,
                 ),
               ),
               CustomButtonWidget(
                 dynamicViewExtensions: event.dynamicViewExtensions,
-                text: 'UYGULAMA AYARLARI',
+                text: AppLocalizations.of(event.context)!
+                    .map_location_permission_application_setting_button,
                 func: () {
                   Navigator.pop(event.context);
                   openAppSettings();

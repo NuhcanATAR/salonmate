@@ -9,7 +9,16 @@ abstract class MapLocationEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class MapLocationGetCityDistrictEvent extends MapLocationEvent {}
+class MapLocationGetCityDistrictEvent extends MapLocationEvent {
+  final BuildContext context;
+
+  const MapLocationGetCityDistrictEvent({
+    required this.context,
+  });
+
+  @override
+  List<Object> get props => [context];
+}
 
 class MapLocationGetMyLocationEvent extends MapLocationEvent {
   final BuildContext context;

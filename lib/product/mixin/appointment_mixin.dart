@@ -4,6 +4,7 @@ import 'package:salonmate/feature/appointments/appointments_receipt/appointments
 import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/constants/image.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -50,9 +51,10 @@ mixin AppointmentMixin {
                   ),
                   child: Row(
                     children: <Widget>[
-                      const Expanded(
+                      Expanded(
                         child: TitleMediumBlackBoldText(
-                          text: 'DATE AND TİME',
+                          text: AppLocalizations.of(context)!
+                              .appointment_mixin_exit_date_dialog_appbar,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -88,9 +90,9 @@ mixin AppointmentMixin {
                         padding: BaseUtility.vertical(
                           BaseUtility.paddingNormalValue,
                         ),
-                        child: const TitleLargeBlackBoldText(
-                          text:
-                              'Tarih Seçiminden Geri Çıkmak İstedğine Eminmisin',
+                        child: TitleLargeBlackBoldText(
+                          text: AppLocalizations.of(context)!
+                              .appointment_mixin_exit_date_dialog_title,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -98,8 +100,9 @@ mixin AppointmentMixin {
                         padding: BaseUtility.bottom(
                           BaseUtility.paddingNormalValue,
                         ),
-                        child: const BodyMediumBlackText(
-                          text: 'Geri çıkarsan tekrar çalışan seçimi yaparsın!',
+                        child: BodyMediumBlackText(
+                          text: AppLocalizations.of(context)!
+                              .appointment_mixin_exit_date_dialog_sub_title,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -115,7 +118,8 @@ mixin AppointmentMixin {
                               ),
                               child: CustomButtonWidget(
                                 dynamicViewExtensions: dynamicViewExtensions,
-                                text: 'EVET',
+                                text: AppLocalizations.of(context)!
+                                    .appointment_mixin_exit_date_dialog_yes,
                                 func: () async {
                                   final token = await prefService
                                           .getString(SharedKeys.token) ??
@@ -129,6 +133,7 @@ mixin AppointmentMixin {
                                             salonId: salonId,
                                             serviceId: serviceModel.id,
                                             token: token,
+                                            context: context,
                                           ),
                                         );
                                   }
@@ -146,7 +151,8 @@ mixin AppointmentMixin {
                               ),
                               child: CustomButtonWidget(
                                 dynamicViewExtensions: dynamicViewExtensions,
-                                text: 'HAYIR',
+                                text: AppLocalizations.of(context)!
+                                    .appointment_mixin_exit_date_dialog_no,
                                 func: () => Navigator.pop(context),
                                 btnStatus: ButtonTypes.borderPrimaryColorButton,
                               ),
@@ -187,9 +193,10 @@ mixin AppointmentMixin {
                   ),
                   child: Row(
                     children: <Widget>[
-                      const Expanded(
+                      Expanded(
                         child: TitleMediumBlackBoldText(
-                          text: 'APPOINTMENT SUMMARY',
+                          text: AppLocalizations.of(context)!
+                              .appointment_mixin_exit_summary_dialog_appbar,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -225,9 +232,9 @@ mixin AppointmentMixin {
                         padding: BaseUtility.vertical(
                           BaseUtility.paddingNormalValue,
                         ),
-                        child: const TitleLargeBlackBoldText(
-                          text:
-                              'Randevu Özetinden Geri Çıkmak İstedğine Eminmisin',
+                        child: TitleLargeBlackBoldText(
+                          text: AppLocalizations.of(context)!
+                              .appointment_mixin_exit_summary_dialog_title,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -235,8 +242,9 @@ mixin AppointmentMixin {
                         padding: BaseUtility.bottom(
                           BaseUtility.paddingNormalValue,
                         ),
-                        child: const BodyMediumBlackText(
-                          text: 'Geri çıkarsan tekrar tarih seçimi yaparsın!',
+                        child: BodyMediumBlackText(
+                          text: AppLocalizations.of(context)!
+                              .appointment_mixin_exit_summary_dialog_sub_title,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -252,7 +260,8 @@ mixin AppointmentMixin {
                               ),
                               child: CustomButtonWidget(
                                 dynamicViewExtensions: dynamicViewExtensions,
-                                text: 'EVET',
+                                text: AppLocalizations.of(context)!
+                                    .appointment_mixin_exit_summary_dialog_yes,
                                 func: () async {
                                   final token = await prefService
                                           .getString(SharedKeys.token) ??
@@ -265,6 +274,7 @@ mixin AppointmentMixin {
                                           AppointmentDateFetchEvent(
                                             token: token,
                                             stylistId: stylistModel.id,
+                                            context: context,
                                           ),
                                         );
                                   }
@@ -282,7 +292,8 @@ mixin AppointmentMixin {
                               ),
                               child: CustomButtonWidget(
                                 dynamicViewExtensions: dynamicViewExtensions,
-                                text: 'HAYIR',
+                                text: AppLocalizations.of(context)!
+                                    .appointment_mixin_exit_summary_dialog_no,
                                 func: () => Navigator.pop(context),
                                 btnStatus: ButtonTypes.borderPrimaryColorButton,
                               ),
@@ -325,7 +336,7 @@ mixin AppointmentMixin {
           false,
           AppIcons.solidWarning,
           Theme.of(context).colorScheme.primary,
-          'Appointment Failed',
+          AppLocalizations.of(context)!.appointment_mixin_create_error,
           (state as AppointmentCreateErrorState).message,
           dynamicViewExtensions,
         );
@@ -339,11 +350,17 @@ mixin AppointmentMixin {
     switch (state.runtimeType) {
       case AppointmentUpdateSuccesState:
         Navigator.pop(context);
-        appointmentsBloc
-            .add(AppointmentsFetchEvent(isRefresh: true, page: 1, limit: 10));
+        appointmentsBloc.add(
+          AppointmentsFetchEvent(
+            isRefresh: true,
+            page: 1,
+            limit: 10,
+            context: context,
+          ),
+        );
         CodeNoahDialogs(context).showFlush(
           type: SnackType.success,
-          message: 'Randevu Durumunuz Gönderildi',
+          message: AppLocalizations.of(context)!.appointment_update_success,
         );
         break;
       case AppointmentUpdateErrorState:
@@ -352,15 +369,16 @@ mixin AppointmentMixin {
           false,
           AppIcons.solidWarning,
           Theme.of(context).colorScheme.primary,
-          'Appointment Failed',
+          AppLocalizations.of(context)!.appointment_mixin_update_error,
           (state as AppointmentUpdateErrorState).message,
           dynamicViewExtensions,
         );
         break;
       case AppointmentUpdateLoadingState:
         CodeNoahDialogs(context).showAlert(
-          const BodyMediumWhiteText(
-            text: 'Lütfen Bekleyiniz...',
+          BodyMediumWhiteText(
+            text: AppLocalizations.of(context)!
+                .appointment_mixin_evaluation_create_loading,
             textAlign: TextAlign.center,
           ),
         );
@@ -376,8 +394,14 @@ mixin AppointmentMixin {
         Navigator.pop(context);
         Navigator.pop(context);
         Navigator.pop(context);
-        appointmentsBloc
-            .add(AppointmentsFetchEvent(isRefresh: true, page: 1, limit: 10));
+        appointmentsBloc.add(
+          AppointmentsFetchEvent(
+            isRefresh: true,
+            page: 1,
+            limit: 10,
+            context: context,
+          ),
+        );
         break;
       case AppointmentEvaluationErrorState:
         Navigator.pop(context);
@@ -386,15 +410,16 @@ mixin AppointmentMixin {
           false,
           AppIcons.solidWarning,
           Theme.of(context).colorScheme.primary,
-          'Appointment Failed',
+          AppLocalizations.of(context)!.appointment_mixin_update_error,
           (state as AppointmentEvaluationErrorState).message,
           dynamicViewExtensions,
         );
         break;
       case AppointmentEvaluationLoadingState:
         CodeNoahDialogs(context).showAlert(
-          const BodyMediumWhiteText(
-            text: 'Lütfen Bekleyiniz...',
+          BodyMediumWhiteText(
+            text: AppLocalizations.of(context)!
+                .appointment_mixin_evaluation_create_loading,
             textAlign: TextAlign.center,
           ),
         );

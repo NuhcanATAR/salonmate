@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:salonmate/feature/salons/bloc/event.dart';
 import 'package:salonmate/feature/salons/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
 import 'package:salonmate/product/core/service/api/end_point.dart';
@@ -55,9 +56,10 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
         if (salonData == null ||
             salonData['salons'] == null ||
             salonData['salons'] is! List) {
+          if (!event.context.mounted) return;
           emit(
             SalonErrorState(
-              errorMessage: "No expected data from API for salons!",
+              errorMessage: AppLocalizations.of(event.context)!.salons_error,
             ),
           );
           return;
@@ -74,15 +76,19 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
           ),
         );
       } else {
+        if (!event.context.mounted) return;
         emit(
           SalonErrorState(
-            errorMessage: 'API Error: ${salonResponse.statusCode}',
+            errorMessage: AppLocalizations.of(event.context)!.salons_error,
           ),
         );
       }
     } catch (e) {
+      if (!event.context.mounted) return;
       emit(
-        SalonErrorState(errorMessage: 'Connection Error'),
+        SalonErrorState(
+          errorMessage: AppLocalizations.of(event.context)!.salons_error,
+        ),
       );
     }
   }
@@ -117,7 +123,13 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
 
         if (salonDetailData['salon'] == null ||
             salonDetailData['salon'] is! Map<String, dynamic>) {
-          emit(SalonDetailErrorState(errorMessage: 'Beklenmeyen API yanıtı!'));
+          if (!event.context.mounted) return;
+          emit(
+            SalonDetailErrorState(
+              errorMessage:
+                  AppLocalizations.of(event.context)!.salons_salon_detail_error,
+            ),
+          );
           return;
         }
 
@@ -129,9 +141,11 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
 
         if (salonServices['services'] == null ||
             salonServices['services'] is! List) {
+          if (!event.context.mounted) return;
           emit(
             SalonDetailErrorState(
-              errorMessage: 'Servisler beklenen formatta değil!',
+              errorMessage: AppLocalizations.of(event.context)!
+                  .salons_salon_services_error,
             ),
           );
           return;
@@ -149,17 +163,19 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
           ),
         );
       } else {
+        if (!event.context.mounted) return;
         emit(
           SalonDetailErrorState(
             errorMessage:
-                'API Hatası: ${salonDetailResponse.statusCode} - ${salonDetailResponse.body}',
+                AppLocalizations.of(event.context)!.salons_second_error,
           ),
         );
       }
     } catch (e) {
+      if (!event.context.mounted) return;
       emit(
         SalonDetailErrorState(
-          errorMessage: 'Beklenmeyen bir hata oluştu: $e',
+          errorMessage: AppLocalizations.of(event.context)!.salons_catch_error,
         ),
       );
     }
@@ -189,13 +205,15 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
       await CodeNoahDialogs(event.context).showFlush(
         type: SnackType.success,
         message: response.statusCode == 200
-            ? 'Favorilerden Kaldırıldı'
-            : 'Favorilere Eklendi',
+            ? AppLocalizations.of(event.context)!.salons_favorite_remove
+            : AppLocalizations.of(event.context)!.salons_favorite_add,
       );
     } else {
+      if (!event.context.mounted) return;
       emit(
         FavoriteToggleErrorState(
-          message: 'Favorilere Eklerken bir hata oluştu',
+          message:
+              AppLocalizations.of(event.context)!.salons_favorite_toggle_error,
         ),
       );
     }
