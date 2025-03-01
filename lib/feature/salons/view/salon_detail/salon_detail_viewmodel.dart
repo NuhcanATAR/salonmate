@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salonmate/feature/favorite/bloc/cubit.dart';
 import 'package:salonmate/feature/favorite/bloc/event.dart' as favorite;
@@ -5,7 +6,9 @@ import 'package:salonmate/feature/salons/bloc/cubit.dart';
 import 'package:salonmate/feature/salons/bloc/event.dart' as salon;
 import 'package:salonmate/feature/salons/view/salon_detail/salon_detail_view.dart';
 import 'package:salonmate/lang/app_localizations.dart';
+import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
+import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
 import 'package:salonmate/product/provider/user_provider.dart';
 
 abstract class SalonDetailViewModel extends BaseState<SalonDetailView> {
@@ -55,5 +58,16 @@ abstract class SalonDetailViewModel extends BaseState<SalonDetailView> {
             context: context,
           ),
         );
+  }
+
+  void isOpenDialog() {
+    CodeNoahDialogs(context).showWarningAlert(
+      false,
+      AppIcons.close,
+      Colors.red,
+      'Salon Kapalı',
+      'Salon Henüz Hizmet Vermiyor, lütfen başka salonlara bakınız.',
+      dynamicViewExtensions,
+    );
   }
 }

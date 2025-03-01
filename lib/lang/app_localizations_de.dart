@@ -1016,4 +1016,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get stylist_card_expert_category => 'Haar-Experte';
+
+  @override
+  String get salon_close_title => 'Der Salon bietet derzeit keinen Service an.';
+
+  @override
+  String get salon_close_dialog_title => 'Salon Geschlossen';
+
+  @override
+  String get salon_close_dialog_sub_title => 'Der Salon bietet noch keinen Service an. Bitte schauen Sie sich andere Salons an.';
 }

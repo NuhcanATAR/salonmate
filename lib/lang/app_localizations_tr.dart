@@ -10,12 +10,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get account_token_not_avaible => 'Token Mevcut Değil';
 
   @override
-  String get account_update_success =>
-      'Kullanıcı Bilgileri Başarıyla Güncellendi.';
+  String get account_update_success => 'Kullanıcı Bilgileri Başarıyla Güncellendi.';
 
   @override
-  String get account_update_error =>
-      'Hata oluştu lütfen daha sonra tekrar deneyiniz.';
+  String get account_update_error => 'Hata oluştu lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get account_loading_text => 'Lütfen Bekleyiniz...';
@@ -33,12 +31,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get account_information_update_menu => 'Bilgileri Güncelle';
 
   @override
-  String get account_city_district_update_menu =>
-      'Şehir ve İlçe Bilgisi Güncelle';
+  String get account_city_district_update_menu => 'Şehir ve İlçe Bilgisi Güncelle';
 
   @override
-  String get account_menu_group_application_setting_title =>
-      'Uygulama Ayarları';
+  String get account_menu_group_application_setting_title => 'Uygulama Ayarları';
 
   @override
   String get account_language_menu => 'Dil Seçimi';
@@ -59,8 +55,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get account_exit_menu => 'Çıkış Yap';
 
   @override
-  String get account_city_district_update_appbar =>
-      'Şehir ve İlçe Bilgisi Güncelle';
+  String get account_city_district_update_appbar => 'Şehir ve İlçe Bilgisi Güncelle';
 
   @override
   String get account_city_district_update_button => 'GÜNCELLE';
@@ -72,12 +67,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get account_district_menu => 'İlçe';
 
   @override
-  String get account_select_city_district_error =>
-      'Güncellemek için Farklı Şehir ve İlçe Seçimi yapınız.';
+  String get account_select_city_district_error => 'Güncellemek için Farklı Şehir ve İlçe Seçimi yapınız.';
 
   @override
-  String get account_select_city_district_secondary_error =>
-      'Lütfen Şehir ve İlçe Seçimlerinizi yapınız.';
+  String get account_select_city_district_secondary_error => 'Lütfen Şehir ve İlçe Seçimlerinizi yapınız.';
 
   @override
   String get account_help_support_appbar => 'Yardım ve Destek';
@@ -89,19 +82,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get account_help_support_question_one_category => 'Hesap';
 
   @override
-  String get account_help_support_question_one_explanation =>
-      'Şifrenizi unutmanız durumunda şifre unuttum bölümünde hesabınızın şifresini telefon numaranızı girerek doğruluyabilirsiniz.';
+  String get account_help_support_question_one_explanation => 'Şifrenizi unutmanız durumunda şifre unuttum bölümünde hesabınızın şifresini telefon numaranızı girerek doğruluyabilirsiniz.';
 
   @override
-  String get account_help_support_question_second_title =>
-      'Hesap Kapatmak İstiyorum';
+  String get account_help_support_question_second_title => 'Hesap Kapatmak İstiyorum';
 
   @override
   String get account_help_support_question_second_category => 'Hesap';
 
   @override
-  String get account_help_support_question_second_explanation =>
-      'Hesabınızı kapatmak istediğiniz durumlarda bizle sosyal medya veya e-mail ile iletişime geçebilirsiniz.';
+  String get account_help_support_question_second_explanation => 'Hesabınızı kapatmak istediğiniz durumlarda bizle sosyal medya veya e-mail ile iletişime geçebilirsiniz.';
 
   @override
   String get account_help_support_question_three_title => 'Randevu Oluşturma';
@@ -110,8 +100,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get account_help_support_question_three_category => 'Randevu';
 
   @override
-  String get account_help_support_question_three_explanation =>
-      'Randevu oluşturma durumunuzda gitmediğiniz durumunda randevunuz için ödemeniz geri hesabınıza 1 ile 2 iş günü içinde geri yatar.';
+  String get account_help_support_question_three_explanation => 'Randevu oluşturma durumunuzda gitmediğiniz durumunda randevunuz için ödemeniz geri hesabınıza 1 ile 2 iş günü içinde geri yatar.';
 
   @override
   String get account_information_update_appbar => 'Bilgileri Güncelle';
@@ -147,68 +136,55 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointment_not_found_title => 'Randevunuz Bulunmuyor';
 
   @override
-  String get appointment_not_found_sub_title =>
-      'Henüz Randevu oluşturmadınız, isterseniz Randevu oluşturmaya başlayabilirsniz.';
+  String get appointment_not_found_sub_title => 'Henüz Randevu oluşturmadınız, isterseniz Randevu oluşturmaya başlayabilirsniz.';
 
   @override
   String get appointment_token_not_avaible => 'Token Mevcut Değil';
 
   @override
-  String get appointment_stylist_error =>
-      'Stilistler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get appointment_stylist_error => 'Stilistler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get appointment_date_error => 'Randevu Bulunamadı';
 
   @override
-  String get appointment_date_second_error =>
-      'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get appointment_date_second_error => 'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get appointment_summary_error =>
-      'Salon bilgileri alınırken hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get appointment_summary_error => 'Salon bilgileri alınırken hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get appointment_summary_second_error =>
-      'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get appointment_summary_second_error => 'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get appointment_summary_catch_error => 'Beklenmeyen bir hata oluştu';
 
   @override
-  String get appointmnet_create_success =>
-      'Randevunu başarıyla oluşturuldu, randevunu randevular bölümünden takip edebilirsiniz.';
+  String get appointmnet_create_success => 'Randevunu başarıyla oluşturuldu, randevunu randevular bölümünden takip edebilirsiniz.';
 
   @override
-  String get appointment_create_error =>
-      'Randevu Tarihiniz alınmıştır, lütfen başka bir tarih ve saat için seçim yapınız.';
+  String get appointment_create_error => 'Randevu Tarihiniz alınmıştır, lütfen başka bir tarih ve saat için seçim yapınız.';
 
   @override
-  String get appointment_create_second_error =>
-      'Randevunu oluşturulamadı, lütfen daha sonra tekrar deneyiniz.';
+  String get appointment_create_second_error => 'Randevunu oluşturulamadı, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get appointment_error =>
-      'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get appointment_error => 'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get appointment_second_error =>
-      'Hata Oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get appointment_second_error => 'Hata Oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get appointment_update_success => 'Randevunuz başarıyla güncellendi.';
 
   @override
-  String get apppointment_update_error =>
-      'Randevu durumunuz gönderilirken bir sorun oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get apppointment_update_error => 'Randevu durumunuz gönderilirken bir sorun oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get appointment_evaluation_success =>
-      'Değerlendirmeniz gönderildi, Teşekkürler';
+  String get appointment_evaluation_success => 'Değerlendirmeniz gönderildi, Teşekkürler';
 
   @override
-  String get appointment_evaluation_error =>
-      'Değerlendirme sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get appointment_evaluation_error => 'Değerlendirme sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get appointment_detail_appbar => 'Randevu Detayı';
@@ -229,12 +205,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointmnet_detail_token_not_avaible => 'Token Mevcut Değil';
 
   @override
-  String get appointment_detail_evaluation_dialog_title =>
-      'Randevunuzu Değerlendirin!';
+  String get appointment_detail_evaluation_dialog_title => 'Randevunuzu Değerlendirin!';
 
   @override
-  String get appointment_detail_evaluation_dialog_sub_title =>
-      'Randevunuzu puanlayın ve deneyimlerinizi paylaşın.';
+  String get appointment_detail_evaluation_dialog_sub_title => 'Randevunuzu puanlayın ve deneyimlerinizi paylaşın.';
 
   @override
   String get appointment_detail_evaluation_dialog_description => 'Açıklama';
@@ -249,8 +223,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointment_summary_appbar => 'Randevu Özeti';
 
   @override
-  String get appointment_summary_loading_title =>
-      'Randevu Sonu Özeti Yükleniyor';
+  String get appointment_summary_loading_title => 'Randevu Sonu Özeti Yükleniyor';
 
   @override
   String get appointment_summary_loading_subtitle => 'Lütfen Bekleyiniz...';
@@ -274,15 +247,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointmnet_summary_payment_online_title => 'Online Ödeme';
 
   @override
-  String get appointment_summary_payment_online_subtitle =>
-      'Rezervasyonunuzu anında güvence altına alın';
+  String get appointment_summary_payment_online_subtitle => 'Rezervasyonunuzu anında güvence altına alın';
 
   @override
   String get appointment_summary_payment_at_salon_title => 'Salonda Ödeme';
 
   @override
-  String get appointment_summary_payment_at_salon_sub_title =>
-      'Ödemeyi randevunuzdan sonra ayarlayın';
+  String get appointment_summary_payment_at_salon_sub_title => 'Ödemeyi randevunuzdan sonra ayarlayın';
 
   @override
   String get appointment_summary_pricing_details => 'Ücretlendirme Detayları';
@@ -300,12 +271,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointment_receipt_appbar => 'Fiş';
 
   @override
-  String get appointment_receipt_success_title =>
-      'Randevunuz Başarıyla Oluşturulmuştur!';
+  String get appointment_receipt_success_title => 'Randevunuz Başarıyla Oluşturulmuştur!';
 
   @override
-  String get appointment_receipt_success_sub_title =>
-      'Randevunuz oluşturulmuştur, randevu bilgilerinizi, Randevularım bölümünden takip edebilirsiniz.';
+  String get appointment_receipt_success_sub_title => 'Randevunuz oluşturulmuştur, randevu bilgilerinizi, Randevularım bölümünden takip edebilirsiniz.';
 
   @override
   String get appointment_receipt_download_button => 'Fişi İndirin';
@@ -359,23 +328,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointment_date_select_appbar => 'Tarih ve Saat';
 
   @override
-  String get appointmnet_date_select_loading_title =>
-      'Randevu Tarihleri Yükleniyor';
+  String get appointmnet_date_select_loading_title => 'Randevu Tarihleri Yükleniyor';
 
   @override
-  String get appointment_date_select_loading_sub_title =>
-      'Lütfen Bekleyiniz...';
+  String get appointment_date_select_loading_sub_title => 'Lütfen Bekleyiniz...';
 
   @override
   String get appointment_date_select_token_not_avaible => 'Token Mevcut Değil';
 
   @override
-  String get appointment_date_select_error_title =>
-      'Randevu Tarihleri Bulunamadı!';
+  String get appointment_date_select_error_title => 'Randevu Tarihleri Bulunamadı!';
 
   @override
-  String get appointment_date_select_error_sub_title =>
-      'Randevu Tarihlerini yüklerken bir hata oluştu sanırım, lütfen daha sonra tekrar deneyiniz';
+  String get appointment_date_select_error_sub_title => 'Randevu Tarihlerini yüklerken bir hata oluştu sanırım, lütfen daha sonra tekrar deneyiniz';
 
   @override
   String get appointment_date_select_title => 'Tarih Seç';
@@ -387,41 +352,34 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointmnet_date_select_confirm_button => 'Randevuyu Onaylayın';
 
   @override
-  String get appointment_date_select_hour_select_error =>
-      'Lütfen Saat seçiminizi yapınız.';
+  String get appointment_date_select_hour_select_error => 'Lütfen Saat seçiminizi yapınız.';
 
   @override
   String get appointment_stylist_select_appbar => 'Stilistinizi Seçin';
 
   @override
-  String get appointment_stylist_select_loading_title =>
-      'Çalışanlar Yükleniyor';
+  String get appointment_stylist_select_loading_title => 'Çalışanlar Yükleniyor';
 
   @override
-  String get appointment_stylist_select_loading_sub_title =>
-      'Lütfen Bekleyiniz...';
+  String get appointment_stylist_select_loading_sub_title => 'Lütfen Bekleyiniz...';
 
   @override
   String get appointment_stylist_select_error_title => 'Hata Oluştu';
 
   @override
-  String get appointment_stylist_select_error_sub_title =>
-      'Çalışanlar yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get appointment_stylist_select_error_sub_title => 'Çalışanlar yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get appointment_stylist_select_not_found_title =>
-      'Çalışanlar Henüz Yüklenmedi!';
+  String get appointment_stylist_select_not_found_title => 'Çalışanlar Henüz Yüklenmedi!';
 
   @override
-  String get appointment_stylist_select_not_found_sub_title =>
-      'Çalışanlar salonda bulunamadı lütfen daha sonra tekrar deneyiniz.';
+  String get appointment_stylist_select_not_found_sub_title => 'Çalışanlar salonda bulunamadı lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get appointment_stylist_select_continue_button => 'Devam Et';
 
   @override
-  String get appointment_stylist_select_error =>
-      'Lütfen Çalışan Seçiminizi Yapınız.';
+  String get appointment_stylist_select_error => 'Lütfen Çalışan Seçiminizi Yapınız.';
 
   @override
   String get appointment_stylist_token_not_avaible => 'Token Mevcut Değil';
@@ -430,12 +388,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointment_mixin_exit_date_dialog_appbar => 'TARİH VE SAAT';
 
   @override
-  String get appointment_mixin_exit_date_dialog_title =>
-      'Tarih Seçiminden Geri Çıkmak İstedğine Eminmisin';
+  String get appointment_mixin_exit_date_dialog_title => 'Tarih Seçiminden Geri Çıkmak İstedğine Eminmisin';
 
   @override
-  String get appointment_mixin_exit_date_dialog_sub_title =>
-      'Geri çıkarsan tekrar çalışan seçimi yaparsın!';
+  String get appointment_mixin_exit_date_dialog_sub_title => 'Geri çıkarsan tekrar çalışan seçimi yaparsın!';
 
   @override
   String get appointment_mixin_exit_date_dialog_yes => 'EVET';
@@ -447,12 +403,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointment_mixin_exit_summary_dialog_appbar => 'RANDEVU ÖZETİ';
 
   @override
-  String get appointment_mixin_exit_summary_dialog_title =>
-      'Randevu Özetinden Geri Çıkmak İstedğine Eminmisin';
+  String get appointment_mixin_exit_summary_dialog_title => 'Randevu Özetinden Geri Çıkmak İstedğine Eminmisin';
 
   @override
-  String get appointment_mixin_exit_summary_dialog_sub_title =>
-      'Geri çıkarsan tekrar tarih seçimi yaparsın!';
+  String get appointment_mixin_exit_summary_dialog_sub_title => 'Geri çıkarsan tekrar tarih seçimi yaparsın!';
 
   @override
   String get appointment_mixin_exit_summary_dialog_yes => 'EVET';
@@ -470,20 +424,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointment_mixin_loading_title => 'Lütfen Bekleyiniz...';
 
   @override
-  String get appointment_mixin_evaluation_create_erorr =>
-      'Değerlendirme sırasında hata oluştu!';
+  String get appointment_mixin_evaluation_create_erorr => 'Değerlendirme sırasında hata oluştu!';
 
   @override
-  String get appointment_mixin_evaluation_create_loading =>
-      'Lütfen Bekleyiniz...';
+  String get appointment_mixin_evaluation_create_loading => 'Lütfen Bekleyiniz...';
 
   @override
-  String get bottom_navigator_exit_dialog_title =>
-      'Çıkış Yapmak İstiyormusunuz?';
+  String get bottom_navigator_exit_dialog_title => 'Çıkış Yapmak İstiyormusunuz?';
 
   @override
-  String get bottom_navigator_exit_dialog_sub_title =>
-      'Merak etmeyin hesabınıza tekrar otomatik giriş yapabilirsiniz?';
+  String get bottom_navigator_exit_dialog_sub_title => 'Merak etmeyin hesabınıza tekrar otomatik giriş yapabilirsiniz?';
 
   @override
   String get bottom_navigator_exit_dialog_yes => 'Evet';
@@ -534,8 +484,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get home_banner_card_sub_title => '%20 İndirim Kodu';
 
   @override
-  String get home_banner_card_explanation =>
-      'Sabah 9-10 Arası Tüm Saç Kesimlerinde.';
+  String get home_banner_card_explanation => 'Sabah 9-10 Arası Tüm Saç Kesimlerinde.';
 
   @override
   String get home_banner_button => 'Randevu Alın';
@@ -559,8 +508,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get home_salon_error => 'Salonlar Bulunamadı';
 
   @override
-  String get home_error =>
-      'Bilgiler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get home_error => 'Bilgiler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get map_appbar => 'Harita';
@@ -572,16 +520,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get map_unknown_district => 'Bilinmeyen İlçe';
 
   @override
-  String get map_location_permission_not_found_title =>
-      'Konum İzini Bulunmuyor';
+  String get map_location_permission_not_found_title => 'Konum İzini Bulunmuyor';
 
   @override
-  String get map_location_permission_not_found_sub_title =>
-      'Salon Haritalarından en iyi şekilde yararlanmak için, lütfen konum erişimi izini veriniz.';
+  String get map_location_permission_not_found_sub_title => 'Salon Haritalarından en iyi şekilde yararlanmak için, lütfen konum erişimi izini veriniz.';
 
   @override
-  String get map_location_permission_application_setting_button =>
-      'UYGULAMA AYARLARI';
+  String get map_location_permission_application_setting_button => 'UYGULAMA AYARLARI';
 
   @override
   String get location_permission_appbar => 'KONUM İZİNİ';
@@ -596,8 +541,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get password_title => 'Doğrulama Kodunu Girin 🔒️';
 
   @override
-  String get password_sub_title =>
-      'Yeni şifrenize gelen doğrulama kodunu girin.';
+  String get password_sub_title => 'Yeni şifrenize gelen doğrulama kodunu girin.';
 
   @override
   String get password_new_password => 'Yeni Şifre';
@@ -615,44 +559,34 @@ class AppLocalizationsTr extends AppLocalizations {
   String get password_send_code_error => 'Telefon Numarası Bulunamadı.';
 
   @override
-  String get password_send_code_second =>
-      'Şifre Sıfırlama talebi esnasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get password_send_code_second => 'Şifre Sıfırlama talebi esnasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get password_send_code_three =>
-      'Şifre Sıfırlama talebi esnasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get password_send_code_three => 'Şifre Sıfırlama talebi esnasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get password_verification_code_error =>
-      'Kod Yanlış veya süresi dolmuş.';
+  String get password_verification_code_error => 'Kod Yanlış veya süresi dolmuş.';
 
   @override
-  String get password_verification_code_error_second =>
-      'Telefon Numarası Bulunamadı.';
+  String get password_verification_code_error_second => 'Telefon Numarası Bulunamadı.';
 
   @override
-  String get password_verification_code_error_three =>
-      'Kod Doğrulama sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get password_verification_code_error_three => 'Kod Doğrulama sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get password_verification_code_error_four =>
-      'Kod Doğrulama sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get password_verification_code_error_four => 'Kod Doğrulama sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get password_new_password_error =>
-      'Lütfen gerekli alanları doldurunuz.';
+  String get password_new_password_error => 'Lütfen gerekli alanları doldurunuz.';
 
   @override
-  String get password_new_password_error_second =>
-      'Kullanıcı Bulunamadı veya Şifre yanlış, lütfen daha sonra tekrar deneyiniz.';
+  String get password_new_password_error_second => 'Kullanıcı Bulunamadı veya Şifre yanlış, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get password_new_password_error_three =>
-      'Şifre Güncelleme sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get password_new_password_error_three => 'Şifre Güncelleme sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get password_new_password_error_four =>
-      'Şifre Güncelleme sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get password_new_password_error_four => 'Şifre Güncelleme sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get password_loading => 'Yükleniyor...';
@@ -664,8 +598,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get password_send_code_title => 'Telefon Numaranızı Giriniz 📞';
 
   @override
-  String get password_send_code_sub_title =>
-      'Telefon Numaranızı giriniz size gelen kodu doğrulayınız ve şifrenizi yenileyiniz.';
+  String get password_send_code_sub_title => 'Telefon Numaranızı giriniz size gelen kodu doğrulayınız ve şifrenizi yenileyiniz.';
 
   @override
   String get password_send_code_phone_number => 'Telefon Numarası';
@@ -680,8 +613,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get password_verification_code_title => 'Doğrulama Kodunu Girin ✅';
 
   @override
-  String get password_verification_code_sub_title =>
-      'Telefon Numaranızıa gelen doğrulama kodunu girin.';
+  String get password_verification_code_sub_title => 'Telefon Numaranızıa gelen doğrulama kodunu girin.';
 
   @override
   String get password_verification_code => 'Doğrulama Kodu';
@@ -696,8 +628,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get salons_error_title => 'Bir Hata Oluştu!';
 
   @override
-  String get salons_error_default_sub_title =>
-      'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get salons_error_default_sub_title => 'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get salons_search => 'Salon Adı';
@@ -706,27 +637,22 @@ class AppLocalizationsTr extends AppLocalizations {
   String get salons_not_found_title => 'Aradığınız Kuaför Bulunmuyor';
 
   @override
-  String get salons_not_found_sub_title =>
-      'Görünüşe göre aradığınız kuaför uygulamaızda bulunmuyor, farklı bir kuaför salonu arayabilirsiniz.';
+  String get salons_not_found_sub_title => 'Görünüşe göre aradığınız kuaför uygulamaızda bulunmuyor, farklı bir kuaför salonu arayabilirsiniz.';
 
   @override
   String get token_not_avaible => 'Token Mevcut Değil';
 
   @override
-  String get salons_error =>
-      'Salonlar yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get salons_error => 'Salonlar yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get salons_salon_detail_error =>
-      'Salon Detayı yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz!';
+  String get salons_salon_detail_error => 'Salon Detayı yüklenmedi, bir hata oluştu, lütfen daha sonra tekrar deneyiniz!';
 
   @override
-  String get salons_salon_services_error =>
-      'Hizmetler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get salons_salon_services_error => 'Servisler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get salons_second_error =>
-      'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get salons_second_error => 'Bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get salons_catch_error => 'Beklenmeyen bir hata oluştu.';
@@ -738,8 +664,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get salons_favorite_add => 'Favorilere Eklendi';
 
   @override
-  String get salons_favorite_toggle_error =>
-      'Favorilere Eklerken bir hata oluştu';
+  String get salons_favorite_toggle_error => 'Favorilere Eklerken bir hata oluştu';
 
   @override
   String get salons_detail_services_title => 'Hizmetler';
@@ -799,22 +724,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String get services_error_title => 'Adına Kayıtlı Bir hizmet bulunamadı!';
 
   @override
-  String get services_error_sub_title =>
-      'İsterseniz başka hizmetlere de bakabilirsiniz.';
+  String get services_error_sub_title => 'İsterseniz başka hizmetlere de bakabilirsiniz.';
 
   @override
   String get services_token_not_avaible => 'Token Mevcut Değil';
 
   @override
-  String get services_error =>
-      'Hizmetler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz!';
+  String get services_error => 'Hizmetler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz!';
 
   @override
   String get sign_or => 'Veya';
 
   @override
-  String get sign_title =>
-      'Mükemmel Görünümünüz için Dakikalar İçinde\nRezervasyon Yapın!';
+  String get sign_title => 'Mükemmel Görünümünüz için Dakikalar İçinde\nRezervasyon Yapın!';
 
   @override
   String get sign_sign_in_button => 'Giriş Yap';
@@ -835,8 +757,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sign_in_title => 'SalonMake Tekrar Hoşgeldiniz.👋';
 
   @override
-  String get sign_in_sub_title =>
-      'Hesabınıza giriş yapın ve size yakın kuaför salonlarından hizmet alın.';
+  String get sign_in_sub_title => 'Hesabınıza giriş yapın ve size yakın kuaför salonlarından hizmet alın.';
 
   @override
   String get sign_in_user_name => 'Kullanıcı Adı';
@@ -857,15 +778,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sign_in_register_button => 'Kayıt Ol';
 
   @override
-  String get sign_in_notification_error =>
-      'Bildirim Özelliği Sırasında bir hata oluştu.';
+  String get sign_in_notification_error => 'Bildirim Özelliği Sırasında bir hata oluştu.';
 
   @override
   String get sign_in_email_and_password_error => 'Geçersiz e-posta veya şifre.';
 
   @override
-  String get sign_in_error =>
-      'Giriş sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+  String get sign_in_error => 'Giriş sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get sign_in_loading => 'Yükleniyor...';
@@ -877,8 +796,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sign_up_title => 'SalonMake Hesabınızı Oluşturun.✂️';
 
   @override
-  String get sign_up_sub_title =>
-      'Hesabınızı oluşturun ve hizmet almaya\nbaşlayın.';
+  String get sign_up_sub_title => 'Hesabınızı oluşturun ve hizmet almaya\nbaşlayın.';
 
   @override
   String get sign_up_full_name => 'Ad Soyad';
@@ -902,33 +820,28 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sign_up_sign_in_button => 'Giriş Yap';
 
   @override
-  String get sign_up_selected_city_district_error =>
-      'Şehir ve İlçe Seçimi yapınız.';
+  String get sign_up_selected_city_district_error => 'Şehir ve İlçe Seçimi yapınız.';
 
   @override
   String get sign_up_phone_number_error => 'Bu Telefon Numarası zaten kayıtlı.';
 
   @override
-  String get sign_up_verification_code_error =>
-      'Telefon doğrulama isteği kabul edilmedi, lütfen daha sonra tekrar deneyiniz.';
+  String get sign_up_verification_code_error => 'Telefon doğrulama isteği kabul edilmedi, lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get sign_up_error =>
-      'Kullanıcı Kaydedilemedi, lütfen daha sonra tekrar deneyiniz';
+  String get sign_up_error => 'Kullanıcı Kaydedilemedi, lütfen daha sonra tekrar deneyiniz';
 
   @override
   String get sign_up_code_false_error => 'Kod yanlış veya süresi dolmuş.';
 
   @override
-  String get sign_up_code_error =>
-      'Kod Doğrulama sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz';
+  String get sign_up_code_error => 'Kod Doğrulama sırasında bir hata oluştu, lütfen daha sonra tekrar deneyiniz';
 
   @override
   String get sign_up_success => 'Hesabınız başarıyla oluşturuldu.';
 
   @override
-  String get sign_up_required_fields_error =>
-      'Lütfen gerekli alanları doldurunuz!';
+  String get sign_up_required_fields_error => 'Lütfen gerekli alanları doldurunuz!';
 
   @override
   String get sign_up_email_error => 'Bu e-posta adresi zaten kayıtlı.';
@@ -946,8 +859,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sign_up_send_code_title => 'Telefon Numaranızı Giriniz 📞';
 
   @override
-  String get sign_up_send_code_sub_title =>
-      'Telefon Numaranızı giriniz ve doğrulayınız.';
+  String get sign_up_send_code_sub_title => 'Telefon Numaranızı giriniz ve doğrulayınız.';
 
   @override
   String get sign_up_send_code_phone_number => 'Telefon Numarası';
@@ -962,8 +874,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sign_up_verification_code_title => 'Doğrulama Kodunu Girin ✅';
 
   @override
-  String get sign_up_verification_code_sub_title =>
-      'Telefon numaranıza gelen doğrulama kodunu girin.';
+  String get sign_up_verification_code_sub_title => 'Telefon numaranıza gelen doğrulama kodunu girin.';
 
   @override
   String get sign_up_verification_code_verification_code => 'Doğrulama Kodu';
@@ -1074,23 +985,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String get validator_password_empty => 'Şifre alanı boş bırakılamaz';
 
   @override
-  String get validator_password_min_length =>
-      'Şifre en az 8 karakter uzunluğunda olmalıdır';
+  String get validator_password_min_length => 'Şifre en az 8 karakter uzunluğunda olmalıdır';
 
   @override
-  String get validator_password_uppercase =>
-      'Şifre en az bir büyük harf içermelidir';
+  String get validator_password_uppercase => 'Şifre en az bir büyük harf içermelidir';
 
   @override
-  String get validator_password_lowercase =>
-      'Şifre en az bir küçük harf içermelidir';
+  String get validator_password_lowercase => 'Şifre en az bir küçük harf içermelidir';
 
   @override
   String get validator_password_number => 'Şifre en az bir rakam içermelidir';
 
   @override
-  String get validator_password_special_character =>
-      'Şifre en az bir özel karakter içermelidir';
+  String get validator_password_special_character => 'Şifre en az bir özel karakter içermelidir';
 
   @override
   String get validator_phone_invalid_error => 'Geçersiz Telefon Numarası';
@@ -1109,4 +1016,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get stylist_card_expert_category => 'Saç Uzmanı';
+
+  @override
+  String get salon_close_title => 'Salon şu an hizmet vermiyor.';
+
+  @override
+  String get salon_close_dialog_title => 'Salon Kapalı';
+
+  @override
+  String get salon_close_dialog_sub_title => 'Salon Henüz Hizmet Vermiyor, lütfen başka salonlara bakınız.';
 }
