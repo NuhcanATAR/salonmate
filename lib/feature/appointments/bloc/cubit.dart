@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
 import 'package:salonmate/lang/app_localizations.dart';
+import 'package:salonmate/product/core/base/helper/logger_package.dart';
 import 'package:salonmate/product/core/base/helper/shared_keys.dart';
 import 'package:salonmate/product/core/base/helper/shared_service.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
@@ -34,10 +34,12 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
   }
 
   final prefService = PrefService();
+  final loggerPrint = CustomLoggerPrint();
   int currentPage = 1;
   bool isFetching = false;
   List<Appointment> allAppointments = [];
 
+  // stylist fetch
   Future<void> stylistFetch(
     AppointmentFetchStylistEvent event,
     Emitter<AppointmentState> emit,
@@ -73,6 +75,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     }
   }
 
+  // stylist select
   Future<void> stylistSelect(
     AppointmentStylistSelectEvent event,
     Emitter<AppointmentState> emit,
@@ -91,6 +94,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     }
   }
 
+  // appointment date fetch
   Future<void> appointmentDateFetch(
     AppointmentDateFetchEvent event,
     Emitter<AppointmentState> emit,
@@ -137,6 +141,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     }
   }
 
+  // date select
   void onSelectDay(
     AppointmentSelectDayEvent event,
     Emitter<AppointmentState> emit,
@@ -153,6 +158,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     }
   }
 
+  // time select
   void onSelectTime(
     AppointmentTimeSelectEvent event,
     Emitter<AppointmentState> emit,
@@ -169,6 +175,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     }
   }
 
+  // stylist add services
   Future<void> stylistAddServiceFetch(
     AppointmentSummaryEvent event,
     Emitter<AppointmentState> emit,
@@ -245,6 +252,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     }
   }
 
+  // add service toggle selection
   Future<void> addServiceToggleSelection(
     AppointmentToggleServiceSelectionEvent event,
     Emitter<AppointmentState> emit,
@@ -270,6 +278,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     }
   }
 
+  // appointment create
   Future<void> appointmentCreate(
     AppointmentCreateEvent event,
     Emitter<AppointmentState> emit,
@@ -328,6 +337,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     }
   }
 
+  // user appointment fetch
   Future<void> _onFetchAppointments(
     AppointmentsFetchEvent event,
     Emitter<AppointmentState> emit,
@@ -398,6 +408,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     }
   }
 
+  // appointment update
   Future<void> appointmentUpdate(
     AppointmentUpdateEvent event,
     Emitter<AppointmentState> emit,
@@ -436,6 +447,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     }
   }
 
+  // appointment valuation create
   Future<void> evaluationCreate(
     AppointmentEvaluationCreateEvent event,
     Emitter<AppointmentState> emit,
@@ -456,7 +468,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     );
 
     if (response.statusCode == 201) {
-      Logger().i(response.body);
+      loggerPrint.printInfoLog(response.body);
       if (!event.context.mounted) return;
       emit(
         AppointmentEvaluationSuccessState(
@@ -465,7 +477,7 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
         ),
       );
     } else {
-      Logger().i(response.body);
+      loggerPrint.printErrorLog(response.body);
       if (!event.context.mounted) return;
       emit(
         AppointmentEvaluationErrorState(

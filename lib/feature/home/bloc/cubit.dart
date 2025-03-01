@@ -16,6 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeLoadEvent>(_onLoadCategorysAndSalons);
   }
 
+  //category and salons fetch
   Future<void> _onLoadCategorysAndSalons(
     HomeLoadEvent event,
     Emitter<HomeState> emit,

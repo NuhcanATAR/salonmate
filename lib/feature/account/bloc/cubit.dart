@@ -27,6 +27,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<AccountCityDistrictUpdateEvent>(_accountCityDistrictUpdate);
   }
 
+  // account information fetch
   Future<void> _onFetchAccountData(
     FetchAccountDataEvent event,
     Emitter<AccountState> emit,
@@ -68,6 +69,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     }
   }
 
+  // account information update
   Future<void> _accountInformationUpdate(
     AccountInformationEvent event,
     Emitter<AccountState> emit,
@@ -111,6 +113,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     }
   }
 
+  // account city district udpdate
   Future<void> _accountCityDistrictUpdate(
     AccountCityDistrictUpdateEvent event,
     Emitter<AccountState> emit,

@@ -15,6 +15,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<SignUpFuncEvent>(signUp);
   }
 
+  // phone number send code
   Future<void> signUpSendCode(
     SignUpSendCodeEvent event,
     Emitter<SignUpState> emit,
@@ -67,6 +68,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     }
   }
 
+  // verification code
   Future<void> signUpVerificationCode(
     SignUpVerificationCodeEvent event,
     Emitter<SignUpState> emit,
@@ -118,6 +120,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     }
   }
 
+  // sign up
   Future<void> signUp(
     SignUpFuncEvent event,
     Emitter<SignUpState> emit,

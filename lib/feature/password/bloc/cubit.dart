@@ -15,6 +15,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     on<PasswordChangePasswordEvent>(changePassword);
   }
 
+  // phone number send code
   Future<void> sendCode(
     PasswordSendCodeEvent event,
     Emitter<PasswordState> emit,
@@ -67,6 +68,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     }
   }
 
+  // code verification
   Future<void> verificationCode(
     PasswordVerificationCodeEvent event,
     Emitter<PasswordState> emit,
@@ -127,6 +129,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     }
   }
 
+  // change password
   Future<void> changePassword(
     PasswordChangePasswordEvent event,
     Emitter<PasswordState> emit,
