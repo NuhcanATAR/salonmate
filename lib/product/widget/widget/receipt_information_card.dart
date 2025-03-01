@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
 import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.dart';
 import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
@@ -55,9 +56,10 @@ class AppointmentReceiptInformationCardWidget extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   // title
-                  const Expanded(
+                  Expanded(
                     child: BodyMediumBlackBoldText(
-                      text: 'Salon',
+                      text: AppLocalizations.of(context)!
+                          .appointment_receipt_information_salon,
                       textAlign: TextAlign.left,
                     ),
                   ),
@@ -84,9 +86,10 @@ class AppointmentReceiptInformationCardWidget extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   // title
-                  const Expanded(
+                  Expanded(
                     child: BodyMediumBlackBoldText(
-                      text: 'Customer Name',
+                      text: AppLocalizations.of(context)!
+                          .appointment_receipt_information_customer_name,
                       textAlign: TextAlign.left,
                     ),
                   ),
@@ -113,9 +116,10 @@ class AppointmentReceiptInformationCardWidget extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   // title
-                  const Expanded(
+                  Expanded(
                     child: BodyMediumBlackBoldText(
-                      text: 'Phone',
+                      text: AppLocalizations.of(context)!
+                          .appointment_receipt_information_phone,
                       textAlign: TextAlign.left,
                     ),
                   ),
@@ -142,9 +146,10 @@ class AppointmentReceiptInformationCardWidget extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   // title
-                  const Expanded(
+                  Expanded(
                     child: BodyMediumBlackBoldText(
-                      text: 'Booking Date',
+                      text: AppLocalizations.of(context)!
+                          .appointment_receipt_information_booking_date,
                       textAlign: TextAlign.left,
                     ),
                   ),
@@ -173,9 +178,10 @@ class AppointmentReceiptInformationCardWidget extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   // title
-                  const Expanded(
+                  Expanded(
                     child: BodyMediumBlackBoldText(
-                      text: 'Booking Time',
+                      text: AppLocalizations.of(context)!
+                          .appointment_receipt_information_booking_time,
                       textAlign: TextAlign.left,
                     ),
                   ),
@@ -203,9 +209,10 @@ class AppointmentReceiptInformationCardWidget extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   // title
-                  const Expanded(
+                  Expanded(
                     child: BodyMediumBlackBoldText(
-                      text: 'Stylist',
+                      text: AppLocalizations.of(context)!
+                          .appointment_receipt_information_stylist,
                       textAlign: TextAlign.left,
                     ),
                   ),
