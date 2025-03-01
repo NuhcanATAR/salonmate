@@ -218,7 +218,7 @@ class _HomeViewState extends HomeViewModel {
           ? const SizedBox()
           : Padding(
               padding: BaseUtility.vertical(
-                BaseUtility.paddingMediumValue,
+                BaseUtility.paddingSmallValue,
               ),
               child: Column(
                 children: <Widget>[

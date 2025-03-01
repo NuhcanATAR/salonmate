@@ -10,7 +10,6 @@ import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/constants/image.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/core/base/helper/payment_type_control.dart';
-import 'package:salonmate/product/core/base/helper/price_convert.dart';
 import 'package:salonmate/product/core/base/helper/radio_size_control.dart';
 import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
 import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
@@ -18,6 +17,7 @@ import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/title_large.dart';
 import 'package:salonmate/product/widget/text_widget/title_medium.dart';
+import 'package:salonmate/product/widget/widget/add_service_card.dart';
 import 'package:salonmate/product/widget/widget/button.dart';
 import 'package:salonmate/product/widget/widget/radio_field.dart';
 import 'package:salonmate/product/widget/widget/response_card.dart';
@@ -187,7 +187,7 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
             width: dynamicViewExtensions.maxWidth(context),
             height: dynamicViewExtensions.dynamicHeight(
               context,
-              0.12,
+              0.13,
             ),
             child: Padding(
               padding: BaseUtility.bottom(
@@ -200,98 +200,15 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
                   final model = state.stylistAddService![index];
                   final bool isSelected =
                       state.selectedServices!.contains(model.id);
-                  return Container(
-                    margin: BaseUtility.right(
-                      BaseUtility.marginNormalValue,
-                    ),
-                    child: GestureDetector(
-                      onTap: () {
-                        context.read<AppointmentsBloc>().add(
-                              AppointmentToggleServiceSelectionEvent(model.id),
-                            );
-                      },
-                      child: SizedBox(
-                        width:
-                            dynamicViewExtensions.dynamicWidth(context, 0.36),
-                        child: Container(
-                          padding: BaseUtility.all(
-                            BaseUtility.paddingNormalValue,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                              color: isSelected
-                                  ? Theme.of(context).colorScheme.primary
-                                  : Theme.of(context).colorScheme.outline,
-                              width: 0.5,
-                            ),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(
-                                BaseUtility.radiusCircularMediumValue,
-                              ),
-                            ),
-                          ),
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            children: <Widget>[
-                              // body
-                              SingleChildScrollView(
-                                child: Column(
-                                  children: <Widget>[
-                                    // title
-                                    SizedBox(
-                                      width: dynamicViewExtensions
-                                          .maxWidth(context),
-                                      child: Padding(
-                                        padding: BaseUtility.bottom(
-                                          BaseUtility.paddingNormalValue,
-                                        ),
-                                        child: TitleMediumBlackBoldText(
-                                          text: model.name,
-                                          textAlign: TextAlign.left,
-                                        ),
-                                      ),
-                                    ),
-                                    // price
-                                    SizedBox(
-                                      width: dynamicViewExtensions
-                                          .maxWidth(context),
-                                      child: BodyMediumBlackText(
-                                        text:
-                                            '${CodeNoahPriceConvert.formatPrice(model.price.toInt())}₺',
-                                        textAlign: TextAlign.left,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              // check
-                              Positioned(
-                                bottom: 0,
-                                right: 10,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: isSelected
-                                        ? Theme.of(context).colorScheme.primary
-                                        : Theme.of(context).colorScheme.outline,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(
-                                        BaseUtility.radiusCircularHighValue,
-                                      ),
-                                    ),
-                                  ),
-                                  child: const Icon(
-                                    Icons.check,
-                                    color: Colors.white,
-                                    size: BaseUtility.iconMediumSize,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                  return AddServiceCardWidget(
+                    dynamicViewExtensions: dynamicViewExtensions,
+                    isSelected: isSelected,
+                    model: model,
+                    onTap: () {
+                      context.read<AppointmentsBloc>().add(
+                            AppointmentToggleServiceSelectionEvent(model.id),
+                          );
+                    },
                   );
                 },
               ),

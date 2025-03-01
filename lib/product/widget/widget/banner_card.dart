@@ -26,7 +26,7 @@ class BannerCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: BaseUtility.vertical(
-        BaseUtility.paddingNormalValue,
+        BaseUtility.paddingSmallValue,
       ),
       child: SizedBox(
         width: dynamicViewExtensions.maxWidth(context),
