@@ -190,9 +190,11 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
         EndPoints.favoriteToggleEndPoint,
       ),
       headers: ApiService.headersToken(event.token),
-      body: jsonEncode({
-        'salonId': event.salonId,
-      }),
+      body: jsonEncode(
+        ApiService.toFavoriteToggleBody(
+          event.salonId,
+        ),
+      ),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {

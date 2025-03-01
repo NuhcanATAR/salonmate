@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
 import 'package:salonmate/lang/app_localizations.dart';
-import 'package:salonmate/product/core/base/helper/appointments_control.dart';
 import 'package:salonmate/product/core/base/helper/shared_keys.dart';
 import 'package:salonmate/product/core/base/helper/shared_service.dart';
 import 'package:salonmate/product/core/service/api/api.dart';
@@ -18,8 +17,6 @@ import 'package:salonmate/product/model/salon_detail_model/salon_detail_model.da
 import 'package:salonmate/product/model/stylist_add_service_model/stylist_add_service_model.dart';
 import 'package:salonmate/product/model/stylist_model/stylist_model.dart';
 import 'package:salonmate/product/provider/language_provider.dart';
-
-import '../../../product/core/base/helper/payment_type_control.dart';
 
 class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
   AppointmentsBloc() : super(AppointmentInitialState()) {
@@ -102,10 +99,10 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
 
     final response = await http.get(
       EndPoints.uriParse(EndPoints.appointmentsDateEndPoint),
-      headers: {
-        'Authorization': 'Bearer ${event.token}',
-        'stylistId': event.stylistId.toString(),
-      },
+      headers: ApiService.headerAppointmentDateToken(
+        event.token,
+        event.stylistId,
+      ),
     );
 
     if (response.statusCode == 200) {
@@ -284,17 +281,18 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
       headers: ApiService.headersToken(
         event.token,
       ),
-      body: jsonEncode({
-        "salonsId": event.salonId,
-        "servicesId": event.serviceId,
-        "stylistId": event.stylistId,
-        "appointmentDate": event.appointmentDate,
-        "servicePrice": event.servicePrice,
-        "totalPrice": event.totalPrice,
-        "paymentType":
-            event.paymentType == PaymentType.payOnline ? true : false,
-        "addServices": event.addServices,
-      }),
+      body: jsonEncode(
+        ApiService.toAppointmentCreateBody(
+          event.salonId,
+          event.serviceId,
+          event.stylistId,
+          event.appointmentDate,
+          event.servicePrice,
+          event.totalPrice,
+          event.paymentType,
+          event.addServices,
+        ),
+      ),
     );
 
     if (response.statusCode == 201) {
@@ -411,14 +409,12 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
       headers: ApiService.headersToken(
         event.token,
       ),
-      body: jsonEncode({
-        'appointmentId': event.appointmentId,
-        'status': event.status == AppointmentsStatus.cancelledAppointment
-            ? 4
-            : event.status == AppointmentsStatus.pendginAppointmentConfirmed
-                ? 1
-                : 5,
-      }),
+      body: jsonEncode(
+        ApiService.toAppointmentUpdateBody(
+          event.appointmentId,
+          event.status,
+        ),
+      ),
     );
 
     if (response.statusCode == 200) {
@@ -449,12 +445,14 @@ class AppointmentsBloc extends Bloc<AppointmentEvent, AppointmentState> {
     final response = await http.post(
       EndPoints.uriParse(EndPoints.evaluationCreateEndPoint),
       headers: ApiService.headersToken(event.token),
-      body: jsonEncode({
-        'appointmentId': event.appointmentId,
-        'salonId': event.salonId,
-        'points': event.point,
-        'description': event.description,
-      }),
+      body: jsonEncode(
+        ApiService.toEvaluationCreateBody(
+          event.appointmentId,
+          event.salonId,
+          event.point,
+          event.description,
+        ),
+      ),
     );
 
     if (response.statusCode == 201) {

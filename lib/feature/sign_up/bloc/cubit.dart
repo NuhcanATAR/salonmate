@@ -24,9 +24,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     final response = await http.post(
       Uri.parse(EndPoints.signUpSendCodeEndPoint),
       headers: ApiService.headers,
-      body: json.encode({
-        "phone": event.phoneNumber,
-      }),
+      body: json.encode(
+        ApiService.toSignUpSendCodeBody(
+          event.phoneNumber,
+        ),
+      ),
     );
 
     // final responseData = json.decode(response.body);
@@ -74,10 +76,12 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     final response = await http.post(
       Uri.parse(EndPoints.signUpVerificationCodeEndPoint),
       headers: ApiService.headers,
-      body: json.encode({
-        "phone": event.phoneNumber,
-        "resetCode": event.verificationCode,
-      }),
+      body: json.encode(
+        ApiService.toSignUpVerificationCodeBody(
+          event.phoneNumber,
+          event.verificationCode,
+        ),
+      ),
     );
     // final responseData = json.decode(response.body);
     // final String error =
@@ -123,16 +127,17 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     final response = await http.post(
       Uri.parse(EndPoints.signUpEndPoint),
       headers: ApiService.headers,
-      body: json.encode({
-        "email": event.email,
-        "password": event.password,
-        "full_name": event.fullName,
-        "phone": event.phoneNumber,
-        "city": event.city,
-        "district": event.district,
-        "address": '',
-        "username": event.userName,
-      }),
+      body: json.encode(
+        ApiService.toSignUpBody(
+          event.email,
+          event.password,
+          event.fullName,
+          event.phoneNumber,
+          event.city,
+          event.district,
+          event.userName,
+        ),
+      ),
     );
     // final responseData = json.decode(response.body);
     // final String error =

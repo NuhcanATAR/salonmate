@@ -24,9 +24,11 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     final response = await http.post(
       Uri.parse(EndPoints.phoneNumberSendCodeEndPoint),
       headers: ApiService.headers,
-      body: json.encode({
-        "phone": event.phoneNumber,
-      }),
+      body: json.encode(
+        ApiService.toPasswordSendCodeBody(
+          event.phoneNumber,
+        ),
+      ),
     );
     // final responseData = json.decode(response.body);
     // final String error =
@@ -74,10 +76,12 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     final response = await http.post(
       Uri.parse(EndPoints.verifyCodeEndPoint),
       headers: ApiService.headers,
-      body: json.encode({
-        'phone': event.phoneNumber,
-        'resetCode': event.verificationCode,
-      }),
+      body: json.encode(
+        ApiService.toPasswordVerificationCodeBody(
+          event.phoneNumber,
+          event.verificationCode,
+        ),
+      ),
     );
     final responseData = json.decode(response.body);
     // final String error =
@@ -132,10 +136,12 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     final response = await http.post(
       Uri.parse(EndPoints.resetPasswordEndPoint),
       headers: ApiService.headers,
-      body: json.encode({
-        'userId': event.userId,
-        'newPassword': event.newPassword,
-      }),
+      body: json.encode(
+        ApiService.toChangePasswordBody(
+          event.userId,
+          event.newPassword,
+        ),
+      ),
     );
     // final responseData = json.decode(response.body);
     // final String error =

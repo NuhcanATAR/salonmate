@@ -77,11 +77,13 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       final response = await http.put(
         EndPoints.uriParse(EndPoints.accountInformationUpdateEndPoint),
         headers: ApiService.headersToken(event.token),
-        body: json.encode({
-          "full_name": event.fullName,
-          "phone": event.phoneNumber,
-          "address": event.address,
-        }),
+        body: json.encode(
+          ApiService.toAccountUpdateBody(
+            event.fullName,
+            event.phoneNumber,
+            event.address,
+          ),
+        ),
       );
 
       if (response.statusCode == 200) {
@@ -118,10 +120,12 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       final response = await http.put(
         EndPoints.uriParse(EndPoints.accountCityDistrictUpdateEndpoint),
         headers: ApiService.headersToken(event.token),
-        body: json.encode({
-          "city": event.city,
-          "district": event.district,
-        }),
+        body: json.encode(
+          ApiService.toAccountCityDistrictUpdateBody(
+            event.city,
+            event.district,
+          ),
+        ),
       );
 
       if (response.statusCode == 200) {
