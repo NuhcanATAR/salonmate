@@ -18,6 +18,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<SignInFuncEvent>(signIn);
   }
 
+  // sign in
   Future<void> signIn(
     SignInFuncEvent event,
     Emitter<SignInState> emit,
@@ -26,10 +27,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       final response = await http.post(
         EndPoints.uriParse(EndPoints.signInEndPoint),
         headers: ApiService.headers,
-        body: json.encode({
-          'username': event.username,
-          'password': event.password,
-        }),
+        body: json.encode(
+          ApiService.toSignInBody(
+            event.password,
+            event.password,
+          ),
+        ),
       );
 
       if (response.statusCode == 200) {
@@ -45,9 +48,11 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             EndPoints.accountPlayerIdUpdateEndPoint,
           ),
           headers: ApiService.headersToken(token),
-          body: json.encode({
-            'playerId': oneSignalIdValue,
-          }),
+          body: json.encode(
+            ApiService.toSignInPlayerIdBody(
+              oneSignalIdValue,
+            ),
+          ),
         );
 
         if (responseAccountUpdate.statusCode == 200) {

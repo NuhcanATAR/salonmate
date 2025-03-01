@@ -139,7 +139,7 @@ class _AppointmentsReceiptViewState extends AppointmentsReceiptViewModel {
         userProvider: userProvider,
         getMonthName: getMonthName,
         selectDate: widget.selectDate,
-        selectTime: widget.selectDate,
+        selectTime: widget.selectTime,
         selectStylistModel: widget.selectStylistModel,
       );
 

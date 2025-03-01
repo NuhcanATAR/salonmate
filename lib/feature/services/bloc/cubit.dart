@@ -14,6 +14,7 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
     on<ServicesLoadedEvent>(_onServices);
   }
 
+  // services fetch
   Future<void> _onServices(
     ServicesLoadedEvent event,
     Emitter<ServicesState> emit,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
@@ -66,7 +65,7 @@ class _LocationMenuWidgetState extends BaseState<LocationMenuWidget> {
         cityDistricts = allCityDistrictsList;
       });
     } catch (e) {
-      Logger().e('Error: $e');
+      loggerPrint.printErrorLog('Error: $e');
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
 import 'package:salonmate/product/model/salon_services_model/salon_services_model.dart';
 import 'package:salonmate/product/model/stylist_add_service_model/stylist_add_service_model.dart';
@@ -107,9 +108,10 @@ class AppointmnetReceiptPricesListCardWidget extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   // title
-                  const Expanded(
+                  Expanded(
                     child: BodyMediumBlackBoldText(
-                      text: 'TOTAL',
+                      text: AppLocalizations.of(context)!
+                          .appointment_receipt_total,
                       textAlign: TextAlign.left,
                     ),
                   ),

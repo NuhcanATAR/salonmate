@@ -22,6 +22,7 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
     on<FavoriteToggleEvent>(_onToggleFavorite);
   }
 
+  // search salons
   void _onSearchSalons(
     SearchSalonsEvent event,
     Emitter<SalonsState> emit,
@@ -39,6 +40,7 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
     }
   }
 
+  // salons fetch
   Future<void> _onLoadSalons(
     SalonsLoadEvent event,
     Emitter<SalonsState> emit,
@@ -93,6 +95,7 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
     }
   }
 
+  // salon detail
   Future<void> _onSalonDetail(
     SalonDetailLoadEvent event,
     Emitter<SalonsState> emit,
@@ -181,6 +184,7 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
     }
   }
 
+  // toggle favorite
   Future<void> _onToggleFavorite(
     FavoriteToggleEvent event,
     Emitter<SalonsState> emit,
@@ -190,9 +194,11 @@ class SalonsBloc extends Bloc<SalonsEvent, SalonsState> {
         EndPoints.favoriteToggleEndPoint,
       ),
       headers: ApiService.headersToken(event.token),
-      body: jsonEncode({
-        'salonId': event.salonId,
-      }),
+      body: jsonEncode(
+        ApiService.toFavoriteToggleBody(
+          event.salonId,
+        ),
+      ),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {

@@ -12,6 +12,7 @@ import 'package:salonmate/feature/services/services_view.dart';
 import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
+import 'package:salonmate/product/constants/image.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
 import 'package:salonmate/product/model/category_model/category_model.dart';
 import 'package:salonmate/product/model/salon_model/salon_model.dart';
@@ -22,6 +23,7 @@ import 'package:salonmate/product/widget/text_widget/title_large.dart';
 import 'package:salonmate/product/widget/text_widget/title_medium.dart';
 import 'package:salonmate/product/widget/widget/banner_card.dart';
 import 'package:salonmate/product/widget/widget/category_card.dart';
+import 'package:salonmate/product/widget/widget/response_card.dart';
 import 'package:salonmate/product/widget/widget/salon_card.dart';
 
 class HomeView extends StatefulWidget {
@@ -134,8 +136,17 @@ class _HomeViewState extends HomeViewModel {
               ),
             );
           } else if (state is HomeError) {
-            return Center(
-              child: Text(state.errorMessage),
+            return CustomResponseWidget(
+              img: AppImages.notfound.toSvgImg(
+                null,
+                dynamicViewExtensions.maxWidth(context),
+                dynamicViewExtensions.dynamicHeight(
+                  context,
+                  0.2,
+                ),
+              ),
+              title: 'Hata Oluştu!',
+              subTitle: state.errorMessage,
             );
           }
 
@@ -207,7 +218,7 @@ class _HomeViewState extends HomeViewModel {
           ? const SizedBox()
           : Padding(
               padding: BaseUtility.vertical(
-                BaseUtility.paddingMediumValue,
+                BaseUtility.paddingSmallValue,
               ),
               child: Column(
                 children: <Widget>[

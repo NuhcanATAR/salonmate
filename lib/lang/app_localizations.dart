@@ -2118,6 +2118,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hair Expert'**
   String get stylist_card_expert_category;
+
+  /// No description provided for @salon_close_title.
+  ///
+  /// In en, this message translates to:
+  /// **'The salon is not serving at the moment.'**
+  String get salon_close_title;
+
+  /// No description provided for @salon_close_dialog_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Salon Closed'**
+  String get salon_close_dialog_title;
+
+  /// No description provided for @salon_close_dialog_sub_title.
+  ///
+  /// In en, this message translates to:
+  /// **'The salon is not serving yet. Please check other salons.'**
+  String get salon_close_dialog_sub_title;
+
+  /// No description provided for @connection_error.
+  ///
+  /// In en, this message translates to:
+  /// **'No Internet Connection!'**
+  String get connection_error;
+
+  /// No description provided for @connection_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Internet Connection Available'**
+  String get connection_success;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

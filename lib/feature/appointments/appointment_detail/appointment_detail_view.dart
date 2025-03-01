@@ -228,7 +228,7 @@ class _AppointmentDetailViewState extends AppointmentDetailViewModel {
                   ),
                   child: BodyMediumBlackBoldText(
                     text:
-                        '${AppLocalizations.of(context)!.appointment_detail_payment_type}:  ${widget.appointmentModel.details.paymentType == PaymentTypeControl.payOnline.paymentTypeValue ? PaymentTypeControl.payOnline.paymentTypeLabel : PaymentTypeControl.payAtSalon.paymentTypeLabel}',
+                        '${AppLocalizations.of(context)!.appointment_detail_payment_type}:  ${widget.appointmentModel.details.paymentType == PaymentTypeControl.payOnline.paymentTypeValue ? PaymentTypeControl.payOnline.paymentTypeLabel(context) : PaymentTypeControl.payAtSalon.paymentTypeLabel(context)}',
                     textAlign: TextAlign.left,
                   ),
                 ),

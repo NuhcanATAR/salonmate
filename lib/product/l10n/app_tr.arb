@@ -378,7 +378,7 @@
   
   "january": "Ocak",
   "february": "Şubat",
-  "mart": "Mart",
+  "march": "Mart",
   "april": "Nisan",
   "may": "Mayıs",
   "june": "Haziran",
@@ -411,5 +411,12 @@
   "appointment_card_cancel_button": "İptal Et",
   "appointment_card_accept_button": "Kabul Et",
 
-  "stylist_card_expert_category": "Saç Uzmanı"  
+  "stylist_card_expert_category": "Saç Uzmanı",
+
+  "salon_close_title": "Salon şu an hizmet vermiyor.",
+  "salon_close_dialog_title": "Salon Kapalı",  
+  "salon_close_dialog_sub_title": "Salon Henüz Hizmet Vermiyor, lütfen başka salonlara bakınız.",
+  
+  "connection_error": "İnternet Bağlantınız Yok!",
+  "connection_success": "İnternet Bağlantınız Var"
 }

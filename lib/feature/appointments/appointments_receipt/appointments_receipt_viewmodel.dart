@@ -248,7 +248,7 @@ abstract class AppointmentsReceiptViewModel
                     fit: pw.FlexFit.tight,
                     flex: 4,
                     child: pw.Text(
-                      '${widget.selectTime.hour}:${widget.selectTime.minute}',
+                      '${widget.selectTime.hour.toString().padLeft(2, '0')}:${widget.selectTime.minute.toString().padLeft(2, '0')}',
                       textAlign: pw.TextAlign.right,
                       style: const pw.TextStyle(
                         fontSize: 14,

@@ -15,6 +15,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
     on<FavoriteToggleEvent>(_onToggleFavorite);
   }
 
+  // favorite salons
   Future<void> _onFavoriteSalons(
     FavoriteSalonsEvent event,
     Emitter<FavoriteState> emit,
@@ -61,6 +62,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
     }
   }
 
+  // toggle favorite salon
   Future<void> _onToggleFavorite(
     FavoriteToggleEvent event,
     Emitter<FavoriteState> emit,
@@ -70,9 +72,11 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
         EndPoints.favoriteToggleEndPoint,
       ),
       headers: ApiService.headersToken(event.token),
-      body: jsonEncode({
-        'salonId': event.salonId,
-      }),
+      body: jsonEncode(
+        ApiService.toFavoriteToggleBody(
+          event.salonId,
+        ),
+      ),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {

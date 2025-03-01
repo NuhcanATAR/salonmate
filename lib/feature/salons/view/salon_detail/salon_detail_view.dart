@@ -247,8 +247,9 @@ class _SalonDetailViewState extends SalonDetailViewModel {
                         BaseUtility.paddingMediumValue,
                       ),
                       child: BodyMediumBlackText(
-                        text:
-                            '${model.openTime.hour}:${model.openTime.minute} - ${model.closeTime.hour}:${model.closeTime.minute}',
+                        text: model.isOpen == true
+                            ? 'Salon şu an hizmet vermiyor.'
+                            : '${model.openTime.hour}:${model.openTime.minute} - ${model.closeTime.hour}:${model.closeTime.minute}',
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -326,13 +327,17 @@ class _SalonDetailViewState extends SalonDetailViewModel {
                   dynamicViewExtensions: dynamicViewExtensions,
                   serviceModel: model,
                   serviceAddOnTap: () {
-                    CodeNoahNavigatorRouter.push(
-                      context,
-                      StylistSelectView(
-                        salonId: salonModel.salonId,
-                        serviceModel: model,
-                      ),
-                    );
+                    if (salonModel.isOpen == false) {
+                      CodeNoahNavigatorRouter.push(
+                        context,
+                        StylistSelectView(
+                          salonId: salonModel.salonId,
+                          serviceModel: model,
+                        ),
+                      );
+                    } else {
+                      isOpenDialog();
+                    }
                   },
                 );
               },

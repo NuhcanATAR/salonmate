@@ -202,8 +202,8 @@ class CodeNoahDialogs {
                 ? const SizedBox()
                 : icon.toSvgImg(
                     color,
-                    BaseUtility.iconLargeSize,
-                    BaseUtility.iconLargeSize,
+                    BaseUtility.iconNormalSize,
+                    BaseUtility.iconNormalSize,
                   ),
         content: SingleChildScrollView(
           child: Column(

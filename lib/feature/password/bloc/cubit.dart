@@ -15,6 +15,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     on<PasswordChangePasswordEvent>(changePassword);
   }
 
+  // phone number send code
   Future<void> sendCode(
     PasswordSendCodeEvent event,
     Emitter<PasswordState> emit,
@@ -24,9 +25,11 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     final response = await http.post(
       Uri.parse(EndPoints.phoneNumberSendCodeEndPoint),
       headers: ApiService.headers,
-      body: json.encode({
-        "phone": event.phoneNumber,
-      }),
+      body: json.encode(
+        ApiService.toPasswordSendCodeBody(
+          event.phoneNumber,
+        ),
+      ),
     );
     // final responseData = json.decode(response.body);
     // final String error =
@@ -65,6 +68,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     }
   }
 
+  // code verification
   Future<void> verificationCode(
     PasswordVerificationCodeEvent event,
     Emitter<PasswordState> emit,
@@ -74,10 +78,12 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     final response = await http.post(
       Uri.parse(EndPoints.verifyCodeEndPoint),
       headers: ApiService.headers,
-      body: json.encode({
-        'phone': event.phoneNumber,
-        'resetCode': event.verificationCode,
-      }),
+      body: json.encode(
+        ApiService.toPasswordVerificationCodeBody(
+          event.phoneNumber,
+          event.verificationCode,
+        ),
+      ),
     );
     final responseData = json.decode(response.body);
     // final String error =
@@ -123,6 +129,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     }
   }
 
+  // change password
   Future<void> changePassword(
     PasswordChangePasswordEvent event,
     Emitter<PasswordState> emit,
@@ -132,10 +139,12 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     final response = await http.post(
       Uri.parse(EndPoints.resetPasswordEndPoint),
       headers: ApiService.headers,
-      body: json.encode({
-        'userId': event.userId,
-        'newPassword': event.newPassword,
-      }),
+      body: json.encode(
+        ApiService.toChangePasswordBody(
+          event.userId,
+          event.newPassword,
+        ),
+      ),
     );
     // final responseData = json.decode(response.body);
     // final String error =

@@ -37,6 +37,7 @@ class MapLocationBloc extends Bloc<MapLocationEvent, MapLocationState> {
     on<MapLocationGetSalonsEvent>(_onGetSalons);
   }
 
+  // user get city district information
   Future<void> _onGetCityDistrict(
     MapLocationGetCityDistrictEvent event,
     Emitter<MapLocationState> emit,
@@ -72,6 +73,7 @@ class MapLocationBloc extends Bloc<MapLocationEvent, MapLocationState> {
     }
   }
 
+  // user location
   Future<void> _onGetMyLocation(
     MapLocationGetMyLocationEvent event,
     Emitter<MapLocationState> emit,
@@ -150,6 +152,7 @@ class MapLocationBloc extends Bloc<MapLocationEvent, MapLocationState> {
     emit(loadedState.copyWith(myLocation: newLocation));
   }
 
+  // get salons information
   Future<void> _onGetSalons(
     MapLocationGetSalonsEvent event,
     Emitter<MapLocationState> emit,

@@ -4,6 +4,7 @@ import 'package:salonmate/feature/appointments/appointments_receipt/appointments
 import 'package:salonmate/feature/appointments/bloc/cubit.dart';
 import 'package:salonmate/feature/appointments/bloc/event.dart';
 import 'package:salonmate/feature/appointments/bloc/state.dart';
+import 'package:salonmate/feature/bottom_navigator/bottom_navigator_view.dart';
 import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/constants/image.dart';
@@ -394,13 +395,13 @@ mixin AppointmentMixin {
         Navigator.pop(context);
         Navigator.pop(context);
         Navigator.pop(context);
-        appointmentsBloc.add(
-          AppointmentsFetchEvent(
-            isRefresh: true,
-            page: 1,
-            limit: 10,
-            context: context,
-          ),
+        CodeNoahNavigatorRouter.push(
+          context,
+          const BottomNavigatorView(),
+        );
+        CodeNoahDialogs(context).showFlush(
+          type: SnackType.success,
+          message: (state as AppointmentEvaluationSuccessState).message,
         );
         break;
       case AppointmentEvaluationErrorState:

@@ -56,7 +56,18 @@ class _AppointmentsViewState extends AppointmentsViewModel {
             if (state is AppointmentsLoadingState) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is AppointmentsErrorState) {
-              return Center(child: Text(state.message));
+              return CustomResponseWidget(
+                img: AppImages.notfound.toSvgImg(
+                  null,
+                  dynamicViewExtensions.maxWidth(context),
+                  dynamicViewExtensions.dynamicHeight(
+                    context,
+                    0.2,
+                  ),
+                ),
+                title: 'Hata Oluştu!',
+                subTitle: state.message,
+              );
             } else if (state is AppointmentsLoadedState) {
               final allAppointments = state.appointments;
 

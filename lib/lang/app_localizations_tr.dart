@@ -329,16 +329,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appointment_receipt_information_stylist => 'Stilist';
 
   @override
-  String get appointment_receipt_title => 'Randevu Özeti Fişi';
+  String get appointment_receipt_title => 'Randevu Özeti Fisi';
 
   @override
-  String get appointment_receipt_sub_title => 'SalonMate Uygulaması';
+  String get appointment_receipt_sub_title => 'SalonMate Uygulamasi';
 
   @override
   String get appointment_receipt_salon => 'Salon';
 
   @override
-  String get appointment_receipt_customer_name => 'Müşteri Adı';
+  String get appointment_receipt_customer_name => 'Müsteri Adi';
 
   @override
   String get appointment_receipt_phone => 'Telefon';
@@ -722,7 +722,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get salons_salon_services_error =>
-      'Hizmetler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
+      'Servisler Yüklenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get salons_second_error =>
@@ -1020,7 +1020,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get february => 'Şubat';
 
   @override
-  String get march => 'March';
+  String get march => 'Mart';
 
   @override
   String get april => 'Nisan';
@@ -1109,4 +1109,20 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get stylist_card_expert_category => 'Saç Uzmanı';
+
+  @override
+  String get salon_close_title => 'Salon şu an hizmet vermiyor.';
+
+  @override
+  String get salon_close_dialog_title => 'Salon Kapalı';
+
+  @override
+  String get salon_close_dialog_sub_title =>
+      'Salon Henüz Hizmet Vermiyor, lütfen başka salonlara bakınız.';
+
+  @override
+  String get connection_error => 'İnternet Bağlantınız Yok!';
+
+  @override
+  String get connection_success => 'İnternet Bağlantınız Var';
 }
