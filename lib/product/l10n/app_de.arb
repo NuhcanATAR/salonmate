@@ -1,4 +1,4 @@
-    {
+{
     "account_token_not_avaible": "Token Nicht Verfügbar",
     "account_update_success": "Benutzerinformationen Erfolgreich Aktualisiert.",
     "account_update_error": "Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.",
@@ -302,8 +302,8 @@
     "sign_apple_auth_button": "Mit Apple fortfahren",
     "sign_coming_very_soon": "Kommt sehr bald!",
 
-    
-    
+
+
     "sign_in_appbar": "Anmelden",
     "sign_in_title": "Willkommen zurück bei SalonMake! 👋",
     "sign_in_sub_title": "Melden Sie sich in Ihrem Konto an und erhalten Sie Dienstleistungen von Friseursalons in Ihrer Nähe.",
@@ -319,8 +319,8 @@
     "sign_in_error": "Ein Fehler ist bei der Anmeldung aufgetreten. Bitte versuchen Sie es später erneut.",
     "sign_in_loading": "Lädt...",
 
-    
-    
+
+
     "sign_up_appbar": "Registrieren",
     "sign_up_title": "Erstellen Sie Ihr SalonMake-Konto.✂️",
     "sign_up_sub_title": "Erstellen Sie Ihr Konto und beginnen Sie, Dienstleistungen zu erhalten.",
@@ -360,8 +360,8 @@
     "sign_up_verification_code_verification_code": "Bestätigungscode",
     "sign_up_verification_code_button": "Verifizieren",
 
-    
-    
+
+
     "monday": "Montag",
     "tuesday": "Dienstag",
     "wednesday": "Mittwoch",
@@ -416,6 +416,9 @@
     "stylist_card_expert_category": "Haar-Experte",
 
     "salon_close_title": "Der Salon bietet derzeit keinen Service an.",
-  "salon_close_dialog_title": "Salon Geschlossen",
-  "salon_close_dialog_sub_title": "Der Salon bietet noch keinen Service an. Bitte schauen Sie sich andere Salons an."
-    }
+    "salon_close_dialog_title": "Salon Geschlossen",
+    "salon_close_dialog_sub_title": "Der Salon bietet noch keinen Service an. Bitte schauen Sie sich andere Salons an.",
+
+    "connection_error": "Keine Internetverbindung!",
+    "connection_success": "Internetverbindung verfügbar"
+}

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:salonmate/lang/app_localizations.dart';
+
 import 'package:salonmate/product/core/base/helper/logger_package.dart';
 import 'package:salonmate/product/core/base/helper/shared_keys.dart';
 import 'package:salonmate/product/core/base/helper/shared_service.dart';
+import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
 
 abstract class BaseState<T extends StatefulWidget> extends State<T> {
@@ -14,6 +17,12 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
 
   // shaed preference service
   final prefService = PrefService();
+
+  @override
+  void initState() {
+    super.initState();
+    internetConnectionChecker();
+  }
 
   // auth token
   Future<String> getAuthToken() async {
@@ -51,5 +60,26 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
     };
 
     return months[date.month] ?? 'N/A';
+  }
+
+  void internetConnectionChecker() {
+    InternetConnection().onStatusChange.listen((InternetStatus status) {
+      switch (status) {
+        case InternetStatus.connected:
+          if (!mounted) return;
+          CodeNoahDialogs(context).showFlush(
+            type: SnackType.success,
+            message: AppLocalizations.of(context)!.connection_error,
+          );
+          break;
+        case InternetStatus.disconnected:
+          if (!mounted) return;
+          CodeNoahDialogs(context).showFlush(
+            type: SnackType.error,
+            message: AppLocalizations.of(context)!.connection_success,
+          );
+          break;
+      }
+    });
   }
 }

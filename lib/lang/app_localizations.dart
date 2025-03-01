@@ -2136,6 +2136,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The salon is not serving yet. Please check other salons.'**
   String get salon_close_dialog_sub_title;
+
+  /// No description provided for @connection_error.
+  ///
+  /// In en, this message translates to:
+  /// **'No Internet Connection!'**
+  String get connection_error;
+
+  /// No description provided for @connection_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Internet Connection Available'**
+  String get connection_success;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

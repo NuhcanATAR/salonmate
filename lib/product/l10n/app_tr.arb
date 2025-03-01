@@ -415,5 +415,8 @@
 
   "salon_close_title": "Salon şu an hizmet vermiyor.",
   "salon_close_dialog_title": "Salon Kapalı",  
-  "salon_close_dialog_sub_title": "Salon Henüz Hizmet Vermiyor, lütfen başka salonlara bakınız."
+  "salon_close_dialog_sub_title": "Salon Henüz Hizmet Vermiyor, lütfen başka salonlara bakınız.",
+  
+  "connection_error": "İnternet Bağlantınız Yok!",
+  "connection_success": "İnternet Bağlantınız Var"
 }

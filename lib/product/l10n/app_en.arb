@@ -418,7 +418,9 @@
 
   "salon_close_title": "The salon is not serving at the moment.",
   "salon_close_dialog_title": "Salon Closed",
-  "salon_close_dialog_sub_title": "The salon is not serving yet. Please check other salons."
+  "salon_close_dialog_sub_title": "The salon is not serving yet. Please check other salons.",
 
+  "connection_error": "No Internet Connection!",
+  "connection_success": "Internet Connection Available"
 
 }

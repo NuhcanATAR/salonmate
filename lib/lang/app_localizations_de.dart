@@ -1025,4 +1025,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get salon_close_dialog_sub_title => 'Der Salon bietet noch keinen Service an. Bitte schauen Sie sich andere Salons an.';
+
+  @override
+  String get connection_error => 'Keine Internetverbindung!';
+
+  @override
+  String get connection_success => 'Internetverbindung verfügbar';
 }

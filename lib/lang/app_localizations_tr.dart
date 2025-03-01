@@ -1025,4 +1025,10 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get salon_close_dialog_sub_title => 'Salon Henüz Hizmet Vermiyor, lütfen başka salonlara bakınız.';
+
+  @override
+  String get connection_error => 'İnternet Bağlantınız Yok!';
+
+  @override
+  String get connection_success => 'İnternet Bağlantınız Var';
 }
