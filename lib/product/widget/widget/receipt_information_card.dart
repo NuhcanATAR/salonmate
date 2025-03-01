@@ -191,7 +191,8 @@ class AppointmentReceiptInformationCardWidget extends StatelessWidget {
                     flex: 1,
                     child: BodyMediumBlackText(
                       text:
-                          '${selectTime.hour}:${selectTime.minute}'.toString(),
+                          '${selectTime.hour.toString().padLeft(2, '0')}:${selectTime.minute.toString().padLeft(2, '0')}'
+                              .toString(),
                       textAlign: TextAlign.right,
                     ),
                   ),

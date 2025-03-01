@@ -79,7 +79,7 @@ class AppointmentCardWidget extends StatelessWidget {
                   ),
                   child: BodyMediumBlackText(
                     text:
-                        '${getMonthName(appointment.appointmentsDate)} ${appointment.appointmentsDate.day}, ${appointment.appointmentsDate.year} - ${appointment.appointmentsDate.hour}:${appointment.appointmentsDate.minute}',
+                        '${getMonthName(appointment.appointmentsDate)} ${appointment.appointmentsDate.day}, ${appointment.appointmentsDate.year} - ${appointment.appointmentsDate.hour.toString().padLeft(2, '0')}:${appointment.appointmentsDate.minute.toString().padLeft(2, '0')}',
                     textAlign: TextAlign.left,
                   ),
                 ),

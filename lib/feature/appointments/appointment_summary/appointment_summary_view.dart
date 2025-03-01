@@ -262,7 +262,7 @@ class _AppointmentSummaryViewState extends AppointmentSummaryViewModel {
                       ),
                       child: BodyMediumBlackText(
                         text:
-                            '${getMonthName(widget.selectDate)}, ${getDayName(widget.selectDate)}, ${widget.selectTime.hour}:${widget.selectTime.minute}',
+                            '${getMonthName(widget.selectDate)}, ${getDayName(widget.selectDate)}, ${widget.selectTime.hour.toString().padLeft(2, '0')}:${widget.selectTime.minute.toString().padLeft(2, '0')}',
                         textAlign: TextAlign.left,
                       ),
                     ),
