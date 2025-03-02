@@ -519,7 +519,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get favorite_toggle_error => 'Favorilere Eklerken bir hata oluştu';
 
   @override
-  String get home_welcome_appbar => 'Hoşgeldiniz';
+  String get home_welcome_appbar => 'Hoş geldiniz';
 
   @override
   String get home_unknown => 'Bilinmiyor';
@@ -593,11 +593,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get password_appbar => 'Yeni Şifre';
 
   @override
-  String get password_title => 'Doğrulama Kodunu Girin 🔒️';
+  String get password_title => 'Yeni Şifrenizi Oluşturun 🔒️';
 
   @override
-  String get password_sub_title =>
-      'Yeni şifrenize gelen doğrulama kodunu girin.';
+  String get password_sub_title => 'Yeni Şifrenizi oluşturabilirsiniz.';
 
   @override
   String get password_new_password => 'Yeni Şifre';
@@ -832,7 +831,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sign_in_appbar => 'Giriş Yap';
 
   @override
-  String get sign_in_title => 'SalonMake Tekrar Hoşgeldiniz.👋';
+  String get sign_in_title => 'SalonMake Tekrar Hoş geldiniz.👋';
 
   @override
   String get sign_in_sub_title =>

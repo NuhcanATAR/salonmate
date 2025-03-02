@@ -69,14 +69,14 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
           if (!mounted) return;
           CodeNoahDialogs(context).showFlush(
             type: SnackType.success,
-            message: AppLocalizations.of(context)!.connection_error,
+            message: AppLocalizations.of(context)!.connection_success,
           );
           break;
         case InternetStatus.disconnected:
           if (!mounted) return;
           CodeNoahDialogs(context).showFlush(
             type: SnackType.error,
-            message: AppLocalizations.of(context)!.connection_success,
+            message: AppLocalizations.of(context)!.connection_error,
           );
           break;
       }

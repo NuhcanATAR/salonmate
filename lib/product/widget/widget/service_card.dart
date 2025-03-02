@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/price_convert.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
@@ -95,14 +96,14 @@ class ServiceCardWidget extends StatelessWidget {
                                       BaseUtility.paddingSmallValue,
                                     ),
                                     child: BodyMediumBlackText(
-                                      text: '${serviceModel.duration} Mins',
+                                      text:
+                                          '${serviceModel.duration} ${AppLocalizations.of(context)!.appointment_summary_stylist_date_mins}',
                                       textAlign: TextAlign.left,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            const Spacer(),
                             const Spacer(),
                           ],
                         ),

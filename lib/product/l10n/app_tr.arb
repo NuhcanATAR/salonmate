@@ -180,7 +180,7 @@
   "favorite_second_error": "Bir hata oluştu!",
   "favorite_toggle_error": "Favorilere Eklerken bir hata oluştu",
 
-  "home_welcome_appbar": "Hoşgeldiniz",
+  "home_welcome_appbar": "Hoş geldiniz",
   "home_unknown": "Bilinmiyor",
   "home_search": "Salonları aramaya başlayın",
   "home_banner_card_title": "Sabah Özel!",
@@ -213,8 +213,8 @@
 
 
   "password_appbar": "Yeni Şifre",
-  "password_title": "Doğrulama Kodunu Girin 🔒️",
-  "password_sub_title": "Yeni şifrenize gelen doğrulama kodunu girin.",
+  "password_title": "Yeni Şifrenizi Oluşturun 🔒️",
+  "password_sub_title": "Yeni Şifrenizi oluşturabilirsiniz.",
   "password_new_password": "Yeni Şifre",
   "password_confirm_password": "Şifreyi Onayla",
   "password_save_button": "Şifre Kaydet",
@@ -303,7 +303,7 @@
   
   
   "sign_in_appbar": "Giriş Yap",
-  "sign_in_title": "SalonMake Tekrar Hoşgeldiniz.👋",
+  "sign_in_title": "SalonMake Tekrar Hoş geldiniz.👋",
   "sign_in_sub_title": "Hesabınıza giriş yapın ve size yakın kuaför salonlarından hizmet alın.",
   "sign_in_user_name": "Kullanıcı Adı",
   "sign_in_password": "Şifre",

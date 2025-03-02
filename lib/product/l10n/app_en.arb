@@ -213,8 +213,8 @@
   
   
   "password_appbar": "New Password",
-  "password_title": "Enter Verification Code 🔒️",
-  "password_sub_title": "Enter the verification code received on your new password.",
+  "password_title": "Create your new password 🔒️",
+  "password_sub_title": "You can create your new Password.",
   "password_new_password": "New Password",
   "password_confirm_password": "Confirm Password",
   "password_save_button": "Save Password",

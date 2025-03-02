@@ -350,7 +350,10 @@ mixin AppointmentMixin {
   void appointmentUpdateBlocListener(BuildContext context, state) {
     switch (state.runtimeType) {
       case AppointmentUpdateSuccesState:
-        Navigator.pop(context);
+        CodeNoahNavigatorRouter.pushAndRemoveUntil(
+          context,
+          const BottomNavigatorView(),
+        );
         appointmentsBloc.add(
           AppointmentsFetchEvent(
             isRefresh: true,

@@ -213,8 +213,8 @@
 
 
     "password_appbar": "Neues Passwort",
-    "password_title": "Bestätigungscode eingeben 🔒️",
-    "password_sub_title": "Geben Sie den erhaltenen Bestätigungscode für Ihr neues Passwort ein.",
+    "password_title": "Erstellen Sie Ihr neues Passwort 🔒️",
+    "password_sub_title": "Sie können Ihr neues Passwort erstellen.",
     "password_new_password": "Neues Passwort",
     "password_confirm_password": "Passwort bestätigen",
     "password_save_button": "Passwort speichern",

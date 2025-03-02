@@ -10,10 +10,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get account_token_not_avaible => 'Token Nicht Verfügbar';
 
   @override
-  String get account_update_success => 'Benutzerinformationen Erfolgreich Aktualisiert.';
+  String get account_update_success =>
+      'Benutzerinformationen Erfolgreich Aktualisiert.';
 
   @override
-  String get account_update_error => 'Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.';
+  String get account_update_error =>
+      'Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.';
 
   @override
   String get account_loading_text => 'Bitte Warten...';
@@ -31,10 +33,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get account_information_update_menu => 'Informationen Aktualisieren';
 
   @override
-  String get account_city_district_update_menu => 'Stadt- und Bezirksinformationen Aktualisieren';
+  String get account_city_district_update_menu =>
+      'Stadt- und Bezirksinformationen Aktualisieren';
 
   @override
-  String get account_menu_group_application_setting_title => 'Anwendungseinstellungen';
+  String get account_menu_group_application_setting_title =>
+      'Anwendungseinstellungen';
 
   @override
   String get account_language_menu => 'Sprachauswahl';
@@ -55,7 +59,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get account_exit_menu => 'Abmelden';
 
   @override
-  String get account_city_district_update_appbar => 'Stadt- und Bezirksinformationen Aktualisieren';
+  String get account_city_district_update_appbar =>
+      'Stadt- und Bezirksinformationen Aktualisieren';
 
   @override
   String get account_city_district_update_button => 'AKTUALISIEREN';
@@ -67,10 +72,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get account_district_menu => 'Bezirk';
 
   @override
-  String get account_select_city_district_error => 'Bitte wählen Sie eine andere Stadt und einen anderen Bezirk zur Aktualisierung.';
+  String get account_select_city_district_error =>
+      'Bitte wählen Sie eine andere Stadt und einen anderen Bezirk zur Aktualisierung.';
 
   @override
-  String get account_select_city_district_secondary_error => 'Bitte wählen Sie Ihre Stadt und Ihren Bezirk aus.';
+  String get account_select_city_district_secondary_error =>
+      'Bitte wählen Sie Ihre Stadt und Ihren Bezirk aus.';
 
   @override
   String get account_help_support_appbar => 'Hilfe und Unterstützung';
@@ -82,16 +89,19 @@ class AppLocalizationsDe extends AppLocalizations {
   String get account_help_support_question_one_category => 'Konto';
 
   @override
-  String get account_help_support_question_one_explanation => 'Wenn Sie Ihr Passwort vergessen haben, können Sie Ihr Konto verifizieren, indem Sie Ihre Telefonnummer im Abschnitt \'Passwort vergessen\' eingeben.';
+  String get account_help_support_question_one_explanation =>
+      'Wenn Sie Ihr Passwort vergessen haben, können Sie Ihr Konto verifizieren, indem Sie Ihre Telefonnummer im Abschnitt \'Passwort vergessen\' eingeben.';
 
   @override
-  String get account_help_support_question_second_title => 'Ich Möchte Mein Konto Schließen';
+  String get account_help_support_question_second_title =>
+      'Ich Möchte Mein Konto Schließen';
 
   @override
   String get account_help_support_question_second_category => 'Konto';
 
   @override
-  String get account_help_support_question_second_explanation => 'Wenn Sie Ihr Konto schließen möchten, können Sie uns über soziale Medien oder per E-Mail kontaktieren.';
+  String get account_help_support_question_second_explanation =>
+      'Wenn Sie Ihr Konto schließen möchten, können Sie uns über soziale Medien oder per E-Mail kontaktieren.';
 
   @override
   String get account_help_support_question_three_title => 'Terminvereinbarung';
@@ -100,7 +110,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get account_help_support_question_three_category => 'Termin';
 
   @override
-  String get account_help_support_question_three_explanation => 'Wenn Sie Ihren Termin nicht wahrnehmen, wird Ihre Zahlung innerhalb von 1 bis 2 Werktagen auf Ihr Konto zurückerstattet.';
+  String get account_help_support_question_three_explanation =>
+      'Wenn Sie Ihren Termin nicht wahrnehmen, wird Ihre Zahlung innerhalb von 1 bis 2 Werktagen auf Ihr Konto zurückerstattet.';
 
   @override
   String get account_information_update_appbar => 'Informationen Aktualisieren';
@@ -136,55 +147,70 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appointment_not_found_title => 'Keine Termine Gefunden';
 
   @override
-  String get appointment_not_found_sub_title => 'Sie haben noch keinen Termin erstellt. Sie können jetzt einen Termin erstellen, wenn Sie möchten.';
+  String get appointment_not_found_sub_title =>
+      'Sie haben noch keinen Termin erstellt. Sie können jetzt einen Termin erstellen, wenn Sie möchten.';
 
   @override
   String get appointment_token_not_avaible => 'Token Nicht Verfügbar';
 
   @override
-  String get appointment_stylist_error => 'Beim Laden der Stylisten ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.';
+  String get appointment_stylist_error =>
+      'Beim Laden der Stylisten ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.';
 
   @override
   String get appointment_date_error => 'Kein Termin Gefunden';
 
   @override
-  String get appointment_date_second_error => 'Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.';
+  String get appointment_date_second_error =>
+      'Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.';
 
   @override
-  String get appointment_summary_error => 'Beim Abrufen der Saloninformationen ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.';
+  String get appointment_summary_error =>
+      'Beim Abrufen der Saloninformationen ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.';
 
   @override
-  String get appointment_summary_second_error => 'Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.';
+  String get appointment_summary_second_error =>
+      'Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.';
 
   @override
-  String get appointment_summary_catch_error => 'Ein Unerwarteter Fehler Ist Aufgetreten';
+  String get appointment_summary_catch_error =>
+      'Ein Unerwarteter Fehler Ist Aufgetreten';
 
   @override
-  String get appointmnet_create_success => 'Ihr Termin wurde erfolgreich erstellt. Sie können Ihren Termin im Abschnitt \'Termine\' verfolgen.';
+  String get appointmnet_create_success =>
+      'Ihr Termin wurde erfolgreich erstellt. Sie können Ihren Termin im Abschnitt \'Termine\' verfolgen.';
 
   @override
-  String get appointment_create_error => 'Ihr Termin wurde bereits vergeben. Bitte wählen Sie ein anderes Datum und eine andere Uhrzeit.';
+  String get appointment_create_error =>
+      'Ihr Termin wurde bereits vergeben. Bitte wählen Sie ein anderes Datum und eine andere Uhrzeit.';
 
   @override
-  String get appointment_create_second_error => 'Ihr Termin konnte nicht erstellt werden, bitte versuchen Sie es später erneut.';
+  String get appointment_create_second_error =>
+      'Ihr Termin konnte nicht erstellt werden, bitte versuchen Sie es später erneut.';
 
   @override
-  String get appointment_error => 'Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.';
+  String get appointment_error =>
+      'Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.';
 
   @override
-  String get appointment_second_error => 'Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.';
+  String get appointment_second_error =>
+      'Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.';
 
   @override
-  String get appointment_update_success => 'Ihr Termin wurde erfolgreich aktualisiert.';
+  String get appointment_update_success =>
+      'Ihr Termin wurde erfolgreich aktualisiert.';
 
   @override
-  String get apppointment_update_error => 'Beim Senden Ihres Terminstatus ist ein Problem aufgetreten, bitte versuchen Sie es später erneut.';
+  String get apppointment_update_error =>
+      'Beim Senden Ihres Terminstatus ist ein Problem aufgetreten, bitte versuchen Sie es später erneut.';
 
   @override
-  String get appointment_evaluation_success => 'Ihre Bewertung wurde gesendet. Vielen Dank!';
+  String get appointment_evaluation_success =>
+      'Ihre Bewertung wurde gesendet. Vielen Dank!';
 
   @override
-  String get appointment_evaluation_error => 'Bei der Bewertung ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.';
+  String get appointment_evaluation_error =>
+      'Bei der Bewertung ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.';
 
   @override
   String get appointment_detail_appbar => 'Termin Details';
@@ -205,10 +231,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appointmnet_detail_token_not_avaible => 'Token Nicht Verfügbar';
 
   @override
-  String get appointment_detail_evaluation_dialog_title => 'Bewerten Sie Ihren Termin!';
+  String get appointment_detail_evaluation_dialog_title =>
+      'Bewerten Sie Ihren Termin!';
 
   @override
-  String get appointment_detail_evaluation_dialog_sub_title => 'Bewerten Sie Ihren Termin und teilen Sie Ihre Erfahrung.';
+  String get appointment_detail_evaluation_dialog_sub_title =>
+      'Bewerten Sie Ihren Termin und teilen Sie Ihre Erfahrung.';
 
   @override
   String get appointment_detail_evaluation_dialog_description => 'Beschreibung';
@@ -232,7 +260,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appointment_summary_error_title => 'Ein Fehler ist aufgetreten';
 
   @override
-  String get appointment_summary_add_services_title => 'Zusätzliche Dienstleistungen';
+  String get appointment_summary_add_services_title =>
+      'Zusätzliche Dienstleistungen';
 
   @override
   String get appointment_summary_date_title => 'Datum';
@@ -247,13 +276,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appointmnet_summary_payment_online_title => 'Online Bezahlen';
 
   @override
-  String get appointment_summary_payment_online_subtitle => 'Sichern Sie Ihre Buchung sofort';
+  String get appointment_summary_payment_online_subtitle =>
+      'Sichern Sie Ihre Buchung sofort';
 
   @override
   String get appointment_summary_payment_at_salon_title => 'Im Salon Bezahlen';
 
   @override
-  String get appointment_summary_payment_at_salon_sub_title => 'Bezahlung nach Ihrem Termin';
+  String get appointment_summary_payment_at_salon_sub_title =>
+      'Bezahlung nach Ihrem Termin';
 
   @override
   String get appointment_summary_pricing_details => 'Preisdetails';
@@ -271,10 +302,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appointment_receipt_appbar => 'Quittung';
 
   @override
-  String get appointment_receipt_success_title => 'Ihr Termin wurde erfolgreich erstellt!';
+  String get appointment_receipt_success_title =>
+      'Ihr Termin wurde erfolgreich erstellt!';
 
   @override
-  String get appointment_receipt_success_sub_title => 'Ihr Termin wurde erstellt. Sie können die Termindetails im Abschnitt \'Meine Termine\' einsehen.';
+  String get appointment_receipt_success_sub_title =>
+      'Ihr Termin wurde erstellt. Sie können die Termindetails im Abschnitt \'Meine Termine\' einsehen.';
 
   @override
   String get appointment_receipt_download_button => 'Quittung Herunterladen';
@@ -334,13 +367,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appointment_date_select_loading_sub_title => 'Bitte warten...';
 
   @override
-  String get appointment_date_select_token_not_avaible => 'Token Nicht Verfügbar';
+  String get appointment_date_select_token_not_avaible =>
+      'Token Nicht Verfügbar';
 
   @override
   String get appointment_date_select_error_title => 'Termine Nicht Gefunden!';
 
   @override
-  String get appointment_date_select_error_sub_title => 'Beim Laden der Termine ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get appointment_date_select_error_sub_title =>
+      'Beim Laden der Termine ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
   String get appointment_date_select_title => 'Datum Wählen';
@@ -352,7 +387,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appointmnet_date_select_confirm_button => 'Termin Bestätigen';
 
   @override
-  String get appointment_date_select_hour_select_error => 'Bitte wählen Sie eine Uhrzeit aus.';
+  String get appointment_date_select_hour_select_error =>
+      'Bitte wählen Sie eine Uhrzeit aus.';
 
   @override
   String get appointment_stylist_select_appbar => 'Wählen Sie Ihren Stylisten';
@@ -364,22 +400,27 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appointment_stylist_select_loading_sub_title => 'Bitte warten...';
 
   @override
-  String get appointment_stylist_select_error_title => 'Ein Fehler ist aufgetreten';
+  String get appointment_stylist_select_error_title =>
+      'Ein Fehler ist aufgetreten';
 
   @override
-  String get appointment_stylist_select_error_sub_title => 'Beim Laden der Stylisten ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get appointment_stylist_select_error_sub_title =>
+      'Beim Laden der Stylisten ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
-  String get appointment_stylist_select_not_found_title => 'Noch Keine Stylisten Geladen!';
+  String get appointment_stylist_select_not_found_title =>
+      'Noch Keine Stylisten Geladen!';
 
   @override
-  String get appointment_stylist_select_not_found_sub_title => 'Es wurden keine Stylisten im Salon gefunden. Bitte versuchen Sie es später erneut.';
+  String get appointment_stylist_select_not_found_sub_title =>
+      'Es wurden keine Stylisten im Salon gefunden. Bitte versuchen Sie es später erneut.';
 
   @override
   String get appointment_stylist_select_continue_button => 'Weiter';
 
   @override
-  String get appointment_stylist_select_error => 'Bitte wählen Sie einen Stylisten aus.';
+  String get appointment_stylist_select_error =>
+      'Bitte wählen Sie einen Stylisten aus.';
 
   @override
   String get appointment_stylist_token_not_avaible => 'Token Nicht Verfügbar';
@@ -388,10 +429,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appointment_mixin_exit_date_dialog_appbar => 'DATUM & UHRZEIT';
 
   @override
-  String get appointment_mixin_exit_date_dialog_title => 'Sind Sie sicher, dass Sie die Datumsauswahl verlassen möchten?';
+  String get appointment_mixin_exit_date_dialog_title =>
+      'Sind Sie sicher, dass Sie die Datumsauswahl verlassen möchten?';
 
   @override
-  String get appointment_mixin_exit_date_dialog_sub_title => 'Wenn Sie verlassen, müssen Sie erneut einen Stylisten auswählen!';
+  String get appointment_mixin_exit_date_dialog_sub_title =>
+      'Wenn Sie verlassen, müssen Sie erneut einen Stylisten auswählen!';
 
   @override
   String get appointment_mixin_exit_date_dialog_yes => 'JA';
@@ -403,10 +446,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appointment_mixin_exit_summary_dialog_appbar => 'TERMINÜBERSICHT';
 
   @override
-  String get appointment_mixin_exit_summary_dialog_title => 'Sind Sie sicher, dass Sie die Terminübersicht verlassen möchten?';
+  String get appointment_mixin_exit_summary_dialog_title =>
+      'Sind Sie sicher, dass Sie die Terminübersicht verlassen möchten?';
 
   @override
-  String get appointment_mixin_exit_summary_dialog_sub_title => 'Wenn Sie verlassen, müssen Sie erneut ein Datum auswählen!';
+  String get appointment_mixin_exit_summary_dialog_sub_title =>
+      'Wenn Sie verlassen, müssen Sie erneut ein Datum auswählen!';
 
   @override
   String get appointment_mixin_exit_summary_dialog_yes => 'JA';
@@ -424,16 +469,19 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appointment_mixin_loading_title => 'Bitte warten...';
 
   @override
-  String get appointment_mixin_evaluation_create_erorr => 'Bei der Bewertung ist ein Fehler aufgetreten!';
+  String get appointment_mixin_evaluation_create_erorr =>
+      'Bei der Bewertung ist ein Fehler aufgetreten!';
 
   @override
   String get appointment_mixin_evaluation_create_loading => 'Bitte warten...';
 
   @override
-  String get bottom_navigator_exit_dialog_title => 'Möchten Sie die App verlassen?';
+  String get bottom_navigator_exit_dialog_title =>
+      'Möchten Sie die App verlassen?';
 
   @override
-  String get bottom_navigator_exit_dialog_sub_title => 'Keine Sorge, Sie können sich automatisch erneut anmelden!';
+  String get bottom_navigator_exit_dialog_sub_title =>
+      'Keine Sorge, Sie können sich automatisch erneut anmelden!';
 
   @override
   String get bottom_navigator_exit_dialog_yes => 'Ja';
@@ -466,7 +514,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get favorite_second_error => 'Ein Fehler ist aufgetreten!';
 
   @override
-  String get favorite_toggle_error => 'Beim Hinzufügen zu den Favoriten ist ein Fehler aufgetreten';
+  String get favorite_toggle_error =>
+      'Beim Hinzufügen zu den Favoriten ist ein Fehler aufgetreten';
 
   @override
   String get home_welcome_appbar => 'Willkommen';
@@ -484,7 +533,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get home_banner_card_sub_title => '20% Rabatt';
 
   @override
-  String get home_banner_card_explanation => 'auf alle Haarschnitte zwischen 9-10 Uhr.';
+  String get home_banner_card_explanation =>
+      'auf alle Haarschnitte zwischen 9-10 Uhr.';
 
   @override
   String get home_banner_button => 'Jetzt buchen';
@@ -508,7 +558,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get home_salon_error => 'Salons nicht gefunden';
 
   @override
-  String get home_error => 'Beim Laden der Informationen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get home_error =>
+      'Beim Laden der Informationen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
   String get map_appbar => 'Karte';
@@ -520,13 +571,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get map_unknown_district => 'Unbekannter Bezirk';
 
   @override
-  String get map_location_permission_not_found_title => 'Standortgenehmigung nicht gefunden';
+  String get map_location_permission_not_found_title =>
+      'Standortgenehmigung nicht gefunden';
 
   @override
-  String get map_location_permission_not_found_sub_title => 'Um das beste Erlebnis mit Salon-Karten zu erhalten, gewähren Sie bitte den Standortzugriff.';
+  String get map_location_permission_not_found_sub_title =>
+      'Um das beste Erlebnis mit Salon-Karten zu erhalten, gewähren Sie bitte den Standortzugriff.';
 
   @override
-  String get map_location_permission_application_setting_button => 'APP-EINSTELLUNGEN';
+  String get map_location_permission_application_setting_button =>
+      'APP-EINSTELLUNGEN';
 
   @override
   String get location_permission_appbar => 'STANDORTGENEHMIGUNG';
@@ -538,10 +592,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get password_appbar => 'Neues Passwort';
 
   @override
-  String get password_title => 'Bestätigungscode eingeben 🔒️';
+  String get password_title => 'Erstellen Sie Ihr neues Passwort 🔒️';
 
   @override
-  String get password_sub_title => 'Geben Sie den erhaltenen Bestätigungscode für Ihr neues Passwort ein.';
+  String get password_sub_title => 'Sie können Ihr neues Passwort erstellen';
 
   @override
   String get password_new_password => 'Neues Passwort';
@@ -559,34 +613,44 @@ class AppLocalizationsDe extends AppLocalizations {
   String get password_send_code_error => 'Telefonnummer nicht gefunden.';
 
   @override
-  String get password_send_code_second => 'Beim Anfordern des Passwort-Resets ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get password_send_code_second =>
+      'Beim Anfordern des Passwort-Resets ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
-  String get password_send_code_three => 'Beim Anfordern des Passwort-Resets ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get password_send_code_three =>
+      'Beim Anfordern des Passwort-Resets ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
-  String get password_verification_code_error => 'Der Code ist falsch oder abgelaufen.';
+  String get password_verification_code_error =>
+      'Der Code ist falsch oder abgelaufen.';
 
   @override
-  String get password_verification_code_error_second => 'Telefonnummer nicht gefunden.';
+  String get password_verification_code_error_second =>
+      'Telefonnummer nicht gefunden.';
 
   @override
-  String get password_verification_code_error_three => 'Ein Fehler ist bei der Code-Überprüfung aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get password_verification_code_error_three =>
+      'Ein Fehler ist bei der Code-Überprüfung aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
-  String get password_verification_code_error_four => 'Ein Fehler ist bei der Code-Überprüfung aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get password_verification_code_error_four =>
+      'Ein Fehler ist bei der Code-Überprüfung aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
-  String get password_new_password_error => 'Bitte füllen Sie die erforderlichen Felder aus.';
+  String get password_new_password_error =>
+      'Bitte füllen Sie die erforderlichen Felder aus.';
 
   @override
-  String get password_new_password_error_second => 'Benutzer nicht gefunden oder falsches Passwort. Bitte versuchen Sie es später erneut.';
+  String get password_new_password_error_second =>
+      'Benutzer nicht gefunden oder falsches Passwort. Bitte versuchen Sie es später erneut.';
 
   @override
-  String get password_new_password_error_three => 'Beim Aktualisieren des Passworts ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get password_new_password_error_three =>
+      'Beim Aktualisieren des Passworts ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
-  String get password_new_password_error_four => 'Beim Aktualisieren des Passworts ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get password_new_password_error_four =>
+      'Beim Aktualisieren des Passworts ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
   String get password_loading => 'Lädt...';
@@ -598,7 +662,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get password_send_code_title => 'Geben Sie Ihre Telefonnummer ein 📞';
 
   @override
-  String get password_send_code_sub_title => 'Geben Sie Ihre Telefonnummer ein, bestätigen Sie den erhaltenen Code und setzen Sie Ihr Passwort zurück.';
+  String get password_send_code_sub_title =>
+      'Geben Sie Ihre Telefonnummer ein, bestätigen Sie den erhaltenen Code und setzen Sie Ihr Passwort zurück.';
 
   @override
   String get password_send_code_phone_number => 'Telefonnummer';
@@ -613,7 +678,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get password_verification_code_title => 'Bestätigungscode eingeben ✅';
 
   @override
-  String get password_verification_code_sub_title => 'Geben Sie den an Ihre Telefonnummer gesendeten Bestätigungscode ein.';
+  String get password_verification_code_sub_title =>
+      'Geben Sie den an Ihre Telefonnummer gesendeten Bestätigungscode ein.';
 
   @override
   String get password_verification_code => 'Bestätigungscode';
@@ -628,31 +694,38 @@ class AppLocalizationsDe extends AppLocalizations {
   String get salons_error_title => 'Ein Fehler ist aufgetreten!';
 
   @override
-  String get salons_error_default_sub_title => 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get salons_error_default_sub_title =>
+      'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
   String get salons_search => 'Salonname';
 
   @override
-  String get salons_not_found_title => 'Der gesuchte Friseursalon ist nicht verfügbar';
+  String get salons_not_found_title =>
+      'Der gesuchte Friseursalon ist nicht verfügbar';
 
   @override
-  String get salons_not_found_sub_title => 'Es sieht so aus, als ob der gesuchte Salon in unserer App nicht verfügbar ist. Sie können nach einem anderen Friseursalon suchen.';
+  String get salons_not_found_sub_title =>
+      'Es sieht so aus, als ob der gesuchte Salon in unserer App nicht verfügbar ist. Sie können nach einem anderen Friseursalon suchen.';
 
   @override
   String get token_not_avaible => 'Token nicht verfügbar';
 
   @override
-  String get salons_error => 'Salons konnten nicht geladen werden. Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get salons_error =>
+      'Salons konnten nicht geladen werden. Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
-  String get salons_salon_detail_error => 'Salondetails konnten nicht geladen werden. Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut!';
+  String get salons_salon_detail_error =>
+      'Salondetails konnten nicht geladen werden. Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut!';
 
   @override
-  String get salons_salon_services_error => 'Beim Laden der Dienstleistungen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get salons_salon_services_error =>
+      'Beim Laden der Dienstleistungen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
-  String get salons_second_error => 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get salons_second_error =>
+      'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
   String get salons_catch_error => 'Ein unerwarteter Fehler ist aufgetreten.';
@@ -664,7 +737,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get salons_favorite_add => 'Zu Favoriten hinzugefügt';
 
   @override
-  String get salons_favorite_toggle_error => 'Beim Hinzufügen zu den Favoriten ist ein Fehler aufgetreten.';
+  String get salons_favorite_toggle_error =>
+      'Beim Hinzufügen zu den Favoriten ist ein Fehler aufgetreten.';
 
   @override
   String get salons_detail_services_title => 'Dienstleistungen';
@@ -721,22 +795,26 @@ class AppLocalizationsDe extends AppLocalizations {
   String get services_loading_sub_title => 'Bitte warten...';
 
   @override
-  String get services_error_title => 'Keine Dienstleistungen in Ihrem Namen gefunden!';
+  String get services_error_title =>
+      'Keine Dienstleistungen in Ihrem Namen gefunden!';
 
   @override
-  String get services_error_sub_title => 'Sie können auch andere verfügbare Dienstleistungen überprüfen.';
+  String get services_error_sub_title =>
+      'Sie können auch andere verfügbare Dienstleistungen überprüfen.';
 
   @override
   String get services_token_not_avaible => 'Token nicht verfügbar';
 
   @override
-  String get services_error => 'Beim Laden der Dienstleistungen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut!';
+  String get services_error =>
+      'Beim Laden der Dienstleistungen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut!';
 
   @override
   String get sign_or => 'Oder';
 
   @override
-  String get sign_title => 'Buchen Sie in wenigen Minuten\neinen Termin für Ihren perfekten Look!';
+  String get sign_title =>
+      'Buchen Sie in wenigen Minuten\neinen Termin für Ihren perfekten Look!';
 
   @override
   String get sign_sign_in_button => 'Anmelden';
@@ -757,7 +835,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get sign_in_title => 'Willkommen zurück bei SalonMake! 👋';
 
   @override
-  String get sign_in_sub_title => 'Melden Sie sich in Ihrem Konto an und erhalten Sie Dienstleistungen von Friseursalons in Ihrer Nähe.';
+  String get sign_in_sub_title =>
+      'Melden Sie sich in Ihrem Konto an und erhalten Sie Dienstleistungen von Friseursalons in Ihrer Nähe.';
 
   @override
   String get sign_in_user_name => 'Benutzername';
@@ -778,13 +857,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get sign_in_register_button => 'Registrieren';
 
   @override
-  String get sign_in_notification_error => 'Ein Fehler ist bei der Benachrichtigungsfunktion aufgetreten.';
+  String get sign_in_notification_error =>
+      'Ein Fehler ist bei der Benachrichtigungsfunktion aufgetreten.';
 
   @override
-  String get sign_in_email_and_password_error => 'Ungültige E-Mail oder Passwort.';
+  String get sign_in_email_and_password_error =>
+      'Ungültige E-Mail oder Passwort.';
 
   @override
-  String get sign_in_error => 'Ein Fehler ist bei der Anmeldung aufgetreten. Bitte versuchen Sie es später erneut.';
+  String get sign_in_error =>
+      'Ein Fehler ist bei der Anmeldung aufgetreten. Bitte versuchen Sie es später erneut.';
 
   @override
   String get sign_in_loading => 'Lädt...';
@@ -796,7 +878,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get sign_up_title => 'Erstellen Sie Ihr SalonMake-Konto.✂️';
 
   @override
-  String get sign_up_sub_title => 'Erstellen Sie Ihr Konto und beginnen Sie, Dienstleistungen zu erhalten.';
+  String get sign_up_sub_title =>
+      'Erstellen Sie Ihr Konto und beginnen Sie, Dienstleistungen zu erhalten.';
 
   @override
   String get sign_up_full_name => 'Vollständiger Name';
@@ -820,34 +903,42 @@ class AppLocalizationsDe extends AppLocalizations {
   String get sign_up_sign_in_button => 'Anmelden';
 
   @override
-  String get sign_up_selected_city_district_error => 'Bitte wählen Sie eine Stadt und einen Bezirk aus.';
+  String get sign_up_selected_city_district_error =>
+      'Bitte wählen Sie eine Stadt und einen Bezirk aus.';
 
   @override
-  String get sign_up_phone_number_error => 'Diese Telefonnummer ist bereits registriert.';
+  String get sign_up_phone_number_error =>
+      'Diese Telefonnummer ist bereits registriert.';
 
   @override
-  String get sign_up_verification_code_error => 'Die Telefonverifizierungsanfrage wurde nicht akzeptiert, bitte versuchen Sie es später erneut.';
+  String get sign_up_verification_code_error =>
+      'Die Telefonverifizierungsanfrage wurde nicht akzeptiert, bitte versuchen Sie es später erneut.';
 
   @override
-  String get sign_up_error => 'Der Benutzer konnte nicht registriert werden, bitte versuchen Sie es später erneut.';
+  String get sign_up_error =>
+      'Der Benutzer konnte nicht registriert werden, bitte versuchen Sie es später erneut.';
 
   @override
   String get sign_up_code_false_error => 'Der Code ist falsch oder abgelaufen.';
 
   @override
-  String get sign_up_code_error => 'Ein Fehler ist bei der Code-Verifizierung aufgetreten, bitte versuchen Sie es später erneut.';
+  String get sign_up_code_error =>
+      'Ein Fehler ist bei der Code-Verifizierung aufgetreten, bitte versuchen Sie es später erneut.';
 
   @override
   String get sign_up_success => 'Ihr Konto wurde erfolgreich erstellt.';
 
   @override
-  String get sign_up_required_fields_error => 'Bitte füllen Sie die erforderlichen Felder aus!';
+  String get sign_up_required_fields_error =>
+      'Bitte füllen Sie die erforderlichen Felder aus!';
 
   @override
-  String get sign_up_email_error => 'Diese E-Mail-Adresse ist bereits registriert.';
+  String get sign_up_email_error =>
+      'Diese E-Mail-Adresse ist bereits registriert.';
 
   @override
-  String get sign_up_username_error => 'Dieser Benutzername ist bereits vergeben.';
+  String get sign_up_username_error =>
+      'Dieser Benutzername ist bereits vergeben.';
 
   @override
   String get sign_up_loading => 'Lädt...';
@@ -859,7 +950,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get sign_up_send_code_title => 'Geben Sie Ihre Telefonnummer ein 📞';
 
   @override
-  String get sign_up_send_code_sub_title => 'Geben Sie Ihre Telefonnummer ein und verifizieren Sie sie.';
+  String get sign_up_send_code_sub_title =>
+      'Geben Sie Ihre Telefonnummer ein und verifizieren Sie sie.';
 
   @override
   String get sign_up_send_code_phone_number => 'Telefonnummer';
@@ -871,10 +963,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get sign_up_verification_code_appbar => 'Code verifizieren';
 
   @override
-  String get sign_up_verification_code_title => 'Geben Sie den Bestätigungscode ein ✅';
+  String get sign_up_verification_code_title =>
+      'Geben Sie den Bestätigungscode ein ✅';
 
   @override
-  String get sign_up_verification_code_sub_title => 'Geben Sie den Bestätigungscode ein, der an Ihre Telefonnummer gesendet wurde.';
+  String get sign_up_verification_code_sub_title =>
+      'Geben Sie den Bestätigungscode ein, der an Ihre Telefonnummer gesendet wurde.';
 
   @override
   String get sign_up_verification_code_verification_code => 'Bestätigungscode';
@@ -976,28 +1070,35 @@ class AppLocalizationsDe extends AppLocalizations {
   String get validator_invalid_error => 'Ungültiger Wert';
 
   @override
-  String get validator_email_empty_error => 'Das E-Mail-Feld darf nicht leer sein';
+  String get validator_email_empty_error =>
+      'Das E-Mail-Feld darf nicht leer sein';
 
   @override
   String get validator_email_invalid_error => 'Ungültiges E-Mail-Format';
 
   @override
-  String get validator_password_empty => 'Das Passwortfeld darf nicht leer sein';
+  String get validator_password_empty =>
+      'Das Passwortfeld darf nicht leer sein';
 
   @override
-  String get validator_password_min_length => 'Das Passwort muss mindestens 8 Zeichen lang sein';
+  String get validator_password_min_length =>
+      'Das Passwort muss mindestens 8 Zeichen lang sein';
 
   @override
-  String get validator_password_uppercase => 'Das Passwort muss mindestens einen Großbuchstaben enthalten';
+  String get validator_password_uppercase =>
+      'Das Passwort muss mindestens einen Großbuchstaben enthalten';
 
   @override
-  String get validator_password_lowercase => 'Das Passwort muss mindestens einen Kleinbuchstaben enthalten';
+  String get validator_password_lowercase =>
+      'Das Passwort muss mindestens einen Kleinbuchstaben enthalten';
 
   @override
-  String get validator_password_number => 'Das Passwort muss mindestens eine Zahl enthalten';
+  String get validator_password_number =>
+      'Das Passwort muss mindestens eine Zahl enthalten';
 
   @override
-  String get validator_password_special_character => 'Das Passwort muss mindestens ein Sonderzeichen enthalten';
+  String get validator_password_special_character =>
+      'Das Passwort muss mindestens ein Sonderzeichen enthalten';
 
   @override
   String get validator_phone_invalid_error => 'Ungültige Telefonnummer';
@@ -1024,7 +1125,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get salon_close_dialog_title => 'Salon Geschlossen';
 
   @override
-  String get salon_close_dialog_sub_title => 'Der Salon bietet noch keinen Service an. Bitte schauen Sie sich andere Salons an.';
+  String get salon_close_dialog_sub_title =>
+      'Der Salon bietet noch keinen Service an. Bitte schauen Sie sich andere Salons an.';
 
   @override
   String get connection_error => 'Keine Internetverbindung!';
