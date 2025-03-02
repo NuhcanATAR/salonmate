@@ -1,13 +1,13 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:another_flushbar/flushbar.dart';
 
 import 'package:flutter/material.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/extension/dynamic_extension.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/title_large.dart';
+import 'package:salonmate/product/widget/text_widget/title_medium.dart';
 import 'package:salonmate/product/widget/widget/button.dart';
 
 import '../../../widget/text_widget/body_medium.dart';
@@ -87,11 +87,48 @@ class CodeNoahDialogs {
     Widget child, {
     Color? backgroundColor,
     Color? barrierColor,
+    DynamicViewExtensions? dynamicViewExtensions,
+    double? barHeight,
+    String? appbarText,
   }) {
     showModalBottomSheet(
       context: context,
       barrierColor: barrierColor ?? Colors.transparent,
-      builder: (context) => child,
+      builder: (context) => SizedBox(
+        height: dynamicViewExtensions != null
+            ? dynamicViewExtensions.dynamicHeight(context, barHeight ?? 0.0)
+            : 80,
+        child: Column(
+          children: <Widget>[
+            // appbar
+            Padding(
+              padding: BaseUtility.all(
+                BaseUtility.paddingNormalValue,
+              ),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: TitleMediumBlackBoldText(
+                      text: appbarText ?? '',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: AppIcons.close.toSvgImg(
+                      Colors.black54,
+                      BaseUtility.iconSmallSize,
+                      BaseUtility.iconSmallSize,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // child
+            child,
+          ],
+        ),
+      ),
       backgroundColor: backgroundColor ?? Colors.transparent,
     );
   }
@@ -112,26 +149,77 @@ class CodeNoahDialogs {
     );
   }
 
+  Future<T?> showFieldlert<T extends Object?>(
+    String title,
+    String subTitle,
+    Widget content,
+    List<Widget> actions,
+  ) {
+    return showDialog<T>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              // title
+              TitleMediumBlackBoldText(
+                text: title,
+                textAlign: TextAlign.center,
+              ),
+              // sub titile
+              BodyMediumBlackText(
+                text: subTitle,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+        content: content,
+        actions: actions,
+      ),
+    );
+  }
+
   Future<T?> showWarningAlert<T extends Object?>(
-    AppIcons icon,
+    bool? isLoading,
+    AppIcons? icon,
     Color color,
     String title,
+    String? subTitle,
     DynamicViewExtensions dynamicViewExtensions,
-    Function()? funcOne,
-    Function()? funcSecond,
   ) {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.white,
-        title: icon.toSvgImg(
-          color,
-          BaseUtility.iconLargeSize,
-          BaseUtility.iconLargeSize,
-        ),
-        content: TitleLargeBlackBoldText(
-          text: title,
-          textAlign: TextAlign.center,
+        title: isLoading == true
+            ? CircularProgressIndicator(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+              )
+            : icon == null
+                ? const SizedBox()
+                : icon.toSvgImg(
+                    color,
+                    BaseUtility.iconNormalSize,
+                    BaseUtility.iconNormalSize,
+                  ),
+        content: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              TitleLargeBlackBoldText(
+                text: title,
+                textAlign: TextAlign.center,
+              ),
+              subTitle == null
+                  ? const SizedBox()
+                  : BodyMediumBlackText(
+                      text: subTitle,
+                      textAlign: TextAlign.center,
+                    ),
+            ],
+          ),
         ),
         actions: [
           SizedBox(
@@ -139,32 +227,13 @@ class CodeNoahDialogs {
               context,
               0.08,
             ),
-            child: Row(
-              children: <Widget>[
-                Flexible(
-                  fit: FlexFit.tight,
-                  flex: 1,
-                  child: CustomButtonWidget(
-                    dynamicViewExtensions: dynamicViewExtensions,
-                    text: "TAMAM",
-                    func: funcOne,
-                    btnStatus: ButtonTypes.primaryColorButton,
-                  ),
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                Flexible(
-                  fit: FlexFit.tight,
-                  flex: 1,
-                  child: CustomButtonWidget(
-                    dynamicViewExtensions: dynamicViewExtensions,
-                    text: "KAPAT",
-                    func: funcSecond,
-                    btnStatus: ButtonTypes.borderPrimaryColorButton,
-                  ),
-                ),
-              ],
+            child: CustomButtonWidget(
+              dynamicViewExtensions: dynamicViewExtensions,
+              text: AppLocalizations.of(context)!.show_warning_alert_okey,
+              func: () {
+                Navigator.pop(context);
+              },
+              btnStatus: ButtonTypes.primaryColorButton,
             ),
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 abstract class SignInEvent extends Equatable {
   const SignInEvent();
@@ -10,9 +11,18 @@ abstract class SignInEvent extends Equatable {
 class SignInFuncEvent extends SignInEvent {
   final String username;
   final String password;
+  final BuildContext context;
 
-  const SignInFuncEvent({required this.username, required this.password});
+  const SignInFuncEvent({
+    required this.username,
+    required this.password,
+    required this.context,
+  });
 
   @override
-  List<Object> get props => [username, password];
+  List<Object> get props => [
+        username,
+        password,
+        context,
+      ];
 }

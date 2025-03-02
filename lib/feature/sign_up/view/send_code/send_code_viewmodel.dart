@@ -17,6 +17,7 @@ abstract class SignUpSendCodeViewModel extends BaseState<SignUpSendCodeView>
       context.read<SignUpBloc>().add(
             SignUpSendCodeEvent(
               phoneNumber: int.parse(phoneNumberController.text),
+              context: context,
             ),
           );
     }

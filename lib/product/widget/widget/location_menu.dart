@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/base_state/base_state.dart';
 import 'package:salonmate/product/core/service/city_district/city_district.dart';
@@ -65,7 +65,7 @@ class _LocationMenuWidgetState extends BaseState<LocationMenuWidget> {
         cityDistricts = allCityDistrictsList;
       });
     } catch (e) {
-      Logger().e('Error: $e');
+      loggerPrint.printErrorLog('Error: $e');
     }
   }
 
@@ -82,8 +82,8 @@ class _LocationMenuWidgetState extends BaseState<LocationMenuWidget> {
                     child: Padding(
                       padding:
                           BaseUtility.vertical(BaseUtility.paddingNormalValue),
-                      child: const BodyMediumBlackBoldText(
-                        text: 'City',
+                      child: BodyMediumBlackBoldText(
+                        text: AppLocalizations.of(context)!.accont_city_menu,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -188,8 +188,9 @@ class _LocationMenuWidgetState extends BaseState<LocationMenuWidget> {
                     child: Padding(
                       padding:
                           BaseUtility.vertical(BaseUtility.paddingNormalValue),
-                      child: const BodyMediumBlackBoldText(
-                        text: 'District',
+                      child: BodyMediumBlackBoldText(
+                        text:
+                            AppLocalizations.of(context)!.account_district_menu,
                         textAlign: TextAlign.left,
                       ),
                     ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonmate/feature/password/bloc/cubit.dart';
 import 'package:salonmate/feature/password/bloc/state.dart';
 import 'package:salonmate/feature/password/view/verification_code/verification_code_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/util/util.dart';
@@ -43,8 +44,8 @@ class _PasswordVerificationCodeViewState
             BaseUtility.iconNormalSize,
           ),
         ),
-        title: const BodyMediumBlackBoldText(
-          text: 'Verification Code',
+        title: BodyMediumBlackBoldText(
+          text: AppLocalizations.of(context)!.password_verification_code_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -77,8 +78,9 @@ class _PasswordVerificationCodeViewState
   // title sub title
   Widget get buildTitleSubTitleWidget => TitleSubtitleWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        title: 'Enter Verification Code ✅',
-        subtitle: 'Enter the verification code received on your new password.',
+        title: AppLocalizations.of(context)!.password_verification_code_title,
+        subtitle:
+            AppLocalizations.of(context)!.password_verification_code_sub_title,
       );
 
   // otp code
@@ -88,7 +90,7 @@ class _PasswordVerificationCodeViewState
         ),
         child: NumberTextFieldWidget(
           controller: verificationCodeController,
-          hintText: 'Verification Code',
+          hintText: AppLocalizations.of(context)!.password_verification_code,
           onChanged: (val) {},
           isLabelText: false,
           dynamicViewExtensions: dynamicViewExtensions,
@@ -100,7 +102,8 @@ class _PasswordVerificationCodeViewState
         children: <Widget>[
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
-            text: 'Verification',
+            text:
+                AppLocalizations.of(context)!.password_verification_code_button,
             func: verificationCode,
             btnStatus: ButtonTypes.primaryColorButton,
           ),

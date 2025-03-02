@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/util/util.dart';
 import 'package:salonmate/product/widget/text_widget/body_medium.dart';
 import 'package:salonmate/product/widget/text_widget/label_medium.dart';
@@ -10,13 +11,14 @@ mixin BottomMenuMixin {
           context: context,
           builder: (context) => AlertDialog(
             backgroundColor: Colors.white,
-            title: const BodyMediumBlackBoldText(
-              text: 'Çıkış Yapmak İstiyormusunuz?',
+            title: BodyMediumBlackBoldText(
+              text: AppLocalizations.of(context)!
+                  .bottom_navigator_exit_dialog_title,
               textAlign: TextAlign.center,
             ),
-            content: const LabelMediumBlackText(
-              text:
-                  'Merak etmeyin hesabınıza tekrar otomatik giriş yapabilirsiniz?',
+            content: LabelMediumBlackText(
+              text: AppLocalizations.of(context)!
+                  .bottom_navigator_exit_dialog_sub_title,
               textAlign: TextAlign.center,
             ),
             actionsPadding: BaseUtility.all(
@@ -36,7 +38,10 @@ mixin BottomMenuMixin {
                       onPressed: () {
                         Navigator.pop(context, true);
                       },
-                      child: const Text('Evet'),
+                      child: Text(
+                        AppLocalizations.of(context)!
+                            .bottom_navigator_exit_dialog_yes,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -51,7 +56,10 @@ mixin BottomMenuMixin {
                       onPressed: () {
                         Navigator.pop(context, false);
                       },
-                      child: const Text('Hayır'),
+                      child: Text(
+                        AppLocalizations.of(context)!
+                            .bottom_navigator_exit_dialog_no,
+                      ),
                     ),
                   ),
                 ],

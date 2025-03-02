@@ -5,6 +5,7 @@ import 'package:salonmate/feature/sign_in/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_in/bloc/state.dart';
 import 'package:salonmate/feature/sign_in/sign_in_viewmodel.dart';
 import 'package:salonmate/feature/sign_up/view/send_code/send_code_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -39,8 +40,8 @@ class _SignInViewState extends SignInViewModel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        title: const BodyMediumBlackBoldText(
-          text: 'Sign In',
+        title: BodyMediumBlackBoldText(
+          text: AppLocalizations.of(context)!.sign_in_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -78,9 +79,8 @@ class _SignInViewState extends SignInViewModel {
   // title sub title
   TitleSubtitleWidget get buildTitleSubTitleWidget => TitleSubtitleWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        title: 'SalonMake Tekrar Hoşgeldiniz.👋',
-        subtitle:
-            'Hesabınıza giriş yapın ve size yakın kuaför salonlarından hizmet alın.',
+        title: AppLocalizations.of(context)!.sign_in_title,
+        subtitle: AppLocalizations.of(context)!.sign_in_sub_title,
       );
 
   // user name password field
@@ -89,7 +89,7 @@ class _SignInViewState extends SignInViewModel {
           // user name
           CustomEmailFieldWidget(
             emailController: usernameController,
-            hintText: 'User Name',
+            hintText: AppLocalizations.of(context)!.sign_in_user_name,
             onChanged: (val) {},
             isLabelText: true,
             isUserName: true,
@@ -97,7 +97,7 @@ class _SignInViewState extends SignInViewModel {
           // password
           CustomPasswordFieldWidget(
             passwordController: passwordController,
-            hintText: 'Password',
+            hintText: AppLocalizations.of(context)!.sign_in_password,
             onChanged: (val) {},
             isValidator: true,
             isLabelText: true,
@@ -116,8 +116,8 @@ class _SignInViewState extends SignInViewModel {
             context,
             const PasswordSendCodeView(),
           ),
-          child: const BodyMediumMainColorBoldText(
-            text: 'Forgot Password',
+          child: BodyMediumMainColorBoldText(
+            text: AppLocalizations.of(context)!.sign_in_forgot_password,
             textAlign: TextAlign.right,
           ),
         ),
@@ -129,7 +129,7 @@ class _SignInViewState extends SignInViewModel {
           // sign in button
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
-            text: 'Sign In',
+            text: AppLocalizations.of(context)!.sign_in_button,
             func: signIn,
             btnStatus: ButtonTypes.primaryColorButton,
           ),
@@ -141,11 +141,12 @@ class _SignInViewState extends SignInViewModel {
             child: Row(
               children: <Widget>[
                 const Spacer(),
-                const Flexible(
+                Flexible(
                   fit: FlexFit.tight,
                   flex: 3,
                   child: BodyMediumBlackText(
-                    text: "Don't have an account yet?",
+                    text:
+                        AppLocalizations.of(context)!.sign_in_dont_have_account,
                     textAlign: TextAlign.right,
                   ),
                 ),
@@ -161,8 +162,9 @@ class _SignInViewState extends SignInViewModel {
                       padding: BaseUtility.left(
                         BaseUtility.paddingSmallValue,
                       ),
-                      child: const BodyMediumMainColorBoldText(
-                        text: 'Sign Up',
+                      child: BodyMediumMainColorBoldText(
+                        text: AppLocalizations.of(context)!
+                            .sign_in_register_button,
                         textAlign: TextAlign.left,
                       ),
                     ),

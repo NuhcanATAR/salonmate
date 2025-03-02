@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_up/bloc/state.dart';
 import 'package:salonmate/feature/sign_up/view/send_code/send_code_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/color.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
@@ -36,8 +37,8 @@ class _SignUpSendCodeViewState extends SignUpSendCodeViewModel {
           ),
         ),
         centerTitle: true,
-        title: const BodyMediumBlackBoldText(
-          text: 'Phone Number Send Code',
+        title: BodyMediumBlackBoldText(
+          text: AppLocalizations.of(context)!.sign_up_send_code_appbar,
           textAlign: TextAlign.center,
         ),
       ),
@@ -70,8 +71,8 @@ class _SignUpSendCodeViewState extends SignUpSendCodeViewModel {
   // title and sub title
   Widget get buildTitleSubTitleWidget => TitleSubtitleWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        title: 'Telefon Numaranızı Giriniz 📞',
-        subtitle: 'Telefon Numaranızı giriniz ve doğrulayınız.',
+        title: AppLocalizations.of(context)!.sign_up_send_code_title,
+        subtitle: AppLocalizations.of(context)!.sign_up_send_code_sub_title,
       );
 
   // phone number field
@@ -81,7 +82,8 @@ class _SignUpSendCodeViewState extends SignUpSendCodeViewModel {
         ),
         child: PhoneNumberFieldWidget(
           phoneNumberController: phoneNumberController,
-          hintText: 'Phone Number',
+          hintText:
+              AppLocalizations.of(context)!.sign_up_send_code_phone_number,
           onChanged: (val) {},
           isLabelText: false,
         ),
@@ -90,7 +92,7 @@ class _SignUpSendCodeViewState extends SignUpSendCodeViewModel {
   // next button
   Widget get buildNextButtonWidget => CustomButtonWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        text: 'Send Code',
+        text: AppLocalizations.of(context)!.sign_up_send_code_button,
         func: sendCode,
         btnStatus: ButtonTypes.primaryColorButton,
       );

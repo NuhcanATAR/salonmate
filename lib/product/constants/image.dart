@@ -14,7 +14,13 @@ enum AppImages {
   visa('visa'),
   warning('warning'),
   google('google'),
-  apple('apple');
+  apple('apple'),
+  failed('failed'),
+  notfound('notfound'),
+  locationPermissions('location_permission'),
+  english('english'),
+  turkey('turkey'),
+  germany('german');
 
   final String value;
   const AppImages(this.value);

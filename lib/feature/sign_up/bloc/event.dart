@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 abstract class SignUpEvent extends Equatable {
   const SignUpEvent();
@@ -9,30 +10,36 @@ abstract class SignUpEvent extends Equatable {
 
 class SignUpSendCodeEvent extends SignUpEvent {
   final int phoneNumber;
+  final BuildContext context;
 
   const SignUpSendCodeEvent({
     required this.phoneNumber,
+    required this.context,
   });
 
   @override
   List<Object> get props => [
         phoneNumber,
+        context,
       ];
 }
 
 class SignUpVerificationCodeEvent extends SignUpEvent {
   final int verificationCode;
   final int phoneNumber;
+  final BuildContext context;
 
   const SignUpVerificationCodeEvent({
     required this.verificationCode,
     required this.phoneNumber,
+    required this.context,
   });
 
   @override
   List<Object> get props => [
         verificationCode,
         phoneNumber,
+        context,
       ];
 }
 
@@ -44,6 +51,7 @@ class SignUpFuncEvent extends SignUpEvent {
   final String city;
   final String district;
   final String userName;
+  final BuildContext context;
 
   const SignUpFuncEvent({
     required this.email,
@@ -53,6 +61,7 @@ class SignUpFuncEvent extends SignUpEvent {
     required this.city,
     required this.district,
     required this.userName,
+    required this.context,
   });
 
   @override
@@ -64,5 +73,6 @@ class SignUpFuncEvent extends SignUpEvent {
         city,
         district,
         userName,
+        context,
       ];
 }

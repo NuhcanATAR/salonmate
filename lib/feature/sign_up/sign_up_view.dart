@@ -4,6 +4,7 @@ import 'package:salonmate/feature/sign_in/sign_in_view.dart';
 import 'package:salonmate/feature/sign_up/bloc/cubit.dart';
 import 'package:salonmate/feature/sign_up/bloc/state.dart';
 import 'package:salonmate/feature/sign_up/sign_up_viewmodel.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/constants/icon.dart';
 import 'package:salonmate/product/core/base/helper/button_control.dart';
 import 'package:salonmate/product/util/util.dart';
@@ -46,8 +47,8 @@ class _SignUpViewState extends SignUpViewmodel {
             BaseUtility.iconNormalSize,
           ),
         ),
-        title: const BodyMediumBlackBoldText(
-          text: 'Sign Up',
+        title: BodyMediumBlackBoldText(
+          text: AppLocalizations.of(context)!.sign_up_appbar,
           textAlign: TextAlign.left,
         ),
       ),
@@ -83,8 +84,8 @@ class _SignUpViewState extends SignUpViewmodel {
   // title sub title
   TitleSubtitleWidget get buildTitleSubTitleWidget => TitleSubtitleWidget(
         dynamicViewExtensions: dynamicViewExtensions,
-        title: 'SalonMake Hesabınızı Oluşturun.✂️',
-        subtitle: 'Hesabınızı oluşturun ve hizmet almaya\nbaşlayın.',
+        title: AppLocalizations.of(context)!.sign_up_title,
+        subtitle: AppLocalizations.of(context)!.sign_up_sub_title,
       );
 
   // user name password field
@@ -93,7 +94,7 @@ class _SignUpViewState extends SignUpViewmodel {
           // full name
           NormalTextFieldWidget(
             controller: fullNameController,
-            hintText: 'Ad Soyad',
+            hintText: AppLocalizations.of(context)!.sign_up_full_name,
             explanationStatus: false,
             onChanged: (val) {},
             isValidator: true,
@@ -104,7 +105,7 @@ class _SignUpViewState extends SignUpViewmodel {
           // user name
           NormalTextFieldWidget(
             controller: userNameController,
-            hintText: 'User Name',
+            hintText: AppLocalizations.of(context)!.sign_up_user_name,
             onChanged: (val) {},
             isLabelText: true,
             isValidator: true,
@@ -115,7 +116,7 @@ class _SignUpViewState extends SignUpViewmodel {
           // e-mail
           CustomEmailFieldWidget(
             emailController: emailController,
-            hintText: 'E-mail',
+            hintText: AppLocalizations.of(context)!.sign_up_email,
             onChanged: (val) {},
             isLabelText: true,
           ),
@@ -128,7 +129,7 @@ class _SignUpViewState extends SignUpViewmodel {
           // password
           CustomPasswordFieldWidget(
             passwordController: passwordController,
-            hintText: 'Password',
+            hintText: AppLocalizations.of(context)!.sign_up_password,
             onChanged: (val) {},
             isValidator: true,
             isLabelText: true,
@@ -142,7 +143,7 @@ class _SignUpViewState extends SignUpViewmodel {
           // sign in button
           CustomButtonWidget(
             dynamicViewExtensions: dynamicViewExtensions,
-            text: 'Next',
+            text: AppLocalizations.of(context)!.sign_up_next_button,
             func: signUp,
             btnStatus: ButtonTypes.primaryColorButton,
           ),
@@ -154,11 +155,11 @@ class _SignUpViewState extends SignUpViewmodel {
             child: Row(
               children: <Widget>[
                 const Spacer(),
-                const Flexible(
+                Flexible(
                   fit: FlexFit.tight,
                   flex: 3,
                   child: BodyMediumBlackText(
-                    text: "You have an account yet?",
+                    text: AppLocalizations.of(context)!.sign_up_have_account,
                     textAlign: TextAlign.right,
                   ),
                 ),
@@ -174,8 +175,9 @@ class _SignUpViewState extends SignUpViewmodel {
                       padding: BaseUtility.left(
                         BaseUtility.paddingSmallValue,
                       ),
-                      child: const BodyMediumMainColorBoldText(
-                        text: 'Sign In',
+                      child: BodyMediumMainColorBoldText(
+                        text: AppLocalizations.of(context)!
+                            .sign_up_sign_in_button,
                         textAlign: TextAlign.left,
                       ),
                     ),

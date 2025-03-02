@@ -3,6 +3,7 @@ import 'package:salonmate/feature/password/bloc/state.dart';
 import 'package:salonmate/feature/password/password_view.dart';
 import 'package:salonmate/feature/password/view/verification_code/verification_code_view.dart';
 import 'package:salonmate/feature/sign_in/sign_in_view.dart';
+import 'package:salonmate/lang/app_localizations.dart';
 import 'package:salonmate/product/core/base/helper/logger_package.dart';
 import 'package:salonmate/product/core/base/helper/navigator_router.dart';
 import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
@@ -32,8 +33,8 @@ mixin PasswordMixin {
         break;
       case PasswordSendCodeLoadingState:
         CodeNoahDialogs(context).showAlert(
-          const BodyMediumWhiteBoldText(
-            text: 'Loading...',
+          BodyMediumWhiteBoldText(
+            text: AppLocalizations.of(context)!.password_loading,
             textAlign: TextAlign.center,
           ),
         );

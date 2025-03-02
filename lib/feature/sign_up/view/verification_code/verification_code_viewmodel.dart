@@ -18,6 +18,7 @@ abstract class SignUpVerificationCodeViewModel
             SignUpVerificationCodeEvent(
               verificationCode: int.parse(otpCodeController.text),
               phoneNumber: widget.phoneNumber,
+              context: context,
             ),
           );
     }

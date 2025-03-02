@@ -1,0 +1,73 @@
+import 'package:flutter/material.dart';
+import 'package:salonmate/feature/account/bloc/state.dart';
+import 'package:salonmate/lang/app_localizations.dart';
+import 'package:salonmate/product/core/base/helper/logger_package.dart';
+import 'package:salonmate/product/core/base/helper/show_dialogs.dart';
+import 'package:salonmate/product/widget/text_widget/body_medium.dart';
+
+mixin AccountMixin {
+  final loggerPrint = CustomLoggerPrint();
+  // account information edit
+  void accountInformationUpdateListenerBLoc(BuildContext context, state) {
+    switch (state.runtimeType) {
+      case AccountUpdateSuccess:
+        Navigator.pop(context);
+        Navigator.pop(context);
+        CodeNoahDialogs(context).showFlush(
+          type: SnackType.success,
+          message: (state as AccountUpdateSuccess).message,
+        );
+        break;
+      case AccountUpdateError:
+        Navigator.pop(context);
+        Navigator.pop(context);
+        CodeNoahDialogs(context).showFlush(
+          type: SnackType.error,
+          message: (state as AccountUpdateError).message,
+        );
+        break;
+      case AccountUpdateLoading:
+        CodeNoahDialogs(context).showAlert(
+          BodyMediumWhiteText(
+            text: AppLocalizations.of(context)!.account_loading_text,
+            textAlign: TextAlign.center,
+          ),
+        );
+        break;
+      default:
+        loggerPrint.printErrorLog('Case Error');
+    }
+  }
+
+  // account city district edit
+  void accountCityDistrictUpdateListenerBloc(BuildContext context, state) {
+    switch (state.runtimeType) {
+      case AccountCityDistrictUpdateSuccessState:
+        Navigator.pop(context);
+        Navigator.pop(context);
+        CodeNoahDialogs(context).showFlush(
+          type: SnackType.success,
+          message: (state as AccountCityDistrictUpdateSuccessState).message,
+        );
+        break;
+      case AccountCityDistrictUpdateErrorState:
+        Navigator.pop(context);
+        Navigator.pop(context);
+        CodeNoahDialogs(context).showFlush(
+          type: SnackType.error,
+          message: (state as AccountCityDistrictUpdateErrorState).message,
+        );
+        break;
+      case AccountCityDistrictUpdateLoadingState:
+        CodeNoahDialogs(context).showAlert(
+          BodyMediumWhiteText(
+            text: AppLocalizations.of(context)!.account_loading_text,
+            textAlign: TextAlign.center,
+          ),
+        );
+        break;
+      default:
+        loggerPrint.printErrorLog('Case Error');
+    }
+  }
+}

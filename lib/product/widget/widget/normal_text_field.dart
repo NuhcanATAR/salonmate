@@ -79,7 +79,10 @@ class _NormalTextFieldWidgetState extends BaseState<NormalTextFieldWidget> {
               return result;
             },
             onChanged: widget.onChanged,
-            keyboardType: TextInputType.emailAddress,
+            maxLines: widget.explanationStatus == true ? 4 : null,
+            keyboardType: widget.explanationStatus == true
+                ? TextInputType.multiline
+                : TextInputType.emailAddress,
             decoration: InputDecoration(
               errorStyle: const TextStyle(
                 fontSize: 0.2,
