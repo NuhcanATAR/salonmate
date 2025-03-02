@@ -29,7 +29,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         headers: ApiService.headers,
         body: json.encode(
           ApiService.toSignInBody(
-            event.password,
+            event.username,
             event.password,
           ),
         ),
