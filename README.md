@@ -52,7 +52,7 @@ git clone https://github.com/NuhcanATAR/salonmate.git
 ![6](https://github.com/user-attachments/assets/e6aac5c1-b435-49b0-ad19-8bd7fe766290)
 ![7](https://github.com/user-attachments/assets/30f1f938-ad7c-43ec-9174-737703428cac)
 ![8](https://github.com/user-attachments/assets/7598b660-6324-47cb-83b3-338fa6c4bdc4)
-![9](https://github.com/user-attachments/assets/f766f51a-a34f-4d9e-9154-2553cc1f13e4)
+![9](https://github.com/user-attachments/assets/c807055a-9454-41a9-8ead-f126ce36bf9a)
 
 
 
