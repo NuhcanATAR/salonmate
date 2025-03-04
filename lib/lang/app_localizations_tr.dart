@@ -135,7 +135,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get account_localization_select_turkish_menu => 'Türkçe';
 
   @override
-  String get account_localization_select_english_menu => 'English';
+  String get account_localization_select_english_menu => 'İngilizce';
 
   @override
   String get account_localization_select_germany_menu => 'Almanca';
